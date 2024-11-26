@@ -1,21 +1,103 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13142" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12042"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="OnboardCell" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="OnboardCell" id="gTV-IL-0wX" customClass="OnboardCell" customModule="ai_logo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="447" height="210"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                <rect key="frame" x="0.0" y="0.0" width="447" height="210"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vUE-4v-SQk">
+                        <rect key="frame" x="0.0" y="0.0" width="447" height="210"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to AI Maker" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6IT-Wb-860">
+                                <rect key="frame" x="20" y="10" width="407" height="38"/>
+                                <fontDescription key="fontDescription" name="Outfit-Bold" family="Outfit" pointSize="30"/>
+                                <color key="textColor" name="kWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b99-XU-nwg">
+                                <rect key="frame" x="20" y="56" width="407" height="40.333333333333343"/>
+                                <string key="text">At vero eos et accusamus et iusto odio dignissimos
+ducimus qui blanditis</string>
+                                <fontDescription key="fontDescription" name="Outfit-Medium" family="Outfit" pointSize="16"/>
+                                <color key="textColor" name="kLightWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ndc-EJ-qZu">
+                                <rect key="frame" x="20" y="140" width="407" height="60"/>
+                                <color key="backgroundColor" name="AccentColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="DVR-3Z-nz5"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Get Started">
+                                    <fontDescription key="titleFontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
+                                    <color key="baseForegroundColor" name="kWhite"/>
+                                </buttonConfiguration>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="30"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="btnStart:" destination="gTV-IL-0wX" eventType="touchUpInside" id="X7A-1a-zdi"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="6IT-Wb-860" firstAttribute="leading" secondItem="vUE-4v-SQk" secondAttribute="leading" constant="20" symbolic="YES" id="B8x-pw-o38"/>
+                            <constraint firstItem="b99-XU-nwg" firstAttribute="top" secondItem="6IT-Wb-860" secondAttribute="bottom" constant="8" symbolic="YES" id="BCD-cK-SLN"/>
+                            <constraint firstItem="Ndc-EJ-qZu" firstAttribute="leading" secondItem="vUE-4v-SQk" secondAttribute="leading" constant="20" id="Cp0-6a-tjE"/>
+                            <constraint firstAttribute="trailing" secondItem="6IT-Wb-860" secondAttribute="trailing" constant="20" symbolic="YES" id="NgS-xR-2t5"/>
+                            <constraint firstItem="b99-XU-nwg" firstAttribute="leading" secondItem="vUE-4v-SQk" secondAttribute="leading" constant="20" symbolic="YES" id="TEz-i1-98Q"/>
+                            <constraint firstItem="6IT-Wb-860" firstAttribute="top" secondItem="vUE-4v-SQk" secondAttribute="top" constant="10" id="age-zg-xMr"/>
+                            <constraint firstAttribute="trailing" secondItem="b99-XU-nwg" secondAttribute="trailing" constant="20" symbolic="YES" id="bnP-Vd-947"/>
+                            <constraint firstItem="b99-XU-nwg" firstAttribute="centerX" secondItem="6IT-Wb-860" secondAttribute="centerX" id="lWo-o1-xZC"/>
+                            <constraint firstItem="6IT-Wb-860" firstAttribute="centerX" secondItem="vUE-4v-SQk" secondAttribute="centerX" id="qH4-Ew-62b"/>
+                            <constraint firstAttribute="bottom" secondItem="Ndc-EJ-qZu" secondAttribute="bottom" constant="10" id="v0Q-wK-p6Q"/>
+                            <constraint firstAttribute="trailing" secondItem="Ndc-EJ-qZu" secondAttribute="trailing" constant="20" id="wmM-Sd-0vQ"/>
+                        </constraints>
+                    </view>
+                </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="vUE-4v-SQk" secondAttribute="bottom" id="30t-GN-qT7"/>
+                <constraint firstItem="vUE-4v-SQk" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="6jN-vh-x3y"/>
+                <constraint firstAttribute="trailing" secondItem="vUE-4v-SQk" secondAttribute="trailing" id="HEL-ch-SBr"/>
+                <constraint firstItem="vUE-4v-SQk" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="kLj-lA-5tS"/>
+            </constraints>
+            <size key="customSize" width="843" height="363"/>
+            <connections>
+                <outlet property="btnStart" destination="Ndc-EJ-qZu" id="oNK-fj-2hT"/>
+                <outlet property="lblSubtitle" destination="b99-XU-nwg" id="NhD-qw-5ng"/>
+                <outlet property="lblTitle" destination="6IT-Wb-860" id="CDq-he-If8"/>
+            </connections>
+            <point key="canvasLocation" x="58.778625954198468" y="274.64788732394368"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <namedColor name="AccentColor">
+            <color red="1" green="0.89800000190734863" blue="0.23100000619888306" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="kLightWhite">
+            <color red="0.40784313725490196" green="0.40784313725490196" blue="0.40784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="kWhite">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>
