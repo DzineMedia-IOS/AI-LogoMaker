@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CreationViewController: UIViewController {
+class CreationVC: UIViewController {
     
     @IBOutlet weak var textBackView: UIView!
     @IBOutlet weak var btnPrompt: UIButton!
@@ -31,7 +31,7 @@ class CreationViewController: UIViewController {
 
 
 
-extension CreationViewController{
+extension CreationVC{
     
     
     // Styling
