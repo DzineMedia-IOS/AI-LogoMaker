@@ -49,20 +49,20 @@ import UIKit
         return path.cgPath
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        self.isTranslucent = true
-        var tabFrame            = self.frame
-        tabFrame.size.height    = 90 + (UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? CGFloat.zero)
-        tabFrame.origin.y       = self.frame.origin.y +   ( self.frame.height - 90 - (UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? CGFloat.zero))
-        self.layer.cornerRadius = 20
-        self.frame            = tabFrame
-        
-        
-        
-        self.items?.forEach({ $0.titlePositionAdjustment = UIOffset(horizontal: 0.0, vertical: -5.0) })
-        
-        
-    }
+//    override func layoutSubviews() {
+//        super.layoutSubviews()
+//        self.isTranslucent = true
+//        var tabFrame            = self.frame
+//        tabFrame.size.height    = 90 + (UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? CGFloat.zero)
+//        tabFrame.origin.y       = self.frame.origin.y +   ( self.frame.height - 90 - (UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? CGFloat.zero))
+//        self.layer.cornerRadius = 20
+//        self.frame            = tabFrame
+//        
+//        
+//        
+//        self.items?.forEach({ $0.titlePositionAdjustment = UIOffset(horizontal: 0.0, vertical: -5.0) })
+//        
+//        
+//    }
     
 }

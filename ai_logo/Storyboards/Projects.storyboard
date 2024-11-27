@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Project View Controller-->
+        <scene sceneID="JYs-U1-1Bg">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="u8v-fz-NzA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="ProjectViewController" id="my4-mD-599" customClass="ProjectViewController" customModule="ai_logo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Yuy-SV-yhV">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="1kl-ox-08m">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rbC-vr-1Iv">
+                                <rect key="frame" x="16" y="59" width="361" height="60"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Projects" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yoy-gD-cpw">
+                                        <rect key="frame" x="8" y="11.999999999999998" width="128.66666666666666" height="30.333333333333329"/>
+                                        <color key="tintColor" name="kWhite"/>
+                                        <fontDescription key="fontDescription" name="Outfit-Bold" family="Outfit" pointSize="24"/>
+                                        <color key="textColor" name="kWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e5y-Y4-LWe">
+                                        <rect key="frame" x="289" y="12.999999999999998" width="72" height="28.333333333333329"/>
+                                        <color key="backgroundColor" name="kCream"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="GO PRO"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="GO PRO">
+                                            <fontDescription key="titleFontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
+                                            <color key="baseForegroundColor" name="kBlack"/>
+                                        </buttonConfiguration>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="12"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="yoy-gD-cpw" firstAttribute="top" secondItem="rbC-vr-1Iv" secondAttribute="top" constant="12" id="1RO-Kb-z8j"/>
+                                    <constraint firstItem="e5y-Y4-LWe" firstAttribute="centerY" secondItem="yoy-gD-cpw" secondAttribute="centerY" id="4Dd-JG-S9O"/>
+                                    <constraint firstAttribute="height" constant="60" id="Tpy-5Y-bpA"/>
+                                    <constraint firstAttribute="trailing" secondItem="e5y-Y4-LWe" secondAttribute="trailing" id="dfE-ac-2Cs"/>
+                                    <constraint firstItem="yoy-gD-cpw" firstAttribute="leading" secondItem="rbC-vr-1Iv" secondAttribute="leading" constant="8" id="x3O-ai-bka"/>
+                                </constraints>
+                            </view>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="1HC-wm-7lU">
+                                <rect key="frame" x="16" y="127" width="361" height="691"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="5de-qv-BgQ">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="pk5-IY-wVj">
+                                        <rect key="frame" x="0.0" y="0.0" width="127.99999999999997" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Dxt-en-8IG">
+                                            <rect key="frame" x="0.0" y="0.0" width="127.99999999999997" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Y87-sx-VoG"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="1kl-ox-08m" firstAttribute="leading" secondItem="Y87-sx-VoG" secondAttribute="leading" id="3T5-VS-uQS"/>
+                            <constraint firstItem="Y87-sx-VoG" firstAttribute="trailing" secondItem="1HC-wm-7lU" secondAttribute="trailing" constant="16" id="A8X-Fb-HGN"/>
+                            <constraint firstItem="rbC-vr-1Iv" firstAttribute="leading" secondItem="Y87-sx-VoG" secondAttribute="leading" constant="16" id="BvW-vk-ggK"/>
+                            <constraint firstItem="rbC-vr-1Iv" firstAttribute="top" secondItem="Y87-sx-VoG" secondAttribute="top" id="D8p-6s-nnb"/>
+                            <constraint firstItem="1kl-ox-08m" firstAttribute="trailing" secondItem="Y87-sx-VoG" secondAttribute="trailing" id="Fyr-gY-tim"/>
+                            <constraint firstItem="1HC-wm-7lU" firstAttribute="leading" secondItem="Y87-sx-VoG" secondAttribute="leading" constant="16" id="Pod-HB-SVt"/>
+                            <constraint firstItem="1kl-ox-08m" firstAttribute="top" secondItem="Yuy-SV-yhV" secondAttribute="top" id="W91-fC-fYx"/>
+                            <constraint firstItem="Y87-sx-VoG" firstAttribute="trailing" secondItem="rbC-vr-1Iv" secondAttribute="trailing" constant="16" id="fCz-wb-Aau"/>
+                            <constraint firstItem="1HC-wm-7lU" firstAttribute="bottom" secondItem="Y87-sx-VoG" secondAttribute="bottom" id="fz5-mp-PoD"/>
+                            <constraint firstAttribute="bottom" secondItem="1kl-ox-08m" secondAttribute="bottom" id="rT9-Yt-rxA"/>
+                            <constraint firstItem="1HC-wm-7lU" firstAttribute="top" secondItem="rbC-vr-1Iv" secondAttribute="bottom" constant="8" symbolic="YES" id="ygx-6v-SJ4"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="btnPro" destination="e5y-Y4-LWe" id="dOJ-dA-vWf"/>
+                        <outlet property="projectCollectionView" destination="1HC-wm-7lU" id="jrd-kx-DMD"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="770.2290076335878" y="3.5211267605633805"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="bg" width="430" height="932"/>
+        <namedColor name="kBlack">
+            <color red="0.075000002980232239" green="0.075000002980232239" blue="0.075000002980232239" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="kCream">
+            <color red="0.83529411764705885" green="0.75294117647058822" blue="0.63529411764705879" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="kWhite">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -14,6 +14,10 @@ class OnboardViewController: UIViewController {
         "Generate Various Logos With One Click",
         "Generate Artwork With Creative Prompts",
     ]
+//
+    
+    var currentPage: Int = 0
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,8 +51,8 @@ class OnboardViewController: UIViewController {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let pageIndex = round(scrollView.contentOffset.x / scrollView.frame.width)
        
-        pageControl.currentPage = Int(pageIndex - 1)
-        
+        pageControl.currentPage = Int(pageIndex) - 1
+        currentPage = pageControl.currentPage
         if pageIndex > 0{
             buttonView.isHidden = true
             pageControl.isHidden = false
@@ -69,18 +73,22 @@ extension OnboardViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OnboardCell", for: indexPath) as! OnboardCell
+        cell.lblTitle.text = titlArr[indexPath.row]
+
         cell.buttonActionClosure = { [self] in
-            print("Button tapped at index: \(indexPath.item)")
             
             cell.lblTitle.text = titlArr[indexPath.row]
-            let nextPage = pageControl.currentPage + 1
+            let nextPage = currentPage + 1
             if nextPage < titlArr.count {
-                pageControl.currentPage = nextPage
-                DispatchQueue.main.async { [self] in
-                    let xOffset = CGFloat(nextPage) * collectionView.frame.width
-                    collectionView.setContentOffset(CGPoint(x: xOffset, y: 0), animated: true)
+                if indexPath.row < titlArr.count - 1{
                     
+                    
+                    let nextIndexPath = IndexPath(item: indexPath.row + 1, section: 0)
+                    self.onboardCollectionView.scrollToItem(at: nextIndexPath, at: .centeredHorizontally, animated: true)
                 }
+                pageControl.currentPage = nextPage
+                currentPage = pageControl.currentPage
+
             }
             if indexPath.row > 0{
                 buttonView.isHidden = true
@@ -90,6 +98,18 @@ extension OnboardViewController: UICollectionViewDelegate, UICollectionViewDataS
                 buttonView.isHidden = false
                 pageControl.isHidden = true
             }
+            
+            
+            
+            
+            if indexPath.item == titlArr.count - 1 {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let tabbar = storyboard.instantiateViewController(withIdentifier: "TabBarController") as! TabBarController
+                
+                tabbar.modalPresentationStyle = .fullScreen
+                present(tabbar, animated: true)
+            }
+            
         }
         return cell
     }
