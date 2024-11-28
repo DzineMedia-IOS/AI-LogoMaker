@@ -8,14 +8,113 @@
 import UIKit
 
 class ExportVc: UIViewController {
-
+    
+    @IBOutlet weak var quality: UISegmentedControl!
+    @IBOutlet weak var format: UISegmentedControl!
+    @IBOutlet weak var exportView: UIView!
+    @IBOutlet weak var collectionVIew: UICollectionView!
+    @IBOutlet weak var btnPro: UIButton!
+    @IBOutlet weak var downloadView: UIView!
+    
+    
+    let imgArr = ["mock_1","mock_2", "mock_3"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        let nib = UINib(nibName: "ProjectCell", bundle: nil)
+        collectionVIew.register(nib, forCellWithReuseIdentifier: "ProjectCell")
+        collectionVIew.delegate = self
+        collectionVIew.dataSource = self
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.styleUI()
+        }
+        
+        exportView.cornerRadius = 20
+        exportView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+        configureSegmentedControlAppearance(for: format)
+        configureSegmentedControlAppearance(for: quality)
+        addGestureDetector()
+        
     }
     
-
     
+    @IBAction func btnCancel(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
+    
+    @objc func downloadViewTapped() {
+        animateTopView()
+    }
+    
+    
+    func animateTopView() {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.downloadView.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
+        }) { _ in
+            UIView.animate(withDuration: 0.3) {
+                self.downloadView.transform = .identity
+            }
+        }
+    }
+    
+}
 
+//  MARK: - UICOLLECTIONVIEW CELL
+extension ExportVc: UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProjectCell", for: indexPath) as! ProjectCell
+        cell.img.image = UIImage(named: imgArr[indexPath.row])
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        return CGSize(width: collectionView.frame.width/3 - 30, height: collectionView.frame.height - 20)
+    }
+    
+}
+
+
+// MARK: - STYLING UI
+
+extension ExportVc {
+    
+    private func styleUI(){
+        applyGradientToButton(
+            button: btnPro,
+            colors: [UIColor.kCream, UIColor.kDarkCream],
+            startPoint: CGPoint(x: 0, y: 0),
+            endPoint: CGPoint(x: 1, y: 1)
+        )
+    }
+    
+    func configureSegmentedControlAppearance(for segmentedControl: UISegmentedControl) {
+        let unselectedAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.white,
+            .font: UIFont(name: "Outfit-Medium", size: 14) ?? UIFont.boldSystemFont(ofSize: 14)
+        ]
+        segmentedControl.setTitleTextAttributes(unselectedAttributes, for: .normal)
+       
+        let selectedAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.black,
+            .font: UIFont(name: "Outfit-Medium", size: 14) ?? UIFont.boldSystemFont(ofSize: 14)
+        ]
+        segmentedControl.setTitleTextAttributes(selectedAttributes, for: .selected)
+        
+        segmentedControl.setDividerImage(UIImage(), forLeftSegmentState: .normal, rightSegmentState: .normal, barMetrics: .default)
+        
+    }
+    
+    func addGestureDetector(){
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(downloadViewTapped))
+            downloadView.addGestureRecognizer(tapGesture)
+    }
+    
 }

@@ -116,7 +116,9 @@ class LogoTypeVC: UIViewController {
             animateTopView()
         }
         else{
-            
+            let vc = Storyboard.aiLogo.instantiate(ExportVc.self)
+            vc.modalPresentationStyle = .fullScreen
+            present(vc, animated: true)
         }
     }
     

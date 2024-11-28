@@ -35,7 +35,7 @@ class TabBarController: UITabBarController {
         let homeVc = Storyboard.creation.instantiate(CreationVC.self)
         let aiLogoVc = Storyboard.aiLogo.instantiate(AiLogoVC.self)
         let projects = Storyboard.projects.instantiate(ProjectViewController.self)
-        let profileVc = UIViewController()
+        let settingsVC = Storyboard.settings.instantiate(SettingVc.self)
 //        let centerVC = UIViewController()  // This will be the center button, no tab bar item
 
         
@@ -58,9 +58,9 @@ class TabBarController: UITabBarController {
         homeVc.tabBarItem = UITabBarItem(title: "Creation", image: homeImage, selectedImage: homeSelectedImage)
         aiLogoVc.tabBarItem = UITabBarItem(title: "AI logo", image: programImage, selectedImage: programSelectedImg)
         projects.tabBarItem = UITabBarItem(title: "Projects", image: statImg, selectedImage: statSelectedImg)
-        profileVc.tabBarItem = UITabBarItem(title: "Settings", image: profileImage, selectedImage: profileSelectedImage)
+        settingsVC.tabBarItem = UITabBarItem(title: "Settings", image: profileImage, selectedImage: profileSelectedImage)
                 
-        self.viewControllers = [homeVc, aiLogoVc,  projects, profileVc]
+        self.viewControllers = [homeVc, aiLogoVc,  projects, settingsVC]
     }
     
    

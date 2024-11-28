@@ -14,7 +14,9 @@ class AiLogoVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        
-        styleUI()
+        DispatchQueue.main.async { [weak self] in
+            self?.styleUI()
+        }
         // Do any additional setup after loading the view.
     }
     

@@ -12,9 +12,10 @@ import UIKit
 enum Storyboard: String {
     case main = "Main"
     case creation = "Creation"
-    case profile = "Profile"
+//    case profile = "Profile"
     case projects = "Projects"
     case aiLogo = "AiLogo"
+    case settings = "Settings"
     
     
 
