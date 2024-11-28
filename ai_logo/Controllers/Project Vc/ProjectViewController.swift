@@ -9,6 +9,7 @@ import UIKit
 
 class ProjectViewController: UIViewController {
 
+   
     @IBOutlet weak var projectCollectionView: UICollectionView!
     @IBOutlet weak var btnPro: UIButton!
     override func viewDidLoad() {
@@ -26,7 +27,7 @@ class ProjectViewController: UIViewController {
         let nib = UINib(nibName: "ProjectCell", bundle: nil)
         projectCollectionView.register(nib, forCellWithReuseIdentifier: "ProjectCell")
 
-        
+         
         projectCollectionView.delegate = self
         projectCollectionView.dataSource = self
        
@@ -49,6 +50,14 @@ extension ProjectViewController: UICollectionViewDataSource,UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size = collectionView.frame.width/3 - 10
         return CGSize(width: size, height: size)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let vc = Storyboard.projects.instantiate(PreviewVc.self)
+        vc.modalPresentationStyle = .fullScreen
+        vc.modalTransitionStyle = .crossDissolve
+        present(vc, animated: true)
     }
     
     
