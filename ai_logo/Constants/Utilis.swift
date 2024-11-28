@@ -11,7 +11,8 @@ func applyGradientToButton(
     button: UIButton,
     colors: [UIColor],
     startPoint: CGPoint = CGPoint(x: 0, y: 0),
-    endPoint: CGPoint = CGPoint(x: 1, y: 1)
+    endPoint: CGPoint = CGPoint(x: 1, y: 1),
+    isBottomCorner: Bool? = false
 ) {
     let gradientLayer = CAGradientLayer()
     gradientLayer.colors = colors.map { $0.cgColor }
@@ -20,6 +21,11 @@ func applyGradientToButton(
     gradientLayer.frame = button.bounds
     gradientLayer.cornerRadius = button.layer.cornerRadius
     button.layer.masksToBounds = true
+    
+    if isBottomCorner == true{
+        button.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+    }
+
 
     // Remove any existing gradient layers to avoid layering multiple gradients
     button.layer.sublayers?.removeAll(where: { $0 is CAGradientLayer })
@@ -31,7 +37,6 @@ func applyGradientToButton(
 
 extension UILabel {
     func applyGradient(colors: [UIColor], startPoint: CGPoint, endPoint: CGPoint) {
-        // Remove any existing gradient layers to avoid duplication
         self.layer.sublayers?.filter { $0 is CAGradientLayer }.forEach { $0.removeFromSuperlayer() }
         
         // Create a gradient layer

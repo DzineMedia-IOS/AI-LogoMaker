@@ -18,7 +18,7 @@ class TabBarController: UITabBarController {
         
         setupViewControllers()
        
-        self.selectedIndex = 0
+        self.selectedIndex = 1
         
     }
   
@@ -32,35 +32,35 @@ class TabBarController: UITabBarController {
     
     private func setupViewControllers() {
         
-        let homeVc = Storyboard.creation.instantiate(CreationViewController.self)
-        let taskVc = UIViewController()
+        let homeVc = Storyboard.creation.instantiate(CreationVC.self)
+        let aiLogoVc = Storyboard.aiLogo.instantiate(AiLogoVC.self)
         let projects = Storyboard.projects.instantiate(ProjectViewController.self)
         let profileVc = UIViewController()
 //        let centerVC = UIViewController()  // This will be the center button, no tab bar item
 
         
         homeVc.view.backgroundColor = .red
-        taskVc.view.backgroundColor = .accent
+        aiLogoVc.view.backgroundColor = .accent
         
         let homeImage = UIImage(named: "creation")?.resizeImage(to: CGSize(width: 25, height: 25))
-        let homeSelectedImage = UIImage(named: "s_creation")?.resizeImage(to: CGSize(width: 25, height: 25))
+        let homeSelectedImage = UIImage(named: "s_creation")?.resizeImage(to: CGSize(width: 25, height: 25))?.withRenderingMode(.alwaysOriginal)
         
         let programImage = UIImage(named: "ai_logo")?.resizeImage(to: CGSize(width: 25, height: 25))
-        let programSelectedImg = UIImage(named: "s_ai_logo")?.resizeImage(to: CGSize(width: 25, height: 25))
+        let programSelectedImg = UIImage(named: "s_ai_logo")?.resizeImage(to: CGSize(width: 25, height: 25))?.withRenderingMode(.alwaysOriginal)
         
         let statImg = UIImage(named: "projects")?.resizeImage(to: CGSize(width: 25, height: 25))
-        let statSelectedImg = UIImage(named: "s_projects")?.resizeImage(to: CGSize(width: 25, height: 25))
+        let statSelectedImg = UIImage(named: "s_projects")?.resizeImage(to: CGSize(width: 25, height: 25))?.withRenderingMode(.alwaysOriginal)
       
-        let profileImage = UIImage(named: "settings")?.resizeImage(to: CGSize(width: 25, height: 25))
-        let profileSelectedImage = UIImage(named: "s_settings")?.resizeImage(to: CGSize(width: 25, height: 25))
+        let profileImage = UIImage(named: "settings")?.resizeImage(to: CGSize(width: 25, height: 25))?.withRenderingMode(.alwaysOriginal)
+        let profileSelectedImage = UIImage(named: "s_settings")?.resizeImage(to: CGSize(width: 25, height: 25))?.withRenderingMode(.alwaysOriginal)
       
         
         homeVc.tabBarItem = UITabBarItem(title: "Creation", image: homeImage, selectedImage: homeSelectedImage)
-        taskVc.tabBarItem = UITabBarItem(title: "AI logo", image: programImage, selectedImage: programSelectedImg)
+        aiLogoVc.tabBarItem = UITabBarItem(title: "AI logo", image: programImage, selectedImage: programSelectedImg)
         projects.tabBarItem = UITabBarItem(title: "Projects", image: statImg, selectedImage: statSelectedImg)
         profileVc.tabBarItem = UITabBarItem(title: "Settings", image: profileImage, selectedImage: profileSelectedImage)
                 
-        self.viewControllers = [homeVc, taskVc,  projects, profileVc]
+        self.viewControllers = [homeVc, aiLogoVc,  projects, profileVc]
     }
     
    
@@ -68,7 +68,7 @@ class TabBarController: UITabBarController {
    
     
     private func setupTabBarAppearance() {
-        let tabBarHeight: CGFloat = tabBar.frame.height * 1.25
+        let tabBarHeight: CGFloat = tabBar.frame.height * 1.2 
         var tabBarFrame = self.tabBar.frame
         tabBarFrame.size.height = tabBarHeight
         tabBarFrame.origin.y = view.frame.height - tabBarHeight

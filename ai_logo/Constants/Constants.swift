@@ -14,6 +14,8 @@ enum Storyboard: String {
     case creation = "Creation"
     case profile = "Profile"
     case projects = "Projects"
+    case aiLogo = "AiLogo"
+    
     
 
     /// Instantiate a view controller from the storyboard.

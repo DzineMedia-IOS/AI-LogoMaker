@@ -9,21 +9,45 @@ import UIKit
 
 class AiLogoVC: UIViewController {
 
+    @IBOutlet weak var btnPro: UIButton!
+    @IBOutlet weak var btnStart: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+       
+        styleUI()
         // Do any additional setup after loading the view.
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+   
+    @IBAction func btnStart(_ sender: Any) {
+        let vc = Storyboard.aiLogo.instantiate(LogoTypeVC.self)
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
     }
-    */
+    
+    
+}
 
+// MARK: - STYLING UI
+
+extension AiLogoVC {
+    
+    
+    private func styleUI(){
+        applyGradientToButton(
+       
+            button: btnStart,
+            colors: [UIColor.kRed, UIColor.accent],
+            startPoint: CGPoint(x: 0, y: 0),
+            endPoint: CGPoint(x: 1, y: 1)
+        )
+        
+        applyGradientToButton(
+            button: btnPro,
+            colors: [UIColor.kCream, UIColor.kDarkCream],
+            startPoint: CGPoint(x: 0, y: 0),
+            endPoint: CGPoint(x: 1, y: 1)
+        )
+    }
 }
