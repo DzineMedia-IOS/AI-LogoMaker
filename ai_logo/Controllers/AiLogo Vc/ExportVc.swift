@@ -48,6 +48,12 @@ class ExportVc: UIViewController {
         animateTopView()
     }
     
+    @IBAction func btnPro(_ sender: Any) {
+        let vc = Storyboard.premium.instantiate(ProVC.self)
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
+    
+    }
     
     func animateTopView() {
         UIView.animate(withDuration: 0.3, animations: {

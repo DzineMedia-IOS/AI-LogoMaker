@@ -65,6 +65,9 @@
                                                 <real key="value" value="12"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="btnPro:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="ZTH-5b-hPE"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AI Logo Maker" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4c0-Ks-ra9">
                                         <rect key="frame" x="8" y="11.999999999999998" width="160" height="30.333333333333329"/>
@@ -497,6 +500,9 @@ your logo</string>
                                                 <real key="value" value="12"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="btnPro:" destination="pvx-bB-ck2" eventType="touchUpInside" id="lpo-ge-glZ"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X9S-dS-8vV">
                                         <rect key="frame" x="0.0" y="10" width="30" height="30"/>

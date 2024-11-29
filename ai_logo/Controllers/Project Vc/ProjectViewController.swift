@@ -34,7 +34,12 @@ class ProjectViewController: UIViewController {
     }
     
 
-
+    @IBAction func btnPro(_ sender: Any) {
+        let vc = Storyboard.premium.instantiate(ProVC.self)
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
+    }
+    
 }
 
 extension ProjectViewController: UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout{

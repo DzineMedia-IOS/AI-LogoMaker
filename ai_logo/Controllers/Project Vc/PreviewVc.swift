@@ -23,7 +23,10 @@ class PreviewVc: UIViewController {
 
     }
     
-
+    @IBAction func btnBack(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
+    
     /*
     // MARK: - Navigation
 

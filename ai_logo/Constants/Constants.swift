@@ -16,6 +16,7 @@ enum Storyboard: String {
     case projects = "Projects"
     case aiLogo = "AiLogo"
     case settings = "Settings"
+    case premium = "Premium"
     
     
 

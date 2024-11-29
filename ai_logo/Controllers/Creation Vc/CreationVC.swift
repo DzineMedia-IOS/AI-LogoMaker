@@ -15,6 +15,7 @@ class CreationVC: UIViewController {
     @IBOutlet weak var lblPrompt: UILabel!
     @IBOutlet weak var btnPro: UIButton!
     
+    @IBOutlet weak var popUpView: UIView!
     @IBOutlet weak var projectCollectionView: UICollectionView!
     @IBOutlet weak var creationCollectionView: UICollectionView!
     
@@ -39,6 +40,11 @@ class CreationVC: UIViewController {
         }
     }
     
+    @IBAction func btnPro(_ sender: Any) {
+        let vc = Storyboard.premium.instantiate(ProVC.self)
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
+    }
     
 }
 

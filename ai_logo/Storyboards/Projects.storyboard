@@ -46,6 +46,9 @@
                                                 <real key="value" value="12"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="btnPro:" destination="my4-mD-599" eventType="touchUpInside" id="MXR-df-94e"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -122,6 +125,9 @@
                                     <fontDescription key="titleFontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
                                     <color key="baseForegroundColor" name="kWhite"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="btnBack:" destination="Mcz-nF-c9L" eventType="touchUpInside" id="KDj-LE-EPk"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UsG-Pt-B5H">
                                 <rect key="frame" x="16" y="95" width="361" height="418"/>
@@ -159,7 +165,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prompt" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rP4-iM-hgM">
-                                        <rect key="frame" x="36" y="9.6666666666666288" width="55.666666666666657" height="21"/>
+                                        <rect key="frame" x="36" y="9.9999999999999982" width="55.666666666666657" height="20.333333333333329"/>
                                         <color key="tintColor" name="kWhite"/>
                                         <fontDescription key="fontDescription" name="Outfit-Bold" family="Outfit" pointSize="16"/>
                                         <color key="textColor" name="kWhite"/>
@@ -183,10 +189,10 @@
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k8L-2X-a7U">
-                                        <rect key="frame" x="8" y="38.666666666666622" width="345" height="90.333333333333314"/>
+                                        <rect key="frame" x="8" y="38.333333333333378" width="345" height="90.666666666666686"/>
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="40A-fd-eH1">
-                                                <rect key="frame" x="0.0" y="0.0" width="345" height="90.333333333333329"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="345" height="90.666666666666671"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <string key="text">Enter your brand name, industry, and the elements you want to appear in the logo. e.g. A gym logo with text “Iron Claw”, featuring a tiger lifting dumbbells.</string>
                                                 <color key="textColor" name="kLightWhite"/>
