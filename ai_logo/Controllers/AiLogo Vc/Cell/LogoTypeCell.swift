@@ -18,18 +18,15 @@ class LogoTypeCell: UICollectionViewCell {
         //        backView.applyGradientBorder(colors: [UIColor.kRed,UIColor.accent], lineWidth: 2)
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        // Ensure the gradient is applied to the correct size of `backView`
-        //           DispatchQueue.main.async { [weak self] in
-        //               self?.applyGradientToBackView()
-        //           }
-    }
+   
     
     func applyGradientToBackView() {
         backView.layer.sublayers?.removeAll { $0 is CAGradientLayer }
-        backView.applyGradientBorder(colors: [UIColor.kRed, UIColor.accent], lineWidth: 2)
+        var width = 2
+        if ( UIDevice.current.userInterfaceIdiom == .pad ){
+            width = 4
+        }
+        backView.applyGradientBorder(colors: [UIColor.kRed, UIColor.accent], lineWidth: CGFloat(width))
     }
     
     func applyGradientToLbl(){

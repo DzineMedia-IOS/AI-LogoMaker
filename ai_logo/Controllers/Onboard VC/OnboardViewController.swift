@@ -23,7 +23,8 @@ class OnboardViewController: UIViewController {
         super.viewDidLoad()
         
         pageControl.isHidden = true
-        bottomPadding.constant = 40
+        UIDevice.current.userInterfaceIdiom == .pad ? (bottomPadding.constant = 80) : (bottomPadding.constant = 40)
+        
         
         
         let nib = UINib(nibName: "OnboardCell", bundle: nil)
@@ -116,6 +117,6 @@ extension OnboardViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 250)  // Ensure cell takes full screen width
+        return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)  // Ensure cell takes full screen width
     }
 }

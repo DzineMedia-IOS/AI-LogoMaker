@@ -16,7 +16,10 @@ class ExportVc: UIViewController {
     @IBOutlet weak var btnPro: UIButton!
     @IBOutlet weak var downloadView: UIView!
     
+    @IBOutlet weak var previewImg: UIImageView!
+    @IBOutlet weak var mockWidth: NSLayoutConstraint!
     
+    @IBOutlet weak var textViewWidth: NSLayoutConstraint!
     let imgArr = ["mock_1","mock_2", "mock_3"]
     
     override func viewDidLoad() {
@@ -26,8 +29,13 @@ class ExportVc: UIViewController {
         collectionVIew.register(nib, forCellWithReuseIdentifier: "ProjectCell")
         collectionVIew.delegate = self
         collectionVIew.dataSource = self
+       
+        let imageViewWidth = previewImg.bounds.width
+        mockWidth.constant = imageViewWidth * 0.1
+        textViewWidth.constant = imageViewWidth * 0.1
         
         DispatchQueue.main.async { [weak self] in
+           
             self?.styleUI()
         }
         
@@ -37,6 +45,12 @@ class ExportVc: UIViewController {
         configureSegmentedControlAppearance(for: quality)
         addGestureDetector()
         
+      
+        
+        
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        collectionVIew.reloadData()
     }
     
     
@@ -102,15 +116,20 @@ extension ExportVc {
     }
     
     func configureSegmentedControlAppearance(for segmentedControl: UISegmentedControl) {
+        
+        var fontSize = 14
+        if ( UIDevice.current.userInterfaceIdiom == .pad ){
+            fontSize = 28
+        }
         let unselectedAttributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: UIColor.white,
-            .font: UIFont(name: "Outfit-Medium", size: 14) ?? UIFont.boldSystemFont(ofSize: 14)
+            .font: UIFont(name: "Outfit-Medium", size: CGFloat(fontSize)) ?? UIFont.boldSystemFont(ofSize: CGFloat(fontSize))
         ]
         segmentedControl.setTitleTextAttributes(unselectedAttributes, for: .normal)
        
         let selectedAttributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: UIColor.black,
-            .font: UIFont(name: "Outfit-Medium", size: 14) ?? UIFont.boldSystemFont(ofSize: 14)
+            .font: UIFont(name: "Outfit-Medium", size: CGFloat(fontSize)) ?? UIFont.boldSystemFont(ofSize: CGFloat(fontSize))
         ]
         segmentedControl.setTitleTextAttributes(selectedAttributes, for: .selected)
         

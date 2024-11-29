@@ -30,8 +30,12 @@
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="graphic_logo" translatesAutoresizingMaskIntoConstraints="NO" id="4SW-co-EWE">
                                                 <rect key="frame" x="50.666666666666657" y="64.666666666666671" width="100" height="100.00000000000001"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="100" id="NN0-Ta-qPW"/>
-                                                    <constraint firstAttribute="width" constant="100" id="RhU-Bl-GWw"/>
+                                                    <constraint firstAttribute="height" constant="100" id="NN0-Ta-qPW">
+                                                        <variation key="heightClass=regular-widthClass=regular" constant="200"/>
+                                                    </constraint>
+                                                    <constraint firstAttribute="width" constant="100" id="RhU-Bl-GWw">
+                                                        <variation key="heightClass=regular-widthClass=regular" constant="200"/>
+                                                    </constraint>
                                                 </constraints>
                                             </imageView>
                                         </subviews>
@@ -65,12 +69,17 @@
                                 <fontDescription key="fontDescription" name="Outfit-Medium" family="Outfit" pointSize="18"/>
                                 <color key="textColor" name="kWhite"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" name="Outfit-Medium" family="Outfit" pointSize="36"/>
+                                </variation>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="V8a-jU-PBr" firstAttribute="leading" secondItem="S5i-gd-9di" secondAttribute="leading" id="6Sw-pH-mo0"/>
-                            <constraint firstAttribute="bottom" secondItem="V8a-jU-PBr" secondAttribute="bottom" constant="40" id="8dp-Y8-FiN"/>
+                            <constraint firstAttribute="bottom" secondItem="V8a-jU-PBr" secondAttribute="bottom" constant="40" id="8dp-Y8-FiN">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
                             <constraint firstItem="V8a-jU-PBr" firstAttribute="top" secondItem="S5i-gd-9di" secondAttribute="top" id="9Fc-Wy-IWm"/>
                             <constraint firstAttribute="trailing" secondItem="V8a-jU-PBr" secondAttribute="trailing" id="OTK-hb-pNM"/>
                             <constraint firstItem="NgK-XV-Cfh" firstAttribute="top" secondItem="V8a-jU-PBr" secondAttribute="bottom" constant="8" symbolic="YES" id="qTl-9v-lrT"/>

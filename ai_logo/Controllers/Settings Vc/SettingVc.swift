@@ -86,17 +86,22 @@ extension SettingVc: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
         headerView.backgroundColor = .clear
-        
+        var fontSize = 18
+        var constraint = 16
+        if ( UIDevice.current.userInterfaceIdiom == .pad ){
+            fontSize = 38
+            constraint = 32
+        }
         let label = UILabel()
         label.text = sectionHeaders[section]
         label.textColor = .lightGray
-        label.font = UIFont(name: "Outfit-Medium", size: 18)
+        label.font = UIFont(name: "Outfit-Medium", size: CGFloat(fontSize))
         label.translatesAutoresizingMaskIntoConstraints = false
         
         headerView.addSubview(label)
 
         NSLayoutConstraint.activate([
-            label.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 16),
+            label.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: CGFloat(constraint)),
             label.centerYAnchor.constraint(equalTo: headerView.centerYAnchor)
         ])
         
@@ -104,10 +109,10 @@ extension SettingVc: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30
+        return  UIDevice.current.userInterfaceIdiom == .pad ? 60 : 30
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        return  UIDevice.current.userInterfaceIdiom == .pad ? 120 : 60
     }
 }

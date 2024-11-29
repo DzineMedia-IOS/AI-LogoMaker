@@ -43,7 +43,7 @@ extension RecentCell: UICollectionViewDelegate, UICollectionViewDataSource,UICol
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.frame.width / 3 - 10
 
-        return CGSize(width: width  , height: 130)
+        return CGSize(width: width  , height: width)
     }
     
     

@@ -15,9 +15,15 @@ class StyleCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+
+        (UIDevice.current.userInterfaceIdiom == .pad ) ? (backView.cornerRadius = 30 ): (backView.cornerRadius = 20)
     }
     func applyBorder(){
-        backView.applyGradientBorder(colors: [UIColor.kRed, UIColor.accent], lineWidth: 2)
+        var width = 2
+        if ( UIDevice.current.userInterfaceIdiom == .pad ){
+            width = 5
+        }
+        backView.applyGradientBorder(colors: [UIColor.kRed, UIColor.accent], lineWidth: CGFloat(width))
     }
 
 }

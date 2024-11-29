@@ -17,12 +17,16 @@ class CreationVC: UIViewController {
     @IBOutlet weak var projectCollectionView: UICollectionView!
     @IBOutlet weak var creationCollectionView: UICollectionView!
     @IBOutlet weak var popUpView: UIView!
+    @IBOutlet weak var scrollHeight: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+       
+        if ( UIDevice.current.userInterfaceIdiom == .pad){
+            btnPrompt.titleLabel?.font = UIFont(name: "Outfit-Bold", size: 40)
+        }
         popUpView.isHidden = true
-        
+
         creationCollectionView.dataSource = self
         creationCollectionView.delegate = self
         
@@ -40,6 +44,7 @@ class CreationVC: UIViewController {
         DispatchQueue.main.async { [weak self] in
             self?.stylingUI()
         }
+        
     }
     
     @objc func popUpAction(){
@@ -119,6 +124,7 @@ extension CreationVC: UICollectionViewDataSource, UICollectionViewDelegate, UICo
 extension CreationVC {
     
     private func stylingUI(){
+       
         applyGradientToButton(
             button: btnPro,
             colors: [UIColor.kCream, UIColor.kDarkCream],
@@ -153,6 +159,6 @@ extension CreationVC {
         btnPrompt.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         btnPrompt.clipsToBounds = true
         
-        
+       
     }
 }

@@ -26,6 +26,7 @@ class LogoTypeVC: UIViewController {
     @IBOutlet weak var btnPrompt: UIButton!
     @IBOutlet weak var lblPrompt: UILabel!
     
+    @IBOutlet weak var btnBack: UIButton!
     var screen: Int = 1
     var selectedIndex: IndexPath?
     var selectedStyle: IndexPath?
@@ -34,10 +35,14 @@ class LogoTypeVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+      
+        if ( UIDevice.current.userInterfaceIdiom == .pad){
+            btnPrompt.titleLabel?.font = UIFont(name: "Outfit-Bold", size: 40)
+        }
         
-//        logoTypeView.isHidden = true
         promptView.isHidden = true
         LogoView.isHidden = true
+        
         
         DispatchQueue.main.async { [weak self] in
             self?.styleUI()
@@ -218,11 +223,14 @@ extension LogoTypeVC: UICollectionViewDataSource,UICollectionViewDelegate, UICol
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == logoCollectionView {
-            
-            return CGSize(width: collectionView.frame.width/2 - 20, height: collectionView.frame.height / 1.4)
+            let width =  collectionView.frame.width/2 - 20
+            return CGSize(width: collectionView.frame.width/2 - 20, height: width)
         }
         else{
-            return  CGSize(width: collectionView.frame.width/3 , height: 130)
+            let width = collectionView.frame.width/3 - 10
+            let height = collectionView.frame.height/2 - 10
+            let size = min(width, height)
+            return  CGSize(width: width , height: size)
         }
     }
     
@@ -257,7 +265,12 @@ extension LogoTypeVC {
             endPoint: CGPoint(x: 1, y: 1),
             isBottomCorner: true
         )
-        textBackView.applyGradientBorder(colors: [UIColor.accent, UIColor.kRed], lineWidth: 2)
+        
+        var  width = 2
+        if ( UIDevice.current.userInterfaceIdiom == .pad) {
+            width = 5
+        }
+        textBackView.applyGradientBorder(colors: [UIColor.accent, UIColor.kRed], lineWidth: CGFloat(width))
 
        
     }

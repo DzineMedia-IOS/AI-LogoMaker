@@ -24,6 +24,7 @@ func applyGradientToButton(
     
     if isBottomCorner == true{
         button.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        gradientLayer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
     }
 
 
@@ -79,7 +80,10 @@ extension UIView {
         gradientLayer.startPoint = CGPoint(x: 0, y: 0)
         gradientLayer.endPoint = CGPoint(x: 1, y: 1)
         gradientLayer.frame = self.bounds.insetBy(dx: -lineWidth, dy: -lineWidth) // Slightly larger frame
-//        gradientLayer.frame = self.bounds
+        if ( UIDevice.current.userInterfaceIdiom == .pad ){
+            
+            gradientLayer.frame = self.bounds
+        }
 
 
         // Create a shape layer for the precise border path

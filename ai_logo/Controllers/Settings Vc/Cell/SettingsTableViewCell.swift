@@ -25,7 +25,7 @@ class SettingsTableViewCell: UITableViewCell {
             contentView.addSubview(toggleSwitch!)
             
             NSLayoutConstraint.activate([
-                toggleSwitch!.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+                toggleSwitch!.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant:  UIDevice.current.userInterfaceIdiom == .pad ? -40 : -20),
                 toggleSwitch!.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
             ])
         }

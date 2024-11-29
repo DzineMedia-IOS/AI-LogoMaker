@@ -35,30 +35,35 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WkT-X2-0Ps">
                                                     <rect key="frame" x="10" y="5" width="373" height="70"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FVi-bd-bv4">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wake-up Alarm" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FVi-bd-bv4">
                                                             <rect key="frame" x="51" y="25" width="113" height="20.333333333333329"/>
-                                                            <attributedString key="attributedText">
-                                                                <fragment content="Wake-up Alarm">
-                                                                    <attributes>
-                                                                        <color key="NSColor" name="kWhite"/>
-                                                                        <font key="NSFont" size="16" name="Outfit-Medium"/>
-                                                                    </attributes>
-                                                                </fragment>
-                                                            </attributedString>
+                                                            <fontDescription key="fontDescription" name="Outfit-Medium" family="Outfit" pointSize="16"/>
+                                                            <color key="textColor" name="kWhite"/>
                                                             <nil key="highlightedColor"/>
+                                                            <variation key="heightClass=regular-widthClass=regular">
+                                                                <fontDescription key="fontDescription" name="Outfit-Medium" family="Outfit" pointSize="32"/>
+                                                            </variation>
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="purchase" translatesAutoresizingMaskIntoConstraints="NO" id="Isi-HI-uED">
                                                             <rect key="frame" x="16" y="22.666666666666671" width="25" height="25"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="25" id="IFK-8h-GZh"/>
-                                                                <constraint firstAttribute="height" constant="25" id="s0G-3G-pAG"/>
+                                                                <constraint firstAttribute="width" constant="25" id="IFK-8h-GZh">
+                                                                    <variation key="heightClass=regular-widthClass=regular" constant="50"/>
+                                                                </constraint>
+                                                                <constraint firstAttribute="height" constant="25" id="s0G-3G-pAG">
+                                                                    <variation key="heightClass=regular-widthClass=regular" constant="50"/>
+                                                                </constraint>
                                                             </constraints>
                                                         </imageView>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="farward" translatesAutoresizingMaskIntoConstraints="NO" id="8uA-Kr-yR1">
                                                             <rect key="frame" x="337" y="25" width="20" height="20"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="20" id="V9S-XA-P0w"/>
-                                                                <constraint firstAttribute="width" constant="20" id="dNy-VA-Jbu"/>
+                                                                <constraint firstAttribute="height" constant="20" id="V9S-XA-P0w">
+                                                                    <variation key="heightClass=regular-widthClass=regular" constant="40"/>
+                                                                </constraint>
+                                                                <constraint firstAttribute="width" constant="20" id="dNy-VA-Jbu">
+                                                                    <variation key="heightClass=regular-widthClass=regular" constant="40"/>
+                                                                </constraint>
                                                             </constraints>
                                                         </imageView>
                                                     </subviews>
@@ -66,7 +71,9 @@
                                                     <constraints>
                                                         <constraint firstItem="8uA-Kr-yR1" firstAttribute="centerY" secondItem="Isi-HI-uED" secondAttribute="centerY" id="9J3-N6-8Db"/>
                                                         <constraint firstItem="Isi-HI-uED" firstAttribute="leading" secondItem="WkT-X2-0Ps" secondAttribute="leading" constant="16" id="DQb-08-bGU"/>
-                                                        <constraint firstItem="FVi-bd-bv4" firstAttribute="leading" secondItem="Isi-HI-uED" secondAttribute="trailing" constant="10" id="EMK-87-CjQ"/>
+                                                        <constraint firstItem="FVi-bd-bv4" firstAttribute="leading" secondItem="Isi-HI-uED" secondAttribute="trailing" constant="10" id="EMK-87-CjQ">
+                                                            <variation key="heightClass=regular-widthClass=regular" constant="20"/>
+                                                        </constraint>
                                                         <constraint firstItem="Isi-HI-uED" firstAttribute="centerY" secondItem="WkT-X2-0Ps" secondAttribute="centerY" id="S0R-qY-bA2"/>
                                                         <constraint firstAttribute="trailing" secondItem="8uA-Kr-yR1" secondAttribute="trailing" constant="16" id="oqg-Hs-Fzz"/>
                                                         <constraint firstItem="FVi-bd-bv4" firstAttribute="centerY" secondItem="WkT-X2-0Ps" secondAttribute="centerY" id="w4P-Jg-geh"/>
@@ -87,8 +94,12 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="WkT-X2-0Ps" secondAttribute="bottom" constant="5" id="8Rv-ha-6nF"/>
-                                                <constraint firstAttribute="trailing" secondItem="WkT-X2-0Ps" secondAttribute="trailing" constant="10" id="T5L-2R-8Uz"/>
-                                                <constraint firstItem="WkT-X2-0Ps" firstAttribute="leading" secondItem="5lB-32-qP9" secondAttribute="leading" constant="10" id="waR-cn-lWN"/>
+                                                <constraint firstAttribute="trailing" secondItem="WkT-X2-0Ps" secondAttribute="trailing" constant="10" id="T5L-2R-8Uz">
+                                                    <variation key="heightClass=regular-widthClass=regular" constant="20"/>
+                                                </constraint>
+                                                <constraint firstItem="WkT-X2-0Ps" firstAttribute="leading" secondItem="5lB-32-qP9" secondAttribute="leading" constant="10" id="waR-cn-lWN">
+                                                    <variation key="heightClass=regular-widthClass=regular" constant="20"/>
+                                                </constraint>
                                                 <constraint firstItem="WkT-X2-0Ps" firstAttribute="top" secondItem="5lB-32-qP9" secondAttribute="top" constant="5" id="x8r-9l-Vp1"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -107,17 +118,19 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="34J-Fn-NdS">
                                         <rect key="frame" x="289" y="12.999999999999998" width="72" height="28.333333333333329"/>
                                         <color key="backgroundColor" name="kCream"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="GO PRO"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="GO PRO">
-                                            <fontDescription key="titleFontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
-                                            <color key="baseForegroundColor" name="kBlack"/>
-                                        </buttonConfiguration>
+                                        <state key="normal" title="GO PRO">
+                                            <color key="titleColor" name="kBlack"/>
+                                        </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="12"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="24"/>
+                                        </variation>
                                         <connections>
                                             <action selector="btnPro:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="tEe-Ls-DoO"/>
                                         </connections>
@@ -128,12 +141,19 @@
                                         <fontDescription key="fontDescription" name="Outfit-Bold" family="Outfit" pointSize="24"/>
                                         <color key="textColor" name="kWhite"/>
                                         <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" name="Outfit-Bold" family="Outfit" pointSize="48"/>
+                                        </variation>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="34J-Fn-NdS" firstAttribute="width" secondItem="H8j-L9-acN" secondAttribute="width" multiplier="0.199446" id="1x2-mm-wtm"/>
+                                    <constraint firstItem="34J-Fn-NdS" firstAttribute="height" secondItem="H8j-L9-acN" secondAttribute="height" multiplier="0.472222" id="IIY-Ra-w8g"/>
                                     <constraint firstItem="daM-op-7PC" firstAttribute="top" secondItem="H8j-L9-acN" secondAttribute="top" constant="12" id="Kzy-k3-SCb"/>
-                                    <constraint firstAttribute="height" constant="60" id="P51-4h-1iN"/>
+                                    <constraint firstAttribute="height" constant="60" id="P51-4h-1iN">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="120"/>
+                                    </constraint>
                                     <constraint firstItem="daM-op-7PC" firstAttribute="leading" secondItem="H8j-L9-acN" secondAttribute="leading" constant="8" id="db1-Br-dbl"/>
                                     <constraint firstItem="34J-Fn-NdS" firstAttribute="centerY" secondItem="daM-op-7PC" secondAttribute="centerY" id="hay-Oy-nLh"/>
                                     <constraint firstAttribute="trailing" secondItem="34J-Fn-NdS" secondAttribute="trailing" id="jQS-FI-2AU"/>
