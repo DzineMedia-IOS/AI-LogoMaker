@@ -17,7 +17,12 @@ class OnboardCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        applyGradientToButton()
+        
+        DispatchQueue.main.async { [weak self] in
+            
+            self?.applyGradientToButton()
+
+        }
     }
     
     

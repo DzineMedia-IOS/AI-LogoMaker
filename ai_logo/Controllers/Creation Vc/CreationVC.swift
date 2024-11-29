@@ -14,14 +14,14 @@ class CreationVC: UIViewController {
     @IBOutlet weak var btnPrompt: UIButton!
     @IBOutlet weak var lblPrompt: UILabel!
     @IBOutlet weak var btnPro: UIButton!
-    
-    @IBOutlet weak var popUpView: UIView!
     @IBOutlet weak var projectCollectionView: UICollectionView!
     @IBOutlet weak var creationCollectionView: UICollectionView!
-    
+    @IBOutlet weak var popUpView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        popUpView.isHidden = true
         
         creationCollectionView.dataSource = self
         creationCollectionView.delegate = self
@@ -32,6 +32,8 @@ class CreationVC: UIViewController {
             
             self?.stylingUI()
         }
+        
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -40,12 +42,29 @@ class CreationVC: UIViewController {
         }
     }
     
+    @objc func popUpAction(){
+        
+        NotificationCenter.default.removeObserver(self, name: Notification.Name("popUp"), object: nil)
+        popUpView.isHidden = true
+
+        
+        
+    }
+    
     @IBAction func btnPro(_ sender: Any) {
         let vc = Storyboard.premium.instantiate(ProVC.self)
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
     }
     
+    @IBAction func btnArtWork(_ sender: Any) {
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(popUpAction),
+                                               name: Notification.Name("popUp"),
+                                               object: nil)
+        popUpView.isHidden = false
+    }
 }
 
 

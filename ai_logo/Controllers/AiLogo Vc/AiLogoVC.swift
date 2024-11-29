@@ -21,6 +21,11 @@ class AiLogoVC: UIViewController {
     }
     
 
+    override func viewIsAppearing(_ animated: Bool) {
+        DispatchQueue.main.async { [weak self] in
+            self?.styleUI()
+        }
+    }
    
     @IBAction func btnStart(_ sender: Any) {
         let vc = Storyboard.aiLogo.instantiate(LogoTypeVC.self)
