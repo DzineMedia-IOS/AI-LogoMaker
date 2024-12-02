@@ -1,26 +1,19 @@
 {
   "images" : [
     {
-      "filename" : "share_btn.svg",
+      "filename" : "Mask group.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "Mask group@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "Mask group@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
-    },
-    {
-      "filename" : "share.svg",
-      "idiom" : "ipad",
-      "scale" : "1x"
-    },
-    {
-      "idiom" : "ipad",
-      "scale" : "2x"
     }
   ],
   "info" : {
