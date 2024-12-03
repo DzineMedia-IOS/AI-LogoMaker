@@ -119,7 +119,8 @@ extension UIView {
         gradientLayer.colors = colors.map { $0.cgColor }
         gradientLayer.startPoint = CGPoint(x: 0, y: 0) // Top-left corner
         gradientLayer.endPoint = CGPoint(x: 1, y: 1)   // Bottom-right corner
-        gradientLayer.frame = self.bounds.insetBy(dx: -lineWidth, dy: -lineWidth) // Slightly larger frame for better blending
+//        gradientLayer.frame = self.bounds.insetBy(dx: -lineWidth, dy: -lineWidth) // Slightly larger frame for better blending
+        gradientLayer.frame = self.bounds
 
         // For iPads, ensure proper bounds
         if UIDevice.current.userInterfaceIdiom == .pad {

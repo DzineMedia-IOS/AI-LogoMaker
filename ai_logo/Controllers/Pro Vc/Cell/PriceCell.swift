@@ -28,7 +28,7 @@ class PriceCell: UICollectionViewCell {
             saveView.borderWidth = 4
         }
         else{
-            saveView.layer.cornerRadius = saveView.frame.height / 2
+            saveView.layer.cornerRadius = saveView.frame.height / 2.5
             backView.layer.cornerRadius = backView.frame.height / 2.5
         }
         

@@ -50,6 +50,10 @@ class ExportVC: UIViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
         collectionVIew.reloadData()
+        DispatchQueue.main.async { [weak self] in
+           
+            self?.styleUI()
+        }
     }
     
     

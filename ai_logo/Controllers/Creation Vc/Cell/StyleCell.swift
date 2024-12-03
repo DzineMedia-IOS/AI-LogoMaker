@@ -24,7 +24,7 @@ class StyleCell: UICollectionViewCell {
         if ( UIDevice.current.userInterfaceIdiom == .pad ){
             width = 5
         }
-        backView.applyGradientBorder(colors: [UIColor.kRed, UIColor.accent], lineWidth: CGFloat(width))
+        backView.applyGradientBorder(colors: [UIColor.accent, UIColor.kRed], lineWidth: CGFloat(width))
     }
 
 }

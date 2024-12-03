@@ -56,6 +56,12 @@ class LogoTypeVC: UIViewController {
         
     }
     
+    override func viewIsAppearing(_ animated: Bool) {
+        DispatchQueue.main.async { [weak self] in
+            self?.styleUI()
+            self?.updateUI()
+        }
+    }
    
 
    
@@ -274,7 +280,7 @@ extension LogoTypeVC {
         applyGradientToButton(
        
             button: btnContinue,
-            colors: [UIColor.kRed, UIColor.accent],
+            colors: [UIColor.accent, UIColor.kRed],
             startPoint: CGPoint(x: 0, y: 0),
             endPoint: CGPoint(x: 1, y: 1)
         )

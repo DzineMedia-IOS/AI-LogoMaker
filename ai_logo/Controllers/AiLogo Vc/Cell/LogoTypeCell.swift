@@ -36,12 +36,12 @@ class LogoTypeCell: UICollectionViewCell {
         if ( UIDevice.current.userInterfaceIdiom == .pad ){
             width = 4
         }
-        backView.applyGradientBorder(colors: [UIColor.kRed, UIColor.accent], lineWidth: CGFloat(width))
+        backView.applyGradientBorder(colors: [UIColor.accent, UIColor.kRed], lineWidth: CGFloat(width))
     }
     
     func applyGradientToLbl(){
         lblTitle.applyGradient(
-            colors: [UIColor.kRed, UIColor.accent],
+            colors: [UIColor.accent, UIColor.kRed],
             startPoint: CGPoint(x: 0, y: 0),
             endPoint: CGPoint(x: 1, y: 1))
         

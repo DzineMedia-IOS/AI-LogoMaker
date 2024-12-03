@@ -45,7 +45,8 @@ class TabBarController: UITabBarController {
         let homeImage = UIImage(named: "creation")?.resizeImage(to: CGSize(width: 25, height: 25))
         let homeSelectedImage = UIImage(named: "s_creation")?.resizeImage(to: CGSize(width: 25, height: 25))?.withRenderingMode(.alwaysOriginal)
         
-        let programImage = UIImage(named: "ai_logo")?.resizeImage(to: CGSize(width: 25, height: 25))
+        let programImage = UIImage(named: "ai_logo")?.resizeImage(to: CGSize(width: 25, height: 25))?.withRenderingMode(.alwaysOriginal)
+        
         let programSelectedImg = UIImage(named: "s_ai_logo")?.resizeImage(to: CGSize(width: 25, height: 25))?.withRenderingMode(.alwaysOriginal)
         
         let statImg = UIImage(named: "projects")?.resizeImage(to: CGSize(width: 25, height: 25))

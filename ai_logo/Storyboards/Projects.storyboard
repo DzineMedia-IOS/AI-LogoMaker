@@ -213,6 +213,9 @@
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="26"/>
                                         </variation>
+                                        <connections>
+                                            <action selector="btnCopyPrompt:" destination="Mcz-nF-c9L" eventType="touchUpInside" id="J4d-pb-TbV"/>
+                                        </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k8L-2X-a7U">
                                         <rect key="frame" x="8" y="38.333333333333378" width="345" height="81.666666666666686"/>
@@ -266,7 +269,7 @@
                                     <constraint firstAttribute="trailing" secondItem="k8L-2X-a7U" secondAttribute="trailing" constant="8" id="zJF-wT-hep"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ExT-Vt-Pdv">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ExT-Vt-Pdv">
                                 <rect key="frame" x="41" y="745.33333333333337" width="154" height="60"/>
                                 <color key="backgroundColor" name="kLightBlack"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="12" maxY="0.0"/>
@@ -289,6 +292,9 @@
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="28"/>
                                 </variation>
+                                <connections>
+                                    <action selector="btnShare:" destination="Mcz-nF-c9L" eventType="touchUpInside" id="GeX-rY-QzR"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R4f-dp-s51">
                                 <rect key="frame" x="217.66666666666663" y="745.33333333333337" width="154" height="60"/>
@@ -307,6 +313,9 @@
                                         <real key="value" value="16"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="btnExport:" destination="Mcz-nF-c9L" eventType="touchUpInside" id="l67-nq-Isl"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="XQe-xL-QaE"/>

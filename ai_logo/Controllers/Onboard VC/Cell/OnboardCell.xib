@@ -22,7 +22,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="447" height="210"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to AI Maker" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6IT-Wb-860">
-                                <rect key="frame" x="20" y="12.666666666666664" width="407" height="38"/>
+                                <rect key="frame" x="20" y="33.666666666666664" width="407" height="37.999999999999993"/>
                                 <fontDescription key="fontDescription" name="Outfit-Bold" family="Outfit" pointSize="30"/>
                                 <color key="textColor" name="kWhite"/>
                                 <nil key="highlightedColor"/>
@@ -31,7 +31,7 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="At vero eos et accusamus etiusto odio dignissimos ducimus qui blanditis" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b99-XU-nwg">
-                                <rect key="frame" x="20" y="58.666666666666657" width="407" height="40.333333333333343"/>
+                                <rect key="frame" x="20" y="79.666666666666671" width="407" height="40.333333333333329"/>
                                 <fontDescription key="fontDescription" name="Outfit-Medium" family="Outfit" pointSize="16"/>
                                 <color key="textColor" name="kLightWhite"/>
                                 <nil key="highlightedColor"/>
@@ -71,10 +71,12 @@
                             <constraint firstItem="b99-XU-nwg" firstAttribute="top" secondItem="6IT-Wb-860" secondAttribute="bottom" constant="8" symbolic="YES" id="BCD-cK-SLN">
                                 <variation key="heightClass=regular-widthClass=regular" constant="20"/>
                             </constraint>
+                            <constraint firstItem="Ndc-EJ-qZu" firstAttribute="top" secondItem="b99-XU-nwg" secondAttribute="bottom" constant="20" id="C9x-05-ldK">
+                                <variation key="heightClass=regular-widthClass=regular" constant="40"/>
+                            </constraint>
                             <constraint firstItem="Ndc-EJ-qZu" firstAttribute="leading" secondItem="vUE-4v-SQk" secondAttribute="leading" constant="20" id="Cp0-6a-tjE">
                                 <variation key="heightClass=regular-widthClass=regular" constant="40"/>
                             </constraint>
-                            <constraint firstItem="6IT-Wb-860" firstAttribute="centerY" secondItem="vUE-4v-SQk" secondAttribute="centerY" multiplier="0.3" id="GHV-HM-DW1"/>
                             <constraint firstAttribute="trailing" secondItem="6IT-Wb-860" secondAttribute="trailing" constant="20" symbolic="YES" id="NgS-xR-2t5"/>
                             <constraint firstItem="b99-XU-nwg" firstAttribute="leading" secondItem="vUE-4v-SQk" secondAttribute="leading" constant="20" symbolic="YES" id="TEz-i1-98Q"/>
                             <constraint firstAttribute="trailing" secondItem="b99-XU-nwg" secondAttribute="trailing" constant="20" symbolic="YES" id="bnP-Vd-947"/>

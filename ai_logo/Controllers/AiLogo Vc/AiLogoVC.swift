@@ -57,14 +57,14 @@ extension AiLogoVC {
         applyGradientToButton(
             
             button: btnStart,
-            colors: [UIColor.kRed, UIColor.accent],
+            colors: [UIColor.accent, UIColor.kRed],
             startPoint: CGPoint(x: 0, y: 0),
             endPoint: CGPoint(x: 1, y: 1)
         )
         
         applyGradientToButton(
             button: btnPro,
-            colors: [UIColor.kCream, UIColor.kDarkCream],
+            colors: [UIColor.kDarkCream, UIColor.kCream],
             startPoint: CGPoint(x: 0, y: 0),
             endPoint: CGPoint(x: 1, y: 1)
         )

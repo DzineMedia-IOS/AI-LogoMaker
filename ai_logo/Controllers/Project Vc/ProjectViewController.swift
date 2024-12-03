@@ -8,13 +8,13 @@
 import UIKit
 
 class ProjectViewController: UIViewController {
-
-   
+    
+    
     @IBOutlet weak var projectCollectionView: UICollectionView!
     @IBOutlet weak var btnPro: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         
         DispatchQueue.main.async { [weak self] in
@@ -23,19 +23,30 @@ class ProjectViewController: UIViewController {
         
         let nib = UINib(nibName: "ProjectCell", bundle: nil)
         projectCollectionView.register(nib, forCellWithReuseIdentifier: "ProjectCell")
-
-         
+        
+        
         projectCollectionView.delegate = self
         projectCollectionView.dataSource = self
-       
+        
     }
     
     override func viewIsAppearing(_ animated: Bool) {
         projectCollectionView.reloadData()
-
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.styleUI()
+        }
+        
     }
     
-
+    override func viewDidLayoutSubviews() {
+        projectCollectionView.reloadData()
+        DispatchQueue.main.async { [weak self] in
+            self?.styleUI()
+        }
+    }
+    
+    
     @IBAction func btnPro(_ sender: Any) {
         let vc = Storyboard.premium.instantiate(ProVC.self)
         vc.modalPresentationStyle = .fullScreen

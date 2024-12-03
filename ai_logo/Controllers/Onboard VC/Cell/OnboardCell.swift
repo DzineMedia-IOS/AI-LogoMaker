@@ -18,10 +18,10 @@ class OnboardCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
 //        if (UIDevice.current.userInterfaceIdiom == .pad){
-            btnStart.layer.cornerRadius = btnStart.frame.height / 2
         
         DispatchQueue.main.async { [weak self] in
-            
+            self?.btnStart.layer.cornerRadius = (self?.btnStart.frame.height ?? 40) / 2
+
             self?.applyGradientToButton()
 
         }

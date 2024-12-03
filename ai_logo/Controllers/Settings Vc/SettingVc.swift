@@ -40,6 +40,11 @@ class SettingVc: UIViewController {
         }
     }
     
+    override func viewIsAppearing(_ animated: Bool) {
+        DispatchQueue.main.async { [weak self] in
+            self?.styleUI()
+        }
+    }
     @objc func hapticFeedbackSwitchChanged(_ sender: UISwitch) {
         if sender.isOn {
             print("Haptic Feedback Enabled")
@@ -72,14 +77,21 @@ extension SettingVc: UITableViewDataSource, UITableViewDelegate {
         cell.lblTitle.text = title
         cell.img.image = UIImage(named: imgArr[indexPath.section][indexPath.row])
         cell.selectionStyle = .none
-        
+      
+
         if sectionHeaders[indexPath.section] == "App" && title == "Haptic Feedback" {
             cell.farwardImg.isHidden = true
+
             cell.configureCellWithToggle(isToggleVisible: true, isToggleOn: true) // Default ON
             cell.toggleSwitch?.addTarget(self, action: #selector(hapticFeedbackSwitchChanged(_:)), for: .valueChanged)
         } else {
             cell.configureCellWithToggle(isToggleVisible: false, isToggleOn: false)
+            cell.farwardImg.isHidden = false
+
         }
+        
+        
+        
 
         return cell
     }

@@ -62,6 +62,9 @@
                                     <constraint firstItem="BeX-7V-Gtl" firstAttribute="leading" secondItem="D4T-z9-ucY" secondAttribute="leading" constant="8" id="ErO-qy-JA5"/>
                                     <constraint firstItem="bq3-Yb-CP5" firstAttribute="width" secondItem="D4T-z9-ucY" secondAttribute="width" multiplier="0.199446" id="Lsi-rj-XuZ"/>
                                     <constraint firstItem="BeX-7V-Gtl" firstAttribute="top" secondItem="D4T-z9-ucY" secondAttribute="top" constant="12" id="Nm9-87-DZ3"/>
+                                    <constraint firstAttribute="height" constant="60" id="Pxh-dB-HVe">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="120"/>
+                                    </constraint>
                                     <constraint firstAttribute="trailing" secondItem="bq3-Yb-CP5" secondAttribute="trailing" id="Rf1-ik-Urf"/>
                                     <constraint firstItem="bq3-Yb-CP5" firstAttribute="height" secondItem="D4T-z9-ucY" secondAttribute="height" multiplier="0.472222" id="gWq-Qa-BTh"/>
                                 </constraints>
@@ -416,7 +419,6 @@
                             <constraint firstItem="bQX-DD-h5E" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.07" id="A8n-A4-CYv"/>
                             <constraint firstItem="qh1-WU-tRd" firstAttribute="top" secondItem="D4T-z9-ucY" secondAttribute="bottom" id="BxW-dJ-Nh7"/>
                             <constraint firstItem="HlH-yT-oaS" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="CQ3-lq-CBb"/>
-                            <constraint firstItem="D4T-z9-ucY" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.0704225" id="DIG-gc-gOO"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="D4T-z9-ucY" secondAttribute="trailing" constant="16" id="F5q-dK-nvx"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="bQX-DD-h5E" secondAttribute="trailing" constant="20" id="Y8F-yl-AN1">
                                 <variation key="heightClass=regular-widthClass=regular" constant="40"/>
@@ -669,7 +671,7 @@ OFF</string>
             <color red="1" green="0.44699999690055847" blue="0.18000000715255737" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="kPrompt">
-            <color red="0.66274509803921566" green="0.66274509803921566" blue="0.66274509803921566" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.66299998760223389" green="0.66299998760223389" blue="0.66299998760223389" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="kWhite">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

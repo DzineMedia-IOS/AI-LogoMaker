@@ -377,11 +377,11 @@ your logo</string>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Iu-sF-qdz">
                                         <rect key="frame" x="8" y="38.333333333333321" width="345" height="108.66666666666669"/>
                                         <subviews>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XTd-Rl-yxy">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XTd-Rl-yxy">
                                                 <rect key="frame" x="8" y="8" width="329" height="92.666666666666671"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <string key="text">Enter your brand name, industry, and the elements you want to appear in the logo. e.g. A gym logo with text “Iron Claw”, featuring a tiger lifting dumbbells.</string>
-                                                <color key="textColor" name="kLightWhite"/>
+                                                <color key="textColor" name="kPrompt"/>
                                                 <fontDescription key="fontDescription" name="Outfit-Medium" family="Outfit" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 <variation key="heightClass=regular-widthClass=regular">
@@ -634,7 +634,7 @@ your logo</string>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prompt" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qjX-IB-UHF">
                                                 <rect key="frame" x="35.000000000000007" y="6.3333333333333126" width="53.999999999999993" height="20.333333333333329"/>
                                                 <fontDescription key="fontDescription" name="Outfit-Medium" family="Outfit" pointSize="16"/>
-                                                <color key="textColor" name="kLightWhite"/>
+                                                <color key="textColor" name="kPrompt"/>
                                                 <nil key="highlightedColor"/>
                                                 <variation key="heightClass=regular-widthClass=regular">
                                                     <fontDescription key="fontDescription" name="Outfit-Medium" family="Outfit" pointSize="32"/>
@@ -644,7 +644,7 @@ your logo</string>
                                                 <rect key="frame" x="2" y="30.999999999999996" width="272" height="55.666666666666657"/>
                                                 <string key="text">Enter your brand name, industry, and the elements you want to appear in the logo. For example, a gym logo with the text 'Iron Claw,' featuring a tiger lifting dumbbells</string>
                                                 <fontDescription key="fontDescription" name="Outfit-Medium" family="Outfit" pointSize="11"/>
-                                                <color key="textColor" name="kLightWhite"/>
+                                                <color key="textColor" name="kPrompt"/>
                                                 <nil key="highlightedColor"/>
                                                 <variation key="heightClass=regular-widthClass=regular">
                                                     <fontDescription key="fontDescription" name="Outfit-Medium" family="Outfit" pointSize="22"/>
@@ -732,7 +732,8 @@ your logo</string>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z4S-GT-pu3">
                                         <rect key="frame" x="318" y="203.66666666666663" width="50" height="52"/>
                                         <color key="backgroundColor" name="kWhite"/>
-                                        <state key="normal" title="Button"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="upload"/>
                                         <buttonConfiguration key="configuration" style="plain" image="upload"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -945,6 +946,9 @@ your logo</string>
         </namedColor>
         <namedColor name="kLightWhite">
             <color red="0.40799999237060547" green="0.40799999237060547" blue="0.40799999237060547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="kPrompt">
+            <color red="0.66299998760223389" green="0.66299998760223389" blue="0.66299998760223389" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="kWhite">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

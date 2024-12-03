@@ -25,9 +25,9 @@ class ProVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
+        
         let corner = btnStart.frame.height
-        btnStart.layer.cornerRadius = UIDevice.current.userInterfaceIdiom == .pad ? corner/1.3 : corner/2.5
+        btnStart.layer.cornerRadius = UIDevice.current.userInterfaceIdiom == .pad ? corner/2 : corner/2.5
         
         DispatchQueue.main.async { [weak self] in
             self?.styleUI()
@@ -48,6 +48,11 @@ class ProVC: UIViewController {
         
         
     }
+    
+    override func viewIsAppearing(_ animated: Bool) {
+        DispatchQueue.main.async { [weak self] in
+            self?.styleUI()
+        }    }
     
     
     @IBAction func btnCancel(_ sender: Any) {

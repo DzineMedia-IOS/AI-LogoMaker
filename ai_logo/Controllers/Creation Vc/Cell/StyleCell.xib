@@ -30,7 +30,7 @@
                                 <color key="textColor" name="kWhite"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular">
-                                    <fontDescription key="fontDescription" name="Outfit-Medium" family="Outfit" pointSize="28"/>
+                                    <fontDescription key="fontDescription" name="Outfit-Medium" family="Outfit" pointSize="26"/>
                                 </variation>
                             </label>
                         </subviews>
@@ -41,7 +41,7 @@
                             </constraint>
                             <constraint firstItem="LgX-V2-1GH" firstAttribute="height" secondItem="4OO-ap-74S" secondAttribute="height" multiplier="0.674603" id="DFN-ZT-urI"/>
                             <constraint firstItem="VOZ-O5-6hv" firstAttribute="top" secondItem="LgX-V2-1GH" secondAttribute="bottom" constant="8" id="Trw-5E-5y2">
-                                <variation key="heightClass=regular-widthClass=regular" constant="16"/>
+                                <variation key="heightClass=regular-widthClass=regular" constant="14"/>
                             </constraint>
                             <constraint firstAttribute="trailing" secondItem="LgX-V2-1GH" secondAttribute="trailing" constant="8" id="fLD-GX-epg">
                                 <variation key="heightClass=regular-widthClass=regular" constant="16"/>

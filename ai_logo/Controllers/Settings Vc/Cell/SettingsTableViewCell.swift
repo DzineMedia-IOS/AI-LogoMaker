@@ -47,6 +47,9 @@ class SettingsTableViewCell: UITableViewCell {
     func configureCellWithToggle(isToggleVisible: Bool, isToggleOn: Bool) {
         toggleSwitch?.isHidden = !isToggleVisible
         toggleSwitch?.isOn = isToggleOn
+        if isToggleVisible == true {
+            farwardImg.isHidden = true
+        }
     }
     
     override func prepareForReuse() {
