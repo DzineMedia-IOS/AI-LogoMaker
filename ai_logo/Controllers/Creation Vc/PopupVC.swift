@@ -7,10 +7,12 @@
 
 import UIKit
 
-class PopupVc: UIViewController {
+class PopupVC: UIViewController {
 
+    @IBOutlet weak var backView: UIView!
     @IBOutlet weak var btnOffer: UIButton!
     @IBOutlet weak var lbl0ff: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -18,6 +20,10 @@ class PopupVc: UIViewController {
         
         // Do any additional setup after loading the view.
         lbl0ff.font = lbl0ff.font.withSize(size)
+        lbl0ff.textColor = .kWhite
+        
+        btnOffer.layer.cornerRadius = UIDevice.current.userInterfaceIdiom == .pad ? btnOffer.frame.height/1.5 : btnOffer.frame.height / 2.5
+        
         
         DispatchQueue.main.async { [weak self] in
             self?.styleUI()
@@ -33,7 +39,7 @@ class PopupVc: UIViewController {
 }
 
 
-extension PopupVc {
+extension PopupVC {
     
     private func styleUI(){
         applyGradientToButton(

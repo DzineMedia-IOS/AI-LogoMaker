@@ -21,10 +21,7 @@ class CreationVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-        if ( UIDevice.current.userInterfaceIdiom == .pad){
-            btnPrompt.titleLabel?.font = UIFont(name: "Outfit-Bold", size: 40)
-        }
+   
         popUpView.isHidden = true
 
         creationCollectionView.dataSource = self
@@ -41,10 +38,17 @@ class CreationVC: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        
         DispatchQueue.main.async { [weak self] in
             self?.stylingUI()
         }
         
+        
+    }
+    @IBAction func btnPrompt(_ sender: Any) {
+//        if ( UIDevice.current.userInterfaceIdiom == .pad){
+//            btnPrompt.titleLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 40)
+//        }
     }
     
     @objc func popUpAction(){
@@ -107,7 +111,10 @@ extension CreationVC: UICollectionViewDataSource, UICollectionViewDelegate, UICo
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
+        
         if collectionView == creationCollectionView {
+            
+            
             return  CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
         } else{
             
@@ -125,6 +132,7 @@ extension CreationVC {
     
     private func stylingUI(){
        
+        btnPro.layer.cornerRadius = btnPro.frame.height / 2
         applyGradientToButton(
             button: btnPro,
             colors: [UIColor.kCream, UIColor.kDarkCream],
@@ -146,16 +154,19 @@ extension CreationVC {
             isBottomCorner: true
         )
         
-        
+        btnArtWork.layer.cornerRadius = btnArtWork.frame.height / 2
         applyGradientToButton(
             button: btnArtWork,
             colors:  [UIColor.accent, UIColor.kRed],
             startPoint: CGPoint(x: 0, y: 0),
             endPoint: CGPoint(x: 1, y: 1)
         )
-        
-        textBackView.applyGradientBorder(colors: [UIColor.accent, UIColor.kRed], lineWidth: 2)
-        btnPrompt.layer.cornerRadius = 20
+        textBackView.layer.cornerRadius = textBackView.frame.height / 5
+      
+        let width : CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 4 : 2
+
+        textBackView.applyGradientBorder(colors: [UIColor.accent, UIColor.kRed], lineWidth: width)
+        btnPrompt.layer.cornerRadius = btnPrompt.frame.height / 2
         btnPrompt.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         btnPrompt.clipsToBounds = true
         

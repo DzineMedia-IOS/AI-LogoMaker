@@ -17,12 +17,9 @@ class ProjectViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
-        applyGradientToButton(
-               button: btnPro,
-               colors: [UIColor.kCream, UIColor.kDarkCream],
-               startPoint: CGPoint(x: 0, y: 0),
-               endPoint: CGPoint(x: 1, y: 1)
-           )
+        DispatchQueue.main.async { [weak self] in
+            self?.styleUI()
+        }
         
         let nib = UINib(nibName: "ProjectCell", bundle: nil)
         projectCollectionView.register(nib, forCellWithReuseIdentifier: "ProjectCell")
@@ -31,6 +28,11 @@ class ProjectViewController: UIViewController {
         projectCollectionView.delegate = self
         projectCollectionView.dataSource = self
        
+    }
+    
+    override func viewIsAppearing(_ animated: Bool) {
+        projectCollectionView.reloadData()
+
     }
     
 
@@ -66,4 +68,23 @@ extension ProjectViewController: UICollectionViewDataSource,UICollectionViewDele
     }
     
     
+}
+
+
+
+
+// MARK: - STYLING UI
+
+extension ProjectViewController {
+    
+    private func styleUI(){
+        
+        btnPro.layer.cornerRadius = btnPro.frame.height/2
+        applyGradientToButton(
+            button: btnPro,
+            colors: [UIColor.kCream, UIColor.kDarkCream],
+            startPoint: CGPoint(x: 0, y: 0),
+            endPoint: CGPoint(x: 1, y: 1)
+        )
+    }
 }

@@ -17,6 +17,8 @@ class OnboardCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+//        if (UIDevice.current.userInterfaceIdiom == .pad){
+            btnStart.layer.cornerRadius = btnStart.frame.height / 2
         
         DispatchQueue.main.async { [weak self] in
             

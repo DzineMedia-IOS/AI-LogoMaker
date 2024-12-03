@@ -70,40 +70,77 @@ extension UILabel {
 import UIKit
 
 extension UIView {
+//    func applyGradientBorder(colors: [UIColor], lineWidth: CGFloat) {
+//        // Remove any existing gradient layers to avoid duplication
+//        self.layer.sublayers?.filter { $0 is CAGradientLayer }.forEach { $0.removeFromSuperlayer() }
+//
+//        // Create a gradient layer
+//        let gradientLayer = CAGradientLayer()
+//        gradientLayer.colors = colors.map { $0.cgColor }
+//        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
+//        gradientLayer.endPoint = CGPoint(x: 1, y: 1)
+//        gradientLayer.frame = self.bounds.insetBy(dx: -lineWidth, dy: -lineWidth) // Slightly larger frame
+////        gradientLayer.frame = self.bounds
+//        if ( UIDevice.current.userInterfaceIdiom == .pad ){
+//            
+//            gradientLayer.frame = self.bounds
+//        }
+//
+//
+//        // Create a shape layer for the precise border path
+//        let maskLayer = CAShapeLayer()
+//        let roundedPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.layer.cornerRadius)
+//        maskLayer.path = roundedPath.cgPath
+//        maskLayer.lineWidth = lineWidth
+//        maskLayer.strokeColor = UIColor.black.cgColor
+//        maskLayer.fillColor = UIColor.clear.cgColor
+//
+//        // Apply mask to gradient
+//        let borderLayer = CAShapeLayer()
+//        borderLayer.path = roundedPath.cgPath
+//        borderLayer.lineWidth = lineWidth
+//        borderLayer.strokeColor = UIColor.black.cgColor
+//        borderLayer.fillColor = UIColor.clear.cgColor
+//        gradientLayer.mask = borderLayer
+//
+//
+//        // Add the gradient layer to the view
+//        self.layer.addSublayer(gradientLayer)
+//    }
+    
+    
+    
     func applyGradientBorder(colors: [UIColor], lineWidth: CGFloat) {
-        // Remove any existing gradient layers to avoid duplication
+        // Remove existing gradient layers to avoid duplication
         self.layer.sublayers?.filter { $0 is CAGradientLayer }.forEach { $0.removeFromSuperlayer() }
 
         // Create a gradient layer
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = colors.map { $0.cgColor }
-        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
-        gradientLayer.endPoint = CGPoint(x: 1, y: 1)
-        gradientLayer.frame = self.bounds.insetBy(dx: -lineWidth, dy: -lineWidth) // Slightly larger frame
-        if ( UIDevice.current.userInterfaceIdiom == .pad ){
-            
+        gradientLayer.startPoint = CGPoint(x: 0, y: 0) // Top-left corner
+        gradientLayer.endPoint = CGPoint(x: 1, y: 1)   // Bottom-right corner
+        gradientLayer.frame = self.bounds.insetBy(dx: -lineWidth, dy: -lineWidth) // Slightly larger frame for better blending
+
+        // For iPads, ensure proper bounds
+        if UIDevice.current.userInterfaceIdiom == .pad {
+//            gradientLayer.frame = self.bounds.insetBy(dx: -lineWidth, dy: -lineWidth)
             gradientLayer.frame = self.bounds
+            
         }
 
-
-        // Create a shape layer for the precise border path
+        // Create a shape layer for the border path
         let maskLayer = CAShapeLayer()
-        let roundedPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.layer.cornerRadius)
+        let roundedPath = UIBezierPath(roundedRect: self.bounds.insetBy(dx: lineWidth / 2, dy: lineWidth / 2), cornerRadius: self.layer.cornerRadius)
         maskLayer.path = roundedPath.cgPath
         maskLayer.lineWidth = lineWidth
-        maskLayer.strokeColor = UIColor.black.cgColor
+        maskLayer.strokeColor = UIColor.kRed.cgColor // Mask layer stroke (acts as the border outline)
         maskLayer.fillColor = UIColor.clear.cgColor
 
-        // Apply mask to gradient
-        let borderLayer = CAShapeLayer()
-        borderLayer.path = roundedPath.cgPath
-        borderLayer.lineWidth = lineWidth
-        borderLayer.strokeColor = UIColor.black.cgColor
-        borderLayer.fillColor = UIColor.clear.cgColor
-        gradientLayer.mask = borderLayer
+        // Apply mask to the gradient layer
+        gradientLayer.mask = maskLayer
 
-
-        // Add the gradient layer to the view
+        // Add the gradient layer to the view's layer
         self.layer.addSublayer(gradientLayer)
     }
+
 }

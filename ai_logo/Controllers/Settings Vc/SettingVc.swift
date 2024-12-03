@@ -10,6 +10,7 @@ import UIKit
 
 class SettingVc: UIViewController {
     
+    @IBOutlet weak var btnPro: UIButton!
     let sectionHeaders = ["Plans & Subscriptions", "App", "Support", "About Us"]
     let sectionData = [
         ["Restore Purchase", "Manage Subscription"], // Plans & Subscriptions
@@ -33,6 +34,10 @@ class SettingVc: UIViewController {
         // Set up the table view
         tableView.dataSource = self
         tableView.delegate = self
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.styleUI()
+        }
     }
     
     @objc func hapticFeedbackSwitchChanged(_ sender: UISwitch) {
@@ -114,5 +119,24 @@ extension SettingVc: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return  UIDevice.current.userInterfaceIdiom == .pad ? 120 : 60
+    }
+}
+
+
+
+
+// MARK: - STYLING UI
+
+extension SettingVc {
+    
+    private func styleUI(){
+        
+        btnPro.layer.cornerRadius = btnPro.frame.height/2
+        applyGradientToButton(
+            button: btnPro,
+            colors: [UIColor.kCream, UIColor.kDarkCream],
+            startPoint: CGPoint(x: 0, y: 0),
+            endPoint: CGPoint(x: 1, y: 1)
+        )
     }
 }

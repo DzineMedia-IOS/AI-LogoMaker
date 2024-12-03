@@ -70,7 +70,9 @@
                                                     <color key="backgroundColor" name="kLightBlack"/>
                                                     <constraints>
                                                         <constraint firstItem="8uA-Kr-yR1" firstAttribute="centerY" secondItem="Isi-HI-uED" secondAttribute="centerY" id="9J3-N6-8Db"/>
-                                                        <constraint firstItem="Isi-HI-uED" firstAttribute="leading" secondItem="WkT-X2-0Ps" secondAttribute="leading" constant="16" id="DQb-08-bGU"/>
+                                                        <constraint firstItem="Isi-HI-uED" firstAttribute="leading" secondItem="WkT-X2-0Ps" secondAttribute="leading" constant="16" id="DQb-08-bGU">
+                                                            <variation key="heightClass=regular-widthClass=regular" constant="32"/>
+                                                        </constraint>
                                                         <constraint firstItem="FVi-bd-bv4" firstAttribute="leading" secondItem="Isi-HI-uED" secondAttribute="trailing" constant="10" id="EMK-87-CjQ">
                                                             <variation key="heightClass=regular-widthClass=regular" constant="20"/>
                                                         </constraint>
@@ -105,6 +107,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
+                                            <outlet property="backView" destination="WkT-X2-0Ps" id="npS-Zx-pqb"/>
                                             <outlet property="farwardImg" destination="8uA-Kr-yR1" id="PbK-f1-pd3"/>
                                             <outlet property="img" destination="Isi-HI-uED" id="Sb6-JZ-j4M"/>
                                             <outlet property="lblTitle" destination="FVi-bd-bv4" id="cL4-lj-AAz"/>
@@ -177,6 +180,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btnPro" destination="34J-Fn-NdS" id="g9i-pg-YaQ"/>
                         <outlet property="tableView" destination="wJj-f8-Z7H" id="TwF-Ux-ALJ"/>
                     </connections>
                 </viewController>

@@ -20,6 +20,18 @@ class PriceCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        if ( UIDevice.current.userInterfaceIdiom == .pad){
+            saveView.layer.cornerRadius = saveView.frame.height / 1.4
+            backView.layer.cornerRadius = backView.frame.height / 2
+            backView.borderWidth = 4
+            saveView.borderWidth = 4
+        }
+        else{
+            saveView.layer.cornerRadius = saveView.frame.height / 2
+            backView.layer.cornerRadius = backView.frame.height / 2.5
+        }
+        
     }
     
 
@@ -37,7 +49,7 @@ class PriceCell: UICollectionViewCell {
         selectedImg.image = UIImage(named: "unselected")
         backView.backgroundColor = .kLightBlack
         backView.borderColor = .kLightWhite.withAlphaComponent(0.5)
-        saveView.borderWidth = 1
+        saveView.borderWidth = UIDevice.current.userInterfaceIdiom == .pad ? 4 : 1
         saveView.backgroundColor = .kLightBlack
         lblPrice.textColor = .kWhite
     }

@@ -22,25 +22,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="315" height="40"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="star_icon" translatesAutoresizingMaskIntoConstraints="NO" id="bce-ac-8ZT">
-                                <rect key="frame" x="8" y="10" width="20" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="74E-Pa-PPg"/>
-                                    <constraint firstAttribute="width" constant="20" id="nUM-mI-TPe"/>
-                                </constraints>
+                                <rect key="frame" x="8" y="9" width="20" height="22"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sed ut perspiciatis unde omnis iste natus" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S3x-PZ-znj">
                                 <rect key="frame" x="36" y="11.333333333333334" width="247" height="17.666666666666664"/>
                                 <fontDescription key="fontDescription" name="Outfit-Regular" family="Outfit" pointSize="14"/>
                                 <color key="textColor" name="kWhite"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" name="Outfit-Regular" family="Outfit" pointSize="28"/>
+                                </variation>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="S3x-PZ-znj" firstAttribute="centerY" secondItem="bce-ac-8ZT" secondAttribute="centerY" id="Q5b-AL-4KM"/>
+                            <constraint firstItem="bce-ac-8ZT" firstAttribute="width" secondItem="h5h-Az-LcD" secondAttribute="width" multiplier="0.0634921" id="U5t-Di-xp5"/>
                             <constraint firstItem="bce-ac-8ZT" firstAttribute="centerY" secondItem="h5h-Az-LcD" secondAttribute="centerY" id="WvQ-M9-d6p"/>
                             <constraint firstItem="S3x-PZ-znj" firstAttribute="leading" secondItem="bce-ac-8ZT" secondAttribute="trailing" constant="8" symbolic="YES" id="n56-Lk-s6w"/>
                             <constraint firstItem="bce-ac-8ZT" firstAttribute="leading" secondItem="h5h-Az-LcD" secondAttribute="leading" constant="8" id="nrw-Xl-Es6"/>
+                            <constraint firstItem="bce-ac-8ZT" firstAttribute="height" secondItem="h5h-Az-LcD" secondAttribute="height" multiplier="0.55" id="rn1-Xd-qcX"/>
                         </constraints>
                     </view>
                 </subviews>

@@ -17,8 +17,8 @@ class LogoTypeVC: UIViewController {
     @IBOutlet weak var TopView: UIView!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblStep: UILabel!
-    @IBOutlet weak var logoCollectionView: UICollectionView!
     @IBOutlet weak var logoTypeView: UIView!
+    @IBOutlet weak var logoCollectionView: UICollectionView!
     @IBOutlet weak var selectLogoCollectionView: UICollectionView!
     @IBOutlet weak var promptView: UIView!
     @IBOutlet weak var LogoView: UIView!
@@ -35,7 +35,10 @@ class LogoTypeVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+        
+        configureCornerRadius(for: btnContinue)
+//        configureCornerRadius(for: btnStart)
+        
         if ( UIDevice.current.userInterfaceIdiom == .pad){
             btnPrompt.titleLabel?.font = UIFont(name: "Outfit-Bold", size: 40)
         }
@@ -78,6 +81,7 @@ class LogoTypeVC: UIViewController {
                     self.showView(self.promptView)
                     self.hideView(self.LogoView)
                     self.btnContinue.setTitle("Continue", for: .normal)
+                    self.selectLogoCollectionView.reloadData()
 
                 default:
                     break
@@ -121,7 +125,7 @@ class LogoTypeVC: UIViewController {
             animateTopView()
         }
         else{
-            let vc = Storyboard.aiLogo.instantiate(ExportVc.self)
+            let vc = Storyboard.aiLogo.instantiate(ExportVC.self)
             vc.modalPresentationStyle = .fullScreen
             present(vc, animated: true)
         }
@@ -154,6 +158,10 @@ class LogoTypeVC: UIViewController {
         }
     }
 
+    private func configureCornerRadius(for button: UIButton) {
+        let cornerRadius = button.frame.height
+        button.layer.cornerRadius = UIDevice.current.userInterfaceIdiom == .pad ? cornerRadius : cornerRadius / 2
+    }
 }
 
 
@@ -224,12 +232,26 @@ extension LogoTypeVC: UICollectionViewDataSource,UICollectionViewDelegate, UICol
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == logoCollectionView {
             let width =  collectionView.frame.width/2 - 20
-            return CGSize(width: collectionView.frame.width/2 - 20, height: width)
+            var height = UIDevice.current.userInterfaceIdiom == .pad  ? collectionView.frame.height : collectionView.frame.height/1.6
+            
+            if (UIDevice.current.userInterfaceIdiom != .pad ){
+                height = min(height,250)
+                
+            }
+            
+            
+            return CGSize(width: width, height: height)
         }
         else{
-            let width = collectionView.frame.width/3 - 10
+            var width =  collectionView.frame.width/3 - 10
             let height = collectionView.frame.height/2 - 10
-            let size = min(width, height)
+            var size = min(height,180)
+            
+            if (UIDevice.current.userInterfaceIdiom == .pad){
+                size = min(width, height)
+                width = collectionView.frame.width/4 - 10
+                
+            }
             return  CGSize(width: width , height: size)
         }
     }
@@ -244,6 +266,10 @@ extension LogoTypeVC {
     
     
     private func styleUI(){
+      
+        btnPrompt.layer.cornerRadius = btnPrompt.frame.height / 2
+        btnPrompt.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        btnPrompt.clipsToBounds = true
         
         applyGradientToButton(
        
@@ -269,7 +295,9 @@ extension LogoTypeVC {
         var  width = 2
         if ( UIDevice.current.userInterfaceIdiom == .pad) {
             width = 5
+            textBackView.layer.cornerRadius = 20
         }
+        
         textBackView.applyGradientBorder(colors: [UIColor.accent, UIColor.kRed], lineWidth: CGFloat(width))
 
        

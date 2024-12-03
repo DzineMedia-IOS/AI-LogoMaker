@@ -29,18 +29,27 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
                                 <color key="textColor" name="kWhite"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="32"/>
+                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$6.35 / week" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lAf-sS-4nI">
                                 <rect key="frame" x="41.000000000000007" y="34.333333333333336" width="71.666666666666686" height="14.333333333333336"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
                                 <color key="textColor" name="kWhite"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="24"/>
+                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$6.35" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="paU-SB-yJL">
                                 <rect key="frame" x="274" y="23.666666666666671" width="53" height="26"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="21"/>
                                 <color key="textColor" name="kWhite"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="40"/>
+                                </variation>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vs8-nL-gp1">
                                 <rect key="frame" x="174.33333333333334" y="19.333333333333332" width="80" height="34.333333333333343"/>
@@ -50,6 +59,9 @@
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
                                         <color key="textColor" name="kWhite"/>
                                         <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="24"/>
+                                        </variation>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" name="kLightBlack"/>
@@ -74,12 +86,18 @@
                         <constraints>
                             <constraint firstItem="Vs8-nL-gp1" firstAttribute="height" secondItem="d7R-7F-7od" secondAttribute="height" multiplier="0.471698" id="1UX-JS-pTu"/>
                             <constraint firstItem="MGQ-1o-Ahw" firstAttribute="top" secondItem="X1F-9p-wiF" secondAttribute="top" id="Ak9-P2-uWD"/>
+                            <constraint firstItem="X1F-9p-wiF" firstAttribute="width" secondItem="d7R-7F-7od" secondAttribute="width" multiplier="0.0670554" id="BQ6-qg-LDC"/>
                             <constraint firstItem="Vs8-nL-gp1" firstAttribute="width" secondItem="d7R-7F-7od" secondAttribute="width" multiplier="0.232975" id="Ele-op-K5L"/>
                             <constraint firstItem="paU-SB-yJL" firstAttribute="centerY" secondItem="d7R-7F-7od" secondAttribute="centerY" id="I9V-H6-nnL"/>
-                            <constraint firstItem="X1F-9p-wiF" firstAttribute="leading" secondItem="d7R-7F-7od" secondAttribute="leading" constant="10" id="L7y-lO-Ewo"/>
+                            <constraint firstItem="X1F-9p-wiF" firstAttribute="leading" secondItem="d7R-7F-7od" secondAttribute="leading" constant="10" id="L7y-lO-Ewo">
+                                <variation key="heightClass=regular-widthClass=regular" constant="20"/>
+                            </constraint>
                             <constraint firstItem="lAf-sS-4nI" firstAttribute="leading" secondItem="MGQ-1o-Ahw" secondAttribute="leading" id="b5F-N7-tMy"/>
                             <constraint firstItem="Vs8-nL-gp1" firstAttribute="centerY" secondItem="paU-SB-yJL" secondAttribute="centerY" id="c6A-z1-Sja"/>
-                            <constraint firstAttribute="trailing" secondItem="paU-SB-yJL" secondAttribute="trailing" constant="16" id="egp-Xs-0wp"/>
+                            <constraint firstItem="X1F-9p-wiF" firstAttribute="height" secondItem="d7R-7F-7od" secondAttribute="height" multiplier="0.315068" id="eVO-Dd-Mep"/>
+                            <constraint firstAttribute="trailing" secondItem="paU-SB-yJL" secondAttribute="trailing" constant="16" id="egp-Xs-0wp">
+                                <variation key="heightClass=regular-widthClass=regular" constant="32"/>
+                            </constraint>
                             <constraint firstItem="MGQ-1o-Ahw" firstAttribute="leading" secondItem="X1F-9p-wiF" secondAttribute="trailing" constant="8" symbolic="YES" id="iDI-rI-Gef"/>
                             <constraint firstItem="X1F-9p-wiF" firstAttribute="centerY" secondItem="d7R-7F-7od" secondAttribute="centerY" multiplier="0.7" id="l5U-Co-ad3"/>
                             <constraint firstItem="lAf-sS-4nI" firstAttribute="top" secondItem="MGQ-1o-Ahw" secondAttribute="bottom" constant="1" id="mlF-Rg-QcS"/>

@@ -8,25 +8,27 @@
 import UIKit
 
 class AiLogoVC: UIViewController {
-
+    
     @IBOutlet weak var btnPro: UIButton!
     @IBOutlet weak var btnStart: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        
+        configureCornerRadius(for: btnPro)
+        configureCornerRadius(for: btnStart)
         DispatchQueue.main.async { [weak self] in
             self?.styleUI()
         }
         // Do any additional setup after loading the view.
     }
     
-
+    
     override func viewIsAppearing(_ animated: Bool) {
         DispatchQueue.main.async { [weak self] in
             self?.styleUI()
         }
     }
-   
+    
     @IBAction func btnStart(_ sender: Any) {
         let vc = Storyboard.aiLogo.instantiate(LogoTypeVC.self)
         vc.modalPresentationStyle = .fullScreen
@@ -39,6 +41,11 @@ class AiLogoVC: UIViewController {
         present(vc, animated: true)
     }
     
+    
+    private func configureCornerRadius(for button: UIButton) {
+        let cornerRadius = button.frame.height
+        button.layer.cornerRadius = UIDevice.current.userInterfaceIdiom == .pad ? cornerRadius : cornerRadius / 2
+    }
 }
 
 // MARK: - STYLING UI
@@ -48,7 +55,7 @@ extension AiLogoVC {
     
     private func styleUI(){
         applyGradientToButton(
-       
+            
             button: btnStart,
             colors: [UIColor.kRed, UIColor.accent],
             startPoint: CGPoint(x: 0, y: 0),

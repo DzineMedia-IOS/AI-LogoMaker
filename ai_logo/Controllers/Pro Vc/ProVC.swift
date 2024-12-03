@@ -8,29 +8,33 @@
 import UIKit
 
 class ProVC: UIViewController {
-
+    
     @IBOutlet weak var featureCollectionView: UICollectionView!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var btnStart: UIButton!
     @IBOutlet weak var priceCollectionView: UICollectionView!
     
     let plans = [
-            ["plan": "Weekly Plan", "save": "Saves 10%", "price": "$9.99", "discount": "$6.35 / week"],
-            ["plan": "Monthly Plan", "save": "Saves 15%", "price": "$19.99", "discount": "$6.35 / week"],
-            ["plan": "Yearly Plan", "save": "Saves 20%", "price": "$29.99", "discount": "$6.35 / week"]
-        ]
+        ["plan": "Weekly Plan", "save": "Saves 10%", "price": "$9.99", "discount": "$6.35 / week"],
+        ["plan": "Monthly Plan", "save": "Saves 15%", "price": "$19.99", "discount": "$6.35 / week"],
+        ["plan": "Yearly Plan", "save": "Saves 20%", "price": "$29.99", "discount": "$6.35 / week"]
+    ]
     
     var selectedIndex: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        
+
+        let corner = btnStart.frame.height
+        btnStart.layer.cornerRadius = UIDevice.current.userInterfaceIdiom == .pad ? corner/1.3 : corner/2.5
+        
         DispatchQueue.main.async { [weak self] in
             self?.styleUI()
         }
-
+        
         applyTextColor(to: lblTitle, firstWordColor: .orange, restOfTextColor: .white)
-
+        
         let nib = UINib(nibName: "FeatureCell", bundle: nil)
         featureCollectionView.register(nib, forCellWithReuseIdentifier: "FeatureCell")
         featureCollectionView.delegate = self
@@ -40,17 +44,19 @@ class ProVC: UIViewController {
         priceCollectionView.register(priceNib, forCellWithReuseIdentifier: "PriceCell")
         priceCollectionView.delegate = self
         priceCollectionView.dataSource = self
-       
+        
+        
+        
     }
     
-
+    
     @IBAction func btnCancel(_ sender: Any) {
         self.dismiss(animated: true)
     }
     
     
- 
-
+    
+    
 }
 
 // MARK: UICOOLECTION VIEW CELL
@@ -70,7 +76,7 @@ extension ProVC : UICollectionViewDataSource, UICollectionViewDelegate, UICollec
             return cell
         }
         else{
-          
+            
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PriceCell", for: indexPath) as! PriceCell
             
             let plan = plans[indexPath.item]
@@ -138,6 +144,8 @@ extension ProVC {
     
     func styleUI(){
         applyGradientToButton(button: btnStart, colors: [UIColor.accent, UIColor.kRed])
+        
+        
     }
-
+    
 }
