@@ -8,6 +8,7 @@ target 'ai_logo' do
   # Pods for ai_logo
   pod 'IQKeyboardManagerSwift', '8.0.0'
   pod 'SJFluidSegmentedControl', '~> 1.0'
+  pod 'lottie-ios'
 
 end
 

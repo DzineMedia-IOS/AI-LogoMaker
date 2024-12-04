@@ -6,14 +6,27 @@
 //
 
 import UIKit
+import Lottie
 
 class AiLogoVC: UIViewController {
     
+    @IBOutlet weak var animationView: UIView!
     @IBOutlet weak var btnPro: UIButton!
     @IBOutlet weak var btnStart: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        let lottieAnimation = LottieAnimationView(name: "banner")
+        lottieAnimation.frame = animationView.bounds
+        lottieAnimation.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        lottieAnimation.contentMode = .scaleAspectFill
+        lottieAnimation.loopMode = .loop
+        animationView.addSubview(lottieAnimation)
+        lottieAnimation.play { finished in
+            print("Animation Completed!")
+        }
+
         
         DispatchQueue.main.async { [weak self] in
             self?.styleUI()

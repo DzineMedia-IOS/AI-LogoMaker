@@ -7,7 +7,8 @@
 
 import UIKit
 class LogoTypeVC: UIViewController {
-
+    
+    @IBOutlet weak var brandTfView: UIView!
     @IBOutlet weak var btnContinue: UIButton!
     @IBOutlet weak var segmentBar: UIView!
     @IBOutlet weak var bar_3: UIView!
@@ -25,18 +26,24 @@ class LogoTypeVC: UIViewController {
     @IBOutlet weak var textBackView: UIView!
     @IBOutlet weak var btnPrompt: UIButton!
     @IBOutlet weak var lblPrompt: UILabel!
-    
     @IBOutlet weak var btnBack: UIButton!
+    @IBOutlet weak var topHeight: NSLayoutConstraint!
+    @IBOutlet weak var brandView: UIView!
+    
+    var isTextLogo : Bool = false
     var screen: Int = 1
     var selectedIndex: IndexPath?
     var selectedStyle: IndexPath?
     let logoType: [String] = ["Graphic logo" , "Text Logo"]
     let logoImage: [String] = ["graphic_logo" , "text_logo"]
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        configureCornerRadius(for: btnStart)
+        if isTextLogo {
+            brandView.isHidden = true
+            topHeight.constant = 20
+        }
         
         if ( UIDevice.current.userInterfaceIdiom == .pad){
             btnPrompt.titleLabel?.font = UIFont(name: "Outfit-Bold", size: 40)
@@ -61,11 +68,11 @@ class LogoTypeVC: UIViewController {
             self?.updateUI()
         }
     }
-   
     
-
-   
-
+    
+    
+    
+    
     @IBAction func btnBack(_ sender: Any) {
         if screen > 1 {
             screen -= 1
@@ -80,7 +87,7 @@ class LogoTypeVC: UIViewController {
                     self.hideView(self.promptView)
                     self.hideView(self.LogoView)
                     self.btnContinue.setTitle("Continue", for: .normal)
-
+                    
                 case 2:
                     self.bar_3.backgroundColor = .kLightWhite
                     self.hideView(self.logoTypeView)
@@ -88,7 +95,7 @@ class LogoTypeVC: UIViewController {
                     self.hideView(self.LogoView)
                     self.btnContinue.setTitle("Continue", for: .normal)
                     self.selectLogoCollectionView.reloadData()
-
+                    
                 default:
                     break
                 }
@@ -100,7 +107,7 @@ class LogoTypeVC: UIViewController {
             self.dismiss(animated: true)
         }
     }
-
+    
     @IBAction func btnContinue(_ sender: Any) {
         if screen < 3 {
             screen += 1
@@ -110,13 +117,13 @@ class LogoTypeVC: UIViewController {
                     self.bar_1.backgroundColor = .white
                     self.showView(self.logoTypeView)
                     self.btnContinue.setTitle("Continue", for: .normal)
-
+                    
                 case 2:
                     self.bar_2.backgroundColor = .white
                     self.hideView(self.logoTypeView)
                     self.showView(self.promptView)
                     self.btnContinue.setTitle("Continue", for: .normal)
-
+                    
                 case 3:
                     self.bar_3.backgroundColor = .white
                     self.hideView(self.promptView)
@@ -163,7 +170,7 @@ class LogoTypeVC: UIViewController {
             }
         }
     }
-
+    
     private func configureCornerRadius(for button: UIButton) {
         let cornerRadius = button.frame.height
         button.layer.cornerRadius = UIDevice.current.userInterfaceIdiom == .pad ? cornerRadius/2 : cornerRadius / 2
@@ -215,7 +222,7 @@ extension LogoTypeVC: UICollectionViewDataSource,UICollectionViewDelegate, UICol
             }
             else{
                 cell.backView.layer.sublayers?.removeAll { $0 is CAGradientLayer }
-
+                
             }
             
             return cell
@@ -226,6 +233,15 @@ extension LogoTypeVC: UICollectionViewDataSource,UICollectionViewDelegate, UICol
         if collectionView == logoCollectionView {
             
             self.selectedIndex = indexPath
+            if indexPath.row == 0 {
+                brandView.isHidden = true
+                topHeight.constant = 20
+            }
+            else{
+                
+                brandView.isHidden = false
+                topHeight.constant = UIDevice.current.userInterfaceIdiom == .pad  ? 150 : 90
+            }
             logoCollectionView.reloadData()
         }
         else{
@@ -242,13 +258,11 @@ extension LogoTypeVC: UICollectionViewDataSource,UICollectionViewDelegate, UICol
             
             if (UIDevice.current.userInterfaceIdiom != .pad ){
                 height = min(height,250)
-                
             }
-            
-            
             return CGSize(width: width, height: height)
         }
-        else{
+        
+        else {
             var width =  collectionView.frame.width/3 - 10
             let height = collectionView.frame.height/2 - 10
             var size = min(height,180)
@@ -256,8 +270,8 @@ extension LogoTypeVC: UICollectionViewDataSource,UICollectionViewDelegate, UICol
             if (UIDevice.current.userInterfaceIdiom == .pad){
                 size = min(width, height)
                 width = collectionView.frame.width/4 - 10
-                
             }
+            
             return  CGSize(width: width , height: size)
         }
     }
@@ -272,13 +286,14 @@ extension LogoTypeVC {
     
     
     private func styleUI(){
+        brandTfView.cornerRadius = brandTfView.frame.height / 3
         configureCornerRadius(for: btnContinue)
         btnPrompt.layer.cornerRadius = btnPrompt.frame.height / 2
         btnPrompt.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         btnPrompt.clipsToBounds = true
         
         applyGradientToButton(
-       
+            
             button: btnContinue,
             colors: [UIColor.accent, UIColor.kRed],
             startPoint: CGPoint(x: 0, y: 0),
@@ -305,8 +320,8 @@ extension LogoTypeVC {
         }
         
         textBackView.applyGradientBorder(colors: [UIColor.accent, UIColor.kRed], lineWidth: CGFloat(width))
-
-       
+        
+        
     }
     
     private func loadNibFiles(){
@@ -329,7 +344,7 @@ extension LogoTypeVC {
         }
         
     }
-
+    
     func hideView(_ view: UIView) {
         UIView.animate(withDuration: 0.3, animations: {
             view.alpha = 0
@@ -337,5 +352,5 @@ extension LogoTypeVC {
             view.isHidden = true
         }
     }
-
+    
 }
