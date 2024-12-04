@@ -184,6 +184,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/IQKeyboardToolbarManager/IQKeyboardToolbarManager.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/IQTextInputViewNotification/IQTextInputViewNotification.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/IQTextView/IQTextView.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SJFluidSegmentedControl/SJFluidSegmentedControl.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/IQKeyboardCore/IQKeyboardCore.framework"
@@ -194,6 +195,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/IQKeyboardToolbarManager/IQKeyboardToolbarManager.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/IQTextInputViewNotification/IQTextInputViewNotification.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/IQTextView/IQTextView.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SJFluidSegmentedControl/SJFluidSegmentedControl.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

@@ -9,6 +9,7 @@ import UIKit
 
 class PreviewVc: UIViewController {
     
+    @IBOutlet weak var previewImg: UIImageView!
     @IBOutlet weak var btnExport: UIButton!
     @IBOutlet weak var textBackView: UIView!
     @IBOutlet weak var textView: UITextView!
@@ -30,7 +31,7 @@ class PreviewVc: UIViewController {
             applyGradientToButton(button: self.btnExport, colors: [UIColor.kRed, UIColor.accent])
         }
         
-        fontSize = view.frame.height * 0.025
+        fontSize = view.frame.height * 0.024
         let textFontSize = view.frame.height * 0.016
         
         if let currentFont = textView.font {
@@ -56,6 +57,14 @@ class PreviewVc: UIViewController {
         }
     }
     
+    override func viewDidLayoutSubviews() {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            applyGradientToButton(button: self.btnExport, colors: [UIColor.kRed, UIColor.accent])
+            setupFonts()
+
+        }
+    }
   
     
     
@@ -84,7 +93,6 @@ class PreviewVc: UIViewController {
 
 extension PreviewVc {
     func setupFonts() {
-        if UIDevice.current.userInterfaceIdiom == .pad {
             if let fontSize = fontSize {
                 let boldFont = UIFont(name: "Outfit-Bold", size: fontSize)!
                 
@@ -99,7 +107,7 @@ extension PreviewVc {
                     btnExport.setAttributedTitle(exportAttributedTitle, for: state)
                     
                     // For btnCopyPrompt
-                    let copyTitle = btnCopyPrompt.title(for: state) ?? " Export Logo"
+                    let copyTitle = btnCopyPrompt.title(for: state) ?? "Export Logo"
                     let copyAttributedTitle = NSAttributedString(string: copyTitle, attributes: [.font: boldFont])
                     btnCopyPrompt.setAttributedTitle(copyAttributedTitle, for: state)
                     
@@ -108,8 +116,9 @@ extension PreviewVc {
                     let shareAttributedTitle = NSAttributedString(string: shareTitle, attributes: [.font: boldFont])
                     btnShare.setAttributedTitle(shareAttributedTitle, for: state)
                 }
-                
-                // Set button corner radius
+            
+                if UIDevice.current.userInterfaceIdiom == .pad {
+                    // Set button corner radius
                 btnCopyPrompt.layer.cornerRadius = btnCopyPrompt.frame.height / 1.5
                 textBackView.layer.cornerRadius = textView.frame.height / 3
                 btnExport.layer.cornerRadius = btnExport.frame.height / 2

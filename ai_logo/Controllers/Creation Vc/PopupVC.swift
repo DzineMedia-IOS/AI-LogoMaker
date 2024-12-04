@@ -13,10 +13,11 @@ class PopupVC: UIViewController {
     @IBOutlet weak var btnOffer: UIButton!
     @IBOutlet weak var lbl0ff: UILabel!
     
+    @IBOutlet weak var buttonHeight: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+     
         NotificationCenter.default.addObserver(self,selector: #selector(animationAction),name: Notification.Name("animation"),object: nil)
         
         let size = view.frame.height * 0.10
@@ -68,6 +69,8 @@ class PopupVC: UIViewController {
 extension PopupVC {
     
     private func styleUI(){
+       
+        
         applyGradientToButton(
             button: btnOffer,
             colors: [UIColor.accent, UIColor.kRed],

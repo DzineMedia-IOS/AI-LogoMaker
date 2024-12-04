@@ -39,9 +39,11 @@ PODS:
     - IQKeyboardCore
   - IQTextView (1.0.5):
     - IQKeyboardToolbar/Placeholderable
+  - SJFluidSegmentedControl (1.1.2)
 
 DEPENDENCIES:
   - IQKeyboardManagerSwift (= 8.0.0)
+  - SJFluidSegmentedControl (~> 1.0)
 
 SPEC REPOS:
   trunk:
@@ -53,6 +55,7 @@ SPEC REPOS:
     - IQKeyboardToolbarManager
     - IQTextInputViewNotification
     - IQTextView
+    - SJFluidSegmentedControl
 
 SPEC CHECKSUMS:
   IQKeyboardCore: 28c8bf3bcd8ba5aa1570b318cbc4da94b861711e
@@ -63,7 +66,8 @@ SPEC CHECKSUMS:
   IQKeyboardToolbarManager: 6f4072ac620c2572d4af8c09f42a801f3e4909f7
   IQTextInputViewNotification: f5e954d8881fd9808b744e49e024cc0d4bcfe572
   IQTextView: ae13b4922f22e6f027f62c557d9f4f236b19d5c7
+  SJFluidSegmentedControl: efd26ea5f0832c715e2750314a2dc0cc81e39ae5
 
-PODFILE CHECKSUM: 14cd2756d7d5c64ce7d238c10049e271c5f3b646
+PODFILE CHECKSUM: 3808df9322046d7a1d4778680d37a91b141fdde2
 
 COCOAPODS: 1.16.2

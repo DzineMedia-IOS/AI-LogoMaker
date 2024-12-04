@@ -24,32 +24,42 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="styleImage" translatesAutoresizingMaskIntoConstraints="NO" id="LgX-V2-1GH">
                                 <rect key="frame" x="8" y="8" width="80" height="85"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Style" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VOZ-O5-6hv">
-                                <rect key="frame" x="12.333333333333336" y="101" width="71.666666666666657" height="17.666666666666671"/>
-                                <fontDescription key="fontDescription" name="Outfit-Medium" family="Outfit" pointSize="14"/>
-                                <color key="textColor" name="kWhite"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=regular">
-                                    <fontDescription key="fontDescription" name="Outfit-Medium" family="Outfit" pointSize="26"/>
-                                </variation>
-                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u4R-sp-ng0">
+                                <rect key="frame" x="0.0" y="93" width="96" height="33"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Style" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VOZ-O5-6hv">
+                                        <rect key="frame" x="12.333333333333336" y="7.6666666666666732" width="71.666666666666657" height="17.666666666666671"/>
+                                        <fontDescription key="fontDescription" name="Outfit-Medium" family="Outfit" pointSize="14"/>
+                                        <color key="textColor" name="kWhite"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" name="Outfit-Medium" family="Outfit" pointSize="26"/>
+                                        </variation>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="VOZ-O5-6hv" firstAttribute="centerX" secondItem="u4R-sp-ng0" secondAttribute="centerX" id="acl-x2-lWP"/>
+                                    <constraint firstItem="VOZ-O5-6hv" firstAttribute="centerY" secondItem="u4R-sp-ng0" secondAttribute="centerY" id="n6B-8m-vmA"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" name="kLightBlack"/>
                         <constraints>
+                            <constraint firstItem="u4R-sp-ng0" firstAttribute="leading" secondItem="4OO-ap-74S" secondAttribute="leading" id="0as-x0-gYi"/>
                             <constraint firstItem="LgX-V2-1GH" firstAttribute="top" secondItem="4OO-ap-74S" secondAttribute="top" constant="8" id="5cZ-2c-zc4">
                                 <variation key="heightClass=regular-widthClass=regular" constant="16"/>
                             </constraint>
                             <constraint firstItem="LgX-V2-1GH" firstAttribute="height" secondItem="4OO-ap-74S" secondAttribute="height" multiplier="0.674603" id="DFN-ZT-urI"/>
-                            <constraint firstItem="VOZ-O5-6hv" firstAttribute="top" secondItem="LgX-V2-1GH" secondAttribute="bottom" constant="8" id="Trw-5E-5y2">
-                                <variation key="heightClass=regular-widthClass=regular" constant="14"/>
-                            </constraint>
+                            <constraint firstAttribute="trailing" secondItem="u4R-sp-ng0" secondAttribute="trailing" id="WJz-EG-wxe"/>
                             <constraint firstAttribute="trailing" secondItem="LgX-V2-1GH" secondAttribute="trailing" constant="8" id="fLD-GX-epg">
                                 <variation key="heightClass=regular-widthClass=regular" constant="16"/>
                             </constraint>
+                            <constraint firstItem="u4R-sp-ng0" firstAttribute="top" secondItem="LgX-V2-1GH" secondAttribute="bottom" id="oya-6p-k5j"/>
                             <constraint firstItem="LgX-V2-1GH" firstAttribute="leading" secondItem="4OO-ap-74S" secondAttribute="leading" constant="8" id="pCi-W4-AIN">
                                 <variation key="heightClass=regular-widthClass=regular" constant="16"/>
                             </constraint>
-                            <constraint firstItem="VOZ-O5-6hv" firstAttribute="centerX" secondItem="LgX-V2-1GH" secondAttribute="centerX" id="xSM-Fc-x7f"/>
+                            <constraint firstAttribute="bottom" secondItem="u4R-sp-ng0" secondAttribute="bottom" id="pa6-9D-RYH"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -72,7 +82,7 @@
                 <outlet property="img" destination="LgX-V2-1GH" id="3Jn-Do-m1A"/>
                 <outlet property="lblTitle" destination="VOZ-O5-6hv" id="Xqb-sT-GHd"/>
             </connections>
-            <point key="canvasLocation" x="48.091603053435115" y="61.619718309859159"/>
+            <point key="canvasLocation" x="47.328244274809158" y="61.267605633802823"/>
         </collectionViewCell>
     </objects>
     <resources>

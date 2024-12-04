@@ -350,6 +350,7 @@
                         <outlet property="btnCopyPrompt" destination="B8t-WW-tN6" id="oGA-WZ-8dN"/>
                         <outlet property="btnExport" destination="R4f-dp-s51" id="rIH-Ps-1Ye"/>
                         <outlet property="btnShare" destination="ExT-Vt-Pdv" id="RrF-hJ-DyG"/>
+                        <outlet property="previewImg" destination="WJY-qN-qCY" id="my4-62-Mfn"/>
                         <outlet property="textBackView" destination="k8L-2X-a7U" id="NwB-Og-6iE"/>
                         <outlet property="textView" destination="40A-fd-eH1" id="isc-9s-rFB"/>
                     </connections>

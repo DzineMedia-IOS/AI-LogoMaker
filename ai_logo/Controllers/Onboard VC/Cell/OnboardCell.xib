@@ -42,6 +42,11 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ndc-EJ-qZu">
                                 <rect key="frame" x="20" y="140" width="407" height="60"/>
                                 <color key="backgroundColor" name="AccentColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="DVR-3Z-nz5">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="90"/>
+                                    </constraint>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Get Started">
@@ -53,7 +58,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <variation key="heightClass=regular-widthClass=regular">
-                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="40"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="30"/>
                                 </variation>
                                 <connections>
                                     <action selector="btnStart:" destination="gTV-IL-0wX" eventType="touchUpInside" id="X7A-1a-zdi"/>
@@ -74,7 +79,6 @@
                             </constraint>
                             <constraint firstAttribute="trailing" secondItem="6IT-Wb-860" secondAttribute="trailing" constant="20" symbolic="YES" id="NgS-xR-2t5"/>
                             <constraint firstItem="b99-XU-nwg" firstAttribute="leading" secondItem="vUE-4v-SQk" secondAttribute="leading" constant="20" symbolic="YES" id="TEz-i1-98Q"/>
-                            <constraint firstItem="Ndc-EJ-qZu" firstAttribute="height" secondItem="vUE-4v-SQk" secondAttribute="height" multiplier="0.285714" id="XG1-lx-1TB"/>
                             <constraint firstAttribute="trailing" secondItem="b99-XU-nwg" secondAttribute="trailing" constant="20" symbolic="YES" id="bnP-Vd-947"/>
                             <constraint firstItem="b99-XU-nwg" firstAttribute="centerX" secondItem="6IT-Wb-860" secondAttribute="centerX" id="lWo-o1-xZC"/>
                             <constraint firstItem="6IT-Wb-860" firstAttribute="centerX" secondItem="vUE-4v-SQk" secondAttribute="centerX" id="qH4-Ew-62b"/>

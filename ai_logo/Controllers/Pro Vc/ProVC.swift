@@ -26,8 +26,7 @@ class ProVC: UIViewController {
         super.viewDidLoad()
         
         
-        let corner = btnStart.frame.height
-        btnStart.layer.cornerRadius = UIDevice.current.userInterfaceIdiom == .pad ? corner/2 : corner/2.5
+       
         
         DispatchQueue.main.async { [weak self] in
             self?.styleUI()
@@ -148,6 +147,8 @@ extension ProVC {
     
     
     func styleUI(){
+        let corner = btnStart.frame.height
+        btnStart.layer.cornerRadius = UIDevice.current.userInterfaceIdiom == .pad ? corner/2 : corner/3
         applyGradientToButton(button: btnStart, colors: [UIColor.accent, UIColor.kRed])
         
         

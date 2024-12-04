@@ -18,7 +18,7 @@ class ExportVC: UIViewController {
     
     @IBOutlet weak var btnUpload: UIButton!
     @IBOutlet weak var previewImg: UIImageView!
-
+    
     let imgArr = ["mock_1","mock_2", "mock_3"]
     
     override func viewDidLoad() {
@@ -28,9 +28,9 @@ class ExportVC: UIViewController {
         collectionVIew.register(nib, forCellWithReuseIdentifier: "ProjectCell")
         collectionVIew.delegate = self
         collectionVIew.dataSource = self
-
+        
         DispatchQueue.main.async { [weak self] in
-           
+            
             self?.styleUI()
         }
         
@@ -44,14 +44,14 @@ class ExportVC: UIViewController {
         configureSegmentedControlAppearance(for: quality)
         addGestureDetector()
         
-      
-        
         
     }
+    
+    
     override func viewDidAppear(_ animated: Bool) {
         collectionVIew.reloadData()
         DispatchQueue.main.async { [weak self] in
-           
+            
             self?.styleUI()
         }
     }
@@ -69,7 +69,7 @@ class ExportVC: UIViewController {
         let vc = Storyboard.premium.instantiate(ProVC.self)
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
-    
+        
     }
     
     func animateTopView() {
@@ -118,12 +118,16 @@ extension ExportVC {
     private func styleUI(){
         
         btnPro.layer.cornerRadius = btnPro.frame.height/2
+        previewImg.layer.cornerRadius = previewImg.frame.height/6
         applyGradientToButton(
             button: btnPro,
             colors: [UIColor.kCream, UIColor.kDarkCream],
             startPoint: CGPoint(x: 0, y: 0),
             endPoint: CGPoint(x: 1, y: 1)
         )
+        
+        
+        
     }
     
     func configureSegmentedControlAppearance(for segmentedControl: UISegmentedControl) {
@@ -137,7 +141,7 @@ extension ExportVC {
             .font: UIFont(name: "Outfit-Medium", size: CGFloat(fontSize)) ?? UIFont.boldSystemFont(ofSize: CGFloat(fontSize))
         ]
         segmentedControl.setTitleTextAttributes(unselectedAttributes, for: .normal)
-       
+        
         let selectedAttributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: UIColor.black,
             .font: UIFont(name: "Outfit-Medium", size: CGFloat(fontSize)) ?? UIFont.boldSystemFont(ofSize: CGFloat(fontSize))
@@ -147,12 +151,61 @@ extension ExportVC {
         segmentedControl.setDividerImage(UIImage(), forLeftSegmentState: .normal, rightSegmentState: .normal, barMetrics: .default)
         
         segmentedControl.layer.cornerRadius = segmentedControl.frame.height / 2
-            segmentedControl.clipsToBounds = true
+        segmentedControl.clipsToBounds = true
     }
     
     func addGestureDetector(){
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(downloadViewTapped))
-            downloadView.addGestureRecognizer(tapGesture)
+        downloadView.addGestureRecognizer(tapGesture)
     }
     
 }
+
+
+// MARK: - Segmented Button Control UI
+//
+//extension ExportVC {
+//    func configureSegmentedControlAppearance(for segmentedControl: UISegmentedControl) {
+//        var fontSize = 14
+//        if UIDevice.current.userInterfaceIdiom == .pad {
+//            fontSize = 28
+//        }
+//
+//        // Unselected attributes
+//        let unselectedAttributes: [NSAttributedString.Key: Any] = [
+//            .foregroundColor: UIColor.white,
+//            .font: UIFont(name: "Outfit-Medium", size: CGFloat(fontSize)) ?? UIFont.boldSystemFont(ofSize: CGFloat(fontSize))
+//        ]
+//        segmentedControl.setTitleTextAttributes(unselectedAttributes, for: .normal)
+//
+//        // Selected attributes
+//        let selectedAttributes: [NSAttributedString.Key: Any] = [
+//            .foregroundColor: UIColor.black,
+//            .font: UIFont(name: "Outfit-Medium", size: CGFloat(fontSize)) ?? UIFont.boldSystemFont(ofSize: CGFloat(fontSize))
+//        ]
+//        segmentedControl.setTitleTextAttributes(selectedAttributes, for: .selected)
+//
+//        // Set the selected segment background color
+//        segmentedControl.selectedSegmentTintColor = .white
+//
+//        // Add corner radius to the entire segmented control
+//        segmentedControl.layer.cornerRadius = segmentedControl.frame.height / 2
+//        segmentedControl.clipsToBounds = true
+//
+//        // Apply shadow for selected segment effect
+//        addShadowToSelectedSegment(segmentedControl)
+//    }
+//
+//    private func addShadowToSelectedSegment(_ segmentedControl: UISegmentedControl) {
+//        // Remove any previous shadow layers if necessary
+//        segmentedControl.subviews.forEach { subview in
+//            subview.layer.shadowColor = nil
+//            subview.layer.shadowOpacity = 0
+//        }
+//
+//    }
+//
+//
+//}
+//
+

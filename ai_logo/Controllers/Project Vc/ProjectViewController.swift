@@ -57,16 +57,21 @@ class ProjectViewController: UIViewController {
 
 extension ProjectViewController: UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 12
+        return 11
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProjectCell", for: indexPath) as! ProjectCell
+        cell.img.image = UIImage(named: "project_\(indexPath.row)")
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = collectionView.frame.width/3 - 10
+        var size = collectionView.frame.width/3 - 10
+        if (UIDevice.current.userInterfaceIdiom == .pad){
+            size = collectionView.frame.width/4  - 10
+        }
+        
         return CGSize(width: size, height: size)
     }
     
@@ -76,9 +81,8 @@ extension ProjectViewController: UICollectionViewDataSource,UICollectionViewDele
         vc.modalPresentationStyle = .fullScreen
         vc.modalTransitionStyle = .crossDissolve
         present(vc, animated: true)
+        vc.previewImg.image = UIImage(named: "project_\(indexPath.row)")
     }
-    
-    
 }
 
 

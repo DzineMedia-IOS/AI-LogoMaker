@@ -14,8 +14,7 @@ class AiLogoVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureCornerRadius(for: btnPro)
-        configureCornerRadius(for: btnStart)
+        
         DispatchQueue.main.async { [weak self] in
             self?.styleUI()
         }
@@ -44,7 +43,7 @@ class AiLogoVC: UIViewController {
     
     private func configureCornerRadius(for button: UIButton) {
         let cornerRadius = button.frame.height
-        button.layer.cornerRadius = UIDevice.current.userInterfaceIdiom == .pad ? cornerRadius : cornerRadius / 2
+        button.layer.cornerRadius = UIDevice.current.userInterfaceIdiom == .pad ? cornerRadius/2 : cornerRadius / 2
     }
 }
 
@@ -54,6 +53,10 @@ extension AiLogoVC {
     
     
     private func styleUI(){
+        
+        configureCornerRadius(for: btnPro)
+        configureCornerRadius(for: btnStart)
+        
         applyGradientToButton(
             
             button: btnStart,
@@ -64,7 +67,7 @@ extension AiLogoVC {
         
         applyGradientToButton(
             button: btnPro,
-            colors: [UIColor.kDarkCream, UIColor.kCream],
+            colors: [UIColor.kCream, UIColor.kDarkCream],
             startPoint: CGPoint(x: 0, y: 0),
             endPoint: CGPoint(x: 1, y: 1)
         )

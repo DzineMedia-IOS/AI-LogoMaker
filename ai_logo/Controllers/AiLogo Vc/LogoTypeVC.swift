@@ -36,7 +36,6 @@ class LogoTypeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureCornerRadius(for: btnContinue)
 //        configureCornerRadius(for: btnStart)
         
         if ( UIDevice.current.userInterfaceIdiom == .pad){
@@ -63,6 +62,7 @@ class LogoTypeVC: UIViewController {
         }
     }
    
+    
 
    
 
@@ -166,7 +166,7 @@ class LogoTypeVC: UIViewController {
 
     private func configureCornerRadius(for button: UIButton) {
         let cornerRadius = button.frame.height
-        button.layer.cornerRadius = UIDevice.current.userInterfaceIdiom == .pad ? cornerRadius : cornerRadius / 2
+        button.layer.cornerRadius = UIDevice.current.userInterfaceIdiom == .pad ? cornerRadius/2 : cornerRadius / 2
     }
 }
 
@@ -272,7 +272,7 @@ extension LogoTypeVC {
     
     
     private func styleUI(){
-      
+        configureCornerRadius(for: btnContinue)
         btnPrompt.layer.cornerRadius = btnPrompt.frame.height / 2
         btnPrompt.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         btnPrompt.clipsToBounds = true

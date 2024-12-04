@@ -161,7 +161,7 @@
                                                     <constraint firstItem="qvw-ED-UfN" firstAttribute="centerX" secondItem="L47-22-GIU" secondAttribute="centerX" id="XH8-wb-AI0"/>
                                                     <constraint firstItem="YFQ-YF-6jx" firstAttribute="leading" secondItem="aPZ-5F-J0h" secondAttribute="trailing" constant="8" symbolic="YES" id="kLH-1o-RFD"/>
                                                     <constraint firstAttribute="height" constant="190" id="ld2-ds-5a0">
-                                                        <variation key="heightClass=regular-widthClass=regular" constant="340"/>
+                                                        <variation key="heightClass=regular-widthClass=regular" constant="300"/>
                                                     </constraint>
                                                     <constraint firstAttribute="bottom" secondItem="qvw-ED-UfN" secondAttribute="bottom" id="the-vp-RxX"/>
                                                     <constraint firstItem="aPZ-5F-J0h" firstAttribute="leading" secondItem="EH9-pv-eb7" secondAttribute="leading" constant="8" id="uZK-Nc-CpZ"/>
@@ -173,7 +173,7 @@
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="190" id="0Hc-Zf-lC3">
-                                                        <variation key="heightClass=regular-widthClass=regular" constant="380"/>
+                                                        <variation key="heightClass=regular-widthClass=regular" constant="300"/>
                                                     </constraint>
                                                 </constraints>
                                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="sSK-Og-1KM">
@@ -364,7 +364,7 @@
                                             <constraint firstItem="EH9-pv-eb7" firstAttribute="top" secondItem="Kaw-Qw-beo" secondAttribute="top" id="Y9A-Bf-rcf"/>
                                             <constraint firstItem="2ev-jV-NfO" firstAttribute="top" secondItem="EH9-pv-eb7" secondAttribute="bottom" constant="16" id="fOK-ix-ub6"/>
                                             <constraint firstAttribute="height" constant="1050" id="mBP-Rf-E7r">
-                                                <variation key="heightClass=regular-widthClass=regular" constant="2100"/>
+                                                <variation key="heightClass=regular-widthClass=regular" constant="1900"/>
                                             </constraint>
                                             <constraint firstAttribute="trailing" secondItem="EH9-pv-eb7" secondAttribute="trailing" constant="16" id="nj6-MQ-Wnj"/>
                                             <constraint firstItem="2iL-Xw-RrH" firstAttribute="top" secondItem="2ev-jV-NfO" secondAttribute="bottom" constant="16" id="oPd-5N-M4m"/>
@@ -381,8 +381,13 @@
                                 </constraints>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bQX-DD-h5E">
-                                <rect key="frame" x="20" y="694.33333333333337" width="353" height="59.666666666666629"/>
+                                <rect key="frame" x="20" y="694.33333333333337" width="353" height="60"/>
                                 <color key="backgroundColor" name="kDarkCream"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="yXV-xh-UCl">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="90"/>
+                                    </constraint>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Generate Artwork">
@@ -416,7 +421,6 @@
                             <constraint firstItem="bQX-DD-h5E" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="9XD-BZ-PMF">
                                 <variation key="heightClass=regular-widthClass=regular" constant="40"/>
                             </constraint>
-                            <constraint firstItem="bQX-DD-h5E" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.07" id="A8n-A4-CYv"/>
                             <constraint firstItem="qh1-WU-tRd" firstAttribute="top" secondItem="D4T-z9-ucY" secondAttribute="bottom" id="BxW-dJ-Nh7"/>
                             <constraint firstItem="HlH-yT-oaS" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="CQ3-lq-CBb"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="D4T-z9-ucY" secondAttribute="trailing" constant="16" id="F5q-dK-nvx"/>
@@ -541,7 +545,7 @@ OFF</string>
                                         </variation>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QT0-vB-E7q">
-                                        <rect key="frame" x="16" y="334.66666666666669" width="297" height="59.666666666666686"/>
+                                        <rect key="frame" x="16" y="334.66666666666669" width="297" height="60"/>
                                         <color key="backgroundColor" name="kDarkCream"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -553,7 +557,7 @@ OFF</string>
                                         </variation>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cancel Anytime" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VVR-Ok-Aci">
-                                        <rect key="frame" x="132" y="410.33333333333337" width="97.666666666666686" height="17.666666666666686"/>
+                                        <rect key="frame" x="132" y="410.66666666666663" width="97.666666666666686" height="17.666666666666686"/>
                                         <fontDescription key="fontDescription" name="Outfit-Regular" family="Outfit" pointSize="14"/>
                                         <color key="textColor" name="kLightWhite"/>
                                         <nil key="highlightedColor"/>
@@ -562,7 +566,7 @@ OFF</string>
                                         </variation>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="56J-xv-Jj7">
-                                        <rect key="frame" x="8" y="436" width="313" height="53"/>
+                                        <rect key="frame" x="8" y="436.33333333333337" width="313" height="53"/>
                                         <string key="text">Sed ut perspiciatis unde omnis iste natus error sit voluptag atem accusantium doloremque laudantium totam ret periam eaque ipsa quae</string>
                                         <fontDescription key="fontDescription" name="Outfit-Regular" family="Outfit" pointSize="14"/>
                                         <color key="textColor" name="kLightWhite"/>
@@ -572,7 +576,7 @@ OFF</string>
                                         </variation>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="clock" translatesAutoresizingMaskIntoConstraints="NO" id="3Hr-Bv-wAa">
-                                        <rect key="frame" x="108" y="411.66666666666663" width="14" height="15"/>
+                                        <rect key="frame" x="108" y="412" width="14" height="15"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -588,6 +592,9 @@ OFF</string>
                                     <constraint firstItem="56J-xv-Jj7" firstAttribute="top" secondItem="VVR-Ok-Aci" secondAttribute="bottom" constant="8" symbolic="YES" id="R63-ly-h2s"/>
                                     <constraint firstItem="5ei-RO-SfJ" firstAttribute="top" secondItem="HZ1-b7-469" secondAttribute="top" constant="20" id="Sda-za-7j0"/>
                                     <constraint firstItem="5ei-RO-SfJ" firstAttribute="centerX" secondItem="gcn-iY-th0" secondAttribute="centerX" id="W5A-V3-Ons"/>
+                                    <constraint firstItem="QT0-vB-E7q" firstAttribute="height" secondItem="gcn-iY-th0" secondAttribute="height" multiplier="0.111111" id="Y6d-uT-jKh">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="-7"/>
+                                    </constraint>
                                     <constraint firstItem="FQe-CS-rBS" firstAttribute="leading" secondItem="MVg-TY-5Ak" secondAttribute="trailing" constant="1" id="ZMp-DK-ESc"/>
                                     <constraint firstAttribute="trailing" secondItem="gcn-iY-th0" secondAttribute="trailing" id="bZ3-Ny-jGY"/>
                                     <constraint firstItem="VVR-Ok-Aci" firstAttribute="leading" secondItem="3Hr-Bv-wAa" secondAttribute="trailing" constant="10" id="dZW-ty-XQg"/>
@@ -613,7 +620,6 @@ OFF</string>
                                     </constraint>
                                     <constraint firstItem="VVR-Ok-Aci" firstAttribute="top" secondItem="QT0-vB-E7q" secondAttribute="bottom" constant="16" id="pES-hL-WQr"/>
                                     <constraint firstItem="gcn-iY-th0" firstAttribute="top" secondItem="HZ1-b7-469" secondAttribute="top" id="ppL-Xm-Tqt"/>
-                                    <constraint firstItem="QT0-vB-E7q" firstAttribute="height" secondItem="gcn-iY-th0" secondAttribute="height" multiplier="0.11" id="vrU-uW-aUW"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -634,6 +640,7 @@ OFF</string>
                     <connections>
                         <outlet property="backView" destination="HZ1-b7-469" id="2BP-ZC-S83"/>
                         <outlet property="btnOffer" destination="QT0-vB-E7q" id="2LH-aV-asC"/>
+                        <outlet property="buttonHeight" destination="Y6d-uT-jKh" id="oXr-kE-USl"/>
                         <outlet property="lbl0ff" destination="h8O-of-za8" id="UsE-OQ-XnU"/>
                     </connections>
                 </viewController>
