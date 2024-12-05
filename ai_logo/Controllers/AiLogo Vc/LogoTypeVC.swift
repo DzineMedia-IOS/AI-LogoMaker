@@ -40,7 +40,7 @@ class LogoTypeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if isTextLogo {
+        if !isTextLogo {
             brandView.isHidden = true
             topHeight.constant = 20
         }
