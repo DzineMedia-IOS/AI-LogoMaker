@@ -6,8 +6,10 @@
 //
 
 import UIKit
+import ProgressHUD
 class LogoTypeVC: UIViewController {
     
+    @IBOutlet weak var brandTextField: UITextField!
     @IBOutlet weak var brandTfView: UIView!
     @IBOutlet weak var btnContinue: UIButton!
     @IBOutlet weak var segmentBar: UIView!
@@ -29,7 +31,8 @@ class LogoTypeVC: UIViewController {
     @IBOutlet weak var btnBack: UIButton!
     @IBOutlet weak var topHeight: NSLayoutConstraint!
     @IBOutlet weak var brandView: UIView!
-    
+    @IBOutlet weak var txtView: UITextView!
+   
     var isTextLogo : Bool = false
     var screen: Int = 1
     var selectedIndex: IndexPath?
@@ -52,12 +55,10 @@ class LogoTypeVC: UIViewController {
         promptView.isHidden = true
         LogoView.isHidden = true
         
-        
         DispatchQueue.main.async { [weak self] in
             self?.styleUI()
             self?.updateUI()
         }
-        
         loadNibFiles()
         
     }
@@ -69,7 +70,11 @@ class LogoTypeVC: UIViewController {
         }
     }
     
-    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        brandTfView.layer.cornerRadius = brandTfView.frame.height / 3
+        brandTfView.clipsToBounds = true
+    }
     
     
     
@@ -129,7 +134,6 @@ class LogoTypeVC: UIViewController {
                     self.hideView(self.promptView)
                     self.showView(self.LogoView)
                     self.btnContinue.setTitle("Generate Logo", for: .normal)
-                    
                 default:
                     break
                 }
@@ -138,43 +142,43 @@ class LogoTypeVC: UIViewController {
             animateTopView()
         }
         else{
-            let vc = Storyboard.aiLogo.instantiate(ExportVC.self)
-            vc.modalPresentationStyle = .fullScreen
-            present(vc, animated: true)
+            let logoType = isTextLogo ? "text-based logo" : "Graphic-based logo"
+            let brandName = isTextLogo ? "for \(String(describing: brandTextField.text))" : ""
+            let style = "minimalistic"
+            var prompt = "A modern \(logoType) \(brandName),the style should be \(style),"
+            prompt = prompt + self.txtView.text
+            
+            self.generateLogo(prompt: prompt)
+
         }
     }
     
-    func updateUI() {
-        lblStep.text = "Step \(screen) of 3"
-        lblScreenNO.text = String(format: "0%d", screen)
-        
-        // Update title based on screen number
-        switch screen {
-        case 1:
-            lblTitle.text = "Select the type of \n your logo"
-        case 2:
-            lblTitle.text = "Generate unique logos \n for your brand"
-        case 3:
-            lblTitle.text = "Pick your logo style"
-        default:
-            break
-        }
-    }
     
-    func animateTopView() {
-        UIView.animate(withDuration: 0.3, animations: {
-            self.TopView.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
-        }) { _ in
-            UIView.animate(withDuration: 0.3) {
-                self.TopView.transform = .identity
+    private func generateLogo(prompt: String) {
+        ProgressHUD.animate("Some text...", interaction: false)
+        APIManager.shared.generateLogo(prompt: prompt) { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let response):
+                    print("Logo Generation Results:")
+                    print("Cost:", response.cost)
+                    print("Seed:", response.seed)
+                    print("Logo URL:", response.url)
+                    ProgressHUD.dismiss()
+                    let vc = Storyboard.aiLogo.instantiate(ExportVC.self)
+                    vc.modalPresentationStyle = .fullScreen
+                    vc.imgUrl = response.url
+                    self.present(vc, animated: true)
+                case .failure(let error):
+                    print("Error:", error.localizedDescription)
+                    ProgressHUD.dismiss()
+
+                    // Show an alert to the user if needed
+                }
             }
         }
     }
     
-    private func configureCornerRadius(for button: UIButton) {
-        let cornerRadius = button.frame.height
-        button.layer.cornerRadius = UIDevice.current.userInterfaceIdiom == .pad ? cornerRadius/2 : cornerRadius / 2
-    }
 }
 
 
@@ -236,9 +240,10 @@ extension LogoTypeVC: UICollectionViewDataSource,UICollectionViewDelegate, UICol
             if indexPath.row == 0 {
                 brandView.isHidden = true
                 topHeight.constant = 20
+                isTextLogo = false
             }
-            else{
-                
+            else {
+                isTextLogo = true
                 brandView.isHidden = false
                 topHeight.constant = UIDevice.current.userInterfaceIdiom == .pad  ? 150 : 90
             }
@@ -279,14 +284,16 @@ extension LogoTypeVC: UICollectionViewDataSource,UICollectionViewDelegate, UICol
     
 }
 
-
 // MARK: - STYLING UI & load nib files
 
 extension LogoTypeVC {
     
     
     private func styleUI(){
-        brandTfView.cornerRadius = brandTfView.frame.height / 3
+        
+        brandTfView.layer.cornerRadius = brandTfView.frame.height / 2
+        btnPrompt.clipsToBounds = true
+
         configureCornerRadius(for: btnContinue)
         btnPrompt.layer.cornerRadius = btnPrompt.frame.height / 2
         btnPrompt.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
@@ -351,6 +358,38 @@ extension LogoTypeVC {
         }) { _ in
             view.isHidden = true
         }
+    }
+    
+    func updateUI() {
+        lblStep.text = "Step \(screen) of 3"
+        lblScreenNO.text = String(format: "0%d", screen)
+        
+        // Update title based on screen number
+        switch screen {
+        case 1:
+            lblTitle.text = "Select the type of \n your logo"
+        case 2:
+            lblTitle.text = "Generate unique logos \n for your brand"
+        case 3:
+            lblTitle.text = "Pick your logo style"
+        default:
+            break
+        }
+    }
+    
+    func animateTopView() {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.TopView.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
+        }) { _ in
+            UIView.animate(withDuration: 0.3) {
+                self.TopView.transform = .identity
+            }
+        }
+    }
+    
+    private func configureCornerRadius(for button: UIButton) {
+        let cornerRadius = button.frame.height
+        button.layer.cornerRadius = UIDevice.current.userInterfaceIdiom == .pad ? cornerRadius/2 : cornerRadius / 2
     }
     
 }

@@ -22,6 +22,7 @@ class OnboardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         pageControl.isHidden = true
         UIDevice.current.userInterfaceIdiom == .pad ? (bottomPadding.constant = 80) : (bottomPadding.constant = 40)
         
@@ -120,3 +121,5 @@ extension OnboardViewController: UICollectionViewDelegate, UICollectionViewDataS
         return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)  // Ensure cell takes full screen width
     }
 }
+
+

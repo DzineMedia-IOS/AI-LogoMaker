@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ExportVC: UIViewController {
     
@@ -19,6 +20,8 @@ class ExportVC: UIViewController {
     @IBOutlet weak var btnUpload: UIButton!
     @IBOutlet weak var previewImg: UIImageView!
     
+    var imgUrl: String?
+    
     let imgArr = ["mock_1","mock_2", "mock_3"]
     
     override func viewDidLoad() {
@@ -29,6 +32,13 @@ class ExportVC: UIViewController {
         collectionVIew.delegate = self
         collectionVIew.dataSource = self
         
+        
+        if let imgUrl = imgUrl, let url = URL(string: imgUrl) {
+            // Load the image using SDWebImage
+            previewImg.sd_setImage(with: url, placeholderImage: UIImage(named: "placeholder"), options: .continueInBackground, completed: nil)
+        } else {
+//            previewImg.image = UIImage(named: "placeholder")
+        }
         DispatchQueue.main.async { [weak self] in
             
             self?.styleUI()

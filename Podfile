@@ -9,6 +9,11 @@ target 'ai_logo' do
   pod 'IQKeyboardManagerSwift', '8.0.0'
   pod 'SJFluidSegmentedControl', '~> 1.0'
   pod 'lottie-ios'
+  pod 'KVSpinnerView'
+  pod 'SDWebImage', '~> 5.0'
+  pod 'ProgressHUD'
+
+
 
 end
 
