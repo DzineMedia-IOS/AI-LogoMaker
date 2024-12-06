@@ -16,12 +16,11 @@ class ExportVC: UIViewController {
     @IBOutlet weak var collectionVIew: UICollectionView!
     @IBOutlet weak var btnPro: UIButton!
     @IBOutlet weak var downloadView: UIView!
-    
     @IBOutlet weak var btnUpload: UIButton!
     @IBOutlet weak var previewImg: UIImageView!
-    
+    @IBOutlet weak var lblPrompt: UILabel!
+  
     var imgUrl: String?
-    
     let imgArr = ["mock_1","mock_2", "mock_3"]
     
     override func viewDidLoad() {

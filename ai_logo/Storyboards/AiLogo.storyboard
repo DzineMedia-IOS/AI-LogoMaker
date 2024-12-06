@@ -999,6 +999,7 @@ your logo</string>
                         <outlet property="downloadView" destination="dDI-u7-GRa" id="thx-3J-UnY"/>
                         <outlet property="exportView" destination="nqh-6b-ayR" id="kxq-DF-foF"/>
                         <outlet property="format" destination="EdE-XR-nZ9" id="Ye0-e9-I66"/>
+                        <outlet property="lblPrompt" destination="qAT-p9-pdU" id="DDP-Og-Dbv"/>
                         <outlet property="previewImg" destination="5zR-BI-Mfa" id="dOH-yp-N4V"/>
                         <outlet property="quality" destination="27e-AL-tNJ" id="6gY-nL-TlZ"/>
                     </connections>

@@ -12,10 +12,9 @@ class ProjectViewController: UIViewController {
     
     @IBOutlet weak var projectCollectionView: UICollectionView!
     @IBOutlet weak var btnPro: UIButton!
+    var projects: [Projects] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
         
         DispatchQueue.main.async { [weak self] in
             self?.styleUI()
@@ -27,6 +26,10 @@ class ProjectViewController: UIViewController {
         
         projectCollectionView.delegate = self
         projectCollectionView.dataSource = self
+        
+        projects = CoreDataManager.shared.fetchRecords()
+        
+        
         
     }
     
@@ -57,12 +60,19 @@ class ProjectViewController: UIViewController {
 
 extension ProjectViewController: UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 11
+        return projects.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProjectCell", for: indexPath) as! ProjectCell
-        cell.img.image = UIImage(named: "project_\(indexPath.row)")
+         let project = projects[indexPath.item]
+       
+        if let imgPath = project.imgPath, !imgPath.isEmpty {
+                cell.img.image = UIImage(contentsOfFile: imgPath)
+            } else {
+                cell.img.image = nil
+            }
+        
         return cell
     }
     

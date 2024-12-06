@@ -17,7 +17,7 @@ class AiLogoVC: UIViewController {
         super.viewDidLoad()
         
         
-        let lottieAnimation = LottieAnimationView(name: "banner")
+        let lottieAnimation = LottieAnimationView(name: .banner)
         lottieAnimation.frame = animationView.bounds
         lottieAnimation.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         lottieAnimation.contentMode = .scaleAspectFill

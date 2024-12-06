@@ -31,7 +31,7 @@ class PreviewVc: UIViewController {
             applyGradientToButton(button: self.btnExport, colors: [UIColor.kRed, UIColor.accent])
         }
         
-        fontSize = view.frame.height * 0.024
+        fontSize =  view.frame.height * 0.024
         let textFontSize = view.frame.height * 0.016
         
         if let currentFont = textView.font {
@@ -93,7 +93,10 @@ class PreviewVc: UIViewController {
 
 extension PreviewVc {
     func setupFonts() {
-            if let fontSize = fontSize {
+        if var fontSize = fontSize {
+                if UIDevice.current.userInterfaceIdiom != .pad {
+                    fontSize = 16
+                }
                 let boldFont = UIFont(name: "Outfit-Bold", size: fontSize)!
                 
                 // Define the button states

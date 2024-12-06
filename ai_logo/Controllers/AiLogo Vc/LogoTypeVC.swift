@@ -32,17 +32,38 @@ class LogoTypeVC: UIViewController {
     @IBOutlet weak var topHeight: NSLayoutConstraint!
     @IBOutlet weak var brandView: UIView!
     @IBOutlet weak var txtView: UITextView!
-   
+    
     var isTextLogo : Bool = false
     var screen: Int = 1
-    var selectedIndex: IndexPath?
-    var selectedStyle: IndexPath?
+    var selectedIndex: IndexPath? = IndexPath(row: 0, section: 0)
+    var selectedStyle: IndexPath? = IndexPath(row: 0, section: 0)
+
+    
     let logoType: [String] = ["Graphic logo" , "Text Logo"]
     let logoImage: [String] = ["graphic_logo" , "text_logo"]
+    let styleArray: [Style] = [
+        Style(img: "no_style", title: "No Style"),
+        Style(img: "abstract", title: "Abstract"),
+        Style(img: "art_deco", title: "Art Deco"),
+        Style(img: "classic", title: "Classic"),
+        Style(img: "corporate", title: "Corporate"),
+        Style(img: "elegant", title: "Elegant"),
+        Style(img: "furistic", title: "Futuristic"),
+        Style(img: "minimalist", title: "Minimalist"),
+        Style(img: "geomatric", title: "Geometric"),
+        Style(img: "grung", title: "Grunge"),
+        Style(img: "hand_drawn", title: "Hand Drawn"),
+        Style(img: "mascot", title: "Mascot"),
+        Style(img: "minimal", title: "Minimal"),
+        Style(img: "modren", title: "Modern"),
+        Style(img: "mongram", title: "Monogram"),
+        Style(img: "nature", title: "Nature"),
+        Style(img: "vintage", title: "Vintage"),
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+//        CoreDataManager.shared.deleteAllProjects()
         if !isTextLogo {
             brandView.isHidden = true
             topHeight.constant = 20
@@ -64,6 +85,7 @@ class LogoTypeVC: UIViewController {
     }
     
     override func viewIsAppearing(_ animated: Bool) {
+        selectLogoCollectionView.reloadData()
         DispatchQueue.main.async { [weak self] in
             self?.styleUI()
             self?.updateUI()
@@ -71,12 +93,11 @@ class LogoTypeVC: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
+        selectLogoCollectionView.reloadData()
         super.viewDidLayoutSubviews()
         brandTfView.layer.cornerRadius = brandTfView.frame.height / 3
         brandTfView.clipsToBounds = true
     }
-    
-    
     
     @IBAction func btnBack(_ sender: Any) {
         if screen > 1 {
@@ -116,7 +137,7 @@ class LogoTypeVC: UIViewController {
     @IBAction func btnContinue(_ sender: Any) {
         if screen < 3 {
             screen += 1
-            UIView.animate(withDuration: 0.3, animations: {
+            UIView.animate(withDuration: 0.3, animations: { [self] in
                 switch self.screen {
                 case 1:
                     self.bar_1.backgroundColor = .white
@@ -124,17 +145,31 @@ class LogoTypeVC: UIViewController {
                     self.btnContinue.setTitle("Continue", for: .normal)
                     
                 case 2:
-                    self.bar_2.backgroundColor = .white
-                    self.hideView(self.logoTypeView)
-                    self.showView(self.promptView)
-                    self.btnContinue.setTitle("Continue", for: .normal)
+                   
+                        
+                        self.bar_2.backgroundColor = .white
+                        self.hideView(self.logoTypeView)
+                        self.showView(self.promptView)
+                        self.btnContinue.setTitle("Continue", for: .normal)
+                    
                     
                 case 3:
-                    self.bar_3.backgroundColor = .white
-                    self.hideView(self.promptView)
-                    self.showView(self.LogoView)
-                    self.btnContinue.setTitle("Generate Logo", for: .normal)
-                default:
+                    let isTextEmpty = brandTextField.text?.isEmpty ?? true
+                    let isPromptEmpty = txtView.text?.isEmpty ?? true
+
+                    if isTextLogo && (isTextEmpty || isPromptEmpty) {
+                        screen -= 1
+                        let message = isTextEmpty ? "Brand name cannot be empty." : "Prompt cannot be empty."
+                        self.showToast(message: message, font: .systemFont(ofSize: 12.0))
+                    } else if !isTextLogo && isPromptEmpty {
+                        screen -= 1
+                        self.showToast(message: "Prompt cannot be empty.", font: .systemFont(ofSize: 12.0))
+                    } else {
+                        self.bar_3.backgroundColor = .white
+                        self.hideView(self.promptView)
+                        self.showView(self.LogoView)
+                        self.btnContinue.setTitle("Generate Logo", for: .normal)
+                    }                default:
                     break
                 }
             })
@@ -144,20 +179,22 @@ class LogoTypeVC: UIViewController {
         else{
             let logoType = isTextLogo ? "text-based logo" : "Graphic-based logo"
             let brandName = isTextLogo ? "for \(String(describing: brandTextField.text))" : ""
-            let style = "minimalistic"
+            let style = styleArray[selectedStyle?.item ?? 0]
             var prompt = "A modern \(logoType) \(brandName),the style should be \(style),"
             prompt = prompt + self.txtView.text
             
             self.generateLogo(prompt: prompt)
+           
 
+            
+            
         }
     }
-    
     
     private func generateLogo(prompt: String) {
         ProgressHUD.animate("Some text...", interaction: false)
         APIManager.shared.generateLogo(prompt: prompt) { result in
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [self] in
                 switch result {
                 case .success(let response):
                     print("Logo Generation Results:")
@@ -169,10 +206,13 @@ class LogoTypeVC: UIViewController {
                     vc.modalPresentationStyle = .fullScreen
                     vc.imgUrl = response.url
                     self.present(vc, animated: true)
+                    vc.lblPrompt.text = txtView.text
+                
+                    CoreDataManager.shared.saveRecord(prompt: txtView.text, imageURL: response.url)
                 case .failure(let error):
                     print("Error:", error.localizedDescription)
                     ProgressHUD.dismiss()
-
+                    
                     // Show an alert to the user if needed
                 }
             }
@@ -181,8 +221,6 @@ class LogoTypeVC: UIViewController {
     
 }
 
-
-
 // MARK: - UICOLLECTION VIEW DATA SOURCE
 extension LogoTypeVC: UICollectionViewDataSource,UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -190,8 +228,7 @@ extension LogoTypeVC: UICollectionViewDataSource,UICollectionViewDelegate, UICol
             return 2
         }
         else{
-            
-            return 10
+            return styleArray.count
         }
         
     }
@@ -208,19 +245,21 @@ extension LogoTypeVC: UICollectionViewDataSource,UICollectionViewDelegate, UICol
                     cell.applyGradientToBackView()
                     cell.applyGradientToLbl()
                 }
-                
             }
+            
             else {
                 cell.backView.layer.sublayers?.removeAll { $0 is CAGradientLayer }
                 cell.lblTitle.layer.sublayers?.removeAll { $0 is CAGradientLayer }
                 cell.lblTitle.textColor = .kWhite
-                
             }
             
             return cell
         }
         else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StyleCell", for: indexPath) as! StyleCell
+            let style = styleArray[indexPath.row]
+            cell.img.image = UIImage(named: style.img)
+            cell.lblTitle.text = style.title
             if selectedStyle == indexPath {
                 cell.applyBorder()
             }
@@ -285,15 +324,13 @@ extension LogoTypeVC: UICollectionViewDataSource,UICollectionViewDelegate, UICol
 }
 
 // MARK: - STYLING UI & load nib files
-
 extension LogoTypeVC {
-    
     
     private func styleUI(){
         
         brandTfView.layer.cornerRadius = brandTfView.frame.height / 2
         btnPrompt.clipsToBounds = true
-
+        
         configureCornerRadius(for: btnContinue)
         btnPrompt.layer.cornerRadius = btnPrompt.frame.height / 2
         btnPrompt.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
