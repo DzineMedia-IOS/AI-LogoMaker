@@ -21,17 +21,29 @@
 		79E9F1AA2CF469E20095027D /* Exceptions for "ai_logo" folder in "ai_logo" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Constants/Notifications.swift,
 				Info.plist,
 			);
 			target = 79E9F1942CF469E00095027D /* ai_logo */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
+/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+		79150D912D070F9F00C191EA /* Exceptions for "ai_logo" folder in "Copy Bundle Resources" phase from "ai_logo" target */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			buildPhase = 79E9F1932CF469E00095027D /* Resources */;
+			membershipExceptions = (
+				Constants/Notifications.swift,
+			);
+		};
+/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		79E9F1972CF469E00095027D /* ai_logo */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				79E9F1AA2CF469E20095027D /* Exceptions for "ai_logo" folder in "ai_logo" target */,
+				79150D912D070F9F00C191EA /* Exceptions for "ai_logo" folder in "Copy Bundle Resources" phase from "ai_logo" target */,
 			);
 			path = ai_logo;
 			sourceTree = "<group>";

@@ -9,10 +9,13 @@ import UIKit
 
 class ProjectCell: UICollectionViewCell {
 
+    @IBOutlet weak var tryImg: UIImageView!
     @IBOutlet weak var img: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        tryImg.isHidden = true
+        img.layer.cornerRadius = img.frame.height / 5
     }
     
     func imgBorder(){

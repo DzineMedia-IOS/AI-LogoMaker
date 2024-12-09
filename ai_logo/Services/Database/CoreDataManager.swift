@@ -29,58 +29,75 @@ class CoreDataManager {
     }
     
     // MARK: - Save Image from URL to Documents Directory
-    func saveImageFromURLToDocumentsDirectory(_ imageURL: String, withName name: String) -> String? {
+    func saveImageFromURLToDocumentsDirectory(_ imageURL: String, withName name: String, completion: @escaping (String?) -> Void) {
         let fileManager = FileManager.default
         let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
         let fileURL = documentsDirectory.appendingPathComponent("\(name).jpg")
         
         // Check if the image already exists in the Documents Directory
         if fileManager.fileExists(atPath: fileURL.path) {
-            return fileURL.path // Return the file path if already exists
+            completion(fileURL.path) // Return the file path if already exists
+            return
         }
         
         // Convert the string to a URL
         guard let url = URL(string: imageURL) else {
             print("Invalid URL string: \(imageURL)")
-            return nil
+            completion(nil)
+            return
         }
         
-        do {
-            // Download the image data from the URL
-            let imageData = try Data(contentsOf: url)
+        // Perform asynchronous download
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            if let error = error {
+                print("Error downloading image: \(error)")
+                completion(nil)
+                return
+            }
             
-            // Write the data to the Documents Directory
-            try imageData.write(to: fileURL)
-            return fileURL.path // Return the file path after saving
-        } catch {
-            print("Error saving image from URL to Documents Directory: \(error)")
-            return nil
-        }
+            guard let data = data else {
+                print("No data received from URL.")
+                completion(nil)
+                return
+            }
+            
+            do {
+                // Write the data to the Documents Directory
+                try data.write(to: fileURL)
+                completion(fileURL.path) // Return the file path after saving
+            } catch {
+                print("Error saving image to Documents Directory: \(error)")
+                completion(nil)
+            }
+        }.resume()
     }
+
+  
 
     // MARK: - Save Record
     func saveRecord(prompt: String, imageURL: String) {
         let imageName = UUID().uuidString
-           
-           guard let imgPath = saveImageFromURLToDocumentsDirectory(imageURL, withName: imageName) else {
-               print("Failed to save image.")
-               return
-           }
-       
-//        let newImageEntity = Projects(context: CoreDataManager.shared.context)
-//        newImageEntity.prompt = prompt
-//        newImageEntity.imgPath = imgPath
-        
-        let entity = NSEntityDescription.insertNewObject(forEntityName: entityName, into: context)
-
-        entity.setValue(prompt, forKey: "prompt")
-        entity.setValue(imgPath, forKey: "imgPath")
-        
-        do {
-            try context.save()
-            print("Record saved successfully.")
-        } catch {
-            print("Failed to save record: \(error)")
+        var imagePath: String?
+        saveImageFromURLToDocumentsDirectory(imageURL, withName: imageName) { [self] savedPath in
+            if let path = savedPath {
+                print("Image saved successfully at: \(path)")
+                imagePath = path
+                // Use the saved path as needed
+                let entity = NSEntityDescription.insertNewObject(forEntityName: entityName, into: context)
+                
+              
+                entity.setValue(prompt, forKey: "prompt")
+                entity.setValue(imageName, forKey: "imgPath")
+                
+                do {
+                    try context.save()
+                    print("Record saved successfully.")
+                } catch {
+                    print("Failed to save record: \(error)")
+                }
+            } else {
+                print("Failed to save image.")
+            }
         }
     }
     

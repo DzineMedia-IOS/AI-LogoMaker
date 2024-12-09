@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import ProgressHUD
 
 class CreationVC: UIViewController {
     
+    @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var btnArtWork: UIButton!
     @IBOutlet weak var textBackView: UIView!
     @IBOutlet weak var btnPrompt: UIButton!
@@ -22,6 +24,7 @@ class CreationVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
    
+        notificationObservers()
         popUpView.isHidden = true
 
         creationCollectionView.dataSource = self
@@ -57,9 +60,7 @@ class CreationVC: UIViewController {
     }
     
     @IBAction func btnPrompt(_ sender: Any) {
-//        if ( UIDevice.current.userInterfaceIdiom == .pad){
-//            btnPrompt.titleLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 40)
-//        }
+
     }
     
     @objc func popUpAction(){
@@ -79,13 +80,27 @@ class CreationVC: UIViewController {
     
     @IBAction func btnArtWork(_ sender: Any) {
         
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(popUpAction),
-                                               name: Notification.Name("popUp"),
-                                               object: nil)
-        NotificationCenter.default.post(name: Notification.Name("animation"), object: nil)
-
-        popUpView.isHidden = false
+//        NotificationCenter.default.addObserver(self,
+//                                               selector: #selector(popUpAction),
+//                                               name: Notification.Name("popUp"),
+//                                               object: nil)
+//        NotificationCenter.default.post(name: Notification.Name("animation"), object: nil)
+//
+//        popUpView.isHidden = false
+        
+        
+        
+         
+        let prompt = self.textView.text ?? ""
+        
+        self.generateLogo(prompt: prompt)
+        
+    }
+    
+    @objc private func handlePromptNotification(_ notification: Notification) {
+        if let userInfo = notification.userInfo, let message = userInfo["prompt"] as? String {
+            textView.text = message
+        }
     }
 }
 
@@ -139,8 +154,40 @@ extension CreationVC: UICollectionViewDataSource, UICollectionViewDelegate, UICo
     
 }
 
+// MARK: - API CALL
 
-// Styling
+extension CreationVC {
+    private func generateLogo(prompt: String) {
+        ProgressHUD.animate("Some text...", interaction: false)
+        APIManager.shared.generateLogo(prompt: prompt) { result in
+            DispatchQueue.main.async { [self] in
+                switch result {
+                case .success(let response):
+                    print("Logo Generation Results:")
+                    print("Cost:", response.cost)
+                    print("Seed:", response.seed)
+                    print("Logo URL:", response.url)
+                    ProgressHUD.dismiss()
+                    let vc = Storyboard.aiLogo.instantiate(ExportVC.self)
+                    vc.modalPresentationStyle = .fullScreen
+                    vc.imgUrl = response.url
+                    self.present(vc, animated: true)
+                    vc.lblPrompt.text = textView.text
+                
+                    CoreDataManager.shared.saveRecord(prompt: textView.text, imageURL: response.url)
+                case .failure(let error):
+                    print("Error:", error.localizedDescription)
+                    ProgressHUD.dismiss()
+                    
+                    // Show an alert to the user if needed
+                }
+            }
+        }
+    }
+
+}
+
+//MARK: - Styling
 extension CreationVC {
     
     private func stylingUI(){
@@ -188,4 +235,16 @@ extension CreationVC {
         
        
     }
+    
+    private func notificationObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(handlePromptNotification(_:)), name: .prompt, object: nil)
+
+    }
+    
+}
+
+
+extension Notification.Name {
+    static let prompt = Notification.Name("prompt")
+    
 }

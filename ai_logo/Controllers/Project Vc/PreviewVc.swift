@@ -22,6 +22,7 @@ class PreviewVc: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        previewImg.layer.cornerRadius = previewImg.frame.height / 6
         textBackView.layer.cornerRadius = textView.frame.height / 4
         btnCopyPrompt.cornerRadius = btnCopyPrompt.frame.height / 2
         btnCopyPrompt.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
@@ -72,22 +73,43 @@ class PreviewVc: UIViewController {
         self.dismiss(animated: true)
     }
     
-    @IBAction func btnShare(_ sender: Any) {
-    }
+   
     @IBAction func btnExport(_ sender: Any) {
+        let vc = Storyboard.aiLogo.instantiate(ExportVC.self)
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
+        vc.previewImg.image = self.previewImg.image
+        vc.lblPrompt.text = self.textView.text
         
     }
-    @IBAction func btnCopyPrompt(_ sender: Any) {
+    @IBAction func btnShare(_ sender: Any) {
+
+        guard let image = previewImg.image else {
+            let alert = UIAlertController(title: "No Image", message: "There is no image to share.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
+            return
+        }
+        
+        let activityVC = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        
+        // For iPad: Prevent crash by specifying a popover presentation
+        if let popoverController = activityVC.popoverPresentationController {
+            popoverController.sourceView = self.view
+            popoverController.sourceRect = (sender as? UIView)?.frame ?? CGRect.zero
+        }
+        present(activityVC, animated: true, completion: nil)
     }
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
+
+    @IBAction func btnCopyPrompt(_ sender: Any) {
+        if let text = textView.text, !text.isEmpty {
+             UIPasteboard.general.string = text
+             
+             let alert = UIAlertController(title: "Copied", message: "The text has been copied to your clipboard.", preferredStyle: .alert)
+             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+             present(alert, animated: true, completion: nil)
+         }
+    }
     
 }
 

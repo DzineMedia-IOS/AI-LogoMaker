@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Hvx-lr-ww4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SE8-cw-rqR">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -74,6 +74,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yZ8-El-ZVr">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ktx-VJ-kc9">
                                 <rect key="frame" x="0.0" y="528" width="393" height="250"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -145,6 +149,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="yZ8-El-ZVr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="14g-36-xOq"/>
                             <constraint firstItem="tBL-Y4-wEL" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.0305164" id="3pi-MC-e3C"/>
                             <constraint firstItem="tBL-Y4-wEL" firstAttribute="top" secondItem="Ktx-VJ-kc9" secondAttribute="bottom" constant="20" id="3tj-Ew-Uma"/>
                             <constraint firstItem="t03-MG-cTx" firstAttribute="centerX" secondItem="Ktx-VJ-kc9" secondAttribute="centerX" id="4v0-Kj-U6K"/>
@@ -152,7 +157,9 @@
                             <constraint firstItem="A99-eg-cEN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="F08-ZS-bRn"/>
                             <constraint firstItem="tl9-vv-xim" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Gb7-GN-gf6"/>
                             <constraint firstItem="t03-MG-cTx" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.0586854" id="HQS-Uu-L5Z"/>
+                            <constraint firstItem="yZ8-El-ZVr" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="IAA-tU-Gyq"/>
                             <constraint firstAttribute="bottom" secondItem="A99-eg-cEN" secondAttribute="bottom" id="Ii0-4x-R1g"/>
+                            <constraint firstAttribute="bottom" secondItem="yZ8-El-ZVr" secondAttribute="bottom" id="JgQ-c6-vpN"/>
                             <constraint firstItem="Ktx-VJ-kc9" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="SXq-rK-7Kj"/>
                             <constraint firstItem="t03-MG-cTx" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.508906" id="aRi-v2-lcg"/>
                             <constraint firstItem="A99-eg-cEN" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="cDG-Jz-I50"/>
@@ -165,6 +172,7 @@
                             <constraint firstAttribute="bottom" secondItem="tl9-vv-xim" secondAttribute="bottom" id="jb6-Om-dKS"/>
                             <constraint firstItem="tl9-vv-xim" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="v8g-m3-XD4"/>
                             <constraint firstItem="tl9-vv-xim" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="wvW-mh-plk"/>
+                            <constraint firstItem="yZ8-El-ZVr" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="xyj-zr-oPC"/>
                         </constraints>
                     </view>
                     <connections>

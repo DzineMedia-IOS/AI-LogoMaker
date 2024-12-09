@@ -33,14 +33,22 @@ class RecentCell: UICollectionViewCell {
 
 extension RecentCell: UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return discoverArr.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProjectCell", for: indexPath) as! ProjectCell
-        cell.img.image = UIImage(named: imgArr[indexPath.row])
+        cell.tryImg.isHidden = false
+        let discover = discoverArr[indexPath.row]
+        cell.img.image = UIImage(named: discover.img)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let discover = discoverArr[indexPath.row]
+        NotificationCenter.default.post(name: .prompt, object: nil, userInfo: ["prompt": discover.title])
+
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

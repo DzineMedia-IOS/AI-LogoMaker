@@ -20,6 +20,12 @@
 		<string>Sansita-Italic.ttf</string>
 		<string>Sansita-BoldItalic.ttf</string>
 	</array>
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <string>We need access to your photo library to save your edited images.</string>
+    <key>UIFileSharingEnabled</key>
+    <true/>
+    <key>UISupportsDocumentBrowser</key>
+    <true/>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

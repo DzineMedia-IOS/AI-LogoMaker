@@ -118,7 +118,7 @@
                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vWg-7J-YeG">
                                                                 <rect key="frame" x="8" y="8" width="329" height="100.66666666666667"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <string key="text">Enter your brand name, industry, and the elements you want to appear in the logo. e.g. A gym logo with text “Iron Claw”, featuring a tiger lifting dumbbells.</string>
+                                                                <string key="text">A black and white sketch of a bouquet of flowers , including large blooming flowers and smaller buds on long stems against a plain background</string>
                                                                 <color key="textColor" name="kPrompt"/>
                                                                 <fontDescription key="fontDescription" name="Outfit-Medium" family="Outfit" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -450,6 +450,7 @@
                         <outlet property="projectCollectionView" destination="2iL-Xw-RrH" id="lID-4S-Nd9"/>
                         <outlet property="scrollHeight" destination="mBP-Rf-E7r" id="N11-3p-2ZR"/>
                         <outlet property="textBackView" destination="L47-22-GIU" id="jxQ-HF-SNr"/>
+                        <outlet property="textView" destination="vWg-7J-YeG" id="PqG-cm-Eki"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -41,25 +41,7 @@ class LogoTypeVC: UIViewController {
     
     let logoType: [String] = ["Graphic logo" , "Text Logo"]
     let logoImage: [String] = ["graphic_logo" , "text_logo"]
-    let styleArray: [Style] = [
-        Style(img: "no_style", title: "No Style"),
-        Style(img: "abstract", title: "Abstract"),
-        Style(img: "art_deco", title: "Art Deco"),
-        Style(img: "classic", title: "Classic"),
-        Style(img: "corporate", title: "Corporate"),
-        Style(img: "elegant", title: "Elegant"),
-        Style(img: "furistic", title: "Futuristic"),
-        Style(img: "minimalist", title: "Minimalist"),
-        Style(img: "geomatric", title: "Geometric"),
-        Style(img: "grung", title: "Grunge"),
-        Style(img: "hand_drawn", title: "Hand Drawn"),
-        Style(img: "mascot", title: "Mascot"),
-        Style(img: "minimal", title: "Minimal"),
-        Style(img: "modren", title: "Modern"),
-        Style(img: "mongram", title: "Monogram"),
-        Style(img: "nature", title: "Nature"),
-        Style(img: "vintage", title: "Vintage"),
-    ]
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()

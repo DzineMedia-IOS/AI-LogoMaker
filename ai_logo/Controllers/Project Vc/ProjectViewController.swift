@@ -13,6 +13,8 @@ class ProjectViewController: UIViewController {
     @IBOutlet weak var projectCollectionView: UICollectionView!
     @IBOutlet weak var btnPro: UIButton!
     var projects: [Projects] = []
+    var docPath : String?
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,11 +24,8 @@ class ProjectViewController: UIViewController {
         
         let nib = UINib(nibName: "ProjectCell", bundle: nil)
         projectCollectionView.register(nib, forCellWithReuseIdentifier: "ProjectCell")
-        
-        
         projectCollectionView.delegate = self
         projectCollectionView.dataSource = self
-        
         projects = CoreDataManager.shared.fetchRecords()
         
         
@@ -34,6 +33,7 @@ class ProjectViewController: UIViewController {
     }
     
     override func viewIsAppearing(_ animated: Bool) {
+        projects = CoreDataManager.shared.fetchRecords()
         projectCollectionView.reloadData()
         
         DispatchQueue.main.async { [weak self] in
@@ -67,15 +67,57 @@ extension ProjectViewController: UICollectionViewDataSource,UICollectionViewDele
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProjectCell", for: indexPath) as! ProjectCell
          let project = projects[indexPath.item]
        
-        if let imgPath = project.imgPath, !imgPath.isEmpty {
-                cell.img.image = UIImage(contentsOfFile: imgPath)
+        let fileManager = FileManager.default
+        let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
+
+        if let imgName = project.imgPath {
+            let imagePath = documentsDirectory.appendingPathComponent(imgName + ".jpg").path
+            
+            if fileManager.fileExists(atPath: imagePath) {
+                if let image = UIImage(contentsOfFile: imagePath) {
+                    cell.img.image = image
+                } else {
+                    print("Failed to load image from path: \(imagePath)")
+                }
             } else {
-                cell.img.image = nil
+                print("Image does not exist at path: \(imagePath)")
             }
+        } else {
+            print("imgName is nil for project at index \(indexPath.item)")
+        }
         
         return cell
     }
     
+    
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let fileManager = FileManager.default
+        let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
+        
+        let vc = Storyboard.projects.instantiate(PreviewVc.self)
+        vc.modalPresentationStyle = .fullScreen
+        vc.modalTransitionStyle = .crossDissolve
+        
+        let project = projects[indexPath.item]
+        
+        if let imgName = project.imgPath {
+            let imagePath = documentsDirectory.appendingPathComponent(imgName + ".jpg").path
+            if fileManager.fileExists(atPath: imagePath) {
+                if let image = UIImage(contentsOfFile: imagePath) {
+                    present(vc, animated: true)
+                    vc.previewImg.image = image
+                    vc.textView.text = project.prompt
+                }
+            }
+
+        } else {
+            print("imgPath is nil for project at index \(indexPath.item)")
+        }
+
+    }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         var size = collectionView.frame.width/3 - 10
         if (UIDevice.current.userInterfaceIdiom == .pad){
@@ -83,15 +125,6 @@ extension ProjectViewController: UICollectionViewDataSource,UICollectionViewDele
         }
         
         return CGSize(width: size, height: size)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        let vc = Storyboard.projects.instantiate(PreviewVc.self)
-        vc.modalPresentationStyle = .fullScreen
-        vc.modalTransitionStyle = .crossDissolve
-        present(vc, animated: true)
-        vc.previewImg.image = UIImage(named: "project_\(indexPath.row)")
     }
 }
 

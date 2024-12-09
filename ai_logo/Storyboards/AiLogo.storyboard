@@ -26,6 +26,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="818"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="658-T5-x5O">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KVv-D5-aK1">
                                 <rect key="frame" x="20" y="673" width="353" height="60"/>
                                 <color key="backgroundColor" name="AccentColor"/>
@@ -115,7 +119,10 @@
                             <constraint firstItem="KVv-D5-aK1" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="4i9-g9-McQ">
                                 <variation key="heightClass=regular-widthClass=regular" constant="40"/>
                             </constraint>
+                            <constraint firstItem="658-T5-x5O" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="A3C-GF-Yzw"/>
+                            <constraint firstItem="658-T5-x5O" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="Ao0-SA-NXj"/>
                             <constraint firstItem="i6U-mp-qmi" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="Bbp-sn-TKC"/>
+                            <constraint firstAttribute="bottom" secondItem="658-T5-x5O" secondAttribute="bottom" id="Bgx-i9-9QN"/>
                             <constraint firstAttribute="bottom" secondItem="Qry-Da-3nO" secondAttribute="bottom" id="Eaq-8C-bfV"/>
                             <constraint firstItem="KVv-D5-aK1" firstAttribute="centerY" secondItem="Qry-Da-3nO" secondAttribute="centerY" multiplier="1.65" id="Eev-4a-7dD"/>
                             <constraint firstItem="ja6-cY-MYe" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="H9a-Lg-TGx"/>
@@ -131,6 +138,7 @@
                                 <variation key="heightClass=regular-widthClass=regular" constant="40"/>
                             </constraint>
                             <constraint firstItem="qKk-vf-erP" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="u1t-es-oiC"/>
+                            <constraint firstItem="658-T5-x5O" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="x7G-kE-OKp"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="ja6-cY-MYe" secondAttribute="trailing" id="xUR-qI-CUR"/>
                         </constraints>
                     </view>
@@ -828,6 +836,9 @@ your logo</string>
                                                 <real key="value" value="16"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="btnShare:" destination="pvx-bB-ck2" eventType="touchUpInside" id="fVl-Rt-qZh"/>
+                                        </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dDI-u7-GRa">
                                         <rect key="frame" x="25" y="203.66666666666663" width="285" height="52"/>

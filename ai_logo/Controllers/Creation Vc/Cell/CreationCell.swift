@@ -11,8 +11,8 @@ class CreationCell: UICollectionViewCell {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var selectView: UIView!
-    var selectedIndex: IndexPath?
-    
+    var selectedIndex: IndexPath? = IndexPath(row: 0, section: 0)
+
     
     
     override func awakeFromNib() {
@@ -37,14 +37,19 @@ extension CreationCell: UICollectionViewDelegate, UICollectionViewDataSource, UI
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
-        
+        return styleArray.count
+
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: "StyleCell", for: indexPath) as!
         StyleCell
+        
+        let style = styleArray[indexPath.row]
+        cell.img.image = UIImage(named: style.img)
+        cell.lblTitle.text = style.title
+        
         if selectedIndex == indexPath {
             
             DispatchQueue.main.async { [weak self] in

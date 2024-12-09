@@ -144,7 +144,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UsG-Pt-B5H">
                                 <rect key="frame" x="16" y="81" width="361" height="418"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="temp_logo" translatesAutoresizingMaskIntoConstraints="NO" id="WJY-qN-qCY">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="temp_logo" translatesAutoresizingMaskIntoConstraints="NO" id="WJY-qN-qCY">
                                         <rect key="frame" x="20" y="20" width="321" height="378"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
