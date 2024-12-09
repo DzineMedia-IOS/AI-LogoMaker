@@ -25,43 +25,10 @@ class OnboardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        setupLottieAnimation(
-            name: .onboard_1,
-            loopMode: .playOnce
-        ) { finished in
-            if finished {
-                print("Animation Completed!")
-            } else {
-                print("Animation Interrupted!")
-            }
-        }
-        
-        pageControl.isHidden = true
-        UIDevice.current.userInterfaceIdiom == .pad ? (bottomPadding.constant = 80) : (bottomPadding.constant = 40)
-        
-        
-        
-        let nib = UINib(nibName: "OnboardCell", bundle: nil)
-        onboardCollectionView.register(nib, forCellWithReuseIdentifier: "OnboardCell")
-        
-        onboardCollectionView.delegate = self
-        onboardCollectionView.dataSource = self
-        onboardCollectionView.isPagingEnabled = true
-        onboardCollectionView.showsHorizontalScrollIndicator = false
-        onboardCollectionView.contentInsetAdjustmentBehavior = .never
-        
-        pageControl.numberOfPages = 4
-        pageControl.currentPage = 0
-        pageControl.hidesForSinglePage = true
-        
-        if let layout = onboardCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            layout.scrollDirection = .horizontal
-            layout.minimumLineSpacing = 0
-            layout.minimumInteritemSpacing = 0
-            layout.itemSize = CGSize(width: onboardCollectionView.frame.width, height: onboardCollectionView.frame.height)
-            
-        }
+        configureLottieAnimation()
+        configurePageControl()
+        configureBottomPadding()
+        configureOnboardCollectionView()
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -122,15 +89,15 @@ extension OnboardViewController: UICollectionViewDelegate, UICollectionViewDataS
             
             
             if indexPath.item == titlArr.count - 1 {
-//                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//                let tabbar = storyboard.instantiateViewController(withIdentifier: "TabBarController") as! TabBarController
                 let tabbar = Storyboard.main.instantiate(TabBarController.self)
                 tabbar.modalPresentationStyle = .fullScreen
-//                present(tabbar, animated: true)
-                if let window = UIApplication.shared.windows.first {
-                        window.rootViewController = tabbar
-                        window.makeKeyAndVisible()
-                    }
+                self.removeSubviews(exceptTag: 10)
+
+                present(tabbar, animated: true)
+//                if let window = UIApplication.shared.windows.first {
+//                        window.rootViewController = tabbar
+//                        window.makeKeyAndVisible()
+//                    }
             }
             
         }
@@ -143,13 +110,55 @@ extension OnboardViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
 }
 
+// MARK: - Configuration Methods
 
+extension OnboardViewController {
 
+    private func configureLottieAnimation() {
+        setupLottieAnimation(
+            name: .onboard_1,
+            loopMode: .playOnce
+        ) { finished in
+            finished ? print("Animation Completed!") : print("Animation Interrupted!")
+        }
+    }
+
+    private func configurePageControl() {
+        pageControl.isHidden = true
+        pageControl.numberOfPages = 4
+        pageControl.currentPage = 0
+        pageControl.hidesForSinglePage = true
+    }
+
+    private func configureBottomPadding() {
+        bottomPadding.constant = UIDevice.current.userInterfaceIdiom == .pad ? 80 : 40
+    }
+
+    private func configureOnboardCollectionView() {
+        let nib = UINib(nibName: "OnboardCell", bundle: nil)
+        onboardCollectionView.register(nib, forCellWithReuseIdentifier: "OnboardCell")
+        
+        onboardCollectionView.delegate = self
+        onboardCollectionView.dataSource = self
+        onboardCollectionView.isPagingEnabled = true
+        onboardCollectionView.showsHorizontalScrollIndicator = false
+        onboardCollectionView.contentInsetAdjustmentBehavior = .never
+        
+        if let layout = onboardCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.scrollDirection = .horizontal
+            layout.minimumLineSpacing = 0
+            layout.minimumInteritemSpacing = 0
+            layout.itemSize = CGSize(
+                width: onboardCollectionView.frame.width,
+                height: onboardCollectionView.frame.height
+            )
+        }
+    }
+}
 
 
 // MARK: - ANIMATION
 extension  OnboardViewController {
-   
     
     func setupLottieAnimation(
         name: AnimationFileName,
@@ -173,100 +182,29 @@ extension  OnboardViewController {
     }
     
     func animationFlow(screen: Int) {
-        switch screen {
-        case 0:
-            for subview in animationView.subviews where subview.tag != 100 {
-                subview.removeFromSuperview()
-            }
-        case 1:
-            for subview in animationView.subviews where subview.tag != 100 {
-                subview.removeFromSuperview()
-            }
-            
-            setupLottieAnimation(
-                name: .onboard_2,
-                loopMode: .playOnce
-            ) { [weak self] finished in
-                guard let self = self else { return }
-                if finished {
-                    for subview in self.animationView.subviews where subview.tag != 100 {
-                        subview.removeFromSuperview()
-                    }
-                    
-                    self.setupLottieAnimation(
-                        name: .onboard_2_1
-                    ) { _ in }
-                }
-            }
-           
-        case 2:
-            
-            for subview in animationView.subviews where subview.tag != 100 {
-                subview.removeFromSuperview()
-            }
-            
-            setupLottieAnimation(
-                name: .onboard_3,
-                loopMode: .playOnce
-            ) { [weak self] finished in
-                guard let self = self else { return }
-                if finished {
-                    for subview in self.animationView.subviews where subview.tag != 100 {
-                        subview.removeFromSuperview()
-                    }
-                    
-                    self.setupLottieAnimation(
-                        name: .onboard_3_1
-                    ) { _ in }
-                }
-            }
-           
-        case 3:
-            
-            for subview in animationView.subviews where subview.tag != 100 {
-                subview.removeFromSuperview()
-            }
-            
-            setupLottieAnimation(
-                name: .onboard_4,
-                loopMode: .playOnce
-            ) { [weak self] finished in
-                guard let self = self else { return }
-                if finished {
-                    for subview in self.animationView.subviews where subview.tag != 100 {
-                        subview.removeFromSuperview()
-                    }
-                    
-                    self.setupLottieAnimation(
-                        name: .onboard_4_1
-                    ) { _ in }
-                }
-            }
-           
-        case 4:
-            
-            for subview in animationView.subviews where subview.tag != 100 {
-                subview.removeFromSuperview()
-            }
-            
-            setupLottieAnimation(
-                name: .onboard_5,
-                loopMode: .playOnce
-            ) { [weak self] finished in
-                guard let self = self else { return }
-                if finished {
-                    for subview in self.animationView.subviews where subview.tag != 100 {
-                        subview.removeFromSuperview()
-                    }
-                    
-                    self.setupLottieAnimation(
-                        name: .onboard_5_1
-                    ) { _ in }
-                }
-            }
-           
-        default:
-            break
+        removeSubviews(exceptTag: 100)
+        
+        let animations: [(primary: AnimationFileName, secondary: AnimationFileName)] = [
+            (.onboard_2, .onboard_2_1),
+            (.onboard_3, .onboard_3_1),
+            (.onboard_4, .onboard_4_1),
+            (.onboard_5, .onboard_5_1)
+        ]
+        
+        guard screen > 0 && screen <= animations.count else { return }
+        
+        let animationPair = animations[screen - 1]
+        
+        setupLottieAnimation(name: animationPair.primary, loopMode: .playOnce) { [weak self] finished in
+            guard let self = self, finished else { return }
+            self.removeSubviews(exceptTag: 100)
+            self.setupLottieAnimation(name: animationPair.secondary, completion:{ _ in})
+        }
+    }
+
+    private func removeSubviews(exceptTag tag: Int) {
+        for subview in animationView.subviews where subview.tag != tag {
+            subview.removeFromSuperview()
         }
     }
 
