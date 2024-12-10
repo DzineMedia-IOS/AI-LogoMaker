@@ -8,6 +8,7 @@
 import UIKit
 import ProgressHUD
 
+
 class CreationVC: UIViewController {
     
     @IBOutlet weak var textView: UITextView!
@@ -61,8 +62,12 @@ class CreationVC: UIViewController {
     }
     
     @IBAction func btnPrompt(_ sender: Any) {
-
+        let randomIndex = Int.random(in: 0..<PromptGenerator.aiImagePrompts.count)
+        let prompt = PromptGenerator.aiImagePrompts[randomIndex]
+        textView.text = prompt
     }
+
+
     
     @objc func popUpAction(){
         
@@ -255,9 +260,5 @@ extension CreationVC {
 }
 
 
-extension Notification.Name {
-    static let prompt = Notification.Name("prompt")
-    static let tryPrompt = Notification.Name("tryPrompt")
-    static let style = Notification.Name("style")
-    
-}
+
+
