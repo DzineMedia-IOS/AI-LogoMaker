@@ -8,6 +8,7 @@
 import UIKit
 
 import UIKit
+import Lottie
 
 class SplashVC: UIViewController {
 
@@ -19,7 +20,7 @@ class SplashVC: UIViewController {
         
         lbltitle.alpha = 0
         img.alpha = 0
-        
+//
         UIView.animate(withDuration: 1.5, delay: 0.5, options: [.curveEaseInOut], animations: {
             self.lbltitle.alpha = 1
             self.img.alpha = 1
@@ -34,4 +35,3 @@ class SplashVC: UIViewController {
         })
     }
 }
-

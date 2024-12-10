@@ -21,6 +21,7 @@ class CreationVC: UIViewController {
     @IBOutlet weak var popUpView: UIView!
     @IBOutlet weak var scrollHeight: NSLayoutConstraint!
     
+    var selectedStyle : String = "No Style"
     override func viewDidLoad() {
         super.viewDidLoad()
    
@@ -67,10 +68,7 @@ class CreationVC: UIViewController {
         
         NotificationCenter.default.removeObserver(self, name: Notification.Name("popUp"), object: nil)
         popUpView.isHidden = true
-
-        
-        
-    }
+ }
     
     @IBAction func btnPro(_ sender: Any) {
         let vc = Storyboard.premium.instantiate(ProVC.self)
@@ -85,23 +83,35 @@ class CreationVC: UIViewController {
 //                                               name: Notification.Name("popUp"),
 //                                               object: nil)
 //        NotificationCenter.default.post(name: Notification.Name("animation"), object: nil)
-//
 //        popUpView.isHidden = false
         
-        
-        
-         
         let prompt = self.textView.text ?? ""
-        
         self.generateLogo(prompt: prompt)
-        
     }
     
     @objc private func handlePromptNotification(_ notification: Notification) {
-        if let userInfo = notification.userInfo, let message = userInfo["prompt"] as? String {
-            textView.text = message
+        if let userInfo = notification.userInfo, let message = userInfo["prompt"] as? String, let img = userInfo["img"] as? String {
+            
+            let vc = Storyboard.creation.instantiate(PromptVC.self)
+            vc.modalPresentationStyle = .fullScreen
+            present(vc, animated: true)
+            vc.lblPrompt.text = message
+            vc.img.image = UIImage(named: img)
+            vc.lblStyle.text = selectedStyle
         }
     }
+    @objc private func tryPromptAction(_ notification: Notification) {
+        if let userInfo = notification.userInfo,let message = userInfo["prompt"] as? String{
+            textView.text = message
+            showToast(message: "Prompt added", font: UIFont.systemFont(ofSize: 12))
+        }
+    }
+    @objc private func styleAction(_ notification: Notification) {
+        if let userInfo = notification.userInfo,let style = userInfo["style"] as? String{
+            selectedStyle = style
+        }
+    }
+    
 }
 
 
@@ -238,7 +248,8 @@ extension CreationVC {
     
     private func notificationObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(handlePromptNotification(_:)), name: .prompt, object: nil)
-
+        NotificationCenter.default.addObserver(self, selector: #selector(tryPromptAction(_:)), name: .tryPrompt, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(styleAction(_:)), name: .style, object: nil)
     }
     
 }
@@ -246,5 +257,7 @@ extension CreationVC {
 
 extension Notification.Name {
     static let prompt = Notification.Name("prompt")
+    static let tryPrompt = Notification.Name("tryPrompt")
+    static let style = Notification.Name("style")
     
 }

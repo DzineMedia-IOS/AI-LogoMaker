@@ -26,10 +26,9 @@
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="818"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="658-T5-x5O">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="blackOverlayer_lottie" translatesAutoresizingMaskIntoConstraints="NO" id="OXB-H5-LEi">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KVv-D5-aK1">
                                 <rect key="frame" x="20" y="673" width="353" height="60"/>
                                 <color key="backgroundColor" name="AccentColor"/>
@@ -116,19 +115,19 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Qry-Da-3nO" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="2h5-ZQ-BMt"/>
+                            <constraint firstAttribute="trailing" secondItem="OXB-H5-LEi" secondAttribute="trailing" id="3zQ-AC-wZy"/>
                             <constraint firstItem="KVv-D5-aK1" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="4i9-g9-McQ">
                                 <variation key="heightClass=regular-widthClass=regular" constant="40"/>
                             </constraint>
-                            <constraint firstItem="658-T5-x5O" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="A3C-GF-Yzw"/>
-                            <constraint firstItem="658-T5-x5O" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="Ao0-SA-NXj"/>
                             <constraint firstItem="i6U-mp-qmi" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="Bbp-sn-TKC"/>
-                            <constraint firstAttribute="bottom" secondItem="658-T5-x5O" secondAttribute="bottom" id="Bgx-i9-9QN"/>
+                            <constraint firstAttribute="bottom" secondItem="OXB-H5-LEi" secondAttribute="bottom" id="CVN-tZ-fK6"/>
                             <constraint firstAttribute="bottom" secondItem="Qry-Da-3nO" secondAttribute="bottom" id="Eaq-8C-bfV"/>
                             <constraint firstItem="KVv-D5-aK1" firstAttribute="centerY" secondItem="Qry-Da-3nO" secondAttribute="centerY" multiplier="1.65" id="Eev-4a-7dD"/>
                             <constraint firstItem="ja6-cY-MYe" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="H9a-Lg-TGx"/>
                             <constraint firstItem="ja6-cY-MYe" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="LQD-mh-Acl"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="i6U-mp-qmi" secondAttribute="trailing" constant="20" id="Ot1-qb-Qxa"/>
                             <constraint firstItem="KVv-D5-aK1" firstAttribute="top" secondItem="i6U-mp-qmi" secondAttribute="bottom" constant="30" id="cw2-Yd-Lvu"/>
+                            <constraint firstItem="OXB-H5-LEi" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="d86-Oc-L98"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="qKk-vf-erP" secondAttribute="trailing" constant="16" id="dgw-MC-3LJ"/>
                             <constraint firstItem="ja6-cY-MYe" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="ign-If-eww"/>
                             <constraint firstItem="Qry-Da-3nO" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="knh-il-ipS"/>
@@ -137,8 +136,8 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="KVv-D5-aK1" secondAttribute="trailing" constant="20" id="rye-I7-SpI">
                                 <variation key="heightClass=regular-widthClass=regular" constant="40"/>
                             </constraint>
+                            <constraint firstItem="OXB-H5-LEi" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="tHf-Rs-tFf"/>
                             <constraint firstItem="qKk-vf-erP" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="u1t-es-oiC"/>
-                            <constraint firstItem="658-T5-x5O" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="x7G-kE-OKp"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="ja6-cY-MYe" secondAttribute="trailing" id="xUR-qI-CUR"/>
                         </constraints>
                     </view>
@@ -717,6 +716,9 @@ your logo</string>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="blackOverlayer" translatesAutoresizingMaskIntoConstraints="NO" id="D0a-og-u2i">
+                                        <rect key="frame" x="0.0" y="0.0" width="361" height="383.33333333333331"/>
+                                    </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bxF-En-CIC">
                                         <rect key="frame" x="42.666666666666657" y="236.66666666666669" width="276" height="70"/>
                                         <subviews>
@@ -804,11 +806,15 @@ your logo</string>
                                 <constraints>
                                     <constraint firstItem="5zR-BI-Mfa" firstAttribute="top" secondItem="Cxd-vo-dyw" secondAttribute="top" id="0OC-Xp-8T9"/>
                                     <constraint firstItem="bxF-En-CIC" firstAttribute="centerX" secondItem="5zR-BI-Mfa" secondAttribute="centerX" id="G3h-U4-gzo"/>
+                                    <constraint firstItem="D0a-og-u2i" firstAttribute="bottom" secondItem="5zR-BI-Mfa" secondAttribute="bottom" id="KzU-5r-lzG"/>
                                     <constraint firstItem="5zR-BI-Mfa" firstAttribute="leading" secondItem="Cxd-vo-dyw" secondAttribute="leading" constant="8" id="Tqq-Pl-Zpk"/>
+                                    <constraint firstItem="D0a-og-u2i" firstAttribute="top" secondItem="Cxd-vo-dyw" secondAttribute="top" id="Voa-Bc-kIR"/>
                                     <constraint firstItem="bxF-En-CIC" firstAttribute="bottom" secondItem="5zR-BI-Mfa" secondAttribute="bottom" multiplier="0.8" id="WbW-uc-0UW"/>
                                     <constraint firstItem="Prk-9B-6Cy" firstAttribute="height" secondItem="5zR-BI-Mfa" secondAttribute="height" multiplier="0.284431" id="ZOB-os-7dc"/>
                                     <constraint firstItem="Prk-9B-6Cy" firstAttribute="centerX" secondItem="5zR-BI-Mfa" secondAttribute="centerX" id="Zqg-Ph-JJG"/>
+                                    <constraint firstItem="D0a-og-u2i" firstAttribute="leading" secondItem="Cxd-vo-dyw" secondAttribute="leading" id="h48-2d-DJF"/>
                                     <constraint firstItem="Prk-9B-6Cy" firstAttribute="top" secondItem="bxF-En-CIC" secondAttribute="bottom" constant="30" id="hOU-IM-MZ0"/>
+                                    <constraint firstAttribute="trailing" secondItem="D0a-og-u2i" secondAttribute="trailing" id="pAQ-Zj-k52"/>
                                     <constraint firstItem="5zR-BI-Mfa" firstAttribute="height" secondItem="Cxd-vo-dyw" secondAttribute="height" multiplier="0.9" id="q0j-Ts-Sc3"/>
                                     <constraint firstAttribute="trailing" secondItem="5zR-BI-Mfa" secondAttribute="trailing" constant="8" id="xb6-BT-muu"/>
                                 </constraints>
@@ -1023,6 +1029,8 @@ your logo</string>
     <resources>
         <image name="back" width="10" height="17"/>
         <image name="bg" width="430" height="932"/>
+        <image name="blackOverlayer" width="430" height="932"/>
+        <image name="blackOverlayer_lottie" width="430" height="932"/>
         <image name="cancel" width="23" height="24"/>
         <image name="download" width="15" height="19"/>
         <image name="inspiration" width="19" height="21"/>

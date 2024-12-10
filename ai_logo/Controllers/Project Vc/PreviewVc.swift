@@ -103,8 +103,8 @@ class PreviewVc: UIViewController {
 
     @IBAction func btnCopyPrompt(_ sender: Any) {
         if let text = textView.text, !text.isEmpty {
-             UIPasteboard.general.string = text
-             
+
+            UIPasteboard.general.string = text
              let alert = UIAlertController(title: "Copied", message: "The text has been copied to your clipboard.", preferredStyle: .alert)
              alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
              present(alert, animated: true, completion: nil)

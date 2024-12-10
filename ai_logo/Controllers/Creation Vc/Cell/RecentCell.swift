@@ -47,7 +47,7 @@ extension RecentCell: UICollectionViewDelegate, UICollectionViewDataSource,UICol
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let discover = discoverArr[indexPath.row]
-        NotificationCenter.default.post(name: .prompt, object: nil, userInfo: ["prompt": discover.title])
+        NotificationCenter.default.post(name: .prompt, object: nil, userInfo: ["prompt": discover.title, "img": discover.img])
 
     }
     

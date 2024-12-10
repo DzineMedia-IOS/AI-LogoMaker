@@ -36,8 +36,13 @@ class OnboardViewController: UIViewController {
         
         pageControl.currentPage = Int(pageIndex) - 1
         currentPage = pageControl.currentPage
+        
+        //        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+        //            self.animationFlow(screen: Int(pageIndex))
+        //        }
+        
         self.animationFlow(screen: Int(pageIndex))
-
+        
         if pageIndex > 0{
             buttonView.isHidden = true
             pageControl.isHidden = false
@@ -63,7 +68,7 @@ extension OnboardViewController: UICollectionViewDelegate, UICollectionViewDataS
         cell.buttonActionClosure = { [self] in
             cell.lblTitle.text = titlArr[indexPath.row]
             let nextPage = currentPage + 1
-
+            
             if nextPage < titlArr.count {
                 if indexPath.row < titlArr.count - 1{
                     
@@ -73,7 +78,7 @@ extension OnboardViewController: UICollectionViewDelegate, UICollectionViewDataS
                 }
                 pageControl.currentPage = nextPage
                 currentPage = pageControl.currentPage
-
+                
                 self.animationFlow(screen: currentPage)
             }
             if indexPath.row > 0{
@@ -92,12 +97,12 @@ extension OnboardViewController: UICollectionViewDelegate, UICollectionViewDataS
                 let tabbar = Storyboard.main.instantiate(TabBarController.self)
                 tabbar.modalPresentationStyle = .fullScreen
                 self.removeSubviews(exceptTag: 10)
-
+                
                 present(tabbar, animated: true)
-//                if let window = UIApplication.shared.windows.first {
-//                        window.rootViewController = tabbar
-//                        window.makeKeyAndVisible()
-//                    }
+                //                if let window = UIApplication.shared.windows.first {
+                //                        window.rootViewController = tabbar
+                //                        window.makeKeyAndVisible()
+                //                    }
             }
             
         }
@@ -113,7 +118,7 @@ extension OnboardViewController: UICollectionViewDelegate, UICollectionViewDataS
 // MARK: - Configuration Methods
 
 extension OnboardViewController {
-
+    
     private func configureLottieAnimation() {
         setupLottieAnimation(
             name: .onboard_1,
@@ -122,18 +127,18 @@ extension OnboardViewController {
             finished ? print("Animation Completed!") : print("Animation Interrupted!")
         }
     }
-
+    
     private func configurePageControl() {
         pageControl.isHidden = true
         pageControl.numberOfPages = 4
         pageControl.currentPage = 0
         pageControl.hidesForSinglePage = true
     }
-
+    
     private func configureBottomPadding() {
         bottomPadding.constant = UIDevice.current.userInterfaceIdiom == .pad ? 80 : 40
     }
-
+    
     private func configureOnboardCollectionView() {
         let nib = UINib(nibName: "OnboardCell", bundle: nil)
         onboardCollectionView.register(nib, forCellWithReuseIdentifier: "OnboardCell")
@@ -182,30 +187,46 @@ extension  OnboardViewController {
     }
     
     func animationFlow(screen: Int) {
-        removeSubviews(exceptTag: 100)
+        removeSubviews(exceptTag: 10)
         
         let animations: [(primary: AnimationFileName, secondary: AnimationFileName)] = [
             (.onboard_2, .onboard_2_1),
             (.onboard_3, .onboard_3_1),
             (.onboard_4, .onboard_4_1),
+            //            (.onboard_3, .onboard_3_1),
             (.onboard_5, .onboard_5_1)
         ]
-        
+
         guard screen > 0 && screen <= animations.count else { return }
         
         let animationPair = animations[screen - 1]
         
-        setupLottieAnimation(name: animationPair.primary, loopMode: .playOnce) { [weak self] finished in
-            guard let self = self, finished else { return }
-            self.removeSubviews(exceptTag: 100)
-            self.setupLottieAnimation(name: animationPair.secondary, completion:{ _ in})
+        if screen == 4 {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [self] in
+
+                setupLottieAnimation(name: animationPair.primary, loopMode: .playOnce) { [weak self] finished in
+                    guard let self = self, finished else { return }
+                    self.removeSubviews(exceptTag: 10)
+                    self.setupLottieAnimation(name: animationPair.secondary, completion:{ _ in})
+                }
+            }
+            
+            
+        }
+        
+        else{
+            setupLottieAnimation(name: animationPair.primary, loopMode: .playOnce) { [weak self] finished in
+                guard let self = self, finished else { return }
+                self.removeSubviews(exceptTag: 10)
+                self.setupLottieAnimation(name: animationPair.secondary, completion:{ _ in})
+            }
         }
     }
-
+    
     private func removeSubviews(exceptTag tag: Int) {
         for subview in animationView.subviews where subview.tag != tag {
             subview.removeFromSuperview()
         }
     }
-
+    
 }

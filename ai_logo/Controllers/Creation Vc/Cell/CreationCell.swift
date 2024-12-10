@@ -68,6 +68,9 @@ extension CreationCell: UICollectionViewDelegate, UICollectionViewDataSource, UI
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedIndex = indexPath
         collectionView.reloadData()
+        let style = styleArray[indexPath.row]
+        NotificationCenter.default.post(name: .style, object: nil, userInfo: ["style": style.title])
+
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
