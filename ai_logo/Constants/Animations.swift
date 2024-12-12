@@ -18,6 +18,7 @@ enum AnimationFileName: String {
     case onboard_4_1 = "4rth_2_Onboarding"
     case onboard_5 = "5th_1_Onboarding"
     case onboard_5_1 = "5th_2_Onboarding"
+    case loader = "loader_ai_1"
 }
 
 

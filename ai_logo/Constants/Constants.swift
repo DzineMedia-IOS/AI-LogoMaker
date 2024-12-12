@@ -32,6 +32,7 @@ enum Storyboard: String {
         return viewController
     }
 }
+let hapticFeedbackKey = "hapticFeedbackEnabled"
 
 let styleArray: [Style] = [
     Style(img: "no_style", title: "No Style"),
@@ -91,17 +92,8 @@ let discoverArr: [Style] = [
     Style(img: "discover_34", title: "A glass bottle of perfume surrounded by colorful flowers and abstract splashes of paint in vibrant shades of pink against a dark background"),
     Style(img: "discover_35", title: "A detailed tattoo on a forearm featuring a grinning clown with blue and red face paint, styled like a jester. Above the clown, the text reads HAVE YOU EVER DANCED WITH DEVIL, and below it, IN THE FREE MOONLIGHT? The background includes a large, pale moon, enhancing the eerie ambiance of the design. The arm is positioned against a textured white brick wall."),
     Style(img: "discover_36", title: "A young Asian woman with long dark hair, wearing a black coat , looking directly at the camera with a serious expression"),
-    
 ]
 
-// usage
-//class SettingsViewController: UIViewController {
-//    func showSettings() {
-//        let settingsVC = Storyboard.settings.instantiate(SettingsViewController.self)
-//        settingsVC.modalPresentationStyle = .fullScreen
-//        present(settingsVC, animated: true, completion: nil)
-//    }
-//}
-
+let startPrompt = "A black and white sketch of a bouquet of flowers , including large blooming flowers and smaller buds on long stems against a plain background"
 
 

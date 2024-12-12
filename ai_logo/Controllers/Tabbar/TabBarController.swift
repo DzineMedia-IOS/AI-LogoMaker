@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TabBarController: UITabBarController {
+class TabBarController: UITabBarController,UITabBarControllerDelegate {
     
     private let customButton = UIButton()
     
@@ -17,7 +17,8 @@ class TabBarController: UITabBarController {
         super.viewDidLoad()
         
         setupViewControllers()
-        
+        self.delegate = self
+
         self.selectedIndex = 0
         
     }
@@ -28,7 +29,9 @@ class TabBarController: UITabBarController {
         
     }
     
-    
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+           hapticFeedBackAction()
+       }
     
     private func setupViewControllers() {
         

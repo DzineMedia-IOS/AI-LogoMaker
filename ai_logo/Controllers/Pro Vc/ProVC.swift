@@ -102,6 +102,7 @@ extension ProVC : UICollectionViewDataSource, UICollectionViewDelegate, UICollec
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        hapticFeedBackAction()
         if collectionView == priceCollectionView{
             selectedIndex = indexPath.row
             priceCollectionView.reloadData()

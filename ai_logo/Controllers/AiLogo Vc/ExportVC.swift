@@ -8,6 +8,7 @@
 import UIKit
 import SDWebImage
 import MobileCoreServices
+import ProgressHUD
 
 class ExportVC: UIViewController {
     
@@ -36,7 +37,11 @@ class ExportVC: UIViewController {
         if let imgUrl = imgUrl, let url = URL(string: imgUrl) {
             // Load the image using SDWebImage
             previewImg.sd_setImage(with: url, placeholderImage: UIImage(named: "placeholder"), options: .continueInBackground, completed: nil)
+            ProgressHUD.dismiss()
+
         } else {
+            ProgressHUD.dismiss()
+
             //            previewImg.image = UIImage(named: "placeholder")
         }
         DispatchQueue.main.async { [weak self] in
@@ -255,7 +260,7 @@ extension ExportVC {
         }
         
         // Save to gallery
-        saveImageDataToGallery(data: jpgData, format: "jpg")
+        saveImageDataToGallery(data: jpgData, format: "jpg",viewController: self)
     }
     
     func saveImageAsPNG(image: UIImage) {
@@ -268,7 +273,7 @@ extension ExportVC {
         }
         
         // Save to gallery
-        saveImageDataToGallery(data: pngData, format: "png")
+        saveImageDataToGallery(data: pngData, format: "png",viewController: self)
     }
     
     func saveImageAsPDF(image: UIImage) {
@@ -281,7 +286,7 @@ extension ExportVC {
         UIGraphicsEndPDFContext()
         
         // Save to gallery
-        saveImageDataToGallery(data: pdfData as Data, format: "pdf")
+        saveImageDataToGallery(data: pdfData as Data, format: "pdf",viewController: self)
     }
     
     
@@ -305,9 +310,12 @@ extension ExportVC {
     //    }
     
     
-    func saveImageDataToGallery(data: Data, format: String) {
+
+    func saveImageDataToGallery(data: Data, format: String, viewController: UIViewController) {
         let tempDirectory = FileManager.default.temporaryDirectory
         let fileURL = tempDirectory.appendingPathComponent("Image.\(format)")
+        
+      
         
         do {
             // Write data to temporary file
@@ -318,17 +326,15 @@ extension ExportVC {
                 if let image = UIImage(data: data) {
                     // Save image to gallery
                     UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
-                    print("\(format.uppercased()) file saved successfully to the gallery!")
+                    showAlert(title: "Success", message: "\(format.uppercased()) file saved successfully to the gallery!", viewController: self)
                 } else {
-                    print("Failed to convert data to UIImage.")
+                    showAlert(title: "Error", message: "Failed to convert data to UIImage.",viewController: self)
                 }
-            }
-            
-            else if format.lowercased() == "pdf" {
+            } else if format.lowercased() == "pdf" {
                 let fileManager = FileManager.default
                 let fileName = "savePdf"
                 guard let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
-                    print("Unable to access the Documents Directory.")
+                    showAlert(title: "Error", message: "Unable to access the Documents Directory.",viewController: self)
                     return
                 }
                 
@@ -338,19 +344,20 @@ extension ExportVC {
                 do {
                     // Write the PDF data to the file
                     try data.write(to: pdfURL)
-                    
-                    print("PDF saved successfully at \(pdfURL.path)")
+                    showAlert(title: "Success", message: "PDF saved successfully at \(pdfURL.path)",viewController: self)
                 } catch {
-                    print("Failed to save PDF: \(error.localizedDescription)")
+                    showAlert(title: "Error", message: "Failed to save PDF: \(error.localizedDescription)",viewController: self)
                 }
-                
             } else {
-                print("Unsupported format: \(format.uppercased())")
+                showAlert(title: "Error", message: "Unsupported format: \(format.uppercased())",viewController: self)
             }
         } catch {
-            print("Failed to save \(format.uppercased()) file: \(error)")
+            showAlert(title: "Error", message: "Failed to save \(format.uppercased()) file: \(error.localizedDescription)",viewController: self)
         }
     }
+
+ 
+
     @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
         if let error = error {
             print("Failed to save image: \(error.localizedDescription)")

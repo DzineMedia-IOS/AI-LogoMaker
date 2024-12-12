@@ -19,12 +19,14 @@ class StyleCell: UICollectionViewCell {
         (UIDevice.current.userInterfaceIdiom == .pad ) ? (backView.cornerRadius = 30 ): (backView.cornerRadius = 20)
         (UIDevice.current.userInterfaceIdiom == .pad ) ? (img.cornerRadius = 30 ): (img.cornerRadius = 16)
     }
+    
     func applyBorder(){
         var width = 2
         if ( UIDevice.current.userInterfaceIdiom == .pad ){
             width = 5
         }
         backView.applyGradientBorder(colors: [UIColor.accent, UIColor.kRed], lineWidth: CGFloat(width))
+       
     }
 
 }

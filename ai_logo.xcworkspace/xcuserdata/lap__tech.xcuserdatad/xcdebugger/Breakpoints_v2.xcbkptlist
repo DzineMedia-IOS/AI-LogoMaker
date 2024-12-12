@@ -14,8 +14,8 @@
             filePath = "ai_logo/Controllers/Onboard VC/OnboardViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -23,63 +23,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C2F20CEB-5ED2-4394-8EC3-F02FC3F807C2"
+            uuid = "5BB1AF96-8FDD-4361-81DE-A4CD61B2F5E5"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ai_logo/Controllers/Onboard VC/OnboardViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "192"
-            endingLineNumber = "192"
-            landmarkName = "animationFlow(screen:)"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
+            landmarkName = "setupLottieAnimation(name:loopMode:completion:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "7D737718-F1D2-4C72-ABB5-D6AE2F0B7051"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ai_logo/Controllers/Onboard VC/OnboardViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "207"
-            endingLineNumber = "207"
-            landmarkName = "animationFlow(screen:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "7D737718-F1D2-4C72-ABB5-D6AE2F0B7051 - 72350df9436d3959"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in ai_logo.OnboardViewController.animationFlow(screen: Swift.Int) -&gt; ()"
-                  moduleName = "ai_logo.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/lap__tech/Documents/ahmad%20Code/AI-LogoMaker/ai_logo/Controllers/Onboard%20VC/OnboardViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "207"
-                  endingLineNumber = "207">
-               </Location>
-               <Location
-                  uuid = "7D737718-F1D2-4C72-ABB5-D6AE2F0B7051 - 9256a2000dc8f348"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Bool) -&gt; () in closure #1 @Swift.MainActor () -&gt; () in ai_logo.OnboardViewController.animationFlow(screen: Swift.Int) -&gt; ()"
-                  moduleName = "ai_logo.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/lap__tech/Documents/ahmad%20Code/AI-LogoMaker/ai_logo/Controllers/Onboard%20VC/OnboardViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "207"
-                  endingLineNumber = "207">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

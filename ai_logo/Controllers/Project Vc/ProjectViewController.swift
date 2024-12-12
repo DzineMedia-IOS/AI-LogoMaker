@@ -93,7 +93,7 @@ extension ProjectViewController: UICollectionViewDataSource,UICollectionViewDele
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        hapticFeedBackAction()
         let fileManager = FileManager.default
         let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
         

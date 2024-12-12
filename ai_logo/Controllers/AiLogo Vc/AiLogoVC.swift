@@ -21,6 +21,7 @@ class AiLogoVC: UIViewController {
         lottieAnimation.frame = animationView.bounds
         lottieAnimation.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         lottieAnimation.contentMode = .scaleAspectFill
+        lottieAnimation.tintColor = .white
         lottieAnimation.loopMode = .loop
         animationView.addSubview(lottieAnimation)
         lottieAnimation.play { finished in

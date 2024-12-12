@@ -167,7 +167,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w6I-TA-81O">
-                                <rect key="frame" x="16" y="506.99999999999994" width="361" height="170.33333333333331"/>
+                                <rect key="frame" x="16" y="507" width="361" height="150"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="star" translatesAutoresizingMaskIntoConstraints="NO" id="4oL-VR-VIs">
                                         <rect key="frame" x="8" y="10" width="20" height="20"/>
@@ -191,8 +191,13 @@
                                         </variation>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B8t-WW-tN6">
-                                        <rect key="frame" x="27.666666666666657" y="114.99999999999999" width="305.66666666666674" height="55.333333333333329"/>
+                                        <rect key="frame" x="27.666666666666657" y="115" width="305.66666666666674" height="35"/>
                                         <color key="backgroundColor" name="kBlack"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="YWg-jc-n04">
+                                                <variation key="heightClass=regular-widthClass=regular" constant="70"/>
+                                            </constraint>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="6" maxY="0.0"/>
                                         <state key="normal" title="   Copy Prompt" image="copy">
@@ -218,10 +223,10 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k8L-2X-a7U">
-                                        <rect key="frame" x="8" y="38.333333333333378" width="345" height="81.666666666666686"/>
+                                        <rect key="frame" x="8" y="38.333333333333378" width="345" height="78.666666666666686"/>
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="40A-fd-eH1">
-                                                <rect key="frame" x="8" y="4" width="329" height="77.666666666666671"/>
+                                                <rect key="frame" x="8" y="4" width="329" height="74.666666666666671"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <string key="text">Enter your brand name, industry, and the elements you want to appear in the logo. e.g. A gym logo with text “Iron Claw”, featuring a tiger lifting dumbbells.</string>
                                                 <color key="textColor" name="kLightWhite"/>
@@ -256,13 +261,16 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="B8t-WW-tN6" firstAttribute="top" secondItem="k8L-2X-a7U" secondAttribute="bottom" constant="-5" id="1Ly-EV-U1K"/>
+                                    <constraint firstItem="B8t-WW-tN6" firstAttribute="top" secondItem="k8L-2X-a7U" secondAttribute="bottom" constant="-2" id="1Ly-EV-U1K"/>
                                     <constraint firstItem="k8L-2X-a7U" firstAttribute="leading" secondItem="w6I-TA-81O" secondAttribute="leading" constant="8" id="1Xp-s6-02d"/>
                                     <constraint firstItem="rP4-iM-hgM" firstAttribute="centerY" secondItem="4oL-VR-VIs" secondAttribute="centerY" id="6Ay-bj-6Xj"/>
                                     <constraint firstItem="rP4-iM-hgM" firstAttribute="leading" secondItem="4oL-VR-VIs" secondAttribute="trailing" constant="8" symbolic="YES" id="BlK-20-fcx"/>
                                     <constraint firstItem="B8t-WW-tN6" firstAttribute="centerX" secondItem="k8L-2X-a7U" secondAttribute="centerX" id="Gf8-B0-98J"/>
                                     <constraint firstItem="k8L-2X-a7U" firstAttribute="top" secondItem="rP4-iM-hgM" secondAttribute="bottom" constant="8" id="Ksr-Kd-YqC"/>
                                     <constraint firstAttribute="bottom" secondItem="B8t-WW-tN6" secondAttribute="bottom" id="S3a-3x-U9n"/>
+                                    <constraint firstAttribute="height" constant="150" id="W7e-D1-Ens">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="270"/>
+                                    </constraint>
                                     <constraint firstItem="4oL-VR-VIs" firstAttribute="top" secondItem="w6I-TA-81O" secondAttribute="top" constant="10" id="Yuh-k5-1OX"/>
                                     <constraint firstItem="B8t-WW-tN6" firstAttribute="width" secondItem="w6I-TA-81O" secondAttribute="width" multiplier="0.84663" id="m2q-hu-x2Y"/>
                                     <constraint firstItem="4oL-VR-VIs" firstAttribute="leading" secondItem="w6I-TA-81O" secondAttribute="leading" constant="8" id="urT-su-EwI"/>
@@ -333,7 +341,6 @@
                             <constraint firstItem="PiI-J9-kTc" firstAttribute="top" secondItem="m4a-oe-Z7r" secondAttribute="top" id="QVw-n1-huB"/>
                             <constraint firstItem="R4f-dp-s51" firstAttribute="centerY" secondItem="ExT-Vt-Pdv" secondAttribute="centerY" id="S5o-DI-czO"/>
                             <constraint firstAttribute="trailing" secondItem="PiI-J9-kTc" secondAttribute="trailing" id="TWV-5J-nOc"/>
-                            <constraint firstItem="w6I-TA-81O" firstAttribute="height" secondItem="m4a-oe-Z7r" secondAttribute="height" multiplier="0.2" id="Ug5-ix-vR4"/>
                             <constraint firstItem="R4f-dp-s51" firstAttribute="height" secondItem="PiI-J9-kTc" secondAttribute="height" multiplier="0.0704225" id="XVF-1y-E3q"/>
                             <constraint firstItem="w6I-TA-81O" firstAttribute="leading" secondItem="XQe-xL-QaE" secondAttribute="leading" constant="16" id="Y6i-63-YeR"/>
                             <constraint firstAttribute="bottom" secondItem="PiI-J9-kTc" secondAttribute="bottom" id="gJZ-XP-p24"/>
@@ -341,7 +348,6 @@
                             <constraint firstItem="ExT-Vt-Pdv" firstAttribute="centerY" secondItem="PiI-J9-kTc" secondAttribute="centerY" multiplier="1.82" id="ka7-XR-Ab8"/>
                             <constraint firstItem="UsG-Pt-B5H" firstAttribute="leading" secondItem="XQe-xL-QaE" secondAttribute="leading" constant="16" id="lPc-Mx-Jxe"/>
                             <constraint firstItem="ExT-Vt-Pdv" firstAttribute="height" secondItem="PiI-J9-kTc" secondAttribute="height" multiplier="0.0704225" id="pJ4-oW-D8f"/>
-                            <constraint firstItem="B8t-WW-tN6" firstAttribute="height" secondItem="m4a-oe-Z7r" secondAttribute="height" multiplier="0.065" id="r22-8B-8Lo"/>
                             <constraint firstItem="ExT-Vt-Pdv" firstAttribute="width" secondItem="PiI-J9-kTc" secondAttribute="width" multiplier="0.391858" id="xDE-Yc-teF"/>
                             <constraint firstItem="UsG-Pt-B5H" firstAttribute="top" secondItem="a82-UT-k9h" secondAttribute="bottom" id="yR7-Fg-Ged"/>
                         </constraints>

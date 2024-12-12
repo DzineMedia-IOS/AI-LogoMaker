@@ -29,6 +29,7 @@ class OnboardViewController: UIViewController {
         configurePageControl()
         configureBottomPadding()
         configureOnboardCollectionView()
+        
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -193,7 +194,6 @@ extension  OnboardViewController {
             (.onboard_2, .onboard_2_1),
             (.onboard_3, .onboard_3_1),
             (.onboard_4, .onboard_4_1),
-            //            (.onboard_3, .onboard_3_1),
             (.onboard_5, .onboard_5_1)
         ]
 

@@ -22,7 +22,7 @@ class HapticManager {
 
 
 func isHapticFeedbackEnabled() -> Bool {
-    return UserDefaults.standard.bool(forKey: hapticFeedbackKey)
+    return UserDefaults.standard.bool(forKey: hapticFeedbackKey) ?? false
 }
 
 extension UIButton {

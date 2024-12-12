@@ -7,7 +7,8 @@
 
 import UIKit
 import ProgressHUD
-class LogoTypeVC: UIViewController {
+import Lottie
+class LogoTypeVC: UIViewController,UITextViewDelegate {
     
     @IBOutlet weak var brandTextField: UITextField!
     @IBOutlet weak var brandTfView: UIView!
@@ -32,32 +33,44 @@ class LogoTypeVC: UIViewController {
     @IBOutlet weak var topHeight: NSLayoutConstraint!
     @IBOutlet weak var brandView: UIView!
     @IBOutlet weak var txtView: UITextView!
-    
-    var isTextLogo : Bool = false
-    var screen: Int = 1
-    var selectedIndex: IndexPath? = IndexPath(row: 0, section: 0)
-    var selectedStyle: IndexPath? = IndexPath(row: 0, section: 0)
+    @IBOutlet weak var btnClear: UIButton!
 
+    // Animation outlets
+    @IBOutlet weak var mainAnimationView: UIView!
+    @IBOutlet weak var animationView: UIView!
+    @IBOutlet weak var lblSec: UILabel!
+   
+    private var timer: Timer?
+    private var startTime: Date?
     
+    private var isTextLogo : Bool = false
+    private var screen: Int = 1
+    private var selectedIndex: IndexPath? = IndexPath(row: 0, section: 0)
+    private  var selectedStyle: IndexPath? = IndexPath(row: 0, section: 0)
+
     let logoType: [String] = ["Graphic logo" , "Text Logo"]
     let logoImage: [String] = ["graphic_logo" , "text_logo"]
    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        CoreDataManager.shared.deleteAllProjects()
+        
+        txtView.delegate = self
+        btnClear.isHidden = true
+
         if !isTextLogo {
             brandView.isHidden = true
             topHeight.constant = 20
         }
         
         if ( UIDevice.current.userInterfaceIdiom == .pad){
-            btnPrompt.titleLabel?.font = UIFont(name: "Outfit-Bold", size: 40)
+            btnPrompt.titleLabel?.font = UIFont(name: "Outfit-Bold", size: 26)
         }
         
         promptView.isHidden = true
         LogoView.isHidden = true
-        
+        brandTextField.autocorrectionType = .no
+        mainAnimationView.isHidden = true
         DispatchQueue.main.async { [weak self] in
             self?.styleUI()
             self?.updateUI()
@@ -80,6 +93,11 @@ class LogoTypeVC: UIViewController {
         brandTfView.layer.cornerRadius = brandTfView.frame.height / 3
         brandTfView.clipsToBounds = true
     }
+  
+    deinit {
+        timer?.invalidate()
+    }
+    
     
     @IBAction func btnBack(_ sender: Any) {
         if screen > 1 {
@@ -165,7 +183,12 @@ class LogoTypeVC: UIViewController {
             var prompt = "A modern \(logoType) \(brandName),the style should be \(style),"
             prompt = prompt + self.txtView.text
             
+            setupAnimation()
+            startTimer()
+
             self.generateLogo(prompt: prompt)
+            
+//            self.generateLogo(prompt: prompt)
            
 
             
@@ -173,33 +196,37 @@ class LogoTypeVC: UIViewController {
         }
     }
     
-    private func generateLogo(prompt: String) {
-        ProgressHUD.animate("Some text...", interaction: false)
-        APIManager.shared.generateLogo(prompt: prompt) { result in
-            DispatchQueue.main.async { [self] in
-                switch result {
-                case .success(let response):
-                    print("Logo Generation Results:")
-                    print("Cost:", response.cost)
-                    print("Seed:", response.seed)
-                    print("Logo URL:", response.url)
-                    ProgressHUD.dismiss()
-                    let vc = Storyboard.aiLogo.instantiate(ExportVC.self)
-                    vc.modalPresentationStyle = .fullScreen
-                    vc.imgUrl = response.url
-                    self.present(vc, animated: true)
-                    vc.lblPrompt.text = txtView.text
-                
-                    CoreDataManager.shared.saveRecord(prompt: txtView.text, imageURL: response.url)
-                case .failure(let error):
-                    print("Error:", error.localizedDescription)
-                    ProgressHUD.dismiss()
-                    
-                    // Show an alert to the user if needed
-                }
+    @IBAction func btnPrompt(_ sender: Any) {
+        let randomIndex = Int.random(in: 0..<PromptGenerator.logoPrompts.count)
+        let prompt = PromptGenerator.logoPrompts[randomIndex]
+        txtView.text = prompt
+    }
+    
+    @IBAction func btnCancel(_ sender: Any) {
+        txtView.text = ""
+    }
+    
+    @objc private func updateSeconds() {
+        guard let startTime = startTime else { return }
+        let elapsedTime = Date().timeIntervalSince(startTime)
+        lblSec.text = String(format: "%.2fs", elapsedTime)
+    }
+    // text fields Delegate Methods
+    func textViewDidBeginEditing(_ textView: UITextView) {
+            // Remove placeholder text when editing begins
+        btnClear.isHidden = false
+        if txtView.text == startPrompt {
+            txtView.text = ""
+            txtView.textColor = .kPrompt
             }
         }
-    }
+    func textViewDidEndEditing(_ textView: UITextView) {
+        btnClear.isHidden = true
+        if txtView.text.isEmpty {
+            txtView.text = startPrompt
+            txtView.textColor = .kPrompt
+          }
+      }
     
 }
 
@@ -255,6 +282,7 @@ extension LogoTypeVC: UICollectionViewDataSource,UICollectionViewDelegate, UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        hapticFeedBackAction()
         if collectionView == logoCollectionView {
             
             self.selectedIndex = indexPath
@@ -315,8 +343,7 @@ extension LogoTypeVC {
         
         configureCornerRadius(for: btnContinue)
         btnPrompt.layer.cornerRadius = btnPrompt.frame.height / 2
-        btnPrompt.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-        btnPrompt.clipsToBounds = true
+   
         
         applyGradientToButton(
             
@@ -331,13 +358,7 @@ extension LogoTypeVC {
             startPoint: CGPoint(x: 0, y: 0),
             endPoint: CGPoint(x: 1, y: 1)
         )
-        applyGradientToButton(
-            button: btnPrompt,
-            colors:  [UIColor.accent, UIColor.kRed],
-            startPoint: CGPoint(x: 0, y: 0),
-            endPoint: CGPoint(x: 1, y: 1),
-            isBottomCorner: true
-        )
+
         
         var  width = 2
         if ( UIDevice.current.userInterfaceIdiom == .pad) {
@@ -411,4 +432,76 @@ extension LogoTypeVC {
         button.layer.cornerRadius = UIDevice.current.userInterfaceIdiom == .pad ? cornerRadius/2 : cornerRadius / 2
     }
     
+}
+// MARK: LOADER ANIMATION
+extension LogoTypeVC {
+    private func startTimer() {
+        startTime = Date()
+        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateSeconds), userInfo: nil, repeats: true)
+    }
+    private func setupAnimation(){
+        mainAnimationView.isHidden = false
+        let lottieAnimation = LottieAnimationView(name: .loader)
+        lottieAnimation.frame = animationView.bounds
+        lottieAnimation.contentMode = .scaleAspectFit
+        lottieAnimation.loopMode = .loop
+        animationView.addSubview(lottieAnimation)
+        lottieAnimation.play { finished in
+            print("Animation Completed!")
+        }
+    }
+}
+
+// MARK: API function
+
+
+extension LogoTypeVC {
+    
+    private func generateLogo(prompt: String) {
+        APIManager.shared.generateLogo(prompt: prompt) { result in
+            DispatchQueue.main.async { [self] in
+                switch result {
+                case .success(let response):
+                    print("Logo Generation Results:")
+                    print("Cost:", response.cost)
+                    print("Seed:", response.seed)
+                    print("Logo URL:", response.url)
+                    
+                    
+                    let imgName = UUID().uuidString
+
+                    CoreDataManager.shared.saveImageFromURLToDocumentsDirectory(response.url, withName: imgName) { [self] savedPath in
+                        if let path = savedPath {
+                              DispatchQueue.main.async {
+                                  let vc = Storyboard.aiLogo.instantiate(ExportVC.self)
+                                  vc.modalPresentationStyle = .fullScreen
+                                
+                                self.present(vc, animated: true)
+                                  vc.lblPrompt.text = txtView.text
+                                    vc.previewImg.image = UIImage(contentsOfFile: path)
+                                    self.mainAnimationView.isHidden = true
+                                  for subview in animationView.subviews {
+                                      subview.removeFromSuperview()
+                                  }
+                                  lblSec.text = "0.0"
+                                }
+                            stopTimer()
+                           
+                        }
+                        CoreDataManager.shared.saveRecord(prompt: prompt, imageURL: response.url)
+                        
+                    }
+                case .failure(let error):
+                    print("Error:", error.localizedDescription)
+                    
+                    // Show an alert to the user if needed
+                }
+            }
+        }
+    }
+
+    private func stopTimer() {
+            timer?.invalidate()
+            timer = nil
+        }
 }

@@ -10,13 +10,21 @@ import UIKit
 class PromptVC: UIViewController {
     
     @IBOutlet weak var img: UIImageView!
-    @IBOutlet weak var lblPrompt: UILabel!
+    @IBOutlet weak var lblPrompt: UITextView!
     @IBOutlet weak var lblStyle: UILabel!
     @IBOutlet weak var btnPrompt: UIButton!
+    @IBOutlet weak var textBackView: UIView!
+    @IBOutlet weak var btnCopy: UIButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+      
+        textBackView.layer.cornerRadius = lblPrompt.frame.height / 4
+        btnCopy.cornerRadius = btnCopy.frame.height / 2
+        btnCopy.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+        
         DispatchQueue.main.async { [weak self] in
             
             self?.stylingUI()

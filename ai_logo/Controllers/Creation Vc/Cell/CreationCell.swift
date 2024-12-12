@@ -66,6 +66,8 @@ extension CreationCell: UICollectionViewDelegate, UICollectionViewDataSource, UI
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        hapticFeedBackAction()
+        
         selectedIndex = indexPath
         collectionView.reloadData()
         let style = styleArray[indexPath.row]

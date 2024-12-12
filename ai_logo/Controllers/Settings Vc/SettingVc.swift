@@ -38,6 +38,7 @@ class SettingVc: UIViewController {
         DispatchQueue.main.async { [weak self] in
             self?.styleUI()
         }
+
     }
     
     override func viewIsAppearing(_ animated: Bool) {
@@ -45,13 +46,13 @@ class SettingVc: UIViewController {
             self?.styleUI()
         }
     }
+    
     @objc func hapticFeedbackSwitchChanged(_ sender: UISwitch) {
-        if sender.isOn {
-            print("Haptic Feedback Enabled")
-        } else {
-            print("Haptic Feedback Disabled")
-        }
+        let isEnabled = sender.isOn
+        UserDefaults.standard.set(isEnabled, forKey: hapticFeedbackKey)
+        print("Haptic Feedback \(isEnabled ? "Enabled" : "Disabled")")
     }
+    
     @IBAction func btnPro(_ sender: Any) {
         let vc = Storyboard.premium.instantiate(ProVC.self)
         vc.modalPresentationStyle = .fullScreen
@@ -74,6 +75,7 @@ extension SettingVc: UITableViewDataSource, UITableViewDelegate {
         }
         
         let title = sectionData[indexPath.section][indexPath.row]
+        let hapticState = isHapticFeedbackEnabled()
         cell.lblTitle.text = title
         cell.img.image = UIImage(named: imgArr[indexPath.section][indexPath.row])
         cell.selectionStyle = .none
@@ -82,7 +84,7 @@ extension SettingVc: UITableViewDataSource, UITableViewDelegate {
         if sectionHeaders[indexPath.section] == "App" && title == "Haptic Feedback" {
             cell.farwardImg.isHidden = true
 
-            cell.configureCellWithToggle(isToggleVisible: true, isToggleOn: true) // Default ON
+            cell.configureCellWithToggle(isToggleVisible: true, isToggleOn: hapticState) // Default ON
             cell.toggleSwitch?.addTarget(self, action: #selector(hapticFeedbackSwitchChanged(_:)), for: .valueChanged)
         } else {
             cell.configureCellWithToggle(isToggleVisible: false, isToggleOn: false)
@@ -98,6 +100,30 @@ extension SettingVc: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Selected section \(indexPath.section), row \(indexPath.row)")
+        tableView.deselectRow(at: indexPath, animated: true)
+
+        hapticFeedBackAction()
+        let index = indexPath.row
+        let section = indexPath.section
+        switch section {
+        case 3 :
+            switch index {
+            case 0:
+               
+                if let tnc = URL(string: "https://www.trostun.com/terms-and-conditions/") {
+                    presentURLPages(from: self, url: tnc, height: 400)
+                }
+                case 1:
+                if let privacy = URL(string: "https://www.trostun.com/privacy-policy/") {
+                    presentURLPages(from: self, url: privacy,height: 400)
+                }
+            default:
+                break
+            }
+        default :
+            break
+        }
+
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

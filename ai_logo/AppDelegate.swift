@@ -17,8 +17,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        IQKeyboardManager.shared.enableAutoToolbar = true
+//        IQKeyboardManager.shared.enableAutoToolbar = true
         IQKeyboardManager.shared.toolbarConfiguration.tintColor = UIColor.systemBlue
+        IQKeyboardManager.shared.isEnabled = true
+
+        IQKeyboardManager.shared.enableAutoToolbar = true
+        IQKeyboardManager.shared.resignOnTouchOutside = true
+        IQKeyboardManager.shared.keyboardDistance = 40
+//        IQKeyboardManager.shared.lastScrollViewConfiguration?.scrollView
+        
         configProgressHud()
         return true
     }

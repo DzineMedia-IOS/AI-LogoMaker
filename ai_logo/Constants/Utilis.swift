@@ -8,6 +8,8 @@
 import Foundation
 import UIKit
 import ProgressHUD
+import SafariServices
+
 func applyGradientToButton(
     button: UIButton,
     colors: [UIColor],
@@ -162,4 +164,18 @@ extension UIViewController {
             toastLabel.removeFromSuperview()
         })
     }
+}
+func showAlert(title: String, message: String,  viewController: UIViewController) {
+    let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    alert.addAction(UIAlertAction(title: "OK", style: .default))
+    viewController.present(alert, animated: true)
+}
+
+func presentURLPages(from viewController: UIViewController, url: URL, height: CGFloat) {
+    let safariVC = SFSafariViewController(url: url)
+    safariVC.modalPresentationStyle = .formSheet
+    
+    safariVC.preferredContentSize = CGSize(width: viewController.view.frame.width, height: height)
+
+    viewController.present(safariVC, animated: true, completion: nil)
 }
