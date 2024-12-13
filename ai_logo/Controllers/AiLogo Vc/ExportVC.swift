@@ -12,64 +12,58 @@ import ProgressHUD
 
 class ExportVC: UIViewController {
     
+    @IBOutlet weak var collectionVIew: UICollectionView!
+    @IBOutlet weak var formatCollectionView: UICollectionView!
+    @IBOutlet weak var qualityCollectionView: UICollectionView!
+    
+    
     @IBOutlet weak var quality: UISegmentedControl!
     @IBOutlet weak var format: UISegmentedControl!
-    @IBOutlet weak var exportView: UIView!
-    @IBOutlet weak var collectionVIew: UICollectionView!
-    @IBOutlet weak var btnPro: UIButton!
-    @IBOutlet weak var downloadView: UIView!
-    @IBOutlet weak var btnUpload: UIButton!
-    @IBOutlet weak var previewImg: UIImageView!
-    @IBOutlet weak var lblPrompt: UILabel!
     
+    @IBOutlet weak var previewImg: UIImageView!
+    @IBOutlet weak var lblPrompt: UITextView!
+    
+    @IBOutlet weak var exportView: UIView!
+    @IBOutlet weak var downloadView: UIView!
+    @IBOutlet weak var haltView: UIView!
+    @IBOutlet weak var promptView: UIView!
+    @IBOutlet weak var btnShowExportConfig: UIView!
+    
+    @IBOutlet weak var btnPro: UIButton!
+    @IBOutlet weak var btnUpload: UIButton!
+    
+    @IBOutlet weak var maxProImg: UIImageView!
+    @IBOutlet weak var mediumProImg: UIImageView!
+    @IBOutlet weak var pdfProImg: UIImageView!
+    @IBOutlet weak var pngProImg: UIImageView!
+    
+    var selectedFormat :Int = 0
+    var selectedQuality :Int = 0
     var imgUrl: String?
     let imgArr = ["mock_1","mock_2", "mock_3"]
+    let formatArr = ["JPG","PNG","PDF"]
+    let qualityArr = ["Regular", "Medium","Max"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let nib = UINib(nibName: "ProjectCell", bundle: nil)
-        collectionVIew.register(nib, forCellWithReuseIdentifier: "ProjectCell")
-        collectionVIew.delegate = self
-        collectionVIew.dataSource = self
-        
-        
-        if let imgUrl = imgUrl, let url = URL(string: imgUrl) {
-            // Load the image using SDWebImage
-            previewImg.sd_setImage(with: url, placeholderImage: UIImage(named: "placeholder"), options: .continueInBackground, completed: nil)
-            ProgressHUD.dismiss()
-
-        } else {
-            ProgressHUD.dismiss()
-
-            //            previewImg.image = UIImage(named: "placeholder")
-        }
-        DispatchQueue.main.async { [weak self] in
-            
-            self?.styleUI()
-        }
-        
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            downloadView.layer.cornerRadius = downloadView.bounds.height / 2
-            btnUpload.layer.cornerRadius = btnUpload.bounds.height / 2
-        }
-        exportView.cornerRadius =  UIDevice.current.userInterfaceIdiom == .pad ? 40 : 20
-        exportView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
-        configureSegmentedControlAppearance(for: format)
-        configureSegmentedControlAppearance(for: quality)
+        hideViews()
+        setupCollectionViews()
+        loadPreviewImage()
+        styleUIElements()
+        configureSegmentedControls()
         addGestureDetector()
         
-        
     }
-    
     
     override func viewDidAppear(_ animated: Bool) {
         collectionVIew.reloadData()
         DispatchQueue.main.async { [weak self] in
-            
             self?.styleUI()
         }
+        
     }
+    
+    
     
     
     @IBAction func btnCancel(_ sender: Any) {
@@ -126,29 +120,117 @@ class ExportVC: UIViewController {
         }
     }
     
+    @objc func btnShowExportConfigAction() {
+        exportView.isHidden = false
+        exportView.transform = CGAffineTransform(translationX: 0, y: exportView.frame.height)
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
+            self.exportView.transform = .identity
+        }, completion: nil)
+        haltView.isHidden = false
+
+    }
+
+    @objc func haltViewAction() {
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
+            self.exportView.transform = CGAffineTransform(translationX: 0, y: self.exportView.frame.height)
+        }, completion: { _ in
+            self.exportView.isHidden = true
+        })
+        haltView.isHidden = true
+
+    }
 }
 
 //  MARK: - UICOLLECTIONVIEW CELL
 extension ExportVC: UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        if collectionView == formatCollectionView {
+            return formatArr.count
+        }
+        else if collectionView == qualityCollectionView {
+            return qualityArr.count
+        }
+        else{
+            return 3
+        }
+        
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProjectCell", for: indexPath) as! ProjectCell
-        cell.img.image = UIImage(named: imgArr[indexPath.row])
-        cell.imgBorder()
+        if collectionView == formatCollectionView {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FormatCell", for: indexPath) as! FormatCell
+            cell.lblTitle.text = formatArr[indexPath.item]
+            cell.backView.layer.cornerRadius = formatCollectionView.frame.height / 2
+            
+            if indexPath.item == selectedFormat {
+                cell.backView.backgroundColor = .kWhite
+                cell.lblTitle.textColor = .kBlack
+            }
+            else{
+                cell.backView.backgroundColor = .clear
+                cell.lblTitle.textColor = .kWhite
+                
+            }
+            return cell
+        }
+        else if collectionView == qualityCollectionView {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FormatCell", for: indexPath) as! FormatCell
+            cell.backView.layer.cornerRadius = qualityCollectionView.frame.height / 2
+            
+            cell.lblTitle.text = qualityArr[indexPath.item]
+            if indexPath.item == selectedQuality {
+                cell.backView.backgroundColor = .kWhite
+                cell.lblTitle.textColor = .kBlack
+            }
+            else{
+                cell.backView.backgroundColor = .clear
+                cell.lblTitle.textColor = .kWhite
+                
+            }
+            return cell
+        }
+        else{
+            
+            
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProjectCell", for: indexPath) as! ProjectCell
+            cell.img.image = UIImage(named: imgArr[indexPath.row])
+            cell.imgBorder()
+            cell.tryImg.isHidden = false
+            cell.tryImg.image = UIImage(resource: .proBadge)
+            
+            return cell
+        }
         
-        return cell
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        hapticFeedBackAction()
+        if collectionView == formatCollectionView {
+            selectedFormat = indexPath.item
+            formatCollectionView.reloadData()
+        }
+        else if collectionView == qualityCollectionView {
+            selectedQuality = indexPath.item
+            qualityCollectionView.reloadData()
+        }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        let width  = collectionView.frame.width/3 - 10
-        let height = collectionView.frame.height - 10
-        let size  = min(width,height)
-        
-        return CGSize(width: width, height: size )
+        if collectionView == formatCollectionView || collectionView == qualityCollectionView {
+            let width  = collectionView.frame.width/3 - 10
+            
+            return CGSize(width: width, height: collectionView.frame.height )
+        }
+        else{
+            let width  = collectionView.frame.width/3 - 10
+            let height = collectionView.frame.height - 10
+            let size  = min(width,height)
+            
+            return CGSize(width: width, height: size )
+        }
     }
     
 }
@@ -157,6 +239,61 @@ extension ExportVC: UICollectionViewDelegate, UICollectionViewDataSource,UIColle
 // MARK: - STYLING UI
 
 extension ExportVC {
+    
+    private func hideViews() {
+        haltView.isHidden = true
+        exportView.isHidden = true
+    }
+    
+    private func configureSegmentedControls() {
+        configureSegmentedControlAppearance(for: format)
+        configureSegmentedControlAppearance(for: quality)
+    }
+    
+    private func styleUIElements() {
+        DispatchQueue.main.async { [weak self] in
+            self?.styleUI()
+        }
+        
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            downloadView.layer.cornerRadius = downloadView.bounds.height / 2
+            btnUpload.layer.cornerRadius = btnUpload.bounds.height / 2
+        }
+        
+        exportView.cornerRadius = UIDevice.current.userInterfaceIdiom == .pad ? 40 : 20
+        exportView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+    }
+    
+    private func setupCollectionViews() {
+        // Register cells
+        let projectNib = UINib(nibName: "ProjectCell", bundle: nil)
+        collectionVIew.register(projectNib, forCellWithReuseIdentifier: "ProjectCell")
+        
+        let formatNib = UINib(nibName: "FormatCell", bundle: nil)
+        formatCollectionView.register(formatNib, forCellWithReuseIdentifier: "FormatCell")
+        qualityCollectionView.register(formatNib, forCellWithReuseIdentifier: "FormatCell")
+        
+        // Set delegates and data sources
+        collectionVIew.delegate = self
+        collectionVIew.dataSource = self
+        
+        formatCollectionView.delegate = self
+        formatCollectionView.dataSource = self
+        
+        qualityCollectionView.delegate = self
+        qualityCollectionView.dataSource = self
+        
+    }
+    
+    private func loadPreviewImage() {
+        guard let imgUrl = imgUrl, let url = URL(string: imgUrl) else {
+            previewImg.image = UIImage(named: "placeholder")
+            ProgressHUD.dismiss()
+            return
+        }
+        previewImg.sd_setImage(with: url, placeholderImage: UIImage(named: "placeholder"), options: .continueInBackground, completed: nil)
+        ProgressHUD.dismiss()
+    }
     
     private func styleUI(){
         
@@ -168,10 +305,11 @@ extension ExportVC {
             startPoint: CGPoint(x: 0, y: 0),
             endPoint: CGPoint(x: 1, y: 1)
         )
-        
-        
+        formatCollectionView.layer.cornerRadius = formatCollectionView.frame.height / 2
+        qualityCollectionView.layer.cornerRadius = qualityCollectionView.frame.height / 2
         
     }
+    
     
     func configureSegmentedControlAppearance(for segmentedControl: UISegmentedControl) {
         
@@ -197,9 +335,18 @@ extension ExportVC {
         segmentedControl.clipsToBounds = true
     }
     
+    
+    
     func addGestureDetector(){
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(downloadViewTapped))
         downloadView.addGestureRecognizer(tapGesture)
+        
+        
+        let btnShowExportConfigTap = UITapGestureRecognizer(target: self, action: #selector(btnShowExportConfigAction))
+        btnShowExportConfig.addGestureRecognizer(btnShowExportConfigTap)
+        
+        let haltViewTap = UITapGestureRecognizer(target: self, action: #selector(haltViewAction))
+        haltView.addGestureRecognizer(haltViewTap)
     }
     
 }
@@ -212,12 +359,13 @@ extension ExportVC {
         
         // Get selected quality
         let selectedQualityIndex = quality.selectedSegmentIndex
-        let selectedQualityTitle = quality.titleForSegment(at: selectedQualityIndex) ?? "Regular"
+        //        let selectedQualityTitle = quality.titleForSegment(at: selectedQualityIndex) ?? "Regular"
+        let selectedQualityTitle = qualityArr[selectedQuality]
         
         // Get selected format
         let selectedFormatIndex = format.selectedSegmentIndex
-        let selectedFormatTitle = format.titleForSegment(at: selectedFormatIndex) ?? "JPG"
-        
+        //        let selectedFormatTitle = format.titleForSegment(at: selectedFormatIndex) ?? "JPG"
+        let selectedFormatTitle = formatArr[selectedFormat]
         print("Selected Quality: \(selectedQualityTitle)")
         print("Selected Format: \(selectedFormatTitle)")
         
@@ -310,12 +458,12 @@ extension ExportVC {
     //    }
     
     
-
+    
     func saveImageDataToGallery(data: Data, format: String, viewController: UIViewController) {
         let tempDirectory = FileManager.default.temporaryDirectory
         let fileURL = tempDirectory.appendingPathComponent("Image.\(format)")
         
-      
+        
         
         do {
             // Write data to temporary file
@@ -355,9 +503,9 @@ extension ExportVC {
             showAlert(title: "Error", message: "Failed to save \(format.uppercased()) file: \(error.localizedDescription)",viewController: self)
         }
     }
-
- 
-
+    
+    
+    
     @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
         if let error = error {
             print("Failed to save image: \(error.localizedDescription)")
@@ -368,7 +516,7 @@ extension ExportVC {
     
     
     
-   
+    
     
 }
 
@@ -382,7 +530,7 @@ extension CGSize {
 
 
 extension ExportVC: UIDocumentPickerDelegate {
-
+    
     func savePDF(image: UIImage) {
         // Create PDF Data
         let pdfData = NSMutableData()
@@ -400,7 +548,7 @@ extension ExportVC: UIDocumentPickerDelegate {
             print("Fallback for earlier versions not implemented.")
         }
     }
-
+    
     @available(iOS 14.0, *)
     func presentDocumentPicker(with data: Data) {
         // Create the UIDocumentPickerViewController to allow file export
