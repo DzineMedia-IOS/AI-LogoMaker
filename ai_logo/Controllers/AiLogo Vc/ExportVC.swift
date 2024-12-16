@@ -12,6 +12,8 @@ import ProgressHUD
 
 class ExportVC: UIViewController {
     
+    @IBOutlet weak var textBackView: UIView!
+    @IBOutlet weak var segmentationView: UIView!
     @IBOutlet weak var collectionVIew: UICollectionView!
     @IBOutlet weak var formatCollectionView: UICollectionView!
     @IBOutlet weak var qualityCollectionView: UICollectionView!
@@ -161,7 +163,7 @@ extension ExportVC: UICollectionViewDelegate, UICollectionViewDataSource,UIColle
         if collectionView == formatCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FormatCell", for: indexPath) as! FormatCell
             cell.lblTitle.text = formatArr[indexPath.item]
-            cell.backView.layer.cornerRadius = formatCollectionView.frame.height / 2
+            cell.backView.layer.cornerRadius = formatCollectionView.frame.height / 4
             
             if indexPath.item == selectedFormat {
                 cell.backView.backgroundColor = .kWhite
@@ -176,7 +178,7 @@ extension ExportVC: UICollectionViewDelegate, UICollectionViewDataSource,UIColle
         }
         else if collectionView == qualityCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FormatCell", for: indexPath) as! FormatCell
-            cell.backView.layer.cornerRadius = qualityCollectionView.frame.height / 2
+            cell.backView.layer.cornerRadius = qualityCollectionView.frame.height / 4
             
             cell.lblTitle.text = qualityArr[indexPath.item]
             if indexPath.item == selectedQuality {
@@ -243,6 +245,7 @@ extension ExportVC {
     private func hideViews() {
         haltView.isHidden = true
         exportView.isHidden = true
+        segmentationView.isHidden = true
     }
     
     private func configureSegmentedControls() {
@@ -258,8 +261,12 @@ extension ExportVC {
         if UIDevice.current.userInterfaceIdiom == .pad {
             downloadView.layer.cornerRadius = downloadView.bounds.height / 2
             btnUpload.layer.cornerRadius = btnUpload.bounds.height / 2
+            textBackView.layer.cornerRadius = textBackView.frame.height / 3
+            btnShowExportConfig.layer.cornerRadius = btnShowExportConfig.frame.height / 2
         }
         
+        
+       
         exportView.cornerRadius = UIDevice.current.userInterfaceIdiom == .pad ? 40 : 20
         exportView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
     }
@@ -305,8 +312,8 @@ extension ExportVC {
             startPoint: CGPoint(x: 0, y: 0),
             endPoint: CGPoint(x: 1, y: 1)
         )
-        formatCollectionView.layer.cornerRadius = formatCollectionView.frame.height / 2
-        qualityCollectionView.layer.cornerRadius = qualityCollectionView.frame.height / 2
+        formatCollectionView.layer.cornerRadius = formatCollectionView.frame.height / 4
+        qualityCollectionView.layer.cornerRadius = qualityCollectionView.frame.height / 4
         
     }
     

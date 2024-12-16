@@ -17,7 +17,8 @@ enum AnimationFileName: String {
     case onboard_4 = "4rth_1_Onboarding"
     case onboard_4_1 = "4rth_2_Onboarding"
     case onboard_5 = "5th_1_Onboarding"
-    case onboard_5_1 = "5th_2_Onboarding"
+//    case onboard_5_1 = "5th_2_Onboarding"
+    case onboard_5_1 = "5th(2)Onboarding"
     case loader = "loader_ai_1"
 }
 
@@ -28,3 +29,16 @@ extension LottieAnimationView {
     }
 }
 
+
+enum AnimationVideoName: String {
+    
+    case onboard_1 = "1st Onboarding"
+    case onboard_2 = "2nd 1 Onboarding"
+    case onboard_2_1 = "2nd 2 Onboardings"
+    case onboard_3 = "3rd 1 Onboarding"
+    case onboard_3_1 = "3rd 2 Onboarding"
+    case onboard_4 = "4rth 1 Onboarding"
+    case onboard_4_1 = "4rth 2 OnBoarding"
+    case onboard_5 = "5th 1 Onboarding"
+    case onboard_5_1 = "5th 2 Onboarding"
+}

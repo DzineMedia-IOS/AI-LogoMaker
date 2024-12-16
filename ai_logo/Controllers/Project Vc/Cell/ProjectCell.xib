@@ -24,18 +24,18 @@
                                 <rect key="frame" x="0.0" y="0.0" width="131" height="131"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="try" translatesAutoresizingMaskIntoConstraints="NO" id="qaN-cF-xMW">
-                                <rect key="frame" x="24" y="96" width="83" height="31"/>
+                                <rect key="frame" x="32.666666666666664" y="98.333333333333329" width="65.666666666666686" height="26"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="fKN-AE-YPb" firstAttribute="leading" secondItem="RJk-zP-lp6" secondAttribute="leading" id="5te-44-Sit"/>
                             <constraint firstItem="qaN-cF-xMW" firstAttribute="centerX" secondItem="RJk-zP-lp6" secondAttribute="centerX" id="97q-Jf-Y5R"/>
-                            <constraint firstItem="qaN-cF-xMW" firstAttribute="height" secondItem="RJk-zP-lp6" secondAttribute="height" multiplier="0.236641" id="99I-mj-Wfa"/>
+                            <constraint firstItem="qaN-cF-xMW" firstAttribute="height" secondItem="RJk-zP-lp6" secondAttribute="height" multiplier="0.2" id="99I-mj-Wfa"/>
                             <constraint firstItem="qaN-cF-xMW" firstAttribute="centerY" secondItem="RJk-zP-lp6" secondAttribute="centerY" multiplier="1.7" id="J4t-em-dEs"/>
                             <constraint firstAttribute="trailing" secondItem="fKN-AE-YPb" secondAttribute="trailing" id="Mmu-i6-fvk"/>
                             <constraint firstItem="fKN-AE-YPb" firstAttribute="top" secondItem="RJk-zP-lp6" secondAttribute="top" id="PuO-Rk-ARY"/>
-                            <constraint firstItem="qaN-cF-xMW" firstAttribute="width" secondItem="RJk-zP-lp6" secondAttribute="width" multiplier="0.633588" id="RBe-ya-noL"/>
+                            <constraint firstItem="qaN-cF-xMW" firstAttribute="width" secondItem="RJk-zP-lp6" secondAttribute="width" multiplier="0.5" id="RBe-ya-noL"/>
                             <constraint firstAttribute="bottom" secondItem="fKN-AE-YPb" secondAttribute="bottom" id="hc2-5r-fDo"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>

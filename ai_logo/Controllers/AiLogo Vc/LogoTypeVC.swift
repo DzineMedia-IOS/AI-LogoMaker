@@ -8,8 +8,10 @@
 import UIKit
 import ProgressHUD
 import Lottie
-class LogoTypeVC: UIViewController,UITextViewDelegate {
+class LogoTypeVC: UIViewController,UITextViewDelegate, UITextFieldDelegate {
     
+    @IBOutlet weak var lblBrnadName: UILabel!
+    @IBOutlet weak var starImg: UIImageView!
     @IBOutlet weak var brandTextField: UITextField!
     @IBOutlet weak var brandTfView: UIView!
     @IBOutlet weak var btnContinue: UIButton!
@@ -34,12 +36,12 @@ class LogoTypeVC: UIViewController,UITextViewDelegate {
     @IBOutlet weak var brandView: UIView!
     @IBOutlet weak var txtView: UITextView!
     @IBOutlet weak var btnClear: UIButton!
-
+    
     // Animation outlets
     @IBOutlet weak var mainAnimationView: UIView!
     @IBOutlet weak var animationView: UIView!
     @IBOutlet weak var lblSec: UILabel!
-   
+    
     private var timer: Timer?
     private var startTime: Date?
     
@@ -47,17 +49,18 @@ class LogoTypeVC: UIViewController,UITextViewDelegate {
     private var screen: Int = 1
     private var selectedIndex: IndexPath? = IndexPath(row: 0, section: 0)
     private  var selectedStyle: IndexPath? = IndexPath(row: 0, section: 0)
-
+    
     let logoType: [String] = ["Graphic logo" , "Text Logo"]
     let logoImage: [String] = ["graphic_logo" , "text_logo"]
-   
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         txtView.delegate = self
+        brandTextField.delegate = self
         btnClear.isHidden = true
-
+        
         if !isTextLogo {
             brandView.isHidden = true
             topHeight.constant = 20
@@ -77,6 +80,12 @@ class LogoTypeVC: UIViewController,UITextViewDelegate {
         }
         loadNibFiles()
         
+        if let originalImage = UIImage(named: "star") {
+            let templateImage = originalImage.withRenderingMode(.alwaysTemplate)
+            starImg.image = templateImage
+            starImg.tintColor = .kWhite
+        }
+        
     }
     
     override func viewIsAppearing(_ animated: Bool) {
@@ -90,10 +99,10 @@ class LogoTypeVC: UIViewController,UITextViewDelegate {
     override func viewDidLayoutSubviews() {
         selectLogoCollectionView.reloadData()
         super.viewDidLayoutSubviews()
-        brandTfView.layer.cornerRadius = brandTfView.frame.height / 3
-        brandTfView.clipsToBounds = true
+        //        brandTfView.layer.cornerRadius = brandTfView.frame.height / 3
+        //        brandTfView.clipsToBounds = true
     }
-  
+    
     deinit {
         timer?.invalidate()
     }
@@ -145,18 +154,18 @@ class LogoTypeVC: UIViewController,UITextViewDelegate {
                     self.btnContinue.setTitle("Continue", for: .normal)
                     
                 case 2:
-                   
-                        
-                        self.bar_2.backgroundColor = .white
-                        self.hideView(self.logoTypeView)
-                        self.showView(self.promptView)
-                        self.btnContinue.setTitle("Continue", for: .normal)
+                    
+                    
+                    self.bar_2.backgroundColor = .white
+                    self.hideView(self.logoTypeView)
+                    self.showView(self.promptView)
+                    self.btnContinue.setTitle("Continue", for: .normal)
                     
                     
                 case 3:
                     let isTextEmpty = brandTextField.text?.isEmpty ?? true
                     let isPromptEmpty = txtView.text?.isEmpty ?? true
-
+                    
                     if isTextLogo && (isTextEmpty || isPromptEmpty) {
                         screen -= 1
                         let message = isTextEmpty ? "Brand name cannot be empty." : "Prompt cannot be empty."
@@ -164,7 +173,12 @@ class LogoTypeVC: UIViewController,UITextViewDelegate {
                     } else if !isTextLogo && isPromptEmpty {
                         screen -= 1
                         self.showToast(message: "Prompt cannot be empty.", font: .systemFont(ofSize: 12.0))
-                    } else {
+                    }
+                    else if txtView.text == logoPrompt{
+                        screen -= 1
+                        self.showToast(message: "Please enter the prompt!", font: .systemFont(ofSize: 12.0))
+                    }
+                    else {
                         self.bar_3.backgroundColor = .white
                         self.hideView(self.promptView)
                         self.showView(self.LogoView)
@@ -185,12 +199,12 @@ class LogoTypeVC: UIViewController,UITextViewDelegate {
             
             setupAnimation()
             startTimer()
-
+            
             self.generateLogo(prompt: prompt)
             
-//            self.generateLogo(prompt: prompt)
-           
-
+            //            self.generateLogo(prompt: prompt)
+            
+            
             
             
         }
@@ -200,6 +214,7 @@ class LogoTypeVC: UIViewController,UITextViewDelegate {
         let randomIndex = Int.random(in: 0..<PromptGenerator.logoPrompts.count)
         let prompt = PromptGenerator.logoPrompts[randomIndex]
         txtView.text = prompt
+        
     }
     
     @IBAction func btnCancel(_ sender: Any) {
@@ -211,22 +226,63 @@ class LogoTypeVC: UIViewController,UITextViewDelegate {
         let elapsedTime = Date().timeIntervalSince(startTime)
         lblSec.text = String(format: "%.2fs", elapsedTime)
     }
-    // text fields Delegate Methods
+    //MARK: text fields Delegate Methods
     func textViewDidBeginEditing(_ textView: UITextView) {
-            // Remove placeholder text when editing begins
+        // Remove placeholder text when editing begins
+        let width: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 5 : 2
+        removeGradientBorder(from: brandTfView)
+        lblBrnadName.layer.sublayers?.removeAll { $0 is CAGradientLayer }
+        lblBrnadName.textColor = .kWhite
+
+        textBackView.applyGradientBorder(colors: [UIColor.accent, UIColor.kRed], lineWidth: CGFloat(width))
+        
         btnClear.isHidden = false
-        if txtView.text == startPrompt {
+        if txtView.text == logoPrompt {
             txtView.text = ""
             txtView.textColor = .kPrompt
-            }
         }
+        if let originalImage = UIImage(named: "star") {
+            starImg.image = originalImage.withRenderingMode(.alwaysOriginal)
+            
+        }
+        lblPrompt.applyGradient(
+            colors: [UIColor.accent, UIColor.kRed],
+            startPoint: CGPoint(x: 0, y: 0),
+            endPoint: CGPoint(x: 1, y: 1)
+        )
+    }
     func textViewDidEndEditing(_ textView: UITextView) {
         btnClear.isHidden = true
         if txtView.text.isEmpty {
-            txtView.text = startPrompt
+            txtView.text = logoPrompt
             txtView.textColor = .kPrompt
-          }
-      }
+        }
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == brandTextField {
+            lblPrompt.layer.sublayers?.removeAll { $0 is CAGradientLayer }
+            lblPrompt.textColor = .kWhite
+            removeGradientBorder(from: textBackView)
+            let width: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 5 : 2
+            brandTfView.applyGradientBorder(colors: [UIColor.accent, UIColor.kRed], lineWidth: CGFloat(width))
+            if let originalImage = UIImage(named: "star") {
+                
+                let templateImage = originalImage.withRenderingMode(.alwaysTemplate)
+                starImg.image = templateImage
+                starImg.tintColor = .kWhite
+            }
+        }
+        lblBrnadName.applyGradient(
+            colors: [UIColor.accent, UIColor.kRed],
+            startPoint: CGPoint(x: 0, y: 0),
+            endPoint: CGPoint(x: 1, y: 1)
+        )
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == brandTextField {
+        }
+    }
     
 }
 
@@ -338,12 +394,12 @@ extension LogoTypeVC {
     
     private func styleUI(){
         
-        brandTfView.layer.cornerRadius = brandTfView.frame.height / 2
+        //        brandTfView.layer.cornerRadius = brandTfView.frame.height / 3
         btnPrompt.clipsToBounds = true
         
         configureCornerRadius(for: btnContinue)
         btnPrompt.layer.cornerRadius = btnPrompt.frame.height / 2
-   
+        
         
         applyGradientToButton(
             
@@ -353,20 +409,22 @@ extension LogoTypeVC {
             endPoint: CGPoint(x: 1, y: 1)
         )
         
-        lblPrompt.applyGradient(
-            colors: [UIColor.accent, UIColor.kRed],
-            startPoint: CGPoint(x: 0, y: 0),
-            endPoint: CGPoint(x: 1, y: 1)
-        )
-
+//        lblPrompt.applyGradient(
+//            colors: [UIColor.accent, UIColor.kRed],
+//            startPoint: CGPoint(x: 0, y: 0),
+//            endPoint: CGPoint(x: 1, y: 1)
+//        )
+        
         
         var  width = 2
         if ( UIDevice.current.userInterfaceIdiom == .pad) {
             width = 5
             textBackView.layer.cornerRadius = 20
+            brandTfView.layer.cornerRadius = 20
+            
         }
         
-        textBackView.applyGradientBorder(colors: [UIColor.accent, UIColor.kRed], lineWidth: CGFloat(width))
+        
         
         
     }
@@ -432,7 +490,16 @@ extension LogoTypeVC {
         button.layer.cornerRadius = UIDevice.current.userInterfaceIdiom == .pad ? cornerRadius/2 : cornerRadius / 2
     }
     
+    func removeGradientBorder(from view: UIView) {
+        view.layer.sublayers?.forEach { sublayer in
+            if sublayer is CAGradientLayer {
+                sublayer.removeFromSuperlayer()
+            }
+        }
+    }
+    
 }
+
 // MARK: LOADER ANIMATION
 extension LogoTypeVC {
     private func startTimer() {
@@ -453,8 +520,6 @@ extension LogoTypeVC {
 }
 
 // MARK: API function
-
-
 extension LogoTypeVC {
     
     private func generateLogo(prompt: String) {
@@ -469,24 +534,24 @@ extension LogoTypeVC {
                     
                     
                     let imgName = UUID().uuidString
-
+                    
                     CoreDataManager.shared.saveImageFromURLToDocumentsDirectory(response.url, withName: imgName) { [self] savedPath in
                         if let path = savedPath {
-                              DispatchQueue.main.async {
-                                  let vc = Storyboard.aiLogo.instantiate(ExportVC.self)
-                                  vc.modalPresentationStyle = .fullScreen
+                            DispatchQueue.main.async {
+                                let vc = Storyboard.aiLogo.instantiate(ExportVC.self)
+                                vc.modalPresentationStyle = .fullScreen
                                 
                                 self.present(vc, animated: true)
-                                  vc.lblPrompt.text = txtView.text
-                                    vc.previewImg.image = UIImage(contentsOfFile: path)
-                                    self.mainAnimationView.isHidden = true
-                                  for subview in animationView.subviews {
-                                      subview.removeFromSuperview()
-                                  }
-                                  lblSec.text = "0.0"
+                                vc.lblPrompt.text = txtView.text
+                                vc.previewImg.image = UIImage(contentsOfFile: path)
+                                self.mainAnimationView.isHidden = true
+                                for subview in animationView.subviews {
+                                    subview.removeFromSuperview()
                                 }
+                                lblSec.text = "0.0"
+                            }
                             stopTimer()
-                           
+                            
                         }
                         CoreDataManager.shared.saveRecord(prompt: prompt, imageURL: response.url)
                         
@@ -499,9 +564,9 @@ extension LogoTypeVC {
             }
         }
     }
-
+    
     private func stopTimer() {
-            timer?.invalidate()
-            timer = nil
-        }
+        timer?.invalidate()
+        timer = nil
+    }
 }

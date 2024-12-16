@@ -1,5 +1,8 @@
 import UIKit
 import Lottie
+import AVKit
+import AVFoundation
+
 
 class OnboardViewController: UIViewController {
     
@@ -9,28 +12,53 @@ class OnboardViewController: UIViewController {
     
     @IBOutlet weak var buttonView: UIView!
     @IBOutlet weak var bottomPadding: NSLayoutConstraint!
+    var isloopMode: Bool = false
+    
+    var isFirstScreen: Bool = true
+    
     var tagID = 100
-    let titlArr = [
+    var currentAnimation: Int = 1
+    var titlArr = [
         "Welcome to AI Logo Maker",
         "Your Logo, AI-Powered",
         "See Your Brand Shine",
         "Generate Various Logos With One Click",
         "Generate Artwork With Creative Prompts",
     ]
-    //
+    
+    let videoPairs: [(primary: AnimationVideoName, secondary: AnimationVideoName)] = [
+        (.onboard_2, .onboard_2_1),
+        (.onboard_3, .onboard_3_1),
+        (.onboard_4, .onboard_4_1),
+        (.onboard_5, .onboard_5_1)
+    ]
+    
+    let animations: [(primary: AnimationFileName, secondary: AnimationFileName)] = [
+        (.onboard_2, .onboard_2_1),
+        (.onboard_3, .onboard_3_1),
+        (.onboard_4, .onboard_4_1),
+        (.onboard_5, .onboard_5_1)
+    ]
+    
     
     var currentPage: Int = 0
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configureLottieAnimation()
         configurePageControl()
         configureBottomPadding()
         configureOnboardCollectionView()
         
     }
+    
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        let indexPath = IndexPath(item: currentPage, section: 0)
+//        onboardCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+//    }
+  
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let pageIndex = round(scrollView.contentOffset.x / scrollView.frame.width)
@@ -64,37 +92,12 @@ extension OnboardViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OnboardCell", for: indexPath) as! OnboardCell
-        cell.lblTitle.text = titlArr[indexPath.row]
-        
+       
+        /*isFirstScreen ? (cell.lblTitle.text = titlArr[currentPage] ) :*/ (cell.lblTitle.text = titlArr[indexPath.row])
         cell.buttonActionClosure = { [self] in
-            cell.lblTitle.text = titlArr[indexPath.row]
-            let nextPage = currentPage + 1
-            
-            if nextPage < titlArr.count {
-                if indexPath.row < titlArr.count - 1{
-                    
-                    
-                    let nextIndexPath = IndexPath(item: indexPath.row + 1, section: 0)
-                    self.onboardCollectionView.scrollToItem(at: nextIndexPath, at: .centeredHorizontally, animated: true)
-                }
-                pageControl.currentPage = nextPage
-                currentPage = pageControl.currentPage
+        
+            if !isFirstScreen {
                 
-                self.animationFlow(screen: currentPage)
-            }
-            if indexPath.row > 0{
-                buttonView.isHidden = true
-                pageControl.isHidden = false
-            }
-            else{
-                buttonView.isHidden = false
-                pageControl.isHidden = true
-            }
-            
-            
-            
-            
-            if indexPath.item == titlArr.count - 1 {
                 let tabbar = Storyboard.main.instantiate(TabBarController.self)
                 tabbar.modalPresentationStyle = .fullScreen
                 self.removeSubviews(exceptTag: 10)
@@ -105,6 +108,28 @@ extension OnboardViewController: UICollectionViewDelegate, UICollectionViewDataS
                 //                        window.makeKeyAndVisible()
                 //                    }
             }
+            else{
+                let nextPage = currentPage + 1
+                if nextPage < titlArr.count {
+                    if indexPath.row < titlArr.count - 1{
+                        let nextIndexPath = IndexPath(item: indexPath.row + 1, section: 0)
+                        self.onboardCollectionView.scrollToItem(at: nextIndexPath, at: .centeredHorizontally, animated: true)
+                    }
+                    pageControl.currentPage = nextPage
+                    currentPage = pageControl.currentPage
+                    
+                    self.animationFlow(screen: currentPage)
+                }
+                if indexPath.row > 0{
+                    buttonView.isHidden = true
+                    pageControl.isHidden = false
+                }
+                else{
+                    buttonView.isHidden = false
+                    pageControl.isHidden = true
+                }
+            }
+            
             
         }
         return cell
@@ -121,19 +146,54 @@ extension OnboardViewController: UICollectionViewDelegate, UICollectionViewDataS
 extension OnboardViewController {
     
     private func configureLottieAnimation() {
-        setupLottieAnimation(
-            name: .onboard_1,
-            loopMode: .playOnce
-        ) { finished in
-            finished ? print("Animation Completed!") : print("Animation Interrupted!")
+        if isFirstScreen {
+            setupLottieAnimation(
+                name: .onboard_1,
+                loopMode: .playOnce
+            ) { finished in
+                finished ? print("Animation Completed!") : print("Animation Interrupted!")
+            }
         }
+        else {
+            setupLottieAnimation(
+                name: .onboard_5,
+                loopMode: .playOnce
+            ) { finished in
+                finished ? print("Animation Completed!") : print("Animation Interrupted!")
+                self.removeSubviews(exceptTag: 10)
+                self.setupLottieAnimation(name: .onboard_5_1, completion:{ _ in})
+            }
+        }
+        
+        
+        
+        
+        
+        //        setupVideoPlayback(videoName: AnimationVideoName.onboard_1, loopMode: true) { [weak self] finished in
+        //            print("aniamtion end")
+        //        }
+        
+        
     }
     
     private func configurePageControl() {
-        pageControl.isHidden = true
-        pageControl.numberOfPages = 4
-        pageControl.currentPage = 0
-        pageControl.hidesForSinglePage = true
+        if isFirstScreen {
+            pageControl.isHidden = true
+            pageControl.numberOfPages = 4
+            pageControl.currentPage = 0
+            pageControl.hidesForSinglePage = true
+        }
+        else{
+            pageControl.numberOfPages = 4
+            pageControl.currentPage = currentPage
+            pageControl.hidesForSinglePage = false
+            buttonView.isHidden = true
+            pageControl.isHidden = false
+//            let indexPath = IndexPath(item: currentPage, section: 0)
+//            onboardCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        }
+        
+        
     }
     
     private func configureBottomPadding() {
@@ -164,8 +224,92 @@ extension OnboardViewController {
 
 
 // MARK: - ANIMATION
-extension  OnboardViewController {
-    
+//extension OnboardViewController {
+//
+//    func animationFlow(screen: Int) {
+//        removeSubviews(exceptTag: 10)
+//
+//
+//        // Ensure screen index is valid
+//        guard screen > 0 && screen <= videoPairs.count else { return }
+//
+//        let videoPair = videoPairs[screen - 1]
+//        currentAnimation = screen - 1
+//        setupVideoPlayback(videoName: videoPair.primary, loopMode: false) { [weak self] finished in
+//            print("video ended :\(videoPair.primary)")
+//        }
+//
+//    }
+//
+//    func setupVideoPlayback(
+//        videoName: AnimationVideoName,
+//        loopMode: Bool = false,
+//        completion: @escaping (Bool) -> Void
+//    ) {
+//        clearExistingPlayerLayer()
+//        isloopMode = loopMode
+//
+//        guard let videoURL = Bundle.main.url(forResource: videoName.rawValue, withExtension: "mp4") else {
+//            completion(false)
+//            print("Video not found at \(videoName.rawValue)")
+//            return
+//        }
+//
+//        let player = AVPlayer(url: videoURL)
+//        let playerLayer = AVPlayerLayer(player: player)
+//
+//        playerLayer.frame = animationView.bounds
+//        playerLayer.videoGravity = .resizeAspectFill
+//
+//        animationView.layer.addSublayer(playerLayer)
+//
+//        player.play()
+//
+//        NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying(_:)), name: .AVPlayerItemDidPlayToEndTime, object: player.currentItem)
+//        }
+//
+//    @objc func playerDidFinishPlaying(_ notification: Notification) {
+//        // Ensure the player item exists
+//        guard let playerItem = notification.object as? AVPlayerItem else { return }
+//        if isloopMode{
+//            // Restart the video if loop mode is enabled
+//
+//            if let playerLayer = animationView.layer.sublayers?.first(where: { $0 is AVPlayerLayer }) as? AVPlayerLayer {
+//                playerLayer.player?.seek(to: .zero)
+//                playerLayer.player?.play()
+//            }
+//
+//        }
+//        else{
+//            let videoPair = videoPairs[currentAnimation]
+//            self.setupVideoPlayback(videoName: videoPair.secondary, loopMode: true, completion: { _ in
+//                            // Add any post-secondary video logic here if needed
+//                        })
+//
+//        }
+//    }
+//
+//    private func removeSubviews(exceptTag tag: Int) {
+//        // Remove all subviews except the ones with the specified tag
+//        for subview in animationView.subviews where subview.tag != tag {
+//            subview.removeFromSuperview()
+//        }
+//    }
+//
+//    private func clearExistingPlayerLayer() {
+//        // Remove any existing player layer before setting a new one
+//        if let playerLayer = animationView.layer.sublayers?.first(where: { $0 is AVPlayerLayer }) {
+//            playerLayer.removeFromSuperlayer()
+//        }
+//
+//        // Remove any observers from the previous video player
+//        NotificationCenter.default.removeObserver(self, name: .AVPlayerItemDidPlayToEndTime, object: nil)
+//    }
+//
+//}
+// MARK: LOTTIE ANIMATIONS
+
+extension OnboardViewController {
     func setupLottieAnimation(
         name: AnimationFileName,
         loopMode: LottieLoopMode = .loop,
@@ -196,20 +340,28 @@ extension  OnboardViewController {
             (.onboard_4, .onboard_4_1),
             (.onboard_5, .onboard_5_1)
         ]
-
+        
         guard screen > 0 && screen <= animations.count else { return }
         
         let animationPair = animations[screen - 1]
         
         if screen == 4 {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [self] in
-
-                setupLottieAnimation(name: animationPair.primary, loopMode: .playOnce) { [weak self] finished in
-                    guard let self = self, finished else { return }
-                    self.removeSubviews(exceptTag: 10)
-                    self.setupLottieAnimation(name: animationPair.secondary, completion:{ _ in})
-                }
-            }
+            
+            //                DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [self] in
+            //
+            //                    setupLottieAnimation(name: animationPair.primary, loopMode: .playOnce) { [weak self] finished in
+            //                        guard let self = self, finished else { return }
+            //                        self.removeSubviews(exceptTag: 10)
+            //                        self.setupLottieAnimation(name: animationPair.secondary, completion:{ _ in})
+            //                    }
+            //                }
+            let vc = Storyboard.main.instantiate(OnboardViewController.self)
+            vc.modalTransitionStyle = .crossDissolve
+            vc.modalPresentationStyle = .fullScreen
+            vc.currentPage = 4
+            vc.isFirstScreen = false
+            vc.titlArr[0] = titlArr[4]
+            present(vc, animated: true)
             
             
         }
@@ -224,9 +376,9 @@ extension  OnboardViewController {
     }
     
     private func removeSubviews(exceptTag tag: Int) {
+        // Remove all subviews except the ones with the specified tag
         for subview in animationView.subviews where subview.tag != tag {
             subview.removeFromSuperview()
         }
     }
-    
 }

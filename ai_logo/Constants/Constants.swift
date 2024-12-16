@@ -97,3 +97,4 @@ let discoverArr: [Style] = [
 let startPrompt = "A black and white sketch of a bouquet of flowers , including large blooming flowers and smaller buds on long stems against a plain background"
 
 
+let logoPrompt = "a modern text-based logo for Dzine Media, featuring sleek typography with a tech-inspired font, the slogan \"Grow with us\" seamlessly integrated below the company name, vibrant color gradients symbolizing growth and innovation, minimalistic design emphasizing clarity and professionalism, high-resolution vector art suitable for digital and print media, showcasing an IT company identity"

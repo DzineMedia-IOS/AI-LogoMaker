@@ -46,6 +46,8 @@ class CreationVC: UIViewController,UITextViewDelegate {
 
         projectCollectionView.delegate = self
         projectCollectionView.dataSource = self
+        
+        projectCollectionView.isScrollEnabled = false
         DispatchQueue.main.async { [weak self] in
         
             self?.stylingUI()

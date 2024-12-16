@@ -37,6 +37,13 @@ func applyGradientToButton(
     // Insert the gradient layer
     button.layer.insertSublayer(gradientLayer, at: 0)
 }
+func removeGradientFromButton(button: UIButton) {
+    button.layer.sublayers?.forEach { layer in
+        if let gradientLayer = layer as? CAGradientLayer {
+            gradientLayer.removeFromSuperlayer()
+        }
+    }
+}
 
 
 extension UILabel {

@@ -233,7 +233,7 @@
                                                 <fontDescription key="fontDescription" name="Outfit-Medium" family="Outfit" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 <variation key="heightClass=regular-widthClass=regular">
-                                                    <fontDescription key="fontDescription" name="Outfit-Medium" family="Outfit" pointSize="28"/>
+                                                    <fontDescription key="fontDescription" name="Outfit-Medium" family="Outfit" pointSize="30"/>
                                                 </variation>
                                             </textView>
                                         </subviews>
