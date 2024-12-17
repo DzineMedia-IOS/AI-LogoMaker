@@ -11,3 +11,9 @@ struct Style{
     let title: String
 }
 
+
+struct ProjectImage {
+    let id: Int
+    let imageName: String
+    let projectPrompt: String
+}

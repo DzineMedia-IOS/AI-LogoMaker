@@ -41,9 +41,9 @@ extension RecentCell: UICollectionViewDelegate, UICollectionViewDataSource,UICol
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProjectCell", for: indexPath) as! ProjectCell
         cell.tryImg.isHidden = false
         let discover = discoverArr[indexPath.row]
-        cell.img.image = UIImage(named: discover.img)
+        cell.img.image = UIImage(named: discover.imageName)
         cell.tryNowAction = {
-            NotificationCenter.default.post(name: .tryPrompt, object: nil, userInfo: ["prompt": discover.title])
+            NotificationCenter.default.post(name: .tryPrompt, object: nil, userInfo: ["prompt": discover.projectPrompt])
         }
         return cell
     }
@@ -51,7 +51,7 @@ extension RecentCell: UICollectionViewDelegate, UICollectionViewDataSource,UICol
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         hapticFeedBackAction()
         let discover = discoverArr[indexPath.row]
-        NotificationCenter.default.post(name: .prompt, object: nil, userInfo: ["prompt": discover.title, "img": discover.img])
+        NotificationCenter.default.post(name: .prompt, object: nil, userInfo: ["prompt": discover.projectPrompt, "img": discover.imageName])
 
     }
     

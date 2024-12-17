@@ -150,16 +150,19 @@ extension OnboardViewController {
             setupLottieAnimation(
                 name: .onboard_1,
                 loopMode: .playOnce
-            ) { finished in
+            ) { [self] finished in
                 finished ? print("Animation Completed!") : print("Animation Interrupted!")
             }
         }
         else {
+            onboardCollectionView.isHidden = true
+            onboardCollectionView.alpha = 0.0
             setupLottieAnimation(
                 name: .onboard_5,
                 loopMode: .playOnce
             ) { finished in
                 finished ? print("Animation Completed!") : print("Animation Interrupted!")
+                self.animatieOnboarding()
                 self.removeSubviews(exceptTag: 10)
                 self.setupLottieAnimation(name: .onboard_5_1, completion:{ _ in})
             }
@@ -224,90 +227,20 @@ extension OnboardViewController {
 
 
 // MARK: - ANIMATION
-//extension OnboardViewController {
-//
-//    func animationFlow(screen: Int) {
-//        removeSubviews(exceptTag: 10)
-//
-//
-//        // Ensure screen index is valid
-//        guard screen > 0 && screen <= videoPairs.count else { return }
-//
-//        let videoPair = videoPairs[screen - 1]
-//        currentAnimation = screen - 1
-//        setupVideoPlayback(videoName: videoPair.primary, loopMode: false) { [weak self] finished in
-//            print("video ended :\(videoPair.primary)")
-//        }
-//
-//    }
-//
-//    func setupVideoPlayback(
-//        videoName: AnimationVideoName,
-//        loopMode: Bool = false,
-//        completion: @escaping (Bool) -> Void
-//    ) {
-//        clearExistingPlayerLayer()
-//        isloopMode = loopMode
-//
-//        guard let videoURL = Bundle.main.url(forResource: videoName.rawValue, withExtension: "mp4") else {
-//            completion(false)
-//            print("Video not found at \(videoName.rawValue)")
-//            return
-//        }
-//
-//        let player = AVPlayer(url: videoURL)
-//        let playerLayer = AVPlayerLayer(player: player)
-//
-//        playerLayer.frame = animationView.bounds
-//        playerLayer.videoGravity = .resizeAspectFill
-//
-//        animationView.layer.addSublayer(playerLayer)
-//
-//        player.play()
-//
-//        NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying(_:)), name: .AVPlayerItemDidPlayToEndTime, object: player.currentItem)
-//        }
-//
-//    @objc func playerDidFinishPlaying(_ notification: Notification) {
-//        // Ensure the player item exists
-//        guard let playerItem = notification.object as? AVPlayerItem else { return }
-//        if isloopMode{
-//            // Restart the video if loop mode is enabled
-//
-//            if let playerLayer = animationView.layer.sublayers?.first(where: { $0 is AVPlayerLayer }) as? AVPlayerLayer {
-//                playerLayer.player?.seek(to: .zero)
-//                playerLayer.player?.play()
-//            }
-//
-//        }
-//        else{
-//            let videoPair = videoPairs[currentAnimation]
-//            self.setupVideoPlayback(videoName: videoPair.secondary, loopMode: true, completion: { _ in
-//                            // Add any post-secondary video logic here if needed
-//                        })
-//
-//        }
-//    }
-//
-//    private func removeSubviews(exceptTag tag: Int) {
-//        // Remove all subviews except the ones with the specified tag
-//        for subview in animationView.subviews where subview.tag != tag {
-//            subview.removeFromSuperview()
-//        }
-//    }
-//
-//    private func clearExistingPlayerLayer() {
-//        // Remove any existing player layer before setting a new one
-//        if let playerLayer = animationView.layer.sublayers?.first(where: { $0 is AVPlayerLayer }) {
-//            playerLayer.removeFromSuperlayer()
-//        }
-//
-//        // Remove any observers from the previous video player
-//        NotificationCenter.default.removeObserver(self, name: .AVPlayerItemDidPlayToEndTime, object: nil)
-//    }
-//
-//}
-// MARK: LOTTIE ANIMATIONS
+extension OnboardViewController {
+    func animatieOnboarding() {
+        onboardCollectionView.alpha = 0.0
+        onboardCollectionView.isHidden = false
+        onboardCollectionView.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+        
+        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
+            self.onboardCollectionView.alpha = 1.0
+            self.onboardCollectionView.transform = .identity
+        }, completion: nil)
+    }
+
+}
+//MARK: LOTTIE ANIMATIONS
 
 extension OnboardViewController {
     func setupLottieAnimation(
@@ -333,6 +266,8 @@ extension OnboardViewController {
     
     func animationFlow(screen: Int) {
         removeSubviews(exceptTag: 10)
+        onboardCollectionView.isHidden = true
+        animationView.alpha = 0.0
         
         let animations: [(primary: AnimationFileName, secondary: AnimationFileName)] = [
             (.onboard_2, .onboard_2_1),
@@ -367,9 +302,16 @@ extension OnboardViewController {
         }
         
         else{
+            UIView.animate(withDuration: 0.5, animations: { [self] in
+                animationView.alpha = 1.0
+            })
             setupLottieAnimation(name: animationPair.primary, loopMode: .playOnce) { [weak self] finished in
                 guard let self = self, finished else { return }
                 self.removeSubviews(exceptTag: 10)
+//
+                animatieOnboarding()
+                
+
                 self.setupLottieAnimation(name: animationPair.secondary, completion:{ _ in})
             }
         }
