@@ -43,18 +43,18 @@ class CreationVC: UIViewController,UITextViewDelegate {
         creationCollectionView.dataSource = self
         creationCollectionView.delegate = self
         textView.delegate = self
-
+        
         projectCollectionView.delegate = self
         projectCollectionView.dataSource = self
         
         projectCollectionView.isScrollEnabled = false
         DispatchQueue.main.async { [weak self] in
-        
+            
             self?.stylingUI()
         }
-       
-
-
+        
+        
+        
     }
     override func viewIsAppearing(_ animated: Bool) {
         DispatchQueue.main.async { [weak self] in
@@ -81,14 +81,14 @@ class CreationVC: UIViewController,UITextViewDelegate {
         let prompt = PromptGenerator.aiImagePrompts[randomIndex]
         textView.text = prompt
     }
-
-
+    
+    
     
     @objc func popUpAction(){
         
         NotificationCenter.default.removeObserver(self, name: Notification.Name("popUp"), object: nil)
         popUpView.isHidden = true
- }
+    }
     
     @IBAction func btnPro(_ sender: Any) {
         let vc = Storyboard.premium.instantiate(ProVC.self)
@@ -101,12 +101,12 @@ class CreationVC: UIViewController,UITextViewDelegate {
     }
     @IBAction func btnArtWork(_ sender: Any) {
         
-//        NotificationCenter.default.addObserver(self,
-//                                               selector: #selector(popUpAction),
-//                                               name: Notification.Name("popUp"),
-//                                               object: nil)
-//        NotificationCenter.default.post(name: Notification.Name("animation"), object: nil)
-//        popUpView.isHidden = false
+        //        NotificationCenter.default.addObserver(self,
+        //                                               selector: #selector(popUpAction),
+        //                                               name: Notification.Name("popUp"),
+        //                                               object: nil)
+        //        NotificationCenter.default.post(name: Notification.Name("animation"), object: nil)
+        //        popUpView.isHidden = false
         setupAnimation()
         startTimer()
         let prompt = self.textView.text ?? ""
@@ -129,20 +129,20 @@ class CreationVC: UIViewController,UITextViewDelegate {
             textView.text = message
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                       self.view.layoutIfNeeded()
-                       if let scrollView = self.view as? UIScrollView {
-                           scrollView.setContentOffset(.zero, animated: true)
-                       } else {
-                          
-                           if let scrollView = self.view.subviews.compactMap({ $0 as? UIScrollView }).first {
-                               scrollView.setContentOffset(.zero, animated: true)
-                           }
-                       }
-                   }
+                self.view.layoutIfNeeded()
+                if let scrollView = self.view as? UIScrollView {
+                    scrollView.setContentOffset(.zero, animated: true)
+                } else {
+                    
+                    if let scrollView = self.view.subviews.compactMap({ $0 as? UIScrollView }).first {
+                        scrollView.setContentOffset(.zero, animated: true)
+                    }
+                }
+            }
             showToast(message: "Prompt added", font: UIFont.systemFont(ofSize: 12))
         }
     }
-
+    
     @objc private func styleAction(_ notification: Notification) {
         if let userInfo = notification.userInfo,let style = userInfo["style"] as? String{
             selectedStyle = style
@@ -157,20 +157,20 @@ class CreationVC: UIViewController,UITextViewDelegate {
     
     // text fields Delegate Methods
     func textViewDidBeginEditing(_ textView: UITextView) {
-            // Remove placeholder text when editing begins
+        // Remove placeholder text when editing begins
         btnClear.isHidden = false
-            if textView.text == startPrompt {
-                textView.text = ""
-                textView.textColor = .kPrompt
-            }
+        if textView.text == startPrompt {
+            textView.text = ""
+            textView.textColor = .kPrompt
         }
+    }
     func textViewDidEndEditing(_ textView: UITextView) {
         btnClear.isHidden = true
         if textView.text.isEmpty {
-              textView.text = startPrompt
+            textView.text = startPrompt
             textView.textColor = .kPrompt
-          }
-      }
+        }
+    }
     
 }
 
@@ -232,13 +232,13 @@ extension CreationVC {
         
         
         textBackView.layer.cornerRadius = textBackView.frame.height / 5
-      
+        
         let width : CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 4 : 2
-
+        
         textBackView.applyGradientBorder(colors: [UIColor.accent, UIColor.kRed], lineWidth: width)
         btnPrompt.layer.cornerRadius = btnPrompt.frame.height / 2
-       
-       
+        
+        
         btnPro.layer.cornerRadius = btnPro.frame.height / 2
         applyGradientToButton(
             button: btnPro,
@@ -252,7 +252,7 @@ extension CreationVC {
             startPoint: CGPoint(x: 0, y: 0),
             endPoint: CGPoint(x: 1, y: 1)
         )
-
+        
         
         btnArtWork.layer.cornerRadius = btnArtWork.frame.height / 2
         applyGradientToButton(
@@ -261,9 +261,9 @@ extension CreationVC {
             startPoint: CGPoint(x: 0, y: 0),
             endPoint: CGPoint(x: 1, y: 1)
         )
-       
         
-       
+        
+        
     }
     
     private func notificationObservers() {
@@ -279,14 +279,14 @@ extension CreationVC {
         let creationCellHeight = creationCollectionView.frame.height
         let discoverCellWidth = view.frame.width / 2
         
-//        let height = discoverCellWidth * 17.5
+        //        let height = discoverCellWidth * 17.5
         if Int(items) % 2 == 0 {
             
             items -= (0.5)
         }
-
+        
         let height = discoverCellWidth * CGFloat(items)
-
+        
         scrollHeight.constant = topHeight + creationCellHeight + height
     }
 }
@@ -322,7 +322,7 @@ extension CreationVC {
     
     private func generateLogo(prompt: String) {
         tabBarController?.tabBar.isHidden = true
-
+        
         APIManager.shared.generateLogo(prompt: prompt) { result in
             DispatchQueue.main.async { [self] in
                 switch result {
@@ -334,48 +334,48 @@ extension CreationVC {
                     
                     
                     let imgName = UUID().uuidString
-
+                    
                     CoreDataManager.shared.saveImageFromURLToDocumentsDirectory(response.url, withName: imgName) { [self] savedPath in
                         if let path = savedPath {
                             DispatchQueue.main.async { [self] in
-                                  let vc = Storyboard.aiLogo.instantiate(ExportVC.self)
-                                  vc.modalPresentationStyle = .fullScreen
+                                let vc = Storyboard.aiLogo.instantiate(ExportVC.self)
+                                vc.modalPresentationStyle = .fullScreen
                                 self.present(vc, animated: true)
                                 
-                                  vc.lblPrompt.text = textView.text
-                                    vc.previewImg.image = UIImage(contentsOfFile: path)
-                                  // remove animation
-                                  self.mainAnimationView.isHidden = true
-                                  for subview in animationView.subviews {
-                                      subview.removeFromSuperview()
-                                  }
-                                  self.lblSec.text = "0.0"
-                                  tabBarController?.tabBar.isHidden = false
-
+                                vc.lblPrompt.text = textView.text
+                                vc.previewImg.image = UIImage(contentsOfFile: path)
+                                // remove animation
+                                vc.imgPath = imgName
+                                vc.firstImg = path
+                                
+                                self.mainAnimationView.isHidden = true
+                                for subview in animationView.subviews {
+                                    subview.removeFromSuperview()
                                 }
+                                self.lblSec.text = "0.0"
+                                tabBarController?.tabBar.isHidden = false
+                                
+                            }
                             stopTimer()
-                           
-
-                           
+                            
                         }
-                        CoreDataManager.shared.saveRecord(prompt: prompt, imageURL: response.url)
-                        
                     }
                 case .failure(let error):
                     print("Error:", error.localizedDescription)
+                    showAlert(title: "Error!", message: "Something went wrong. Please check your internet connection, and Try again!", viewController: self)
                     tabBarController?.tabBar.isHidden = false
                     self.mainAnimationView.isHidden = true
-                  for subview in animationView.subviews {
-                      subview.removeFromSuperview()
-                  }
+                    for subview in animationView.subviews {
+                        subview.removeFromSuperview()
+                    }
                     // Show an alert to the user if needed
                 }
             }
         }
     }
-
+    
     private func stopTimer() {
-            timer?.invalidate()
-            timer = nil
-        }
+        timer?.invalidate()
+        timer = nil
+    }
 }

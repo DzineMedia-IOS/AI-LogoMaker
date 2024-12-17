@@ -70,7 +70,7 @@ class LoaderVC: UIViewController {
                                 }
                             }
                         }
-                        CoreDataManager.shared.saveRecord(prompt: prompt, imageURL: response.url)
+//                        CoreDataManager.shared.saveRecord(prompt: prompt, imageURL: response.url)
                     }
                 case .failure(let error):
                     print("Error:", error.localizedDescription)

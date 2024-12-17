@@ -16,7 +16,9 @@ class PreviewVc: UIViewController {
     @IBOutlet weak var btnShare: UIButton!
     @IBOutlet weak var btnCopyPrompt: UIButton!
     
+    var imgArray : [String]?
     var fontSize : CGFloat?
+    var imgUrl: String? 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,11 +79,15 @@ class PreviewVc: UIViewController {
     @IBAction func btnExport(_ sender: Any) {
         let vc = Storyboard.aiLogo.instantiate(ExportVC.self)
         vc.modalPresentationStyle = .fullScreen
+        vc.isFromPreview = true
+
         present(vc, animated: true)
         vc.previewImg.image = self.previewImg.image
         vc.lblPrompt.text = self.textView.text
-        
+        vc.imgArr = imgArray ?? []
+        vc.firstImg = imgUrl
     }
+    
     @IBAction func btnShare(_ sender: Any) {
 
         guard let image = previewImg.image else {

@@ -6,9 +6,12 @@
 //
 
 import UIKit
+import Lottie
 
 class ProjectCell: UICollectionViewCell {
 
+    @IBOutlet weak var animationView: UIView!
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
     @IBOutlet weak var tryImg: UIImageView!
     @IBOutlet weak var img: UIImageView!
     
@@ -17,6 +20,7 @@ class ProjectCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        indicator.isHidden = true
         tryImg.isHidden = true
         img.layer.cornerRadius = img.frame.height / 5
         
@@ -25,14 +29,32 @@ class ProjectCell: UICollectionViewCell {
             tryImg.addGestureRecognizer(tapGesture)
     }
     
+    func setupAnimation(){
+        
+        let lottieAnimation = LottieAnimationView(name: .loader)
+        lottieAnimation.frame = animationView.bounds
+        lottieAnimation.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        lottieAnimation.contentMode = .scaleAspectFill
+        lottieAnimation.tintColor = .white
+        lottieAnimation.loopMode = .loop
+        animationView.addSubview(lottieAnimation)
+        lottieAnimation.play { finished in
+            print("Animation Completed!")
+        }
+    }
+    
+     func removeSubviews() {
+        for subview in animationView.subviews {
+            subview.removeFromSuperview()
+        }
+    }
     func imgBorder(){
         let width = UIDevice.current.userInterfaceIdiom == .pad ? 5 : 2
         img.layer.borderWidth = CGFloat(width)
         img.layer.borderColor = UIColor.kLightBlack.cgColor
-        img.layer.cornerRadius = img.frame.height / 4
+//        img.layer.cornerRadius = img.frame.height / 4
     }
     
-   
     @objc func imageTapped() {
         tryNowAction?()
         clickSplashEffect(on: tryImg)

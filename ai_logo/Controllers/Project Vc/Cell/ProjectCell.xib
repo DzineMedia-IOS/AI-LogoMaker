@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,22 +21,38 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RJk-zP-lp6">
                         <rect key="frame" x="0.0" y="0.0" width="131" height="131"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="project_1" translatesAutoresizingMaskIntoConstraints="NO" id="fKN-AE-YPb">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fKN-AE-YPb">
                                 <rect key="frame" x="0.0" y="0.0" width="131" height="131"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="try" translatesAutoresizingMaskIntoConstraints="NO" id="qaN-cF-xMW">
                                 <rect key="frame" x="32.666666666666664" y="98.333333333333329" width="65.666666666666686" height="26"/>
                             </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="ygz-DE-cyX">
+                                <rect key="frame" x="55.666666666666657" y="55.666666666666657" width="20" height="20"/>
+                                <color key="color" name="kWhite"/>
+                            </activityIndicatorView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Tm-NN-MsS">
+                                <rect key="frame" x="50.666666666666657" y="50.666666666666657" width="30" height="30"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="3M7-sf-qcb"/>
+                                    <constraint firstAttribute="height" constant="30" id="5nd-m7-lVp"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="0Tm-NN-MsS" firstAttribute="centerY" secondItem="RJk-zP-lp6" secondAttribute="centerY" id="0NA-hP-MPA"/>
+                            <constraint firstItem="ygz-DE-cyX" firstAttribute="centerY" secondItem="RJk-zP-lp6" secondAttribute="centerY" id="0Rd-L1-eZR"/>
                             <constraint firstItem="fKN-AE-YPb" firstAttribute="leading" secondItem="RJk-zP-lp6" secondAttribute="leading" id="5te-44-Sit"/>
                             <constraint firstItem="qaN-cF-xMW" firstAttribute="centerX" secondItem="RJk-zP-lp6" secondAttribute="centerX" id="97q-Jf-Y5R"/>
                             <constraint firstItem="qaN-cF-xMW" firstAttribute="height" secondItem="RJk-zP-lp6" secondAttribute="height" multiplier="0.2" id="99I-mj-Wfa"/>
+                            <constraint firstItem="ygz-DE-cyX" firstAttribute="centerX" secondItem="RJk-zP-lp6" secondAttribute="centerX" id="GQn-Ar-Ixc"/>
                             <constraint firstItem="qaN-cF-xMW" firstAttribute="centerY" secondItem="RJk-zP-lp6" secondAttribute="centerY" multiplier="1.7" id="J4t-em-dEs"/>
                             <constraint firstAttribute="trailing" secondItem="fKN-AE-YPb" secondAttribute="trailing" id="Mmu-i6-fvk"/>
                             <constraint firstItem="fKN-AE-YPb" firstAttribute="top" secondItem="RJk-zP-lp6" secondAttribute="top" id="PuO-Rk-ARY"/>
                             <constraint firstItem="qaN-cF-xMW" firstAttribute="width" secondItem="RJk-zP-lp6" secondAttribute="width" multiplier="0.5" id="RBe-ya-noL"/>
+                            <constraint firstItem="0Tm-NN-MsS" firstAttribute="centerX" secondItem="RJk-zP-lp6" secondAttribute="centerX" id="e4m-hC-di9"/>
                             <constraint firstAttribute="bottom" secondItem="fKN-AE-YPb" secondAttribute="bottom" id="hc2-5r-fDo"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
@@ -55,14 +72,18 @@
             </constraints>
             <size key="customSize" width="131" height="131"/>
             <connections>
+                <outlet property="animationView" destination="0Tm-NN-MsS" id="iIB-R9-0Hw"/>
                 <outlet property="img" destination="fKN-AE-YPb" id="WNz-T8-Rs1"/>
+                <outlet property="indicator" destination="ygz-DE-cyX" id="1DJ-j6-Bie"/>
                 <outlet property="tryImg" destination="qaN-cF-xMW" id="Su6-qb-KS6"/>
             </connections>
             <point key="canvasLocation" x="87.786259541984734" y="48.239436619718312"/>
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="project_1" width="183" height="183"/>
         <image name="try" width="83" height="31"/>
+        <namedColor name="kWhite">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

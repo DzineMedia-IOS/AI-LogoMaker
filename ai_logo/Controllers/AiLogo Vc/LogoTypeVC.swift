@@ -201,12 +201,7 @@ class LogoTypeVC: UIViewController,UITextViewDelegate, UITextFieldDelegate {
             startTimer()
             
             self.generateLogo(prompt: prompt)
-            
-            //            self.generateLogo(prompt: prompt)
-            
-            
-            
-            
+           
         }
     }
     
@@ -523,6 +518,8 @@ extension LogoTypeVC {
 extension LogoTypeVC {
     
     private func generateLogo(prompt: String) {
+        tabBarController?.tabBar.isHidden = true
+
         APIManager.shared.generateLogo(prompt: prompt) { result in
             DispatchQueue.main.async { [self] in
                 switch result {
@@ -534,36 +531,89 @@ extension LogoTypeVC {
                     
                     
                     let imgName = UUID().uuidString
-                    
+
                     CoreDataManager.shared.saveImageFromURLToDocumentsDirectory(response.url, withName: imgName) { [self] savedPath in
                         if let path = savedPath {
-                            DispatchQueue.main.async {
-                                let vc = Storyboard.aiLogo.instantiate(ExportVC.self)
-                                vc.modalPresentationStyle = .fullScreen
-                                
+                            DispatchQueue.main.async { [self] in
+                                  let vc = Storyboard.aiLogo.instantiate(ExportVC.self)
+                                  vc.modalPresentationStyle = .fullScreen
                                 self.present(vc, animated: true)
+                                
                                 vc.lblPrompt.text = txtView.text
-                                vc.previewImg.image = UIImage(contentsOfFile: path)
-                                self.mainAnimationView.isHidden = true
-                                for subview in animationView.subviews {
-                                    subview.removeFromSuperview()
+                                    vc.previewImg.image = UIImage(contentsOfFile: path)
+                                  // remove animation
+                                    vc.imgPath = imgName
+                                    vc.firstImg = path
+
+                                  self.mainAnimationView.isHidden = true
+                                  for subview in animationView.subviews {
+                                      subview.removeFromSuperview()
+                                  }
+                                  self.lblSec.text = "0.0"
+                                  tabBarController?.tabBar.isHidden = false
+
                                 }
-                                lblSec.text = "0.0"
-                            }
                             stopTimer()
-                            
                         }
-                        CoreDataManager.shared.saveRecord(prompt: prompt, imageURL: response.url)
-                        
                     }
+                    
                 case .failure(let error):
                     print("Error:", error.localizedDescription)
-                    
+                    showAlert(title: "Error!", message: "Something went wrong. Please check your internet connection, and Try again!", viewController: self)
+                    self.mainAnimationView.isHidden = true
+                  for subview in animationView.subviews {
+                      subview.removeFromSuperview()
+                  }
                     // Show an alert to the user if needed
                 }
             }
         }
     }
+
+    
+//    private func generateLogo(prompt: String) {
+//        APIManager.shared.generateLogo(prompt: prompt) { result in
+//            DispatchQueue.main.async { [self] in
+//                switch result {
+//                case .success(let response):
+//                    print("Logo Generation Results:")
+//                    print("Cost:", response.cost)
+//                    print("Seed:", response.seed)
+//                    print("Logo URL:", response.url)
+//                    
+//                    
+//                    let imgName = UUID().uuidString
+//                    
+//                    CoreDataManager.shared.saveImageFromURLToDocumentsDirectory(response.url, withName: imgName) { [self] savedPath in
+//                        if let path = savedPath {
+//                            DispatchQueue.main.async {
+//                                let vc = Storyboard.aiLogo.instantiate(ExportVC.self)
+//                                vc.modalPresentationStyle = .fullScreen
+//                                vc.imgPath = path
+//
+//                                self.present(vc, animated: true)
+//                                vc.lblPrompt.text = self.txtView.text
+//                                vc.previewImg.image = UIImage(contentsOfFile: path)
+//                                self.mainAnimationView.isHidden = true
+//                                for subview in animationView.subviews {
+//                                    subview.removeFromSuperview()
+//                                }
+//                                self.lblSec.text = "0.0"
+//                            }
+//                            stopTimer()
+//                            
+//                        }
+////                        CoreDataManager.shared.saveRecord(prompt: prompt, imageURL: response.url)
+//                        
+//                    }
+//                case .failure(let error):
+//                    print("Error:", error.localizedDescription)
+//                    
+//                    // Show an alert to the user if needed
+//                }
+//            }
+//        }
+//    }
     
     private func stopTimer() {
         timer?.invalidate()

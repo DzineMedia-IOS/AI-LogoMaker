@@ -42,9 +42,16 @@ class ExportVC: UIViewController {
     var selectedFormat :Int = 0
     var selectedQuality :Int = 0
     var imgUrl: String?
-    let imgArr = ["mock_1","mock_2", "mock_3"]
+    var imgArr: [String] = []
+    var imgPath: String?
     let formatArr = ["JPG","PNG","PDF"]
     let qualityArr = ["Regular", "Medium","Max"]
+    
+    var isFromPreview: Bool = false
+    var firstImg:String?
+    
+    var apiCount: Int = 0
+    var imgName: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,12 +62,48 @@ class ExportVC: UIViewController {
         configureSegmentedControls()
         addGestureDetector()
         
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         collectionVIew.reloadData()
         DispatchQueue.main.async { [weak self] in
             self?.styleUI()
+        }
+        
+    }
+    override func viewIsAppearing(_ animated: Bool) {
+        if !isFromPreview{
+            self.generateLogo(prompt: lblPrompt.text )
+        }
+        else{
+            let fileManager = FileManager.default
+
+            // 1. Get the Documents Directory
+            if let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first {
+                
+                
+              
+                let imges = imgArr
+                imgArr.removeAll()
+                for imageName in imges {
+                    let imageURL = documentsDirectory.appendingPathComponent("\(imageName).jpg")
+                    let fullPath = imageURL.path
+                    imgArr.append(fullPath)
+                    
+                    print("Full Path for \(imageName): \(fullPath)")
+                }
+                
+                // 4. Access a Specific Path (e.g., imgArr[3])
+                if imgArr.indices.contains(3) {
+                    firstImg = (firstImg ?? "") + ".jpg"
+                    let specificImagePath = documentsDirectory.appendingPathComponent(firstImg ?? "").path
+                    firstImg = specificImagePath
+                    print("Specific Path (imgArr[3]): \(specificImagePath)")
+                }
+            }
+
+            
         }
         
     }
@@ -196,7 +239,25 @@ extension ExportVC: UICollectionViewDelegate, UICollectionViewDataSource,UIColle
             
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProjectCell", for: indexPath) as! ProjectCell
-            cell.img.image = UIImage(named: imgArr[indexPath.row])
+          
+            if indexPath.row  < imgArr.count {
+                let imgName = imgArr[indexPath.row]
+                cell.img.image = UIImage(named: imgName)
+                cell.indicator.isHidden = true
+                cell.img.isHidden = false
+                cell.animationView.isHidden = true
+                cell.removeSubviews()
+
+
+            } else {
+                print("Index out of range: \(indexPath.row)")
+//                cell.indicator.startAnimating()
+//                cell.indicator.isHidden = false
+                cell.img.isHidden = true
+                cell.setupAnimation()
+
+
+            }
             cell.imgBorder()
             cell.tryImg.isHidden = false
             cell.tryImg.image = UIImage(resource: .proBadge)
@@ -216,6 +277,17 @@ extension ExportVC: UICollectionViewDelegate, UICollectionViewDataSource,UIColle
         else if collectionView == qualityCollectionView {
             selectedQuality = indexPath.item
             qualityCollectionView.reloadData()
+        }
+        else {
+          
+            
+            previewImg.image = UIImage(contentsOfFile: imgArr[indexPath.row])
+           
+            let oldImagePath = imgArr[indexPath.row]
+            imgArr[indexPath.row] = firstImg ?? ""
+            firstImg = oldImagePath
+            collectionView.reloadItems(at: [indexPath])
+
         }
         
     }
@@ -290,6 +362,9 @@ extension ExportVC {
         qualityCollectionView.delegate = self
         qualityCollectionView.dataSource = self
         
+        if !isFromPreview {
+        collectionVIew.isUserInteractionEnabled = false
+        }
     }
     
     private func loadPreviewImage() {
@@ -533,9 +608,6 @@ extension CGSize {
     }
 }
 
-
-
-
 extension ExportVC: UIDocumentPickerDelegate {
     
     func savePDF(image: UIImage) {
@@ -595,4 +667,62 @@ extension ExportVC: UIDocumentPickerDelegate {
     func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
         print("User cancelled the file picker")
     }
+}
+
+//  MARK: CALL API
+extension ExportVC {
+    private func generateLogo(prompt: String) {
+        
+        if apiCount < 3{
+            APIManager.shared.generateLogo(prompt: prompt) { result in
+                DispatchQueue.main.async { [self] in
+                    switch result {
+                    case .success(let response):
+                        print("Logo Generation Results:")
+                        print("Cost:", response.cost)
+                        print("Seed:", response.seed)
+                        print("Logo URL:", response.url)
+                        
+                        
+                        let imgName = UUID().uuidString
+                        
+                        
+                        CoreDataManager.shared.saveImageFromURLToDocumentsDirectory(response.url, withName: imgName) { [self] savedPath in
+                            if let path = savedPath {
+                                DispatchQueue.main.async {
+                                    self.apiCount += 1
+                                    
+                                    self.imgArr.append(path)
+                                    self.imgName.append(imgName)
+                                    
+                                    self.collectionVIew.reloadData()
+                                    self.generateLogo(prompt: self.lblPrompt.text)
+                                    
+                                }
+                                
+                            }
+                            
+                            
+                        }
+                    case .failure(let error):
+                        print("Error:", error.localizedDescription)
+                        
+                        // Show an alert to the user if needed
+                    }
+                }
+            }
+        }
+        else{
+            print("Api limit reached : \(apiCount) ")
+            if let imgPath = imgPath{
+                imgArr.append(imgPath)
+                imgName.append(imgPath)
+
+                CoreDataManager.shared.saveRecord(prompt: lblPrompt.text, imgPath: imgName)
+                collectionVIew.isUserInteractionEnabled = true
+
+            }
+        }
+    }
+
 }

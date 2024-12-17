@@ -26,7 +26,6 @@ class ProjectViewController: UIViewController {
         projectCollectionView.register(nib, forCellWithReuseIdentifier: "ProjectCell")
         projectCollectionView.delegate = self
         projectCollectionView.dataSource = self
-        projects = CoreDataManager.shared.fetchRecords()
         
         
         
@@ -65,26 +64,36 @@ extension ProjectViewController: UICollectionViewDataSource,UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProjectCell", for: indexPath) as! ProjectCell
-         let project = projects[indexPath.item]
-       
-        let fileManager = FileManager.default
+//         let project = projects[indexPath.item]
+//       
+         let fileManager = FileManager.default
         let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
+//
+//        if let imgName = project.imgPath {
+//            let imagePath = documentsDirectory.appendingPathComponent(imgName + ".jpg").path
+//            
+//            if fileManager.fileExists(atPath: imagePath) {
+//                if let image = UIImage(contentsOfFile: imagePath) {
+//                    cell.img.image = image
+//                } else {
+//                    print("Failed to load image from path: \(imagePath)")
+//                }
+//            } else {
+//                print("Image does not exist at path: \(imagePath)")
+//            }
+//        } else {
+//            print("imgName is nil for project at index \(indexPath.item)")
+//        }
+        let project = projects[indexPath.row]
 
-        if let imgName = project.imgPath {
-            let imagePath = documentsDirectory.appendingPathComponent(imgName + ".jpg").path
-            
-            if fileManager.fileExists(atPath: imagePath) {
-                if let image = UIImage(contentsOfFile: imagePath) {
-                    cell.img.image = image
-                } else {
-                    print("Failed to load image from path: \(imagePath)")
-                }
-            } else {
-                print("Image does not exist at path: \(imagePath)")
-            }
-        } else {
-            print("imgName is nil for project at index \(indexPath.item)")
-        }
+        if let imgPathsString = project.imgPath,
+             let imgPathsData = imgPathsString.data(using: .utf8),
+             let imageURLs = try? JSONSerialization.jsonObject(with: imgPathsData, options: []) as? [String] {
+            let imagePath = documentsDirectory.appendingPathComponent(imageURLs[3] + ".jpg").path
+            cell.img.image = UIImage(named: imagePath)
+          } else {
+              print("No image found")
+          }
         
         return cell
     }
@@ -103,20 +112,32 @@ extension ProjectViewController: UICollectionViewDataSource,UICollectionViewDele
         
         let project = projects[indexPath.item]
         
-        if let imgName = project.imgPath {
-            let imagePath = documentsDirectory.appendingPathComponent(imgName + ".jpg").path
-            if fileManager.fileExists(atPath: imagePath) {
-                if let image = UIImage(contentsOfFile: imagePath) {
-                    present(vc, animated: true)
-                    vc.previewImg.image = image
-                    vc.textView.text = project.prompt
-                }
-            }
+//        if let imgName = project.imgPath {
+//            let imagePath = documentsDirectory.appendingPathComponent(imgName + ".jpg").path
+//            if fileManager.fileExists(atPath: imagePath) {
+//                if let image = UIImage(contentsOfFile: imagePath) {
+//                    present(vc, animated: true)
+//                    vc.previewImg.image = image
+//                    vc.textView.text = project.prompt
+//                }
+//            }
+//
+//        } else {
+//            print("imgPath is nil for project at index \(indexPath.item)")
+//        }
 
-        } else {
-            print("imgPath is nil for project at index \(indexPath.item)")
-        }
+        
+        if let imgPathsString = project.imgPath,
+             let imgPathsData = imgPathsString.data(using: .utf8),
+             let imageURLs = try? JSONSerialization.jsonObject(with: imgPathsData, options: []) as? [String] {
+            present(vc, animated: true)
+            let imagePath = documentsDirectory.appendingPathComponent(imageURLs[3] + ".jpg").path
 
+            vc.previewImg.image = UIImage(named: imagePath)
+            vc.textView.text = project.prompt
+            vc.imgArray = imageURLs
+            vc.imgUrl = imageURLs[3]
+          }
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         var size = collectionView.frame.width/3 - 10
