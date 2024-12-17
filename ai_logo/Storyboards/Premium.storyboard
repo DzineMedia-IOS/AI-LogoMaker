@@ -178,6 +178,9 @@
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="24"/>
                                         </variation>
+                                        <connections>
+                                            <action selector="btnPrivacy:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="YE0-zh-vzQ"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XvJ-bb-XMI">
                                         <rect key="frame" x="20" y="3" width="73" height="27"/>
@@ -189,6 +192,9 @@
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="24"/>
                                         </variation>
+                                        <connections>
+                                            <action selector="btnTermOfUse:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="9Ja-9c-BA3"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NIG-dt-Uge">
                                         <rect key="frame" x="306" y="3" width="44" height="27"/>
@@ -200,6 +206,9 @@
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="24"/>
                                         </variation>
+                                        <connections>
+                                            <action selector="btnRestore:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="G7t-Nw-2jd"/>
+                                        </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QhY-6r-4sJ">
                                         <rect key="frame" x="243" y="9" width="1" height="15"/>

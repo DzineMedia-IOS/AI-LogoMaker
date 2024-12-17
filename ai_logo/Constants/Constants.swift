@@ -32,7 +32,17 @@ enum Storyboard: String {
         return viewController
     }
 }
+
+
+class Url{
+    static let appPrivacy = "https://www.trostun.com/privacy-policy/"
+    static let appTerms = "https://www.trostun.com/terms-of-use/"
+    static let dzmAppStoreUrl = "https://apps.apple.com/no/developer/dzine-media/id1643499681"
+}
+
+
 let hapticFeedbackKey = "hapticFeedbackEnabled"
+let onBoardKey = "onBoardKey"
 
 let styleArray: [Style] = [
     Style(img: "no_style", title: "No Style"),

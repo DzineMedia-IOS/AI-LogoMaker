@@ -119,6 +119,9 @@
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="28"/>
                                         </variation>
+                                        <connections>
+                                            <action selector="btnTermOfUse:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bdj-yr-lRg"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7GE-uz-RVf">
                                         <rect key="frame" x="105" y="10.666666666666629" width="92" height="29"/>
@@ -130,6 +133,9 @@
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="28"/>
                                         </variation>
+                                        <connections>
+                                            <action selector="btnPrivacy:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9eI-xj-BNn"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

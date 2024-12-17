@@ -106,15 +106,25 @@ extension SettingVc: UITableViewDataSource, UITableViewDelegate {
         let index = indexPath.row
         let section = indexPath.section
         switch section {
+        case 2:
+            switch index {
+            case 2:
+                if let privacy = URL(string: Url.dzmAppStoreUrl) {
+                    presentURLPages(from: self, url: privacy,height: 400)
+                }
+            default:
+                break
+                
+            }
         case 3 :
             switch index {
             case 0:
                
-                if let tnc = URL(string: "https://www.trostun.com/terms-and-conditions/") {
+                if let tnc = URL(string: Url.appTerms) {
                     presentURLPages(from: self, url: tnc, height: 400)
                 }
                 case 1:
-                if let privacy = URL(string: "https://www.trostun.com/privacy-policy/") {
+                if let privacy = URL(string: Url.appPrivacy) {
                     presentURLPages(from: self, url: privacy,height: 400)
                 }
             default:

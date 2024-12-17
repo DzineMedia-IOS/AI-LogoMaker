@@ -60,6 +60,8 @@ class CreationVC: UIViewController,UITextViewDelegate {
         DispatchQueue.main.async { [weak self] in
             self?.stylingUI()
         }
+        setScrollHeight()
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -74,6 +76,8 @@ class CreationVC: UIViewController,UITextViewDelegate {
         DispatchQueue.main.async { [weak self] in
             self?.stylingUI()
         }
+        setScrollHeight()
+
     }
     
     @IBAction func btnPrompt(_ sender: Any) {
@@ -101,12 +105,13 @@ class CreationVC: UIViewController,UITextViewDelegate {
     }
     @IBAction func btnArtWork(_ sender: Any) {
         
-        //        NotificationCenter.default.addObserver(self,
-        //                                               selector: #selector(popUpAction),
-        //                                               name: Notification.Name("popUp"),
-        //                                               object: nil)
-        //        NotificationCenter.default.post(name: Notification.Name("animation"), object: nil)
-        //        popUpView.isHidden = false
+//                NotificationCenter.default.addObserver(self,
+//                                                       selector: #selector(popUpAction),
+//                                                       name: Notification.Name("popUp"),
+//                                                       object: nil)
+//                NotificationCenter.default.post(name: Notification.Name("animation"), object: nil)
+//                popUpView.isHidden = false
+
         setupAnimation()
         startTimer()
         let prompt = self.textView.text ?? ""
@@ -286,8 +291,14 @@ extension CreationVC {
         }
         
         let height = discoverCellWidth * CGFloat(items)
-        
-        scrollHeight.constant = topHeight + creationCellHeight + height
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            let addition = discoverCellWidth / 2
+            scrollHeight.constant = topHeight + creationCellHeight + height + addition
+            
+        }
+        else{
+            scrollHeight.constant = topHeight + creationCellHeight + height
+        }
     }
 }
 

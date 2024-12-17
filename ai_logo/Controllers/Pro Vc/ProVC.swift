@@ -59,8 +59,23 @@ class ProVC: UIViewController {
     }
     
     
+    @IBAction func btnPrivacy(_ sender: Any) {
+        if let tnc = URL(string: Url.appPrivacy) {
+            presentURLPages(from: self, url: tnc, height: 400)
+        }
+      
+    }
+    
+    @IBAction func btnTermOfUse(_ sender: Any) {
+   
+        if let privacy = URL(string: Url.appTerms) {
+        presentURLPages(from: self, url: privacy,height: 400)
+    }
+}
     
     
+    @IBAction func btnRestore(_ sender: Any) {
+    }
 }
 
 // MARK: UICOOLECTION VIEW CELL

@@ -73,7 +73,7 @@
                                 <rect key="frame" x="0.0" y="119" width="393" height="733"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kaw-Qw-beo" userLabel="ScrollView">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="3600"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="1600"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EH9-pv-eb7">
                                                 <rect key="frame" x="16" y="0.0" width="361" height="190"/>
@@ -294,7 +294,7 @@
                                                 </cells>
                                             </collectionView>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2iL-Xw-RrH">
-                                                <rect key="frame" x="16" y="404" width="361" height="3156"/>
+                                                <rect key="frame" x="16" y="404" width="361" height="1156"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="NiR-ud-pVh">
                                                     <size key="itemSize" width="369" height="132"/>
@@ -393,8 +393,8 @@
                                             <constraint firstItem="EH9-pv-eb7" firstAttribute="leading" secondItem="Kaw-Qw-beo" secondAttribute="leading" constant="16" id="VBX-pY-G0C"/>
                                             <constraint firstItem="EH9-pv-eb7" firstAttribute="top" secondItem="Kaw-Qw-beo" secondAttribute="top" id="Y9A-Bf-rcf"/>
                                             <constraint firstItem="2ev-jV-NfO" firstAttribute="top" secondItem="EH9-pv-eb7" secondAttribute="bottom" constant="8" symbolic="YES" id="fOK-ix-ub6"/>
-                                            <constraint firstAttribute="height" constant="3600" id="mBP-Rf-E7r">
-                                                <variation key="heightClass=regular-widthClass=regular" constant="6500"/>
+                                            <constraint firstAttribute="height" constant="1600" id="mBP-Rf-E7r">
+                                                <variation key="heightClass=regular-widthClass=regular" constant="7000"/>
                                             </constraint>
                                             <constraint firstAttribute="trailing" secondItem="EH9-pv-eb7" secondAttribute="trailing" constant="16" id="nj6-MQ-Wnj"/>
                                             <constraint firstItem="2iL-Xw-RrH" firstAttribute="top" secondItem="2ev-jV-NfO" secondAttribute="bottom" constant="16" id="oPd-5N-M4m"/>

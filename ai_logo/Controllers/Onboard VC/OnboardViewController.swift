@@ -53,12 +53,19 @@ class OnboardViewController: UIViewController {
         
     }
     
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//        let indexPath = IndexPath(item: currentPage, section: 0)
-//        onboardCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-//    }
+    @IBAction func btnTermOfUse(_ sender: Any) {
+        if let privacy = URL(string: Url.appTerms) {
+            presentURLPages(from: self, url: privacy,height: 400)
+        }
+    }
+    
   
+    @IBAction func btnPrivacy(_ sender: Any) {
+    
+    if let privacy = URL(string: Url.appPrivacy) {
+        presentURLPages(from: self, url: privacy,height: 400)
+    }
+    }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let pageIndex = round(scrollView.contentOffset.x / scrollView.frame.width)
@@ -82,6 +89,9 @@ class OnboardViewController: UIViewController {
             pageControl.isHidden = true
         }
     }
+    
+    
+    
 }
 
 extension OnboardViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -97,10 +107,11 @@ extension OnboardViewController: UICollectionViewDelegate, UICollectionViewDataS
         cell.buttonActionClosure = { [self] in
         
             if !isFirstScreen {
-                
+                self.removeSubviews(exceptTag: 10)
+                UserDefaults.standard.set(true, forKey: onBoardKey)
+
                 let tabbar = Storyboard.main.instantiate(TabBarController.self)
                 tabbar.modalPresentationStyle = .fullScreen
-                self.removeSubviews(exceptTag: 10)
                 
                 present(tabbar, animated: true)
                 //                if let window = UIApplication.shared.windows.first {
@@ -233,7 +244,7 @@ extension OnboardViewController {
         onboardCollectionView.isHidden = false
         onboardCollectionView.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
         
-        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseInOut, animations: {
             self.onboardCollectionView.alpha = 1.0
             self.onboardCollectionView.transform = .identity
         }, completion: nil)
@@ -254,6 +265,7 @@ extension OnboardViewController {
         lottieAnimation.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         lottieAnimation.contentMode = .scaleAspectFill
         lottieAnimation.loopMode = loopMode
+        lottieAnimation.animationSpeed = 0.5
         lottieAnimation.tag = tagID
         tagID += 1
         animationView.addSubview(lottieAnimation)
@@ -290,6 +302,7 @@ extension OnboardViewController {
             //                        self.setupLottieAnimation(name: animationPair.secondary, completion:{ _ in})
             //                    }
             //                }
+            
             let vc = Storyboard.main.instantiate(OnboardViewController.self)
             vc.modalTransitionStyle = .crossDissolve
             vc.modalPresentationStyle = .fullScreen

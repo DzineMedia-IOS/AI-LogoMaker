@@ -22,6 +22,9 @@ class RecentCell: UICollectionViewCell {
         
         collectionView.delegate = self
         collectionView.dataSource = self
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            collectionView.isScrollEnabled = false
+        }
         
  
         

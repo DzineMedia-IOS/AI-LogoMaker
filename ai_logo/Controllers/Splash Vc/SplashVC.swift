@@ -27,10 +27,22 @@ class SplashVC: UIViewController {
             self.img.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
         }, completion: { _ in
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                let vc = Storyboard.main.instantiate(OnboardViewController.self)
-                vc.modalPresentationStyle = .fullScreen
-                vc.modalTransitionStyle = .flipHorizontal
-                self.present(vc, animated: true, completion: nil)
+                if UserDefaults.standard.bool(forKey: onBoardKey) {
+//                    let tabbar = Storyboard.main.instantiate(TabBarController.self)
+//                    tabbar.modalPresentationStyle = .fullScreen
+//                    self.present(tabbar, animated: true)
+                    
+                    let vc = Storyboard.main.instantiate(OnboardViewController.self)
+                    vc.modalPresentationStyle = .fullScreen
+                    vc.modalTransitionStyle = .flipHorizontal
+                    self.present(vc, animated: true, completion: nil)
+                }
+                else {
+                    let vc = Storyboard.main.instantiate(OnboardViewController.self)
+                    vc.modalPresentationStyle = .fullScreen
+                    vc.modalTransitionStyle = .flipHorizontal
+                    self.present(vc, animated: true, completion: nil)
+                }
             }
         })
     }

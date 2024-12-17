@@ -464,7 +464,7 @@ your logo</string>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="baN-fy-Yhh">
-                                <rect key="frame" x="16" y="265" width="361" height="270"/>
+                                <rect key="frame" x="16" y="265" width="361" height="300"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LPL-WY-Ne3">
                                         <rect key="frame" x="0.0" y="90" width="361" height="200"/>
@@ -667,7 +667,9 @@ your logo</string>
                                     <constraint firstItem="LPL-WY-Ne3" firstAttribute="top" secondItem="baN-fy-Yhh" secondAttribute="top" constant="90" id="gGD-bt-qX8">
                                         <variation key="heightClass=regular-widthClass=regular" constant="140"/>
                                     </constraint>
-                                    <constraint firstAttribute="height" constant="270" id="kGD-AT-znW"/>
+                                    <constraint firstAttribute="height" constant="300" id="kGD-AT-znW">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="500"/>
+                                    </constraint>
                                     <constraint firstItem="LPL-WY-Ne3" firstAttribute="leading" secondItem="baN-fy-Yhh" secondAttribute="leading" id="kc0-c4-Hrc"/>
                                 </constraints>
                             </view>
