@@ -33,6 +33,7 @@ class CreationVC: UIViewController,UITextViewDelegate {
     private var startTime: Date?
     
     var selectedStyle : String = "No Style"
+    var selectedStyleIndex : Int = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         setScrollHeight()
@@ -114,7 +115,12 @@ class CreationVC: UIViewController,UITextViewDelegate {
 
         setupAnimation()
         startTimer()
-        let prompt = self.textView.text ?? ""
+        
+        let style = logoStylePrompts[selectedStyleIndex]
+        var prompt = "The style should be \(style),"
+        prompt = prompt + self.textView.text
+        
+
         self.generateLogo(prompt: prompt)
     }
     
@@ -151,6 +157,9 @@ class CreationVC: UIViewController,UITextViewDelegate {
     @objc private func styleAction(_ notification: Notification) {
         if let userInfo = notification.userInfo,let style = userInfo["style"] as? String{
             selectedStyle = style
+            if let styleIndex = userInfo["styleIndex"] as? Int {
+                selectedStyleIndex = styleIndex  
+            }
         }
     }
     
@@ -267,6 +276,9 @@ extension CreationVC {
             endPoint: CGPoint(x: 1, y: 1)
         )
         
+        if isProUser {
+            btnPro.isHidden = true
+        }
         
         
     }
@@ -354,6 +366,7 @@ extension CreationVC {
                                 self.present(vc, animated: true)
                                 
                                 vc.lblPrompt.text = textView.text
+                                vc.prompt = prompt
                                 vc.previewImg.image = UIImage(contentsOfFile: path)
                                 // remove animation
                                 vc.imgPath = imgName

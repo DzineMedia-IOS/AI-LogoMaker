@@ -1412,7 +1412,7 @@ your logo</string>
                         <outlet property="maxProImg" destination="ce6-dO-gv7" id="R0c-vE-xOa"/>
                         <outlet property="mediumProImg" destination="CQh-Ew-413" id="0TO-op-ZeD"/>
                         <outlet property="pdfProImg" destination="PY9-h4-cXe" id="By0-wo-rlF"/>
-                        <outlet property="pngProImg" destination="PY9-h4-cXe" id="9I9-Q3-ypE"/>
+                        <outlet property="pngProImg" destination="Cd3-1j-LjI" id="Vns-5z-57a"/>
                         <outlet property="previewImg" destination="5zR-BI-Mfa" id="dOH-yp-N4V"/>
                         <outlet property="promptView" destination="Sut-8j-NsT" id="bEg-Rx-MwB"/>
                         <outlet property="quality" destination="27e-AL-tNJ" id="6gY-nL-TlZ"/>

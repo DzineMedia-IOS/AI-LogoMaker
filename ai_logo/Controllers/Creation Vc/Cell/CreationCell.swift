@@ -23,8 +23,6 @@ class CreationCell: UICollectionViewCell {
         
         collectionView.delegate = self
         collectionView.dataSource = self
-        
-        
     }
     
     
@@ -71,7 +69,7 @@ extension CreationCell: UICollectionViewDelegate, UICollectionViewDataSource, UI
         selectedIndex = indexPath
         collectionView.reloadData()
         let style = styleArray[indexPath.row]
-        NotificationCenter.default.post(name: .style, object: nil, userInfo: ["style": style.title])
+        NotificationCenter.default.post(name: .style, object: nil, userInfo: ["style": style.title, "styleIndex": indexPath.row])
 
     }
     

@@ -193,7 +193,7 @@ class LogoTypeVC: UIViewController,UITextViewDelegate, UITextFieldDelegate {
         else{
             let logoType = isTextLogo ? "text-based logo" : "Graphic-based logo"
             let brandName = isTextLogo ? "for \(String(describing: brandTextField.text))" : ""
-            let style = styleArray[selectedStyle?.item ?? 0]
+            let style = logoStylePrompts[selectedStyle?.item ?? 0]
             var prompt = "A modern \(logoType) \(brandName),the style should be \(style),"
             prompt = prompt + self.txtView.text
             
@@ -540,6 +540,7 @@ extension LogoTypeVC {
                                 self.present(vc, animated: true)
                                 
                                 vc.lblPrompt.text = txtView.text
+                                vc.prompt = prompt
                                     vc.previewImg.image = UIImage(contentsOfFile: path)
                                   // remove animation
                                     vc.imgPath = imgName

@@ -12,7 +12,6 @@ import UIKit
 enum Storyboard: String {
     case main = "Main"
     case creation = "Creation"
-//    case profile = "Profile"
     case projects = "Projects"
     case aiLogo = "AiLogo"
     case settings = "Settings"
@@ -32,6 +31,7 @@ enum Storyboard: String {
         return viewController
     }
 }
+var isProUser : Bool = false
 
 
 class Url{
@@ -63,51 +63,7 @@ let styleArray: [Style] = [
     Style(img: "nature", title: "Nature"),
     Style(img: "vintage", title: "Vintage"),
 ]
-
-// MARK: 32 Discover ideas
-
-//let discoverArr: [Style] = [
-//    Style(img: "discover_1", title: "A young Caucasian woman with short blonde hair wearing a virtual reality headset in a surreal forest landscape with pink clouds"),
-//    Style(img: "discover_2", title: "A young African American man with curly black hair and glasses , making a surprised facial expression with his mouth open and eyes wide , against a yellow and red comic book style background with the word \"WOW!\" in the center"),
-//    Style(img: "discover_3", title: "A young, pale-skinned Asian girl with long dark hair wearing a light-colored coat and a lavender scarf in a snowy, winter landscape with bare trees"),
-//    Style(img: "discover_4", title: "A smiling 35-year-old Caucasian man with short dark hair and a beard , wearing a green button-up shirt , in a lush green outdoor setting with flowers in the background"),
-//    Style(img: "discover_5", title: "A middle-aged Caucasian woman with short brown hair in a simple black and white logo design"),
-//    Style(img: "discover_6", title: "Text graphic with the word \"Africa\" in a stylized script font against a bright yellow background"),
-//    Style(img: "discover_7", title: " A colorful, abstract portrait of a person with vibrant, rainbow-colored hair and facial features against a gradient background of pink, orange, and yellow"),
-//    Style(img: "discover_8", title: "A black and white sketch of a bouquet of flowers , including large blooming flowers and smaller buds on long stems against a plain background"),
-//    Style(img: "discover_9", title: "A large pink daisy flower with yellow center on a blue stem against a colorful pink and blue background"),
-//    Style(img: "discover_10", title: "A minimalist logo design featuring a stylized letter 'r' in white against a purple circular background"),
-//    Style(img: "discover_11", title: "A young, pale-skinned woman with long, flowing blonde hair wearing a teal blue dress standing in a snowy, icy environment with swirling mist or fog around her"),
-//    Style(img: "discover_12", title: "A modern, minimalist house with a flat roof, large windows, and a patio surrounded by small trees and shrubs on a grassy lawn"),
-//    Style(img: "discover_13", title: "A lone figure walking down a path in an autumn forest, with warm-toned leaves and branches overhead creating a tunnel-like effect"),
-//    Style(img: "discover_14", title: "Dove icon with abstract geometric wings , set against a solid background"),
-//    Style(img: "discover_15", title: "A young Caucasian woman with long blonde hair wearing a futuristic helmet with glowing neon lights , set against a colorful, abstract background"),
-//    Style(img: "discover_16", title: "A large, fierce-looking orange dragon with horns and spikes emerging from an egg-shaped nest on a grassy field"),
-//    Style(img: "discover_17", title: "A black and white line drawing of a woman's face with leaves and branches growing out of her head, creating a nature-inspired headdress or crown"),
-//    Style(img: "discover_18", title: "A lush, colorful garden path leading to a serene ocean view with a blue sky and fluffy clouds"),
-//    Style(img: "discover_19", title: "A middle-aged Caucasian man with a beard wearing headphones , a gray hoodie , and blue jeans standing against an orange background"),
-//    Style(img: "discover_20", title: "A young Caucasian woman with long blonde hair wearing a futuristic cyberpunk outfit , including a metallic headpiece and glowing neon lights . She has a serious expression on her face and appears to be in a dark, neon-lit environment"),
-//    Style(img: "discover_21", title: "A young Caucasian woman with long, wavy red hair wearing a flower crown and feathered wings , surrounded by glowing embers and sparks against a dark, moody background"),
-//    Style(img: "discover_22", title: "A young Japanese girl with short black hair and pink flower clips , wearing a blue kimono , standing in front of a cherry blossom tree with a pink sky in the background"),
-//    Style(img: "discover_23", title: "A young woman with pale skin , dark hair , and striking blue eyes . She has an intricate, futuristic headpiece made of glowing blue and orange wires that appear to be connected to her head. The background is dark with blurred city lights , creating a moody, cyberpunk-inspired atmosphere"),
-//    Style(img: "discover_24", title: "A close up of a person with a tattoo on their arm, highly detailed and colored, oriental tattoos, arm tattoos, tattoo on upper arm, very detailed and colorful, arm tattoo, photograph of a sleeve tattoo, traditional tattoo, inked and colored, neotraditional tattoos, highly detailed and realistic, detailed and realistic, beautiful realistic upper body, colourful!! highly detailed"),
-//    Style(img: "discover_25", title: "A young Caucasian woman with long brown hair surrounded by vibrant flowers and foliage , her face partially obscured by the lush greenery"),
-//    Style(img: "discover_26", title: "A young Latina girl with dark hair and a straw hat , wearing a white shawl , standing in a field of yellow flowers"),
-//    Style(img: "discover_27", title: "A young woman with short, spiky white hair wearing round glasses and a gray jacket against a colorful abstract background"),
-//    Style(img: "discover_28", title: "Close-up of a muscular arm showcasing an intricate black and gray tattoo. The design features Egyptian motifs, including a detailed depiction of a pharaoh's face surrounded by hieroglyphs and various symbols. The tattoo covers the entire forearm and part of the upper arm, highlighting elaborate patterns and textures against the skin. The person is wearing a sleeveless black shirt, emphasizing the tattoo's prominence."),
-//    Style(img: "discover_29", title: "A young girl with long brown hair wearing a blue floral hat , holding a small brown puppy dog , surrounded by sunflowers and blue flowers"),
-//    Style(img: "discover_30", title: "A colorful and vibrant close-up portrait of an owl with large, piercing eyes. The owl has a mix of blue, orange, and red feathers, creating a striking and abstract appearance. The background features abstract floral elements in warm, vibrant colors , adding to the dreamlike and surreal atmosphere"),
-//    Style(img: "discover_31", title: "A fierce tiger head logo with the text \"FURY TIGER\" on a orange background"),
-//    Style(img: "discover_32", title: "A low-poly gray parrot with a sharp beak against a dark background"),
-//    Style(img: "discover_33", title: "A young Caucasian woman with long, wavy red hair surrounded by abstract floral elements and warm, vibrant colors"),
-//    Style(img: "discover_34", title: "A glass bottle of perfume surrounded by colorful flowers and abstract splashes of paint in vibrant shades of pink against a dark background"),
-//    Style(img: "discover_35", title: "A detailed tattoo on a forearm featuring a grinning clown with blue and red face paint, styled like a jester. Above the clown, the text reads HAVE YOU EVER DANCED WITH DEVIL, and below it, IN THE FREE MOONLIGHT? The background includes a large, pale moon, enhancing the eerie ambiance of the design. The arm is positioned against a textured white brick wall."),
-//    Style(img: "discover_36", title: "A young Asian woman with long dark hair, wearing a black coat , looking directly at the camera with a serious expression"),
-//]
-
 let startPrompt = "A black and white sketch of a bouquet of flowers , including large blooming flowers and smaller buds on long stems against a plain background"
-
-
 let logoPrompt = "a modern text-based logo for Dzine Media, featuring sleek typography with a tech-inspired font, the slogan \"Grow with us\" seamlessly integrated below the company name, vibrant color gradients symbolizing growth and innovation, minimalistic design emphasizing clarity and professionalism, high-resolution vector art suitable for digital and print media, showcasing an IT company identity"
 
 let discoverArr: [ProjectImage] = [
@@ -152,3 +108,65 @@ let discoverArr: [ProjectImage] = [
         ProjectImage(id: 39, imageName: "idea39", projectPrompt: "Action-realism intensive, Hyper realistic-cinematic overdetailed intricate details. Breathtaking reflections and masterpiece imagery, stunning expression. Over detailed, ultra-realistic, hyper-realistic, Octane render, Natural light photo of the Viking is furious"),
         ProjectImage(id: 40, imageName: "idea40", projectPrompt: "A vast blue expanse stretched as far as the eye could see, its surface shimmering in the light of the rising sun. Gentle waves rolled across the water, their rhythm a soothing accompaniment to the cries of seagulls wheeling above. A light salty breeze carried the tang of the ocean on every inhale. An air of tranquility and raw natural beauty pervaded the scene, evoking feelings of awe for the power , evening sky , birds on sky , rest sun")
       ]
+
+let logoStylePrompts = [
+    "No Style: Create a simple and generic logo with no specific stylistic theme.",
+    "Abstract: Design a logo with abstract shapes and creative interpretations, focusing on uniqueness and conceptual elements.",
+    "Art Deco: Incorporate bold geometric shapes, metallic colors, and a vintage elegance reminiscent of the 1920s art deco era.",
+    "Classic (Text and Logo Design): Create a timeless logo with a combination of sophisticated text and a simple, elegant logo design.",
+    "Corporate: Design a professional and polished logo that conveys trust, stability, and business acumen.",
+    "Elegant: Create a refined and graceful logo with soft colors, delicate typography, and a luxurious feel.",
+    "Futuristic: Design a sleek, modern logo with a high-tech and forward-thinking vibe, utilizing sharp lines and bold elements.",
+    "Minimalist: Create a clean and simple logo with minimal elements, focusing on clarity and subtlety.",
+    "Geometric: Use geometric shapes and patterns to design a structured, symmetrical, and visually balanced logo.",
+    "Grunge: Design a logo with rough textures, distressed effects, and an edgy, rebellious style.",
+    "Hand Drawn: Create a logo with a handcrafted feel, using sketch-like designs, playful lines, or artistic illustrations.",
+    "Mascot (Must Have Text): Design a logo featuring a character or mascot paired with complementary text that reflects the brand identity.",
+    "Minimal: Focus on extreme simplicity, using only the most essential design elements to convey the brand's essence.",
+    "Modern: Design a contemporary logo with clean lines, trendy elements, and a fresh, innovative style.",
+    "Monogram (Initials of the Brand Name): Create a logo using the initials of the brand name, crafted into a cohesive and stylish monogram.",
+    "Nature: Incorporate elements of the natural world such as leaves, trees, water, or animals to create an organic and harmonious logo.",
+    "Vintage: Design a logo with a nostalgic and retro aesthetic, using vintage typography, aged textures, and classic motifs."
+]
+
+
+// MARK: 32 Discover ideas
+
+//let discoverArr: [Style] = [
+//    Style(img: "discover_1", title: "A young Caucasian woman with short blonde hair wearing a virtual reality headset in a surreal forest landscape with pink clouds"),
+//    Style(img: "discover_2", title: "A young African American man with curly black hair and glasses , making a surprised facial expression with his mouth open and eyes wide , against a yellow and red comic book style background with the word \"WOW!\" in the center"),
+//    Style(img: "discover_3", title: "A young, pale-skinned Asian girl with long dark hair wearing a light-colored coat and a lavender scarf in a snowy, winter landscape with bare trees"),
+//    Style(img: "discover_4", title: "A smiling 35-year-old Caucasian man with short dark hair and a beard , wearing a green button-up shirt , in a lush green outdoor setting with flowers in the background"),
+//    Style(img: "discover_5", title: "A middle-aged Caucasian woman with short brown hair in a simple black and white logo design"),
+//    Style(img: "discover_6", title: "Text graphic with the word \"Africa\" in a stylized script font against a bright yellow background"),
+//    Style(img: "discover_7", title: " A colorful, abstract portrait of a person with vibrant, rainbow-colored hair and facial features against a gradient background of pink, orange, and yellow"),
+//    Style(img: "discover_8", title: "A black and white sketch of a bouquet of flowers , including large blooming flowers and smaller buds on long stems against a plain background"),
+//    Style(img: "discover_9", title: "A large pink daisy flower with yellow center on a blue stem against a colorful pink and blue background"),
+//    Style(img: "discover_10", title: "A minimalist logo design featuring a stylized letter 'r' in white against a purple circular background"),
+//    Style(img: "discover_11", title: "A young, pale-skinned woman with long, flowing blonde hair wearing a teal blue dress standing in a snowy, icy environment with swirling mist or fog around her"),
+//    Style(img: "discover_12", title: "A modern, minimalist house with a flat roof, large windows, and a patio surrounded by small trees and shrubs on a grassy lawn"),
+//    Style(img: "discover_13", title: "A lone figure walking down a path in an autumn forest, with warm-toned leaves and branches overhead creating a tunnel-like effect"),
+//    Style(img: "discover_14", title: "Dove icon with abstract geometric wings , set against a solid background"),
+//    Style(img: "discover_15", title: "A young Caucasian woman with long blonde hair wearing a futuristic helmet with glowing neon lights , set against a colorful, abstract background"),
+//    Style(img: "discover_16", title: "A large, fierce-looking orange dragon with horns and spikes emerging from an egg-shaped nest on a grassy field"),
+//    Style(img: "discover_17", title: "A black and white line drawing of a woman's face with leaves and branches growing out of her head, creating a nature-inspired headdress or crown"),
+//    Style(img: "discover_18", title: "A lush, colorful garden path leading to a serene ocean view with a blue sky and fluffy clouds"),
+//    Style(img: "discover_19", title: "A middle-aged Caucasian man with a beard wearing headphones , a gray hoodie , and blue jeans standing against an orange background"),
+//    Style(img: "discover_20", title: "A young Caucasian woman with long blonde hair wearing a futuristic cyberpunk outfit , including a metallic headpiece and glowing neon lights . She has a serious expression on her face and appears to be in a dark, neon-lit environment"),
+//    Style(img: "discover_21", title: "A young Caucasian woman with long, wavy red hair wearing a flower crown and feathered wings , surrounded by glowing embers and sparks against a dark, moody background"),
+//    Style(img: "discover_22", title: "A young Japanese girl with short black hair and pink flower clips , wearing a blue kimono , standing in front of a cherry blossom tree with a pink sky in the background"),
+//    Style(img: "discover_23", title: "A young woman with pale skin , dark hair , and striking blue eyes . She has an intricate, futuristic headpiece made of glowing blue and orange wires that appear to be connected to her head. The background is dark with blurred city lights , creating a moody, cyberpunk-inspired atmosphere"),
+//    Style(img: "discover_24", title: "A close up of a person with a tattoo on their arm, highly detailed and colored, oriental tattoos, arm tattoos, tattoo on upper arm, very detailed and colorful, arm tattoo, photograph of a sleeve tattoo, traditional tattoo, inked and colored, neotraditional tattoos, highly detailed and realistic, detailed and realistic, beautiful realistic upper body, colourful!! highly detailed"),
+//    Style(img: "discover_25", title: "A young Caucasian woman with long brown hair surrounded by vibrant flowers and foliage , her face partially obscured by the lush greenery"),
+//    Style(img: "discover_26", title: "A young Latina girl with dark hair and a straw hat , wearing a white shawl , standing in a field of yellow flowers"),
+//    Style(img: "discover_27", title: "A young woman with short, spiky white hair wearing round glasses and a gray jacket against a colorful abstract background"),
+//    Style(img: "discover_28", title: "Close-up of a muscular arm showcasing an intricate black and gray tattoo. The design features Egyptian motifs, including a detailed depiction of a pharaoh's face surrounded by hieroglyphs and various symbols. The tattoo covers the entire forearm and part of the upper arm, highlighting elaborate patterns and textures against the skin. The person is wearing a sleeveless black shirt, emphasizing the tattoo's prominence."),
+//    Style(img: "discover_29", title: "A young girl with long brown hair wearing a blue floral hat , holding a small brown puppy dog , surrounded by sunflowers and blue flowers"),
+//    Style(img: "discover_30", title: "A colorful and vibrant close-up portrait of an owl with large, piercing eyes. The owl has a mix of blue, orange, and red feathers, creating a striking and abstract appearance. The background features abstract floral elements in warm, vibrant colors , adding to the dreamlike and surreal atmosphere"),
+//    Style(img: "discover_31", title: "A fierce tiger head logo with the text \"FURY TIGER\" on a orange background"),
+//    Style(img: "discover_32", title: "A low-poly gray parrot with a sharp beak against a dark background"),
+//    Style(img: "discover_33", title: "A young Caucasian woman with long, wavy red hair surrounded by abstract floral elements and warm, vibrant colors"),
+//    Style(img: "discover_34", title: "A glass bottle of perfume surrounded by colorful flowers and abstract splashes of paint in vibrant shades of pink against a dark background"),
+//    Style(img: "discover_35", title: "A detailed tattoo on a forearm featuring a grinning clown with blue and red face paint, styled like a jester. Above the clown, the text reads HAVE YOU EVER DANCED WITH DEVIL, and below it, IN THE FREE MOONLIGHT? The background includes a large, pale moon, enhancing the eerie ambiance of the design. The arm is positioned against a textured white brick wall."),
+//    Style(img: "discover_36", title: "A young Asian woman with long dark hair, wearing a black coat , looking directly at the camera with a serious expression"),
+//]

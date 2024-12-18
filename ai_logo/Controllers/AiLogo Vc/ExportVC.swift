@@ -38,20 +38,20 @@ class ExportVC: UIViewController {
     @IBOutlet weak var mediumProImg: UIImageView!
     @IBOutlet weak var pdfProImg: UIImageView!
     @IBOutlet weak var pngProImg: UIImageView!
-    
+   
+    let formatArr = ["JPG","PNG","PDF"]
+    let qualityArr = ["Regular", "Medium","Max"]
+   
     var selectedFormat :Int = 0
     var selectedQuality :Int = 0
     var imgUrl: String?
     var imgArr: [String] = []
     var imgPath: String?
-    let formatArr = ["JPG","PNG","PDF"]
-    let qualityArr = ["Regular", "Medium","Max"]
-    
     var isFromPreview: Bool = false
     var firstImg:String?
-    
     var apiCount: Int = 0
     var imgName: [String] = []
+    var prompt:String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,29 +61,25 @@ class ExportVC: UIViewController {
         styleUIElements()
         configureSegmentedControls()
         addGestureDetector()
-        
+        hideProBadges()
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        collectionVIew.reloadData()
+//        collectionVIew.reloadData()
         DispatchQueue.main.async { [weak self] in
             self?.styleUI()
         }
         
     }
+    
     override func viewIsAppearing(_ animated: Bool) {
         if !isFromPreview{
-            self.generateLogo(prompt: lblPrompt.text )
+            self.generateLogo(prompt: prompt )
         }
         else{
             let fileManager = FileManager.default
-
-            // 1. Get the Documents Directory
             if let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first {
-                
-                
-              
                 let imges = imgArr
                 imgArr.removeAll()
                 for imageName in imges {
@@ -94,7 +90,6 @@ class ExportVC: UIViewController {
                     print("Full Path for \(imageName): \(fullPath)")
                 }
                 
-                // 4. Access a Specific Path (e.g., imgArr[3])
                 if imgArr.indices.contains(3) {
                     firstImg = (firstImg ?? "") + ".jpg"
                     let specificImagePath = documentsDirectory.appendingPathComponent(firstImg ?? "").path
@@ -102,33 +97,13 @@ class ExportVC: UIViewController {
                     print("Specific Path (imgArr[3]): \(specificImagePath)")
                 }
             }
-
-            
         }
-        
     }
-    
-    
-    
     
     @IBAction func btnCancel(_ sender: Any) {
         self.dismiss(animated: true)
     }
-    
-    //    @objc func downloadViewTapped() {
-    //        animateTopView()
-    //        let selectedQualityIndex = quality.selectedSegmentIndex
-    //        let selectedQualityTitle = quality.titleForSegment(at: selectedQualityIndex)
-    //
-    //        // Get the selected index and title of the format segmented control
-    //        let selectedFormatIndex = format.selectedSegmentIndex
-    //        let selectedFormatTitle = format.titleForSegment(at: selectedFormatIndex)
-    //
-    //        // Log or use the values
-    //        print("Selected Quality: \(selectedQualityTitle ?? "None")")
-    //        print("Selected Format: \(selectedFormatTitle ?? "None")")
-    //    }
-    //
+   
     @IBAction func btnShare(_ sender: Any) {
         guard let image = previewImg.image else {
             let alert = UIAlertController(title: "No Image", message: "There is no image to share.", preferredStyle: .alert)
@@ -152,17 +127,6 @@ class ExportVC: UIViewController {
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
         
-    }
-    
-    func animateTopView() {
-        UIView.animate(withDuration: 0.3, animations: {
-            self.downloadView.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
-            
-        }) { _ in
-            UIView.animate(withDuration: 0.3) {
-                self.downloadView.transform = .identity
-            }
-        }
     }
     
     @objc func btnShowExportConfigAction() {
@@ -236,8 +200,6 @@ extension ExportVC: UICollectionViewDelegate, UICollectionViewDataSource,UIColle
             return cell
         }
         else{
-            
-            
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProjectCell", for: indexPath) as! ProjectCell
           
             if indexPath.row  < imgArr.count {
@@ -261,6 +223,9 @@ extension ExportVC: UICollectionViewDelegate, UICollectionViewDataSource,UIColle
             cell.imgBorder()
             cell.tryImg.isHidden = false
             cell.tryImg.image = UIImage(resource: .proBadge)
+            if isProUser {
+                cell.tryImg.isHidden = true
+            }
             
             return cell
         }
@@ -271,22 +236,36 @@ extension ExportVC: UICollectionViewDelegate, UICollectionViewDataSource,UIColle
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         hapticFeedBackAction()
         if collectionView == formatCollectionView {
-            selectedFormat = indexPath.item
-            formatCollectionView.reloadData()
+            if isProUser {
+                selectedFormat = indexPath.item
+                formatCollectionView.reloadData()
+            }
+            else {
+                presentProVc()
+            }
         }
         else if collectionView == qualityCollectionView {
-            selectedQuality = indexPath.item
-            qualityCollectionView.reloadData()
+            if isProUser {
+                selectedQuality = indexPath.item
+                qualityCollectionView.reloadData()
+            }
+            else{
+                presentProVc()
+            }
         }
         else {
           
-            
-            previewImg.image = UIImage(contentsOfFile: imgArr[indexPath.row])
-           
-            let oldImagePath = imgArr[indexPath.row]
-            imgArr[indexPath.row] = firstImg ?? ""
-            firstImg = oldImagePath
-            collectionView.reloadItems(at: [indexPath])
+            if isProUser {
+                previewImg.image = UIImage(contentsOfFile: imgArr[indexPath.row])
+                
+                let oldImagePath = imgArr[indexPath.row]
+                imgArr[indexPath.row] = firstImg ?? ""
+                firstImg = oldImagePath
+                collectionView.reloadItems(at: [indexPath])
+            }
+            else {
+                presentProVc()
+            }
 
         }
         
@@ -313,6 +292,17 @@ extension ExportVC: UICollectionViewDelegate, UICollectionViewDataSource,UIColle
 // MARK: - STYLING UI
 
 extension ExportVC {
+    
+    private func hideProBadges() {
+        if isProUser {
+            maxProImg.isHidden = true
+            mediumProImg.isHidden = true
+            pdfProImg.isHidden = true
+            pngProImg.isHidden = true
+            
+        }
+        
+    }
     
     private func hideViews() {
         haltView.isHidden = true
@@ -389,9 +379,11 @@ extension ExportVC {
         )
         formatCollectionView.layer.cornerRadius = formatCollectionView.frame.height / 4
         qualityCollectionView.layer.cornerRadius = qualityCollectionView.frame.height / 4
-        
+       
+        if isProUser {
+            btnPro.isHidden = true
+        }
     }
-    
     
     func configureSegmentedControlAppearance(for segmentedControl: UISegmentedControl) {
         
@@ -417,8 +409,6 @@ extension ExportVC {
         segmentedControl.clipsToBounds = true
     }
     
-    
-    
     func addGestureDetector(){
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(downloadViewTapped))
         downloadView.addGestureRecognizer(tapGesture)
@@ -431,8 +421,24 @@ extension ExportVC {
         haltView.addGestureRecognizer(haltViewTap)
     }
     
-}
+    func animateTopView() {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.downloadView.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
+            
+        }) { _ in
+            UIView.animate(withDuration: 0.3) {
+                self.downloadView.transform = .identity
+            }
+        }
+    }
+    
+    private func presentProVc() {
+        let vc  = Storyboard.premium.instantiate(ProVC.self)
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
+    }
 
+}
 
 // MARK: - Donwload Image Button Control UI
 extension ExportVC {
@@ -607,7 +613,6 @@ extension CGSize {
         return CGRect(origin: .zero, size: self)
     }
 }
-
 extension ExportVC: UIDocumentPickerDelegate {
     
     func savePDF(image: UIImage) {
@@ -696,7 +701,7 @@ extension ExportVC {
                                     self.imgName.append(imgName)
                                     
                                     self.collectionVIew.reloadData()
-                                    self.generateLogo(prompt: self.lblPrompt.text)
+                                    self.generateLogo(prompt: prompt)
                                     
                                 }
                                 
