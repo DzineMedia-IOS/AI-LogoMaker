@@ -9,6 +9,14 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Outfit-Bold.ttf">
+            <string>Outfit-Bold</string>
+        </array>
+        <array key="Outfit-Medium.ttf">
+            <string>Outfit-Medium</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Setting Vc-->
         <scene sceneID="s0d-6b-0kx">
@@ -41,17 +49,17 @@
                                                             <color key="textColor" name="kWhite"/>
                                                             <nil key="highlightedColor"/>
                                                             <variation key="heightClass=regular-widthClass=regular">
-                                                                <fontDescription key="fontDescription" name="Outfit-Medium" family="Outfit" pointSize="32"/>
+                                                                <fontDescription key="fontDescription" name="Outfit-Medium" family="Outfit" pointSize="24"/>
                                                             </variation>
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="purchase" translatesAutoresizingMaskIntoConstraints="NO" id="Isi-HI-uED">
                                                             <rect key="frame" x="16" y="22.666666666666671" width="25" height="25"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="25" id="IFK-8h-GZh">
-                                                                    <variation key="heightClass=regular-widthClass=regular" constant="50"/>
+                                                                    <variation key="heightClass=regular-widthClass=regular" constant="38"/>
                                                                 </constraint>
                                                                 <constraint firstAttribute="height" constant="25" id="s0G-3G-pAG">
-                                                                    <variation key="heightClass=regular-widthClass=regular" constant="50"/>
+                                                                    <variation key="heightClass=regular-widthClass=regular" constant="38"/>
                                                                 </constraint>
                                                             </constraints>
                                                         </imageView>
@@ -59,10 +67,10 @@
                                                             <rect key="frame" x="337" y="25" width="20" height="20"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="20" id="V9S-XA-P0w">
-                                                                    <variation key="heightClass=regular-widthClass=regular" constant="40"/>
+                                                                    <variation key="heightClass=regular-widthClass=regular" constant="30"/>
                                                                 </constraint>
                                                                 <constraint firstAttribute="width" constant="20" id="dNy-VA-Jbu">
-                                                                    <variation key="heightClass=regular-widthClass=regular" constant="40"/>
+                                                                    <variation key="heightClass=regular-widthClass=regular" constant="30"/>
                                                                 </constraint>
                                                             </constraints>
                                                         </imageView>
@@ -155,7 +163,7 @@
                                     <constraint firstItem="34J-Fn-NdS" firstAttribute="height" secondItem="H8j-L9-acN" secondAttribute="height" multiplier="0.472222" id="IIY-Ra-w8g"/>
                                     <constraint firstItem="daM-op-7PC" firstAttribute="top" secondItem="H8j-L9-acN" secondAttribute="top" constant="12" id="Kzy-k3-SCb"/>
                                     <constraint firstAttribute="height" constant="60" id="P51-4h-1iN">
-                                        <variation key="heightClass=regular-widthClass=regular" constant="120"/>
+                                        <variation key="heightClass=regular-widthClass=regular" constant="90"/>
                                     </constraint>
                                     <constraint firstItem="daM-op-7PC" firstAttribute="leading" secondItem="H8j-L9-acN" secondAttribute="leading" constant="8" id="db1-Br-dbl"/>
                                     <constraint firstItem="34J-Fn-NdS" firstAttribute="centerY" secondItem="daM-op-7PC" secondAttribute="centerY" id="hay-Oy-nLh"/>

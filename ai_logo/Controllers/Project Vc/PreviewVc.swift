@@ -33,14 +33,16 @@ class PreviewVc: UIViewController {
             guard let self = self else { return }
             applyGradientToButton(button: self.btnExport, colors: [UIColor.kRed, UIColor.accent])
         }
-        
         fontSize =  view.frame.height * 0.024
-        let textFontSize = view.frame.height * 0.016
-        
-        if let currentFont = textView.font {
-            textView.font = UIFont(name: currentFont.fontName, size: textFontSize)
-        } else {
-            textView.font = UIFont.systemFont(ofSize: textFontSize)
+
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            let textFontSize = view.frame.height * 0.016
+            
+            if let currentFont = textView.font {
+                textView.font = UIFont(name: currentFont.fontName, size: textFontSize)
+            } else {
+                textView.font = UIFont.systemFont(ofSize: textFontSize)
+            }
         }
         
         btnExport.layer.cornerRadius = btnExport.frame.height / 2.5

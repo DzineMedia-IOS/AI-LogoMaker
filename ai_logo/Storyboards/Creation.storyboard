@@ -10,6 +10,17 @@
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Outfit-Bold.ttf">
+            <string>Outfit-Bold</string>
+        </array>
+        <array key="Outfit-Medium.ttf">
+            <string>Outfit-Medium</string>
+        </array>
+        <array key="Outfit-Regular.ttf">
+            <string>Outfit-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--CreationVC-->
         <scene sceneID="s0d-6b-0kx">
@@ -63,7 +74,7 @@
                                     <constraint firstItem="bq3-Yb-CP5" firstAttribute="width" secondItem="D4T-z9-ucY" secondAttribute="width" multiplier="0.199446" id="Lsi-rj-XuZ"/>
                                     <constraint firstItem="BeX-7V-Gtl" firstAttribute="top" secondItem="D4T-z9-ucY" secondAttribute="top" constant="12" id="Nm9-87-DZ3"/>
                                     <constraint firstAttribute="height" constant="60" id="Pxh-dB-HVe">
-                                        <variation key="heightClass=regular-widthClass=regular" constant="120"/>
+                                        <variation key="heightClass=regular-widthClass=regular" constant="90"/>
                                     </constraint>
                                     <constraint firstAttribute="trailing" secondItem="bq3-Yb-CP5" secondAttribute="trailing" id="Rf1-ik-Urf"/>
                                     <constraint firstItem="bq3-Yb-CP5" firstAttribute="height" secondItem="D4T-z9-ucY" secondAttribute="height" multiplier="0.472222" id="gWq-Qa-BTh"/>
@@ -474,7 +485,9 @@
                             <constraint firstAttribute="trailing" secondItem="qRy-6p-S0k" secondAttribute="trailing" id="1SY-3T-E86"/>
                             <constraint firstAttribute="bottom" secondItem="HlH-yT-oaS" secondAttribute="bottom" id="2fC-dv-AhC"/>
                             <constraint firstItem="qRy-6p-S0k" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="5yc-fj-Fz6"/>
-                            <constraint firstItem="bQX-DD-h5E" firstAttribute="centerY" secondItem="10i-J7-ygZ" secondAttribute="centerY" multiplier="1.65" id="6kg-JG-NWp"/>
+                            <constraint firstItem="bQX-DD-h5E" firstAttribute="centerY" secondItem="10i-J7-ygZ" secondAttribute="centerY" multiplier="1.65" id="6kg-JG-NWp">
+                                <variation key="heightClass=regular-widthClass=regular" constant="30"/>
+                            </constraint>
                             <constraint firstItem="bQX-DD-h5E" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="9XD-BZ-PMF">
                                 <variation key="heightClass=regular-widthClass=regular" constant="40"/>
                             </constraint>
@@ -602,7 +615,9 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="06Z-UK-6AP" secondAttribute="trailing" constant="20" symbolic="YES" id="3fK-dl-fij"/>
-                                    <constraint firstItem="Scl-pG-KGd" firstAttribute="leading" secondItem="fs6-Ch-JeX" secondAttribute="leading" constant="16" id="DaR-lK-2tl"/>
+                                    <constraint firstItem="Scl-pG-KGd" firstAttribute="leading" secondItem="fs6-Ch-JeX" secondAttribute="leading" constant="16" id="DaR-lK-2tl">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="32"/>
+                                    </constraint>
                                     <constraint firstAttribute="trailing" secondItem="kGl-l0-DIz" secondAttribute="trailing" constant="20" symbolic="YES" id="DwR-TB-Mlp"/>
                                     <constraint firstItem="Scl-pG-KGd" firstAttribute="top" secondItem="fs6-Ch-JeX" secondAttribute="top" constant="10" id="UkF-Na-zbr"/>
                                     <constraint firstItem="06Z-UK-6AP" firstAttribute="centerY" secondItem="Scl-pG-KGd" secondAttribute="centerY" id="Z0Y-TK-e1S"/>
@@ -617,7 +632,7 @@
                                 <rect key="frame" x="0.0" y="449.33333333333337" width="393" height="271.33333333333337"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1YN-Pr-BCF">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="150"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="200"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="star" translatesAutoresizingMaskIntoConstraints="NO" id="5Tz-Ka-9vq">
                                                 <rect key="frame" x="8" y="10" width="20" height="20"/>
@@ -641,7 +656,7 @@
                                                 </variation>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RCl-33-ItP">
-                                                <rect key="frame" x="39.333333333333343" y="115.00000000000006" width="314.33333333333326" height="35"/>
+                                                <rect key="frame" x="39.333333333333343" y="165.00000000000006" width="314.33333333333326" height="35"/>
                                                 <color key="backgroundColor" name="kBlackCell"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="Dei-Aw-eyf">
@@ -669,10 +684,10 @@
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dxO-us-BU7">
-                                                <rect key="frame" x="8" y="38" width="377" height="78"/>
+                                                <rect key="frame" x="8" y="38" width="377" height="128"/>
                                                 <subviews>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2AL-Lz-OVD">
-                                                        <rect key="frame" x="8" y="4" width="361" height="74"/>
+                                                        <rect key="frame" x="8" y="4" width="361" height="119"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <string key="text">Enter your brand name, industry, and the elements you want to appear in the logo. e.g. A gym logo with text “Iron Claw”, featuring a tiger lifting dumbbells.</string>
                                                         <color key="textColor" red="0.66274509803921566" green="0.66274509803921566" blue="0.66274509803921566" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -685,7 +700,7 @@
                                                 </subviews>
                                                 <color key="backgroundColor" name="kLightBlack"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="bottom" secondItem="2AL-Lz-OVD" secondAttribute="bottom" id="CWC-bP-icg"/>
+                                                    <constraint firstAttribute="bottom" secondItem="2AL-Lz-OVD" secondAttribute="bottom" constant="5" id="CWC-bP-icg"/>
                                                     <constraint firstItem="2AL-Lz-OVD" firstAttribute="leading" secondItem="dxO-us-BU7" secondAttribute="leading" constant="8" id="Tcg-Pj-N8Q"/>
                                                     <constraint firstAttribute="trailing" secondItem="2AL-Lz-OVD" secondAttribute="trailing" constant="8" id="bGA-iu-8y9"/>
                                                     <constraint firstItem="2AL-Lz-OVD" firstAttribute="top" secondItem="dxO-us-BU7" secondAttribute="top" constant="4" id="qKe-vN-ChP">
@@ -707,20 +722,26 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="150" id="62Q-3v-F60">
-                                                <variation key="heightClass=regular-widthClass=regular" constant="270"/>
+                                            <constraint firstAttribute="height" constant="200" id="62Q-3v-F60">
+                                                <variation key="heightClass=regular-widthClass=regular" constant="340"/>
                                             </constraint>
-                                            <constraint firstItem="5Tz-Ka-9vq" firstAttribute="leading" secondItem="1YN-Pr-BCF" secondAttribute="leading" constant="8" id="8LW-4M-JB6"/>
+                                            <constraint firstItem="5Tz-Ka-9vq" firstAttribute="leading" secondItem="1YN-Pr-BCF" secondAttribute="leading" constant="8" id="8LW-4M-JB6">
+                                                <variation key="heightClass=regular-widthClass=regular" constant="16"/>
+                                            </constraint>
                                             <constraint firstItem="FBN-J5-o8f" firstAttribute="centerY" secondItem="5Tz-Ka-9vq" secondAttribute="centerY" id="E9N-As-uWI"/>
                                             <constraint firstItem="RCl-33-ItP" firstAttribute="centerX" secondItem="dxO-us-BU7" secondAttribute="centerX" id="FHr-hf-C5b"/>
                                             <constraint firstItem="5Tz-Ka-9vq" firstAttribute="top" secondItem="1YN-Pr-BCF" secondAttribute="top" constant="10" id="Imn-fW-svP"/>
                                             <constraint firstItem="FBN-J5-o8f" firstAttribute="leading" secondItem="5Tz-Ka-9vq" secondAttribute="trailing" constant="8" symbolic="YES" id="M6R-TZ-5JJ"/>
                                             <constraint firstItem="dxO-us-BU7" firstAttribute="top" secondItem="FBN-J5-o8f" secondAttribute="bottom" constant="8" id="iX4-dv-Rqj"/>
                                             <constraint firstItem="RCl-33-ItP" firstAttribute="width" secondItem="1YN-Pr-BCF" secondAttribute="width" multiplier="0.8" id="iaE-Rr-Dpc"/>
-                                            <constraint firstAttribute="trailing" secondItem="dxO-us-BU7" secondAttribute="trailing" constant="8" id="lCE-zb-TCq"/>
+                                            <constraint firstAttribute="trailing" secondItem="dxO-us-BU7" secondAttribute="trailing" constant="8" id="lCE-zb-TCq">
+                                                <variation key="heightClass=regular-widthClass=regular" constant="16"/>
+                                            </constraint>
                                             <constraint firstAttribute="bottom" secondItem="RCl-33-ItP" secondAttribute="bottom" id="w1h-gq-ue7"/>
                                             <constraint firstItem="RCl-33-ItP" firstAttribute="top" secondItem="dxO-us-BU7" secondAttribute="bottom" constant="-1" id="yr1-vP-0n2"/>
-                                            <constraint firstItem="dxO-us-BU7" firstAttribute="leading" secondItem="1YN-Pr-BCF" secondAttribute="leading" constant="8" id="zZu-WN-QJQ"/>
+                                            <constraint firstItem="dxO-us-BU7" firstAttribute="leading" secondItem="1YN-Pr-BCF" secondAttribute="leading" constant="8" id="zZu-WN-QJQ">
+                                                <variation key="heightClass=regular-widthClass=regular" constant="16"/>
+                                            </constraint>
                                         </constraints>
                                     </view>
                                 </subviews>

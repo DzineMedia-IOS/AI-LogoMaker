@@ -6,33 +6,43 @@
 //
 
 import UIKit
+import Lottie
 
 class ProVC: UIViewController {
     
+    @IBOutlet weak var animationView: UIView!
     @IBOutlet weak var featureCollectionView: UICollectionView!
-    @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var btnStart: UIButton!
     @IBOutlet weak var priceCollectionView: UICollectionView!
     
     let plans = [
-        ["plan": "Weekly Plan", "save": "Saves 10%", "price": "$9.99", "discount": "$6.35 / week"],
-        ["plan": "Monthly Plan", "save": "Saves 15%", "price": "$19.99", "discount": "$6.35 / week"],
+        ["plan": "Weekly", "save": "Saves 10%", "price": "US $4.99", "discount": "$6.35 / week"],
+        ["plan": "Monthly", "save": "Saves 15%", "price": "US $5.99", "discount": "$6.35 / week"],
         ["plan": "Yearly Plan", "save": "Saves 20%", "price": "$29.99", "discount": "$6.35 / week"]
     ]
+    
+    let imges = ["endless","creative","ai_gen","style", "down"]
+    let titles = ["Endless Generation", "Creative Suggestions", "AI Gen Artwork","Creative Styles", "HD Download"]
     
     var selectedIndex: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
        
+        let lottieAnimation = LottieAnimationView(name: .banner)
+        lottieAnimation.frame = animationView.bounds
+        lottieAnimation.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        lottieAnimation.contentMode = .scaleAspectFill
+        lottieAnimation.tintColor = .white
+        lottieAnimation.loopMode = .loop
+        animationView.addSubview(lottieAnimation)
+        lottieAnimation.play { finished in
+            print("Animation Completed!")
+        }
         
         DispatchQueue.main.async { [weak self] in
             self?.styleUI()
         }
-        
-        applyTextColor(to: lblTitle, firstWordColor: .orange, restOfTextColor: .white)
         
         let nib = UINib(nibName: "FeatureCell", bundle: nil)
         featureCollectionView.register(nib, forCellWithReuseIdentifier: "FeatureCell")
@@ -44,14 +54,13 @@ class ProVC: UIViewController {
         priceCollectionView.delegate = self
         priceCollectionView.dataSource = self
         
-        
-        
     }
     
     override func viewIsAppearing(_ animated: Bool) {
         DispatchQueue.main.async { [weak self] in
             self?.styleUI()
-        }    }
+        }
+    }
     
     
     @IBAction func btnCancel(_ sender: Any) {
@@ -63,15 +72,15 @@ class ProVC: UIViewController {
         if let tnc = URL(string: Url.appPrivacy) {
             presentURLPages(from: self, url: tnc, height: 400)
         }
-      
+        
     }
     
     @IBAction func btnTermOfUse(_ sender: Any) {
-   
+        
         if let privacy = URL(string: Url.appTerms) {
-        presentURLPages(from: self, url: privacy,height: 400)
+            presentURLPages(from: self, url: privacy,height: 400)
+        }
     }
-}
     
     
     @IBAction func btnRestore(_ sender: Any) {
@@ -82,16 +91,22 @@ class ProVC: UIViewController {
 extension ProVC : UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == featureCollectionView{
-            return 5
+            return imges.count
         }
         else{
-            return 3
+            return 2
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == featureCollectionView{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FeatureCell", for: indexPath) as! FeatureCell
+            cell.img.image = UIImage(named: imges[indexPath.item])
+            cell.lblFeature.text = titles[indexPath.item]
+            
+            let fontSize = self.view.frame.width * 0.0267
+            cell.lblFeature.font = cell.lblFeature.font.withSize(fontSize)
+
             return cell
         }
         else{
@@ -128,11 +143,11 @@ extension ProVC : UICollectionViewDataSource, UICollectionViewDelegate, UICollec
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == featureCollectionView{
             
-            return CGSize(width: collectionView.frame.width, height: collectionView.frame.height/5  - 10)
+            return CGSize(width: collectionView.frame.width / CGFloat(imges.count) - 10, height: collectionView.frame.height)
         }
         else
         {
-            return CGSize(width: collectionView.frame.width, height: collectionView.frame.height/3 - 10)
+            return CGSize(width: collectionView.frame.width/2 - 10, height: collectionView.frame.height)
         }
     }
     

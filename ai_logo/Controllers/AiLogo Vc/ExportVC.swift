@@ -12,6 +12,8 @@ import ProgressHUD
 
 class ExportVC: UIViewController {
     
+    @IBOutlet weak var exportBar: UIView!
+    @IBOutlet weak var topBarHideStrip: UIImageView!
     @IBOutlet weak var textBackView: UIView!
     @IBOutlet weak var segmentationView: UIView!
     @IBOutlet weak var collectionVIew: UICollectionView!
@@ -140,13 +142,12 @@ class ExportVC: UIViewController {
     }
 
     @objc func haltViewAction() {
-        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
-            self.exportView.transform = CGAffineTransform(translationX: 0, y: self.exportView.frame.height)
-        }, completion: { _ in
-            self.exportView.isHidden = true
-        })
-        haltView.isHidden = true
+        closeExportConfig()
 
+    }
+    @objc func exportBarAction() {
+        closeExportConfig()
+        
     }
 }
 
@@ -419,6 +420,9 @@ extension ExportVC {
         
         let haltViewTap = UITapGestureRecognizer(target: self, action: #selector(haltViewAction))
         haltView.addGestureRecognizer(haltViewTap)
+        
+        let exportBarTap = UITapGestureRecognizer(target: self, action: #selector(exportBarAction))
+        exportBar.addGestureRecognizer(exportBarTap)
     }
     
     func animateTopView() {
@@ -436,6 +440,15 @@ extension ExportVC {
         let vc  = Storyboard.premium.instantiate(ProVC.self)
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
+    }
+    
+    private func closeExportConfig() {
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
+            self.exportView.transform = CGAffineTransform(translationX: 0, y: self.exportView.frame.height)
+        }, completion: { _ in
+            self.exportView.isHidden = true
+        })
+        haltView.isHidden = true
     }
 
 }

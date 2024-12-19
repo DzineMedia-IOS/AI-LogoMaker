@@ -10,6 +10,7 @@ import UIKit
 class ProjectViewController: UIViewController {
     
     
+    @IBOutlet weak var noDocView: UIView!
     @IBOutlet weak var projectCollectionView: UICollectionView!
     @IBOutlet weak var btnPro: UIButton!
     var projects: [Projects] = []
@@ -17,7 +18,7 @@ class ProjectViewController: UIViewController {
   
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        noDocView.isHidden = true
         DispatchQueue.main.async { [weak self] in
             self?.styleUI()
         }
@@ -59,6 +60,7 @@ class ProjectViewController: UIViewController {
 
 extension ProjectViewController: UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        (projects.count == 0) ? (noDocView.isHidden = false ) : (noDocView.isHidden = true)
         return projects.count
     }
     

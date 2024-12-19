@@ -31,11 +31,21 @@ class CreationVC: UIViewController,UITextViewDelegate {
     
     private var timer: Timer?
     private var startTime: Date?
-    
     var selectedStyle : String = "No Style"
     var selectedStyleIndex : Int = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if isOnBoardingScreen {
+            isOnBoardingScreen = false
+
+            let vc = Storyboard.premium.instantiate(ExportVC.self)
+            vc.modalPresentationStyle = .fullScreen
+            present(vc, animated: true)
+
+        }
+        
         setScrollHeight()
         notificationObservers()
         popUpView.isHidden = true
@@ -53,6 +63,7 @@ class CreationVC: UIViewController,UITextViewDelegate {
             
             self?.stylingUI()
         }
+    
         
         
         

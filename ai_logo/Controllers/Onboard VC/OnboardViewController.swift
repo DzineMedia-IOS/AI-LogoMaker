@@ -52,6 +52,11 @@ class OnboardViewController: UIViewController {
         configureOnboardCollectionView()
         
     }
+
+    override func viewDidLayoutSubviews() {
+        configureBottomPadding()
+
+    }
     
     @IBAction func btnTermOfUse(_ sender: Any) {
         if let privacy = URL(string: Url.appTerms) {
@@ -112,8 +117,8 @@ extension OnboardViewController: UICollectionViewDelegate, UICollectionViewDataS
 
                 let tabbar = Storyboard.main.instantiate(TabBarController.self)
                 tabbar.modalPresentationStyle = .fullScreen
-                
-                present(tabbar, animated: true)
+                isOnBoardingScreen = true
+                present(tabbar, animated: false)
                 //                if let window = UIApplication.shared.windows.first {
                 //                        window.rootViewController = tabbar
                 //                        window.makeKeyAndVisible()
@@ -159,8 +164,8 @@ extension OnboardViewController {
     private func configureLottieAnimation() {
         if isFirstScreen {
             setupLottieAnimation(
-                name: .onboard_1,
-                loopMode: .playOnce
+                name: .onboard_1
+//                loopMode: .playOnce
             ) { [self] finished in
                 finished ? print("Animation Completed!") : print("Animation Interrupted!")
             }

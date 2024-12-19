@@ -10,6 +10,17 @@
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Outfit-Bold.ttf">
+            <string>Outfit-Bold</string>
+        </array>
+        <array key="Outfit-Medium.ttf">
+            <string>Outfit-Medium</string>
+        </array>
+        <array key="Outfit-Regular.ttf">
+            <string>Outfit-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--LoaderVC-->
         <scene sceneID="nhl-Ga-nfk">
@@ -161,7 +172,7 @@
                                     <constraint firstItem="Wuw-Kg-nXI" firstAttribute="width" secondItem="qKk-vf-erP" secondAttribute="width" multiplier="0.199446" id="kaO-Jf-nqw"/>
                                     <constraint firstItem="Wuw-Kg-nXI" firstAttribute="centerY" secondItem="4c0-Ks-ra9" secondAttribute="centerY" id="sjl-C0-hzS"/>
                                     <constraint firstAttribute="height" constant="60" id="zcS-a7-LOW">
-                                        <variation key="heightClass=regular-widthClass=regular" constant="120"/>
+                                        <variation key="heightClass=regular-widthClass=regular" constant="90"/>
                                     </constraint>
                                 </constraints>
                             </view>
@@ -177,7 +188,9 @@
                             <constraint firstItem="i6U-mp-qmi" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="Bbp-sn-TKC"/>
                             <constraint firstAttribute="bottom" secondItem="OXB-H5-LEi" secondAttribute="bottom" id="CVN-tZ-fK6"/>
                             <constraint firstAttribute="bottom" secondItem="Qry-Da-3nO" secondAttribute="bottom" id="Eaq-8C-bfV"/>
-                            <constraint firstItem="KVv-D5-aK1" firstAttribute="centerY" secondItem="Qry-Da-3nO" secondAttribute="centerY" multiplier="1.65" id="Eev-4a-7dD"/>
+                            <constraint firstItem="KVv-D5-aK1" firstAttribute="centerY" secondItem="Qry-Da-3nO" secondAttribute="centerY" multiplier="1.65" id="Eev-4a-7dD">
+                                <variation key="heightClass=regular-widthClass=regular" constant="30"/>
+                            </constraint>
                             <constraint firstItem="ja6-cY-MYe" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="H9a-Lg-TGx"/>
                             <constraint firstItem="ja6-cY-MYe" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="LQD-mh-Acl"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="i6U-mp-qmi" secondAttribute="trailing" constant="20" id="Ot1-qb-Qxa"/>
@@ -824,7 +837,7 @@ your logo</string>
                                 <constraints>
                                     <constraint firstItem="X9S-dS-8vV" firstAttribute="leading" secondItem="lv3-t5-rUm" secondAttribute="leading" id="3n7-E8-59w"/>
                                     <constraint firstAttribute="height" constant="60" id="5HY-68-G4e">
-                                        <variation key="heightClass=regular-widthClass=regular" constant="120"/>
+                                        <variation key="heightClass=regular-widthClass=regular" constant="90"/>
                                     </constraint>
                                     <constraint firstAttribute="trailing" secondItem="THV-QE-RoN" secondAttribute="trailing" id="82b-VQ-bN3"/>
                                     <constraint firstItem="X9S-dS-8vV" firstAttribute="top" secondItem="lv3-t5-rUm" secondAttribute="top" constant="10" id="H6W-Zw-HuS"/>
@@ -1048,7 +1061,7 @@ your logo</string>
                                 <rect key="frame" x="0.0" y="565" width="393" height="287"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Export Settings" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dc6-hs-sT2">
-                                        <rect key="frame" x="126.00000000000001" y="9.9999999999999982" width="141.33333333333337" height="25.333333333333329"/>
+                                        <rect key="frame" x="126.00000000000001" y="13.999999999999998" width="141.33333333333337" height="25.333333333333329"/>
                                         <fontDescription key="fontDescription" name="Outfit-Bold" family="Outfit" pointSize="20"/>
                                         <color key="textColor" name="kWhite"/>
                                         <nil key="highlightedColor"/>
@@ -1103,7 +1116,7 @@ your logo</string>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jUL-mx-eRx">
-                                        <rect key="frame" x="25" y="37.333333333333371" width="343" height="151.33333333333334"/>
+                                        <rect key="frame" x="25" y="41.333333333333371" width="343" height="151.33333333333334"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Format" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hll-Yj-ye9">
                                                 <rect key="frame" x="0.0" y="13.333333333333259" width="46.666666666666664" height="17.666666666666671"/>
@@ -1193,10 +1206,10 @@ your logo</string>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z6M-qD-XLx">
-                                        <rect key="frame" x="0.0" y="35.333333333333371" width="393" height="175"/>
+                                        <rect key="frame" x="0.0" y="39.333333333333371" width="393" height="171"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Format" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UZc-bm-TUf">
-                                                <rect key="frame" x="24.999999999999996" y="21" width="46.666666666666657" height="17.666666666666671"/>
+                                                <rect key="frame" x="24.999999999999996" y="19.333333333333258" width="46.666666666666657" height="17.666666666666671"/>
                                                 <fontDescription key="fontDescription" name="Outfit-Regular" family="Outfit" pointSize="14"/>
                                                 <color key="textColor" name="kLightWhite"/>
                                                 <nil key="highlightedColor"/>
@@ -1205,7 +1218,7 @@ your logo</string>
                                                 </variation>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quality" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0aJ-7B-f5w">
-                                                <rect key="frame" x="24.999999999999996" y="91.333333333333258" width="45.666666666666657" height="17.666666666666671"/>
+                                                <rect key="frame" x="24.999999999999996" y="88.666666666666629" width="45.666666666666657" height="17.666666666666671"/>
                                                 <fontDescription key="fontDescription" name="Outfit-Regular" family="Outfit" pointSize="14"/>
                                                 <color key="textColor" name="kLightWhite"/>
                                                 <nil key="highlightedColor"/>
@@ -1214,7 +1227,7 @@ your logo</string>
                                                 </variation>
                                             </label>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="W2x-bD-DrK">
-                                                <rect key="frame" x="25" y="43.666666666666629" width="343" height="42.666666666666657"/>
+                                                <rect key="frame" x="25" y="42" width="343" height="41.666666666666657"/>
                                                 <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="RJa-wx-z2n">
                                                     <size key="itemSize" width="128" height="128"/>
@@ -1245,7 +1258,7 @@ your logo</string>
                                                 </userDefinedRuntimeAttributes>
                                             </collectionView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="pro_img" translatesAutoresizingMaskIntoConstraints="NO" id="Cd3-1j-LjI">
-                                                <rect key="frame" x="172.66666666666666" y="33.666666666666629" width="48" height="20"/>
+                                                <rect key="frame" x="172.66666666666666" y="32" width="48" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="48" id="Ln1-ZY-fsA">
                                                         <variation key="heightClass=regular-widthClass=regular" constant="70"/>
@@ -1256,7 +1269,7 @@ your logo</string>
                                                 </constraints>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="pro_img" translatesAutoresizingMaskIntoConstraints="NO" id="PY9-h4-cXe">
-                                                <rect key="frame" x="294.33333333333331" y="33.666666666666629" width="48" height="20"/>
+                                                <rect key="frame" x="294.33333333333331" y="32" width="48" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="48" id="8K9-ce-b9z">
                                                         <variation key="heightClass=regular-widthClass=regular" constant="70"/>
@@ -1267,7 +1280,7 @@ your logo</string>
                                                 </constraints>
                                             </imageView>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="pMU-ez-9sQ">
-                                                <rect key="frame" x="25" y="114" width="343" height="43"/>
+                                                <rect key="frame" x="25" y="111.33333333333326" width="343" height="42"/>
                                                 <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="mJ1-qk-9Z1">
                                                     <size key="itemSize" width="128" height="128"/>
@@ -1298,7 +1311,7 @@ your logo</string>
                                                 </userDefinedRuntimeAttributes>
                                             </collectionView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="pro_img" translatesAutoresizingMaskIntoConstraints="NO" id="CQh-Ew-413">
-                                                <rect key="frame" x="172.66666666666666" y="104" width="48" height="20"/>
+                                                <rect key="frame" x="172.66666666666666" y="101.33333333333326" width="48" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="48" id="daC-Sy-YNm">
                                                         <variation key="heightClass=regular-widthClass=regular" constant="70"/>
@@ -1309,7 +1322,7 @@ your logo</string>
                                                 </constraints>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="pro_img" translatesAutoresizingMaskIntoConstraints="NO" id="ce6-dO-gv7">
-                                                <rect key="frame" x="294.33333333333331" y="104" width="48" height="20"/>
+                                                <rect key="frame" x="294.33333333333331" y="101.33333333333326" width="48" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="DuX-gN-5ha">
                                                         <variation key="heightClass=regular-widthClass=regular" constant="30"/>
@@ -1345,22 +1358,40 @@ your logo</string>
                                             <constraint firstItem="0aJ-7B-f5w" firstAttribute="top" secondItem="W2x-bD-DrK" secondAttribute="bottom" constant="5" id="zy1-lC-Jgy"/>
                                         </constraints>
                                     </view>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="topBar" translatesAutoresizingMaskIntoConstraints="NO" id="55C-g8-zmg">
+                                        <rect key="frame" x="153.66666666666666" y="0.0" width="86" height="20"/>
+                                        <color key="tintColor" name="kLightWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="ppM-pj-Hzh"/>
+                                        </constraints>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jhL-Lq-cGn">
+                                        <rect key="frame" x="123" y="0.0" width="147" height="39.333333333333336"/>
+                                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" name="kLightBlack"/>
                                 <constraints>
+                                    <constraint firstItem="55C-g8-zmg" firstAttribute="centerX" secondItem="nqh-6b-ayR" secondAttribute="centerX" id="1bG-YK-NCF"/>
                                     <constraint firstItem="jUL-mx-eRx" firstAttribute="leading" secondItem="nqh-6b-ayR" secondAttribute="leading" constant="25" id="3Qk-Km-aqH"/>
                                     <constraint firstItem="jUL-mx-eRx" firstAttribute="top" secondItem="dc6-hs-sT2" secondAttribute="bottom" constant="2" id="6aS-lv-54j"/>
+                                    <constraint firstItem="jhL-Lq-cGn" firstAttribute="top" secondItem="nqh-6b-ayR" secondAttribute="top" id="817-Uv-cUN"/>
                                     <constraint firstAttribute="trailing" secondItem="z4S-GT-pu3" secondAttribute="trailing" constant="25" id="B4q-Dk-IRD"/>
                                     <constraint firstItem="z4S-GT-pu3" firstAttribute="top" secondItem="z6M-qD-XLx" secondAttribute="bottom" constant="5" id="Ddw-iC-PhT"/>
                                     <constraint firstItem="z6M-qD-XLx" firstAttribute="top" secondItem="dc6-hs-sT2" secondAttribute="bottom" id="E2M-YF-msZ"/>
-                                    <constraint firstItem="dc6-hs-sT2" firstAttribute="top" secondItem="nqh-6b-ayR" secondAttribute="top" constant="10" id="Et5-sP-3z8"/>
+                                    <constraint firstItem="dc6-hs-sT2" firstAttribute="top" secondItem="nqh-6b-ayR" secondAttribute="top" constant="14" id="Et5-sP-3z8"/>
                                     <constraint firstItem="z4S-GT-pu3" firstAttribute="leading" secondItem="dDI-u7-GRa" secondAttribute="trailing" constant="8" symbolic="YES" id="Ixw-Z2-xeV"/>
+                                    <constraint firstItem="55C-g8-zmg" firstAttribute="top" secondItem="nqh-6b-ayR" secondAttribute="top" id="U3u-S0-P5A"/>
                                     <constraint firstAttribute="bottom" secondItem="z4S-GT-pu3" secondAttribute="bottom" constant="20" symbolic="YES" id="U8V-Uw-fsM"/>
+                                    <constraint firstItem="55C-g8-zmg" firstAttribute="width" secondItem="nqh-6b-ayR" secondAttribute="width" multiplier="0.21883" id="Vzh-pY-c3n"/>
                                     <constraint firstItem="z4S-GT-pu3" firstAttribute="height" secondItem="nqh-6b-ayR" secondAttribute="height" multiplier="0.180505" id="ZJu-mD-c14"/>
                                     <constraint firstItem="dDI-u7-GRa" firstAttribute="leading" secondItem="nqh-6b-ayR" secondAttribute="leading" constant="25" id="acn-Il-rJc"/>
                                     <constraint firstItem="z4S-GT-pu3" firstAttribute="width" secondItem="nqh-6b-ayR" secondAttribute="width" multiplier="0.127226" id="alN-eB-3cC"/>
+                                    <constraint firstItem="jhL-Lq-cGn" firstAttribute="width" secondItem="nqh-6b-ayR" secondAttribute="width" multiplier="0.374046" id="dys-bL-KWo"/>
+                                    <constraint firstItem="jhL-Lq-cGn" firstAttribute="centerX" secondItem="nqh-6b-ayR" secondAttribute="centerX" id="eda-N5-eD4"/>
                                     <constraint firstItem="dc6-hs-sT2" firstAttribute="centerX" secondItem="nqh-6b-ayR" secondAttribute="centerX" id="fTj-w6-LbU"/>
                                     <constraint firstAttribute="trailing" secondItem="jUL-mx-eRx" secondAttribute="trailing" constant="25" id="jmY-sk-Ucu"/>
+                                    <constraint firstItem="z6M-qD-XLx" firstAttribute="top" secondItem="jhL-Lq-cGn" secondAttribute="bottom" id="kdx-kU-9bT"/>
                                     <constraint firstItem="dDI-u7-GRa" firstAttribute="height" secondItem="nqh-6b-ayR" secondAttribute="height" multiplier="0.180505" id="pFG-TK-f3k"/>
                                     <constraint firstAttribute="trailing" secondItem="z6M-qD-XLx" secondAttribute="trailing" id="qLj-4g-cNy"/>
                                     <constraint firstItem="dDI-u7-GRa" firstAttribute="centerY" secondItem="z4S-GT-pu3" secondAttribute="centerY" id="sjI-tK-l3L"/>
@@ -1404,6 +1435,7 @@ your logo</string>
                         <outlet property="btnUpload" destination="z4S-GT-pu3" id="bPP-4A-7dw"/>
                         <outlet property="collectionVIew" destination="h8C-BJ-wtb" id="sIh-Nz-bpO"/>
                         <outlet property="downloadView" destination="dDI-u7-GRa" id="thx-3J-UnY"/>
+                        <outlet property="exportBar" destination="jhL-Lq-cGn" id="jQn-x6-4fh"/>
                         <outlet property="exportView" destination="nqh-6b-ayR" id="kxq-DF-foF"/>
                         <outlet property="format" destination="EdE-XR-nZ9" id="Ye0-e9-I66"/>
                         <outlet property="formatCollectionView" destination="W2x-bD-DrK" id="mIe-Ok-0Jp"/>
@@ -1419,6 +1451,7 @@ your logo</string>
                         <outlet property="qualityCollectionView" destination="pMU-ez-9sQ" id="v0a-lu-Ld0"/>
                         <outlet property="segmentationView" destination="jUL-mx-eRx" id="yIc-YW-H8T"/>
                         <outlet property="textBackView" destination="cel-DT-rBq" id="huc-Vj-iea"/>
+                        <outlet property="topBarHideStrip" destination="55C-g8-zmg" id="7IF-vz-B5Q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DI2-qA-2xM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1438,6 +1471,7 @@ your logo</string>
         <image name="project_bg" width="430" height="932"/>
         <image name="star" width="15" height="17"/>
         <image name="temp_logo" width="380" height="385.33334350585938"/>
+        <image name="topBar" width="170.66667175292969" height="170.66667175292969"/>
         <image name="upload" width="23" height="24"/>
         <namedColor name="AccentColor">
             <color red="1" green="0.89800000190734863" blue="0.23100000619888306" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

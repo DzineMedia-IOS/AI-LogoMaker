@@ -45,6 +45,8 @@ extension RecentCell: UICollectionViewDelegate, UICollectionViewDataSource,UICol
         cell.tryImg.isHidden = false
         let discover = discoverArr[indexPath.row]
         cell.img.image = UIImage(named: discover.imageName)
+        cell.img.layer.cornerRadius = cell.img.frame.height / 2
+
         cell.tryNowAction = {
             NotificationCenter.default.post(name: .tryPrompt, object: nil, userInfo: ["prompt": discover.projectPrompt])
         }

@@ -142,8 +142,8 @@ extension SettingVc: UITableViewDataSource, UITableViewDelegate {
         var fontSize = 18
         var constraint = 16
         if ( UIDevice.current.userInterfaceIdiom == .pad ){
-            fontSize = 38
-            constraint = 32
+            fontSize = 27
+            constraint = 24
         }
         let label = UILabel()
         label.text = sectionHeaders[section]
@@ -162,11 +162,11 @@ extension SettingVc: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return  UIDevice.current.userInterfaceIdiom == .pad ? 60 : 30
+        return  UIDevice.current.userInterfaceIdiom == .pad ? 45 : 30
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return  UIDevice.current.userInterfaceIdiom == .pad ? 120 : 60
+        return  UIDevice.current.userInterfaceIdiom == .pad ? 90 : 60
     }
 }
 

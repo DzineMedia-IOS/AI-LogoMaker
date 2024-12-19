@@ -28,7 +28,7 @@ class SettingsTableViewCell: UITableViewCell {
             toggleSwitch?.translatesAutoresizingMaskIntoConstraints = false
             
             if UIDevice.current.userInterfaceIdiom == .pad {
-                toggleSwitch?.transform = CGAffineTransform(scaleX: 2, y: 2) // Increase size
+                toggleSwitch?.transform = CGAffineTransform(scaleX: 1.5, y: 1.5) // Increase size
             } else {
                 toggleSwitch?.transform = CGAffineTransform(scaleX: 1.0, y: 1.0) // Default size
             }

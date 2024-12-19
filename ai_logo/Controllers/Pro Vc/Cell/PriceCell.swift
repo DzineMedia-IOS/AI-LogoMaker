@@ -15,28 +15,28 @@ class PriceCell: UICollectionViewCell {
     @IBOutlet weak var lblPrice: UILabel!
     @IBOutlet weak var lblweek: UILabel!
     @IBOutlet weak var lblPlanName: UILabel!
-    @IBOutlet weak var selectedImg: UIImageView!
+//    @IBOutlet weak var selectedImg: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         
         if ( UIDevice.current.userInterfaceIdiom == .pad){
-            saveView.layer.cornerRadius = saveView.frame.height / 1.4
-            backView.layer.cornerRadius = backView.frame.height / 2
-            backView.borderWidth = 4
-            saveView.borderWidth = 4
+            saveView.layer.cornerRadius = saveView.frame.height / 3
+            backView.layer.cornerRadius = backView.frame.height / 5
+            backView.borderWidth = 3
+            saveView.borderWidth = 1
         }
         else{
             saveView.layer.cornerRadius = saveView.frame.height / 3
-            backView.layer.cornerRadius = backView.frame.height / 3
+            backView.layer.cornerRadius = backView.frame.height / 5
         }
         
     }
     
 
     func selectedCellConfig(){
-        selectedImg.image = UIImage(named: "selected")
+//        selectedImg.image = UIImage(named: "selected")
         backView.backgroundColor = .kOrange.withAlphaComponent(0.2)
         backView.borderColor = .kOrange
         saveView.borderWidth = .zero
@@ -46,10 +46,10 @@ class PriceCell: UICollectionViewCell {
     
     
     func unSelectedCellConfig(){
-        selectedImg.image = UIImage(named: "unselected")
+//        selectedImg.image = UIImage(named: "unselected")
         backView.backgroundColor = .kLightBlack
         backView.borderColor = .kLightWhite.withAlphaComponent(0.5)
-        saveView.borderWidth = UIDevice.current.userInterfaceIdiom == .pad ? 4 : 1
+        saveView.borderWidth = UIDevice.current.userInterfaceIdiom == .pad ? 2 : 1
         saveView.backgroundColor = .kLightBlack
         lblPrice.textColor = .kWhite
     }

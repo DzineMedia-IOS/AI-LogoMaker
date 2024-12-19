@@ -9,11 +9,20 @@ import UIKit
 
 class FeatureCell: UICollectionViewCell {
 
+    @IBOutlet weak var imgBackView: UIView!
     @IBOutlet weak var lblFeature: UILabel!
     @IBOutlet weak var img: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        imgBackView.layer.cornerRadius = imgBackView.frame.height / 4
+//        adjustFontSize()
     }
+
+    private func adjustFontSize() {
+            let cellWidth = self.bounds.height
+            let fontSize = cellWidth * 0.1
+        print(fontSize)
+            lblFeature.font = lblFeature.font.withSize(fontSize)
+        }
 
 }
