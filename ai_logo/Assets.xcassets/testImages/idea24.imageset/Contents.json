@@ -1,19 +1,8 @@
 {
   "images" : [
     {
-      "filename" : "response24.pdf",
-      "idiom" : "universal",
-      "scale" : "1x"
-    },
-    {
-      "filename" : "response24@2x.pdf",
-      "idiom" : "universal",
-      "scale" : "2x"
-    },
-    {
-      "filename" : "response24@3x.pdf",
-      "idiom" : "universal",
-      "scale" : "3x"
+      "filename" : "idea24.pdf",
+      "idiom" : "universal"
     }
   ],
   "info" : {
