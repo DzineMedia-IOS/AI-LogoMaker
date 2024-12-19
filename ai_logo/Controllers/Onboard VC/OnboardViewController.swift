@@ -20,11 +20,19 @@ class OnboardViewController: UIViewController {
     var currentAnimation: Int = 1
     var titlArr = [
         "Welcome to AI Logo Maker",
-        "Your Logo, AI-Powered",
-        "See Your Brand Shine",
-        "Generate Various Logos With One Click",
-        "Generate Artwork With Creative Prompts",
+        "Endless Templates, Endless Possibilities",
+        "Perfect for Any Business",
+        "Design Like a Pro in Minutes",
+        "Generate Artwork with Creative Prompts",
     ]
+    
+    let subtitles: [String] = [
+        "Instant logo designs at your fingertips. Craft professional logos with AI magic",
+        "Pick a template, personalize it, and make it yours instantly",
+        "From tech to fashion, gaming to tattoos, find stunning logos for every industry",
+        "No design skills needed. Let AI make the job easy for you",
+        "Transform your ideas into reality with a logo that embodies your vision",
+        ]
     
     let videoPairs: [(primary: AnimationVideoName, secondary: AnimationVideoName)] = [
         (.onboard_2, .onboard_2_1),
@@ -109,6 +117,7 @@ extension OnboardViewController: UICollectionViewDelegate, UICollectionViewDataS
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OnboardCell", for: indexPath) as! OnboardCell
        
         /*isFirstScreen ? (cell.lblTitle.text = titlArr[currentPage] ) :*/ (cell.lblTitle.text = titlArr[indexPath.row])
+        cell.lblSubtitle.text = subtitles [indexPath.row]
         cell.buttonActionClosure = { [self] in
         
             if !isFirstScreen {
@@ -270,7 +279,7 @@ extension OnboardViewController {
         lottieAnimation.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         lottieAnimation.contentMode = .scaleAspectFill
         lottieAnimation.loopMode = loopMode
-        lottieAnimation.animationSpeed = 2.5
+        lottieAnimation.animationSpeed = 0.5
         lottieAnimation.tag = tagID
         tagID += 1
         animationView.addSubview(lottieAnimation)

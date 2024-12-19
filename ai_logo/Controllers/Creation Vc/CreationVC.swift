@@ -22,7 +22,7 @@ class CreationVC: UIViewController,UITextViewDelegate {
     @IBOutlet weak var btnPro: UIButton!
     @IBOutlet weak var projectCollectionView: UICollectionView!
     @IBOutlet weak var creationCollectionView: UICollectionView!
-    @IBOutlet weak var popUpView: UIView!
+//    @IBOutlet weak var popUpView: UIView!
     @IBOutlet weak var scrollHeight: NSLayoutConstraint!
     
     @IBOutlet weak var mainAnimationView: UIView!
@@ -41,7 +41,7 @@ class CreationVC: UIViewController,UITextViewDelegate {
         
         setScrollHeight()
         notificationObservers()
-        popUpView.isHidden = true
+//        popUpView.isHidden = true
         mainAnimationView.isHidden = true
         btnClear.isHidden = true
         creationCollectionView.dataSource = self
@@ -76,6 +76,11 @@ class CreationVC: UIViewController,UITextViewDelegate {
         DispatchQueue.main.async { [weak self] in
             self?.stylingUI()
         }
+        if !isProUser{
+            let vc = Storyboard.creation.instantiate(PopupVC.self)
+            vc.modalPresentationStyle = .overFullScreen
+            present(vc, animated: true)
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -98,7 +103,7 @@ class CreationVC: UIViewController,UITextViewDelegate {
     @objc func popUpAction(){
         
         NotificationCenter.default.removeObserver(self, name: Notification.Name("popUp"), object: nil)
-        popUpView.isHidden = true
+//        popUpView.isHidden = true
     }
     
     @IBAction func btnPro(_ sender: Any) {
@@ -125,8 +130,6 @@ class CreationVC: UIViewController,UITextViewDelegate {
         let style = logoStylePrompts[selectedStyleIndex]
         var prompt = "The style should be \(style),"
         prompt = prompt + self.textView.text
-        
-
         self.generateLogo(prompt: prompt)
     }
     

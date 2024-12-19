@@ -120,8 +120,8 @@
                                     <action selector="btnStart:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="dQ5-up-Eo6"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor amet sit consectetur adipiscinges sed do eiusmod" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i6U-mp-qmi">
-                                <rect key="frame" x="20" y="544.66666666666663" width="353" height="98.333333333333371"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Craft unique, impactful logos effortlessly with AI creativity and precision" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i6U-mp-qmi">
+                                <rect key="frame" x="20" y="544.66666666666674" width="353" height="98.333333333333258"/>
                                 <fontDescription key="fontDescription" name="Outfit-Bold" family="Outfit" pointSize="26"/>
                                 <color key="textColor" name="kWhite"/>
                                 <nil key="highlightedColor"/>

@@ -438,12 +438,6 @@
                                     <action selector="btnArtWork:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="0a3-s4-cKf"/>
                                 </connections>
                             </button>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HlH-yT-oaS">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                                <connections>
-                                    <segue destination="fty-sy-kXl" kind="embed" id="IP1-1F-V2b"/>
-                                </connections>
-                            </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qRy-6p-S0k">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <subviews>
@@ -483,7 +477,6 @@
                         <constraints>
                             <constraint firstItem="10i-J7-ygZ" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="0LL-Hn-5tK"/>
                             <constraint firstAttribute="trailing" secondItem="qRy-6p-S0k" secondAttribute="trailing" id="1SY-3T-E86"/>
-                            <constraint firstAttribute="bottom" secondItem="HlH-yT-oaS" secondAttribute="bottom" id="2fC-dv-AhC"/>
                             <constraint firstItem="qRy-6p-S0k" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="5yc-fj-Fz6"/>
                             <constraint firstItem="bQX-DD-h5E" firstAttribute="centerY" secondItem="10i-J7-ygZ" secondAttribute="centerY" multiplier="1.65" id="6kg-JG-NWp">
                                 <variation key="heightClass=regular-widthClass=regular" constant="30"/>
@@ -492,7 +485,6 @@
                                 <variation key="heightClass=regular-widthClass=regular" constant="40"/>
                             </constraint>
                             <constraint firstItem="qh1-WU-tRd" firstAttribute="top" secondItem="D4T-z9-ucY" secondAttribute="bottom" id="BxW-dJ-Nh7"/>
-                            <constraint firstItem="HlH-yT-oaS" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="CQ3-lq-CBb"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="D4T-z9-ucY" secondAttribute="trailing" constant="16" id="F5q-dK-nvx"/>
                             <constraint firstItem="qRy-6p-S0k" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="Teu-jj-aFD"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="bQX-DD-h5E" secondAttribute="trailing" constant="20" id="Y8F-yl-AN1">
@@ -502,8 +494,6 @@
                             <constraint firstAttribute="bottom" secondItem="10i-J7-ygZ" secondAttribute="bottom" id="erx-Qb-T8U"/>
                             <constraint firstAttribute="bottom" secondItem="qRy-6p-S0k" secondAttribute="bottom" id="ibx-Fy-heX"/>
                             <constraint firstItem="qh1-WU-tRd" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="kHf-Fe-WoA"/>
-                            <constraint firstItem="HlH-yT-oaS" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="lRe-13-jpo"/>
-                            <constraint firstItem="HlH-yT-oaS" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="mmC-Vw-BKY"/>
                             <constraint firstItem="10i-J7-ygZ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="mqe-5e-l6i"/>
                             <constraint firstItem="10i-J7-ygZ" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="ooL-tI-gRd"/>
                             <constraint firstItem="qh1-WU-tRd" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="sdI-xf-yJO"/>
@@ -521,7 +511,6 @@
                         <outlet property="lblPrompt" destination="YFQ-YF-6jx" id="dLK-hR-SEX"/>
                         <outlet property="lblSec" destination="bdS-dw-9VQ" id="hnv-8A-Xxz"/>
                         <outlet property="mainAnimationView" destination="qRy-6p-S0k" id="Yek-mt-xab"/>
-                        <outlet property="popUpView" destination="HlH-yT-oaS" id="xhB-a2-VE3"/>
                         <outlet property="projectCollectionView" destination="2iL-Xw-RrH" id="lID-4S-Nd9"/>
                         <outlet property="scrollHeight" destination="mBP-Rf-E7r" id="N11-3p-2ZR"/>
                         <outlet property="textBackView" destination="L47-22-GIU" id="jxQ-HF-SNr"/>
@@ -570,8 +559,11 @@
                                     <action selector="btnPrompt:" destination="x6T-fo-AO8" eventType="touchUpInside" id="5vz-Vd-MZB"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="63s-rK-HRc">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="idea18" translatesAutoresizingMaskIntoConstraints="NO" id="63s-rK-HRc">
                                 <rect key="frame" x="0.0" y="59" width="393" height="332.33333333333331"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="animation_overlay" translatesAutoresizingMaskIntoConstraints="NO" id="OUG-Sa-ZEu">
+                                <rect key="frame" x="0.0" y="111.33333333333331" width="393" height="280"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cvg-8B-VeU">
                                 <rect key="frame" x="20" y="79" width="23" height="24"/>
@@ -759,6 +751,7 @@
                             <constraint firstItem="63s-rK-HRc" firstAttribute="height" secondItem="E63-gN-GDJ" secondAttribute="height" multiplier="0.39" id="084-GG-ROx"/>
                             <constraint firstItem="fs6-Ch-JeX" firstAttribute="leading" secondItem="iuq-W1-0ej" secondAttribute="leading" id="0lf-6Y-hAb"/>
                             <constraint firstAttribute="bottom" secondItem="dvQ-8a-yOn" secondAttribute="bottom" id="2me-R6-nR6"/>
+                            <constraint firstItem="OUG-Sa-ZEu" firstAttribute="leading" secondItem="iuq-W1-0ej" secondAttribute="leading" id="44A-dM-ILF"/>
                             <constraint firstItem="iuq-W1-0ej" firstAttribute="trailing" secondItem="I1S-he-49f" secondAttribute="trailing" id="7b8-Xk-oxr"/>
                             <constraint firstItem="cvg-8B-VeU" firstAttribute="leading" secondItem="iuq-W1-0ej" secondAttribute="leading" constant="20" id="AEX-80-BYP"/>
                             <constraint firstItem="dvQ-8a-yOn" firstAttribute="leading" secondItem="iuq-W1-0ej" secondAttribute="leading" id="Dqt-bi-pKp"/>
@@ -769,12 +762,14 @@
                             <constraint firstItem="iuq-W1-0ej" firstAttribute="trailing" secondItem="11F-oB-o8g" secondAttribute="trailing" constant="20" id="ZPW-qz-K4S"/>
                             <constraint firstItem="I1S-he-49f" firstAttribute="leading" secondItem="iuq-W1-0ej" secondAttribute="leading" id="a6q-9F-e8e"/>
                             <constraint firstItem="dvQ-8a-yOn" firstAttribute="trailing" secondItem="iuq-W1-0ej" secondAttribute="trailing" id="elw-8i-rAU"/>
+                            <constraint firstItem="OUG-Sa-ZEu" firstAttribute="bottom" secondItem="63s-rK-HRc" secondAttribute="bottom" id="ew5-lH-Lza"/>
                             <constraint firstItem="dvQ-8a-yOn" firstAttribute="top" secondItem="E63-gN-GDJ" secondAttribute="top" id="iWM-68-frY"/>
                             <constraint firstItem="11F-oB-o8g" firstAttribute="top" secondItem="I1S-he-49f" secondAttribute="bottom" constant="16" id="mo4-5e-BIg"/>
                             <constraint firstItem="cvg-8B-VeU" firstAttribute="top" secondItem="iuq-W1-0ej" secondAttribute="top" constant="20" id="uNv-cT-pPm"/>
                             <constraint firstItem="iuq-W1-0ej" firstAttribute="trailing" secondItem="63s-rK-HRc" secondAttribute="trailing" id="udX-W2-NHm"/>
                             <constraint firstItem="fs6-Ch-JeX" firstAttribute="top" secondItem="63s-rK-HRc" secondAttribute="bottom" constant="8" symbolic="YES" id="uyn-Tf-qJr"/>
                             <constraint firstItem="iuq-W1-0ej" firstAttribute="trailing" secondItem="fs6-Ch-JeX" secondAttribute="trailing" id="wil-hM-1eb"/>
+                            <constraint firstItem="OUG-Sa-ZEu" firstAttribute="trailing" secondItem="iuq-W1-0ej" secondAttribute="trailing" id="xzT-oR-QbR"/>
                             <constraint firstItem="I1S-he-49f" firstAttribute="top" secondItem="fs6-Ch-JeX" secondAttribute="bottom" id="yX1-dM-jNe"/>
                             <constraint firstItem="63s-rK-HRc" firstAttribute="leading" secondItem="iuq-W1-0ej" secondAttribute="leading" id="zVv-P8-gwX"/>
                         </constraints>
@@ -785,6 +780,7 @@
                         <outlet property="img" destination="63s-rK-HRc" id="saE-bV-pU3"/>
                         <outlet property="lblPrompt" destination="2AL-Lz-OVD" id="Snh-Yd-oQM"/>
                         <outlet property="lblStyle" destination="06Z-UK-6AP" id="IB0-52-Yiu"/>
+                        <outlet property="overlayImg" destination="OUG-Sa-ZEu" id="Fc7-KW-1KT"/>
                         <outlet property="textBackView" destination="dxO-us-BU7" id="YUc-wC-rCT"/>
                     </connections>
                 </viewController>
@@ -795,7 +791,7 @@
         <!--PopupVC-->
         <scene sceneID="Z81-aO-xbG">
             <objects>
-                <viewController storyboardIdentifier="PopupVc" id="fty-sy-kXl" customClass="PopupVC" customModule="ai_logo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PopupVC" id="fty-sy-kXl" customClass="PopupVC" customModule="ai_logo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="L71-3H-GMr">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -891,6 +887,9 @@ OFF</string>
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="40"/>
                                         </variation>
+                                        <connections>
+                                            <action selector="btnOffer:" destination="fty-sy-kXl" eventType="touchUpInside" id="jUf-I3-z1z"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cancel Anytime" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VVR-Ok-Aci">
                                         <rect key="frame" x="132" y="410.66666666666663" width="97.666666666666686" height="17.666666666666686"/>
@@ -901,9 +900,8 @@ OFF</string>
                                             <fontDescription key="fontDescription" name="Outfit-Regular" family="Outfit" pointSize="28"/>
                                         </variation>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="56J-xv-Jj7">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Avail an exciting 50% flat discount. The offer is valid for all our newcomer users onboard with no strings attached." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="56J-xv-Jj7">
                                         <rect key="frame" x="8" y="436.33333333333337" width="313" height="53"/>
-                                        <string key="text">Sed ut perspiciatis unde omnis iste natus error sit voluptag atem accusantium doloremque laudantium totam ret periam eaque ipsa quae</string>
                                         <fontDescription key="fontDescription" name="Outfit-Regular" family="Outfit" pointSize="14"/>
                                         <color key="textColor" name="kLightWhite"/>
                                         <nil key="highlightedColor"/>
@@ -986,11 +984,13 @@ OFF</string>
         </scene>
     </scenes>
     <resources>
+        <image name="animation_overlay" width="430" height="280"/>
         <image name="bg" width="430" height="932"/>
         <image name="cancel" width="23" height="24"/>
         <image name="cancel_icon" width="23" height="24"/>
         <image name="clock" width="14" height="15"/>
         <image name="copy" width="19" height="22"/>
+        <image name="idea18" width="256" height="256"/>
         <image name="inspiration" width="19" height="21"/>
         <image name="popup_bg" width="380" height="540"/>
         <image name="project_bg" width="430" height="932"/>

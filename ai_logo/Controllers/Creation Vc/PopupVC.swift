@@ -17,26 +17,18 @@ class PopupVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-     
         NotificationCenter.default.addObserver(self,selector: #selector(animationAction),name: Notification.Name("animation"),object: nil)
         
         let size = view.frame.height * 0.10
-        
         // Do any additional setup after loading the view.
         lbl0ff.font = lbl0ff.font.withSize(size)
         lbl0ff.textColor = .kWhite
-        
-        btnOffer.layer.cornerRadius = UIDevice.current.userInterfaceIdiom == .pad ? btnOffer.frame.height/1.5 : btnOffer.frame.height / 2.5
-        
+        btnOffer.layer.cornerRadius = UIDevice.current.userInterfaceIdiom == .pad ? btnOffer.frame.height/2 : btnOffer.frame.height / 2.5
         
         DispatchQueue.main.async { [weak self] in
             self?.styleUI()
             self?.startBouncingAnimation()
-            
-            
         }
-        
-        //        startBouncingAnimation()
         
     }
     
@@ -60,7 +52,13 @@ class PopupVC: UIViewController {
     
     @IBAction func btnCancel(_ sender: Any) {
         NotificationCenter.default.post(name: Notification.Name("popUp"), object: nil)
-        
+        self.dismiss(animated: true)
+    }
+    
+    @IBAction func btnOffer(_ sender: Any) {
+        let vc = Storyboard.premium.instantiate(ProVC.self)
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
     }
     
 }
@@ -107,30 +105,4 @@ extension PopupVC {
     }
     
     
-    
-    //    private func startInfiniteAnimation() {
-    //           // Slightly move the backView off-screen (just a little below the visible area)
-    //           let slightOffScreenPosition = CGPoint(x: backView.center.x, y: view.frame.height + 100) // Slight offset below the screen
-    //           backView.center = slightOffScreenPosition
-    //
-    //           // Define the center position where the backView will go
-    //           let centerPosition = CGPoint(x: backView.center.x, y: view.frame.height / 2)
-    //
-    //           // Start an infinite animation loop
-    //           animateBackView(toPosition: centerPosition)
-    //       }
-    //
-    //       private func animateBackView(toPosition position: CGPoint) {
-    //           // Animate `backView` to come towards the screen or go back to slightly off-screen
-    //           UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
-    //               // Move the `backView` to the target position
-    //               self.backView.center = position
-    //           }, completion: { _ in
-    //               // Once the animation completes, reverse the animation direction
-    //               let newPosition = self.backView.center.y == self.view.frame.height / 2 ?
-    //                                 CGPoint(x: self.backView.center.x, y: self.view.frame.height + 100) :
-    //                                 CGPoint(x: self.backView.center.x, y: self.view.frame.height / 2)
-    //               self.animateBackView(toPosition: newPosition)  // Recursively animate back and forth
-    //           })
-    //       }
 }

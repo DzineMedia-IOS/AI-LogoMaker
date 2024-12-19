@@ -110,17 +110,18 @@
                                         <color key="textColor" name="kWhite"/>
                                         <nil key="highlightedColor"/>
                                         <variation key="heightClass=regular-widthClass=regular">
-                                            <fontDescription key="fontDescription" name="Outfit-Bold" family="Outfit" pointSize="40"/>
+                                            <fontDescription key="fontDescription" name="Outfit-Bold" family="Outfit" pointSize="30"/>
                                         </variation>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WrE-T2-Aew">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You haven't created any projects yet. Start your first project now!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WrE-T2-Aew">
                                         <rect key="frame" x="16" y="163.33333333333331" width="361" height="40.333333333333343"/>
                                         <color key="tintColor" name="kWhite"/>
-                                        <string key="text">At vero eos et accusamus et iusto odio dignissimos
-ducimus qui blanditis</string>
                                         <fontDescription key="fontDescription" name="Outfit-Medium" family="Outfit" pointSize="16"/>
                                         <color key="textColor" name="kLightWhite"/>
                                         <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" name="Outfit-Medium" family="Outfit" pointSize="24"/>
+                                        </variation>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -9,6 +9,7 @@ import UIKit
 
 class PromptVC: UIViewController {
     
+    @IBOutlet weak var overlayImg: UIImageView!
     @IBOutlet weak var img: UIImageView!
     @IBOutlet weak var lblPrompt: UITextView!
     @IBOutlet weak var lblStyle: UILabel!
@@ -37,6 +38,28 @@ class PromptVC: UIViewController {
             self?.stylingUI()
         }
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        // Ensure img.image exists
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            overlayImg.isHidden = true
+        }
+        else{
+            guard let currentImage = img.image else { return }
+            
+            let newWidth = view.frame.width
+            let newHeight = newWidth
+            img.frame = CGRect(x: 0, y: 0, width: newWidth, height: newHeight)
+            //        img.center = view.center
+            overlayImg.frame = CGRect(x: 0, y: 0, width: newWidth, height: newHeight)
+            let resizedImage = currentImage.resizeImage(to: CGSize(width: newWidth, height: newHeight))
+            img.image = resizedImage
+        }
+    }
+
+
     
     @IBAction func btnCopy(_ sender: Any) {
         if let text = lblPrompt.text, !text.isEmpty {

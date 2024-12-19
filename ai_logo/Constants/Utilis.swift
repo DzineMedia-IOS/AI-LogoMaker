@@ -147,7 +147,8 @@ extension UIViewController {
         // Create and configure the label
         let toastLabel = UILabel(frame: CGRect(
             x: (self.view.frame.size.width - toastWidth) / 2,
-            y: self.view.frame.size.height - toastHeight - 40, // Bottom padding
+            y: self.view.frame.height / 10, // Bottom padding
+//            y: self.view.frame.size.height - toastHeight - 40, // Bottom padding
             width: toastWidth,
             height: toastHeight
         ))

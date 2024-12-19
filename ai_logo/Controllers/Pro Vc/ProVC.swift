@@ -90,6 +90,11 @@ class ProVC: UIViewController {
     }
     
     
+    @IBAction func btnBuy(_ sender: Any) {
+        isProUser = true
+        self.dismiss(animated: true)
+    }
+    
     @IBAction func btnRestore(_ sender: Any) {
     }
 }

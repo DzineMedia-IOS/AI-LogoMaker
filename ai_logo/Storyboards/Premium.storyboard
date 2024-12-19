@@ -103,6 +103,9 @@
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="40"/>
                                 </variation>
+                                <connections>
+                                    <action selector="btnBuy:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Q8Y-bh-AWR"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 Days FREE Trial - then $2.35/month" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t7Y-sC-jgL">
                                 <rect key="frame" x="88" y="596.5" width="199" height="15"/>
