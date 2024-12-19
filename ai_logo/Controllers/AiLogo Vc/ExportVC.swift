@@ -40,6 +40,7 @@ class ExportVC: UIViewController {
     @IBOutlet weak var mediumProImg: UIImageView!
     @IBOutlet weak var pdfProImg: UIImageView!
     @IBOutlet weak var pngProImg: UIImageView!
+    
    
     let formatArr = ["JPG","PNG","PDF"]
     let qualityArr = ["Regular", "Medium","Max"]
@@ -103,6 +104,7 @@ class ExportVC: UIViewController {
     }
     
     @IBAction func btnCancel(_ sender: Any) {
+        
         self.dismiss(animated: true)
     }
    

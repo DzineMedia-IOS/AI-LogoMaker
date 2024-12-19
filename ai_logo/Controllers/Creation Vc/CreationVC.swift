@@ -37,14 +37,7 @@ class CreationVC: UIViewController,UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if isOnBoardingScreen {
-            isOnBoardingScreen = false
-
-            let vc = Storyboard.premium.instantiate(ExportVC.self)
-            vc.modalPresentationStyle = .fullScreen
-            present(vc, animated: true)
-
-        }
+      
         
         setScrollHeight()
         notificationObservers()
@@ -73,6 +66,8 @@ class CreationVC: UIViewController,UITextViewDelegate {
             self?.stylingUI()
         }
         setScrollHeight()
+        
+       
 
     }
     

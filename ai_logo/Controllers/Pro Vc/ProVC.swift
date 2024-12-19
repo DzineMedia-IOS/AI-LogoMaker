@@ -25,7 +25,7 @@ class ProVC: UIViewController {
     let titles = ["Endless Generation", "Creative Suggestions", "AI Gen Artwork","Creative Styles", "HD Download"]
     
     var selectedIndex: Int = 0
-    
+    var isOnbarodingVC: Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
        
@@ -64,7 +64,14 @@ class ProVC: UIViewController {
     
     
     @IBAction func btnCancel(_ sender: Any) {
-        self.dismiss(animated: true)
+        if isOnbarodingVC {
+            let tabbar = Storyboard.main.instantiate(TabBarController.self)
+            tabbar.modalPresentationStyle = .fullScreen
+            present(tabbar, animated: false)
+        }
+        else{
+            self.dismiss(animated: true)
+        }
     }
     
     

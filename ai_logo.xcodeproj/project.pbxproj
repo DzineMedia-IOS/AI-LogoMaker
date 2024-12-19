@@ -218,6 +218,7 @@
 				DEVELOPMENT_TEAM = V748PNDNZ6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ai_logo/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Ai Logo Maker";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -249,6 +250,7 @@
 				DEVELOPMENT_TEAM = V748PNDNZ6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ai_logo/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Ai Logo Maker";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

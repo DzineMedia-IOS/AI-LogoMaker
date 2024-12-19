@@ -32,7 +32,6 @@ enum Storyboard: String {
     }
 }
 var isProUser : Bool = false
-var isOnBoardingScreen : Bool = false
 
 
 class Url{

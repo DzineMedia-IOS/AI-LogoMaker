@@ -115,10 +115,10 @@ extension OnboardViewController: UICollectionViewDelegate, UICollectionViewDataS
                 self.removeSubviews(exceptTag: 10)
                 UserDefaults.standard.set(true, forKey: onBoardKey)
 
-                let tabbar = Storyboard.main.instantiate(TabBarController.self)
-                tabbar.modalPresentationStyle = .fullScreen
-                isOnBoardingScreen = true
-                present(tabbar, animated: false)
+                let vc = Storyboard.premium.instantiate(ProVC.self)
+                vc.modalPresentationStyle = .fullScreen
+                vc.isOnbarodingVC = true
+                present(vc, animated: true)
                 //                if let window = UIApplication.shared.windows.first {
                 //                        window.rootViewController = tabbar
                 //                        window.makeKeyAndVisible()
@@ -270,7 +270,7 @@ extension OnboardViewController {
         lottieAnimation.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         lottieAnimation.contentMode = .scaleAspectFill
         lottieAnimation.loopMode = loopMode
-        lottieAnimation.animationSpeed = 0.5
+        lottieAnimation.animationSpeed = 2.5
         lottieAnimation.tag = tagID
         tagID += 1
         animationView.addSubview(lottieAnimation)
