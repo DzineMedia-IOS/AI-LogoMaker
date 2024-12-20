@@ -71,6 +71,9 @@ class ProVC: UIViewController {
         }
         else{
             self.dismiss(animated: true)
+            let vc = Storyboard.creation.instantiate(PopupVC.self)
+            vc.modalPresentationStyle = .overFullScreen
+            present(vc, animated: true)
         }
     }
     
