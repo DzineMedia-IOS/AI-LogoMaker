@@ -28,7 +28,7 @@ class PreviewVc: UIViewController {
         textBackView.layer.cornerRadius = textView.frame.height / 4
         btnCopyPrompt.cornerRadius = btnCopyPrompt.frame.height / 2
         btnCopyPrompt.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
-        
+
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             applyGradientToButton(button: self.btnExport, colors: [UIColor.kRed, UIColor.accent])
@@ -69,9 +69,13 @@ class PreviewVc: UIViewController {
             setupFonts()
 
         }
+        // Ensure the image exists before proceeding
+        guard let originalImage = previewImg.image else { return }
+        previewImg.image = originalImage.withRoundedCorners()
+        previewImg.clipsToBounds = true
     }
   
-    
+
     
     @IBAction func btnBack(_ sender: Any) {
         self.dismiss(animated: true)
@@ -153,7 +157,7 @@ extension PreviewVc {
                 if UIDevice.current.userInterfaceIdiom == .pad {
                     // Set button corner radius
                 btnCopyPrompt.layer.cornerRadius = btnCopyPrompt.frame.height / 1.5
-                textBackView.layer.cornerRadius = textView.frame.height / 3
+                textBackView.layer.cornerRadius = textView.frame.height / 4
                 btnExport.layer.cornerRadius = btnExport.frame.height / 2
                 btnShare.layer.cornerRadius = btnShare.frame.height / 2
             }

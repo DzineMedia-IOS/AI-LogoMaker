@@ -121,7 +121,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Craft unique, impactful logos effortlessly with AI creativity and precision" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i6U-mp-qmi">
-                                <rect key="frame" x="20" y="544.66666666666674" width="353" height="98.333333333333258"/>
+                                <rect key="frame" x="20" y="544.66666666666663" width="353" height="98.333333333333371"/>
                                 <fontDescription key="fontDescription" name="Outfit-Bold" family="Outfit" pointSize="26"/>
                                 <color key="textColor" name="kWhite"/>
                                 <nil key="highlightedColor"/>
@@ -542,7 +542,7 @@ your logo</string>
                                                         <fontDescription key="fontDescription" name="Outfit-Medium" family="Outfit" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                         <variation key="heightClass=regular-widthClass=regular">
-                                                            <fontDescription key="fontDescription" name="Outfit-Medium" family="Outfit" pointSize="28"/>
+                                                            <fontDescription key="fontDescription" name="Outfit-Medium" family="Outfit" pointSize="21"/>
                                                         </variation>
                                                     </textView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TED-56-UjS">
@@ -851,7 +851,7 @@ your logo</string>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cxd-vo-dyw">
                                 <rect key="frame" x="16" y="119" width="361" height="426"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="temp_logo" translatesAutoresizingMaskIntoConstraints="NO" id="5zR-BI-Mfa">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="temp_logo" translatesAutoresizingMaskIntoConstraints="NO" id="5zR-BI-Mfa">
                                         <rect key="frame" x="8" y="0.0" width="345" height="383.33333333333331"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">

@@ -70,6 +70,7 @@ class ExportVC: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
 //        collectionVIew.reloadData()
+      
         DispatchQueue.main.async { [weak self] in
             self?.styleUI()
         }
@@ -102,6 +103,11 @@ class ExportVC: UIViewController {
             }
         }
     }
+    
+    override func viewDidLayoutSubviews() {
+        applyCornerRadius()
+    }
+  
     
     @IBAction func btnCancel(_ sender: Any) {
         
@@ -260,11 +266,14 @@ extension ExportVC: UICollectionViewDelegate, UICollectionViewDataSource,UIColle
           
             if isProUser {
                 previewImg.image = UIImage(contentsOfFile: imgArr[indexPath.row])
-                
+                applyCornerRadius()
+
                 let oldImagePath = imgArr[indexPath.row]
                 imgArr[indexPath.row] = firstImg ?? ""
                 firstImg = oldImagePath
                 collectionView.reloadItems(at: [indexPath])
+
+                
             }
             else {
                 presentProVc()
@@ -451,6 +460,12 @@ extension ExportVC {
             self.exportView.isHidden = true
         })
         haltView.isHidden = true
+    }
+    
+    private func applyCornerRadius() {
+        guard let originalImage = previewImg.image else { return }
+        previewImg.image = originalImage.withRoundedCorners()
+        previewImg.clipsToBounds = true
     }
 
 }

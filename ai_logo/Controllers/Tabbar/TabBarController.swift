@@ -18,7 +18,7 @@ class TabBarController: UITabBarController,UITabBarControllerDelegate {
         
         setupViewControllers()
         self.delegate = self
-
+        
         self.selectedIndex = 0
         
     }
@@ -30,8 +30,8 @@ class TabBarController: UITabBarController,UITabBarControllerDelegate {
     }
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-           hapticFeedBackAction()
-       }
+        hapticFeedBackAction()
+    }
     
     private func setupViewControllers() {
         
@@ -97,6 +97,31 @@ extension UIImage {
         let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return resizedImage
+    }
+    
+    //    func withRoundedCorners(radius: CGFloat) -> UIImage? {
+    //          let rect = CGRect(origin: .zero, size: self.size)
+    //          UIGraphicsBeginImageContextWithOptions(self.size, false, self.scale)
+    //          let path = UIBezierPath(roundedRect: rect, cornerRadius: radius)
+    //          path.addClip()
+    //          self.draw(in: rect)
+    //          let roundedImage = UIGraphicsGetImageFromCurrentImageContext()
+    //          UIGraphicsEndImageContext()
+    //          return roundedImage
+    //      }
+    
+    
+    func withRoundedCorners() -> UIImage? {
+        let rect = CGRect(origin: .zero, size: self.size)
+        let cornerRadius = self.size.height/4
+        UIGraphicsBeginImageContextWithOptions(self.size, false, self.scale)
+        let path = UIBezierPath(roundedRect: rect, cornerRadius: cornerRadius)
+        path.lineJoinStyle = .round 
+        path.addClip()
+        self.draw(in: rect)
+        let roundedImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return roundedImage
     }
 }
 
