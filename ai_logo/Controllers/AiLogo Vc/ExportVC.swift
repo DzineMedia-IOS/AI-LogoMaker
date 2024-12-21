@@ -15,14 +15,11 @@ class ExportVC: UIViewController {
     @IBOutlet weak var exportBar: UIView!
     @IBOutlet weak var topBarHideStrip: UIImageView!
     @IBOutlet weak var textBackView: UIView!
-    @IBOutlet weak var segmentationView: UIView!
     @IBOutlet weak var collectionVIew: UICollectionView!
     @IBOutlet weak var formatCollectionView: UICollectionView!
     @IBOutlet weak var qualityCollectionView: UICollectionView!
     
     
-    @IBOutlet weak var quality: UISegmentedControl!
-    @IBOutlet weak var format: UISegmentedControl!
     
     @IBOutlet weak var previewImg: UIImageView!
     @IBOutlet weak var lblPrompt: UITextView!
@@ -41,10 +38,10 @@ class ExportVC: UIViewController {
     @IBOutlet weak var pdfProImg: UIImageView!
     @IBOutlet weak var pngProImg: UIImageView!
     
-   
+    
     let formatArr = ["JPG","PNG","PDF"]
     let qualityArr = ["Regular", "Medium","Max"]
-   
+    
     var selectedFormat :Int = 0
     var selectedQuality :Int = 0
     var imgUrl: String?
@@ -62,17 +59,20 @@ class ExportVC: UIViewController {
         setupCollectionViews()
         loadPreviewImage()
         styleUIElements()
-        configureSegmentedControls()
         addGestureDetector()
         hideProBadges()
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
-//        collectionVIew.reloadData()
-      
         DispatchQueue.main.async { [weak self] in
             self?.styleUI()
+        }
+        if isPopup {
+            isPopup = false
+            let vc = Storyboard.creation.instantiate(PopupVC.self)
+            vc.modalPresentationStyle = .overFullScreen
+            present(vc, animated: true)
         }
         
     }
@@ -89,16 +89,18 @@ class ExportVC: UIViewController {
                 for imageName in imges {
                     let imageURL = documentsDirectory.appendingPathComponent("\(imageName).jpg")
                     let fullPath = imageURL.path
+                    
                     imgArr.append(fullPath)
                     
-                    print("Full Path for \(imageName): \(fullPath)")
+//                    print("Full Path for \(imageName): \(fullPath)")
                 }
                 
                 if imgArr.indices.contains(3) {
                     firstImg = (firstImg ?? "") + ".jpg"
                     let specificImagePath = documentsDirectory.appendingPathComponent(firstImg ?? "").path
                     firstImg = specificImagePath
-                    print("Specific Path (imgArr[3]): \(specificImagePath)")
+                    imgPath = specificImagePath
+//                    print("Specific Path (imgArr[3]): \(specificImagePath)")
                 }
             }
         }
@@ -107,15 +109,25 @@ class ExportVC: UIViewController {
     override func viewDidLayoutSubviews() {
         applyCornerRadius()
     }
-  
+    
     
     @IBAction func btnCancel(_ sender: Any) {
-        
-        self.dismiss(animated: true)
+        if isFromPreview{
+            self.dismiss(animated: true)
+        }
+        else{
+            let tabBar = Storyboard.main.instantiate(TabBarController.self)
+            tabBar.modalPresentationStyle = .fullScreen
+
+            if let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) {
+                window.rootViewController = tabBar
+                window.makeKeyAndVisible()
+            }
+        }
     }
-   
+    
     @IBAction func btnShare(_ sender: Any) {
-        guard let image = previewImg.image else {
+        guard let image = UIImage(contentsOfFile: imgPath ?? "") else {
             let alert = UIAlertController(title: "No Image", message: "There is no image to share.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             present(alert, animated: true, completion: nil)
@@ -146,12 +158,12 @@ class ExportVC: UIViewController {
             self.exportView.transform = .identity
         }, completion: nil)
         haltView.isHidden = false
-
+        
     }
-
+    
     @objc func haltViewAction() {
         closeExportConfig()
-
+        
     }
     @objc func exportBarAction() {
         closeExportConfig()
@@ -210,7 +222,7 @@ extension ExportVC: UICollectionViewDelegate, UICollectionViewDataSource,UIColle
         }
         else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProjectCell", for: indexPath) as! ProjectCell
-          
+            
             if indexPath.row  < imgArr.count {
                 let imgName = imgArr[indexPath.row]
                 cell.img.image = UIImage(named: imgName)
@@ -218,16 +230,14 @@ extension ExportVC: UICollectionViewDelegate, UICollectionViewDataSource,UIColle
                 cell.img.isHidden = false
                 cell.animationView.isHidden = true
                 cell.removeSubviews()
-
-
+                
+                
             } else {
-                print("Index out of range: \(indexPath.row)")
-//                cell.indicator.startAnimating()
-//                cell.indicator.isHidden = false
+//                print("Index out of range: \(indexPath.row)")
                 cell.img.isHidden = true
                 cell.setupAnimation()
-
-
+                
+                
             }
             cell.imgBorder()
             cell.tryImg.isHidden = false
@@ -245,40 +255,32 @@ extension ExportVC: UICollectionViewDelegate, UICollectionViewDataSource,UIColle
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         hapticFeedBackAction()
         if collectionView == formatCollectionView {
-            if isProUser {
-                selectedFormat = indexPath.item
-                formatCollectionView.reloadData()
-            }
-            else {
-                presentProVc()
-            }
+            selectedFormat = indexPath.item
+            formatCollectionView.reloadData()
+            
         }
         else if collectionView == qualityCollectionView {
-            if isProUser {
-                selectedQuality = indexPath.item
-                qualityCollectionView.reloadData()
-            }
-            else{
-                presentProVc()
-            }
+            selectedQuality = indexPath.item
+            qualityCollectionView.reloadData()
+            
         }
         else {
-          
             if isProUser {
                 previewImg.image = UIImage(contentsOfFile: imgArr[indexPath.row])
+                
+                imgPath = imgArr[indexPath.row]
                 applyCornerRadius()
-
+                
                 let oldImagePath = imgArr[indexPath.row]
                 imgArr[indexPath.row] = firstImg ?? ""
                 firstImg = oldImagePath
                 collectionView.reloadItems(at: [indexPath])
-
+                
                 
             }
             else {
                 presentProVc()
             }
-
         }
         
     }
@@ -319,13 +321,9 @@ extension ExportVC {
     private func hideViews() {
         haltView.isHidden = true
         exportView.isHidden = true
-        segmentationView.isHidden = true
     }
     
-    private func configureSegmentedControls() {
-        configureSegmentedControlAppearance(for: format)
-        configureSegmentedControlAppearance(for: quality)
-    }
+    
     
     private func styleUIElements() {
         DispatchQueue.main.async { [weak self] in
@@ -340,7 +338,7 @@ extension ExportVC {
         }
         
         
-       
+        
         exportView.cornerRadius = UIDevice.current.userInterfaceIdiom == .pad ? 40 : 20
         exportView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
     }
@@ -365,7 +363,7 @@ extension ExportVC {
         qualityCollectionView.dataSource = self
         
         if !isFromPreview {
-        collectionVIew.isUserInteractionEnabled = false
+            collectionVIew.isUserInteractionEnabled = false
         }
     }
     
@@ -391,35 +389,12 @@ extension ExportVC {
         )
         formatCollectionView.layer.cornerRadius = formatCollectionView.frame.height / 4
         qualityCollectionView.layer.cornerRadius = qualityCollectionView.frame.height / 4
-       
+        
         if isProUser {
             btnPro.isHidden = true
         }
     }
     
-    func configureSegmentedControlAppearance(for segmentedControl: UISegmentedControl) {
-        
-        var fontSize = 14
-        if ( UIDevice.current.userInterfaceIdiom == .pad ){
-            fontSize = 28
-        }
-        let unselectedAttributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: UIColor.white,
-            .font: UIFont(name: "Outfit-Medium", size: CGFloat(fontSize)) ?? UIFont.boldSystemFont(ofSize: CGFloat(fontSize))
-        ]
-        segmentedControl.setTitleTextAttributes(unselectedAttributes, for: .normal)
-        
-        let selectedAttributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: UIColor.black,
-            .font: UIFont(name: "Outfit-Medium", size: CGFloat(fontSize)) ?? UIFont.boldSystemFont(ofSize: CGFloat(fontSize))
-        ]
-        segmentedControl.setTitleTextAttributes(selectedAttributes, for: .selected)
-        
-        segmentedControl.setDividerImage(UIImage(), forLeftSegmentState: .normal, rightSegmentState: .normal, barMetrics: .default)
-        
-        segmentedControl.layer.cornerRadius = segmentedControl.frame.height / 2
-        segmentedControl.clipsToBounds = true
-    }
     
     func addGestureDetector(){
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(downloadViewTapped))
@@ -467,30 +442,45 @@ extension ExportVC {
         previewImg.image = originalImage.withRoundedCorners()
         previewImg.clipsToBounds = true
     }
-
+    
 }
 
 // MARK: - Donwload Image Button Control UI
 extension ExportVC {
     @objc func downloadViewTapped() {
         animateTopView()
+        if isProUser {
+            downloadImage()
+        }
+        else{
+            if selectedQuality == 0 && selectedFormat == 0 {
+                downloadImage()
+            }
+            presentProVc()
+        }
         
-        // Get selected quality
-        let selectedQualityIndex = quality.selectedSegmentIndex
-        //        let selectedQualityTitle = quality.titleForSegment(at: selectedQualityIndex) ?? "Regular"
+    }
+    
+    func downloadImage() {
         let selectedQualityTitle = qualityArr[selectedQuality]
-        
-        // Get selected format
-        let selectedFormatIndex = format.selectedSegmentIndex
-        //        let selectedFormatTitle = format.titleForSegment(at: selectedFormatIndex) ?? "JPG"
         let selectedFormatTitle = formatArr[selectedFormat]
-        print("Selected Quality: \(selectedQualityTitle)")
-        print("Selected Format: \(selectedFormatTitle)")
         
-        guard let image = previewImg.image else {
+        guard let image = UIImage(contentsOfFile: imgPath ?? "") else {
             print("No image to save")
+            let fileManager = FileManager.default
+            if let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first {
+                let imageName = (imgPath ?? "") + ".jpg"
+                let imageURL = documentsDirectory.appendingPathComponent(imageName)
+                print("Image would be saved at path: \(imageURL.path)")
+                imgPath = imageURL.path
+                downloadViewTapped()
+            } else {
+                print("Unable to retrieve documents directory.")
+                showAlert(title: "Error!", message: "Something went wrong. Please Try again!", viewController: self)
+            }
             return
         }
+        
         
         // Save image based on format and quality
         switch selectedFormatTitle {
@@ -522,6 +512,7 @@ extension ExportVC {
         // Convert image to JPG data
         guard let jpgData = image.jpegData(compressionQuality: compressionQuality) else {
             print("Failed to convert image to JPG")
+            
             return
         }
         
@@ -530,9 +521,6 @@ extension ExportVC {
     }
     
     func saveImageAsPNG(image: UIImage) {
-        // Convert image to PNG data
-        
-        
         guard let pngData = image.pngData() else {
             print("Failed to convert image to PNG")
             return
@@ -554,28 +542,6 @@ extension ExportVC {
         // Save to gallery
         saveImageDataToGallery(data: pdfData as Data, format: "pdf",viewController: self)
     }
-    
-    
-    
-    //    func saveImageDataToGallery(data: Data, format: String) {
-    //        // Temporary file URL
-    //        let tempDirectory = FileManager.default.temporaryDirectory
-    //        let fileURL = tempDirectory.appendingPathComponent("Image.\(format)")
-    //
-    //        do {
-    //            // Write data to temporary file
-    //            try data.write(to: fileURL)
-    //
-    //            // Save file to gallery
-    //            UISaveVideoAtPathToSavedPhotosAlbum(fileURL.path, nil, nil, nil)
-    //            print("\(format.uppercased()) file saved successfully!")
-    //
-    //        } catch {
-    //            print("Failed to save \(format.uppercased()) file: \(error)")
-    //        }
-    //    }
-    
-    
     
     func saveImageDataToGallery(data: Data, format: String, viewController: UIViewController) {
         let tempDirectory = FileManager.default.temporaryDirectory
@@ -713,15 +679,7 @@ extension ExportVC {
                 DispatchQueue.main.async { [self] in
                     switch result {
                     case .success(let response):
-                        print("Logo Generation Results:")
-                        print("Cost:", response.cost)
-                        print("Seed:", response.seed)
-                        print("Logo URL:", response.url)
-                        
-                        
                         let imgName = UUID().uuidString
-                        
-                        
                         CoreDataManager.shared.saveImageFromURLToDocumentsDirectory(response.url, withName: imgName) { [self] savedPath in
                             if let path = savedPath {
                                 DispatchQueue.main.async {
@@ -748,16 +706,16 @@ extension ExportVC {
             }
         }
         else{
-            print("Api limit reached : \(apiCount) ")
+//            print("Api limit reached : \(apiCount) ")
             if let imgPath = imgPath{
                 imgArr.append(imgPath)
                 imgName.append(imgPath)
-
+                
                 CoreDataManager.shared.saveRecord(prompt: lblPrompt.text, imgPath: imgName)
                 collectionVIew.isUserInteractionEnabled = true
-
+                
             }
         }
     }
-
+    
 }

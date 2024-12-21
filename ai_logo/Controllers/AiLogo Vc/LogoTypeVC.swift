@@ -509,7 +509,6 @@ extension LogoTypeVC {
         lottieAnimation.loopMode = .loop
         animationView.addSubview(lottieAnimation)
         lottieAnimation.play { finished in
-            print("Animation Completed!")
         }
     }
 }
@@ -524,12 +523,6 @@ extension LogoTypeVC {
             DispatchQueue.main.async { [self] in
                 switch result {
                 case .success(let response):
-                    print("Logo Generation Results:")
-                    print("Cost:", response.cost)
-                    print("Seed:", response.seed)
-                    print("Logo URL:", response.url)
-                    
-                    
                     let imgName = UUID().uuidString
 
                     CoreDataManager.shared.saveImageFromURLToDocumentsDirectory(response.url, withName: imgName) { [self] savedPath in

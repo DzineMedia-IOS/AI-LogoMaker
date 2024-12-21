@@ -38,7 +38,6 @@ class SettingVc: UIViewController {
         DispatchQueue.main.async { [weak self] in
             self?.styleUI()
         }
-
     }
     
     override func viewIsAppearing(_ animated: Bool) {
@@ -47,6 +46,14 @@ class SettingVc: UIViewController {
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        if isPopup {
+            isPopup = false
+            let vc = Storyboard.creation.instantiate(PopupVC.self)
+            vc.modalPresentationStyle = .overFullScreen
+            present(vc, animated: true)
+        }
+    }
     @objc func hapticFeedbackSwitchChanged(_ sender: UISwitch) {
         let isEnabled = sender.isOn
         UserDefaults.standard.set(isEnabled, forKey: hapticFeedbackKey)

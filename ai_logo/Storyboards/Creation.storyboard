@@ -125,7 +125,7 @@
                                                             <color key="titleColor" name="kWhite"/>
                                                         </state>
                                                         <variation key="heightClass=regular-widthClass=regular">
-                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="24"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
                                                         </variation>
                                                         <connections>
                                                             <action selector="btnPrompt:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="ZgV-aC-Jb5"/>
@@ -146,7 +146,15 @@
                                                                 </variation>
                                                             </textView>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fQT-ef-eg9">
-                                                                <rect key="frame" x="310" y="70.666666666666657" width="23" height="24"/>
+                                                                <rect key="frame" x="313" y="74.666666666666657" width="20" height="20"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="20" id="5nL-7R-Rme">
+                                                                        <variation key="heightClass=regular-widthClass=regular" constant="30"/>
+                                                                    </constraint>
+                                                                    <constraint firstAttribute="height" constant="20" id="J2F-nb-Uhf">
+                                                                        <variation key="heightClass=regular-widthClass=regular" constant="30"/>
+                                                                    </constraint>
+                                                                </constraints>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                 <state key="normal" image="cancel"/>
                                                                 <connections>
@@ -479,7 +487,7 @@
                             <constraint firstAttribute="trailing" secondItem="qRy-6p-S0k" secondAttribute="trailing" id="1SY-3T-E86"/>
                             <constraint firstItem="qRy-6p-S0k" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="5yc-fj-Fz6"/>
                             <constraint firstItem="bQX-DD-h5E" firstAttribute="centerY" secondItem="10i-J7-ygZ" secondAttribute="centerY" multiplier="1.65" id="6kg-JG-NWp">
-                                <variation key="heightClass=regular-widthClass=regular" constant="30"/>
+                                <variation key="heightClass=regular-widthClass=regular" constant="40"/>
                             </constraint>
                             <constraint firstItem="bQX-DD-h5E" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="9XD-BZ-PMF">
                                 <variation key="heightClass=regular-widthClass=regular" constant="40"/>

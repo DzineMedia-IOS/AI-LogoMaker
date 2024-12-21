@@ -30,7 +30,6 @@ class SplashVC: UIViewController {
                 if UserDefaults.standard.bool(forKey: onBoardKey) {
                     let tabbar = Storyboard.main.instantiate(TabBarController.self)
                     tabbar.modalPresentationStyle = .fullScreen
-                    tabbar.modalTransitionStyle = .flipHorizontal
                     self.present(tabbar, animated: true)
                 
                 }
@@ -38,7 +37,6 @@ class SplashVC: UIViewController {
                 else {
                     let vc = Storyboard.main.instantiate(OnboardViewController.self)
                     vc.modalPresentationStyle = .fullScreen
-                    vc.modalTransitionStyle = .flipHorizontal
                     self.present(vc, animated: true, completion: nil)
                 }
             }

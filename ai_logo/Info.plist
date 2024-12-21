@@ -48,5 +48,7 @@
 			</array>
 		</dict>
 	</dict>
+    <key>CFBundleDisplayName</key>
+    <string>Ai Logo</string>
 </dict>
 </plist>

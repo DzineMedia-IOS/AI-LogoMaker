@@ -41,7 +41,7 @@ class LoaderVC: UIViewController {
         lottieAnimation.loopMode = .loop
         animationView.addSubview(lottieAnimation)
         lottieAnimation.play { finished in
-            print("Animation Completed!")
+            
         }
         
     }
@@ -51,13 +51,8 @@ class LoaderVC: UIViewController {
             DispatchQueue.main.async { [self] in
                 switch result {
                 case .success(let response):
-                    print("Logo Generation Results:")
-                    print("Cost:", response.cost)
-                    print("Seed:", response.seed)
-                    print("Logo URL:", response.url)
                     
-                    
-                    
+//                    print("Logo URL:", response.url)
                     CoreDataManager.shared.saveImageFromURLToDocumentsDirectory(response.url, withName: "1") { [self] savedPath in
                         if let path = savedPath {
                             let vc = Storyboard.aiLogo.instantiate(ExportVC.self)
@@ -70,8 +65,8 @@ class LoaderVC: UIViewController {
                                 }
                             }
                         }
-//                        CoreDataManager.shared.saveRecord(prompt: prompt, imageURL: response.url)
                     }
+                    
                 case .failure(let error):
                     print("Error:", error.localizedDescription)
                     

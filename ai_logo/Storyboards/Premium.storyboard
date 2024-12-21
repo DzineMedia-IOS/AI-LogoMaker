@@ -217,8 +217,8 @@
                                     <constraint firstItem="NIG-dt-Uge" firstAttribute="centerY" secondItem="auw-l9-rJH" secondAttribute="centerY" id="quB-vT-oHc"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="vero eos et accusamus et iusto odio digniss" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dek-k8-Dpq">
-                                <rect key="frame" x="20" y="346" width="261.5" height="18"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get instant access to all premium features " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dek-k8-Dpq">
+                                <rect key="frame" x="20" y="346" width="263" height="18"/>
                                 <fontDescription key="fontDescription" name="Outfit-Medium" family="Outfit" pointSize="14"/>
                                 <color key="textColor" name="kWhite"/>
                                 <nil key="highlightedColor"/>

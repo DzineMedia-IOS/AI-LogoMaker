@@ -151,21 +151,18 @@ class CoreDataManager {
         let fetchRequest = NSFetchRequest<Projects>(entityName: "Projects")
         do {
             let results = try context.fetch(fetchRequest)
-            print("Fetched Records:")
+//            print("Fetched Records:")
             
             for project in results {
                 // Access properties of the 'Projects' entity
                 let prompt = project.value(forKey: "prompt") as? String ?? "No Prompt"
                 let imgPathsString = project.value(forKey: "imgPath") as? String ?? "[]"
                 
-                print("Prompt: \(prompt)")
                 
                 // Decode the JSON string back into an array of URLs
                 if let imgPathsData = imgPathsString.data(using: .utf8),
                    let imageURLs = try? JSONSerialization.jsonObject(with: imgPathsData, options: []) as? [String] {
-                    print("Image URLs:")
                     for url in imageURLs {
-                        print(url)
                     }
                 } else {
                     print("Failed to decode image URLs.")

@@ -57,18 +57,13 @@ class CreationVC: UIViewController,UITextViewDelegate {
             self?.stylingUI()
         }
     
-        
-        
-        
     }
     override func viewIsAppearing(_ animated: Bool) {
         DispatchQueue.main.async { [weak self] in
             self?.stylingUI()
         }
         setScrollHeight()
-        
-       
-
+    
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -76,7 +71,14 @@ class CreationVC: UIViewController,UITextViewDelegate {
         DispatchQueue.main.async { [weak self] in
             self?.stylingUI()
         }
-        if !isProUser{
+        if isAppEnter{
+            isAppEnter = false
+            let vc = Storyboard.premium.instantiate(ProVC.self)
+            vc.modalPresentationStyle = .fullScreen
+            present(vc, animated: true)
+        }
+        if isPopup {
+            isPopup = false
             let vc = Storyboard.creation.instantiate(PopupVC.self)
             vc.modalPresentationStyle = .overFullScreen
             present(vc, animated: true)
@@ -93,8 +95,8 @@ class CreationVC: UIViewController,UITextViewDelegate {
     }
     
     @IBAction func btnPrompt(_ sender: Any) {
-        let randomIndex = Int.random(in: 0..<PromptGenerator.aiImagePrompts.count)
-        let prompt = PromptGenerator.aiImagePrompts[randomIndex]
+        let randomIndex = Int.random(in: 0..<imgPrompts.count)
+        let prompt = imgPrompts[randomIndex].title
         textView.text = prompt
     }
     
@@ -116,17 +118,8 @@ class CreationVC: UIViewController,UITextViewDelegate {
         textView.text = ""
     }
     @IBAction func btnArtWork(_ sender: Any) {
-        
-//                NotificationCenter.default.addObserver(self,
-//                                                       selector: #selector(popUpAction),
-//                                                       name: Notification.Name("popUp"),
-//                                                       object: nil)
-//                NotificationCenter.default.post(name: Notification.Name("animation"), object: nil)
-//                popUpView.isHidden = false
-
         setupAnimation()
         startTimer()
-        
         let style = logoStylePrompts[selectedStyleIndex]
         var prompt = "The style should be \(style),"
         prompt = prompt + self.textView.text
@@ -135,7 +128,6 @@ class CreationVC: UIViewController,UITextViewDelegate {
     
     @objc private func handlePromptNotification(_ notification: Notification) {
         if let userInfo = notification.userInfo, let message = userInfo["prompt"] as? String, let img = userInfo["img"] as? String {
-            
             let vc = Storyboard.creation.instantiate(PromptVC.self)
             vc.modalPresentationStyle = .fullScreen
             present(vc, animated: true)
@@ -144,6 +136,7 @@ class CreationVC: UIViewController,UITextViewDelegate {
             vc.lblStyle.text = selectedStyle
         }
     }
+    
     @objc private func tryPromptAction(_ notification: Notification) {
         if let userInfo = notification.userInfo, let message = userInfo["prompt"] as? String {
             textView.text = message
@@ -321,6 +314,8 @@ extension CreationVC {
             scrollHeight.constant = topHeight + creationCellHeight + height
         }
     }
+    
+    
 }
 
 
@@ -342,7 +337,6 @@ extension CreationVC {
         lottieAnimation.loopMode = .loop
         animationView.addSubview(lottieAnimation)
         lottieAnimation.play { finished in
-            print("Animation Completed!")
         }
     }
 }
@@ -359,12 +353,6 @@ extension CreationVC {
             DispatchQueue.main.async { [self] in
                 switch result {
                 case .success(let response):
-                    print("Logo Generation Results:")
-                    print("Cost:", response.cost)
-                    print("Seed:", response.seed)
-                    print("Logo URL:", response.url)
-                    
-                    
                     let imgName = UUID().uuidString
                     
                     CoreDataManager.shared.saveImageFromURLToDocumentsDirectory(response.url, withName: imgName) { [self] savedPath in
