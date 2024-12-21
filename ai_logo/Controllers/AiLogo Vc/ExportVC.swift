@@ -92,7 +92,7 @@ class ExportVC: UIViewController {
                     
                     imgArr.append(fullPath)
                     
-                    print("Full Path for \(imageName): \(fullPath)")
+//                    print("Full Path for \(imageName): \(fullPath)")
                 }
                 
                 if imgArr.indices.contains(3) {
@@ -100,7 +100,7 @@ class ExportVC: UIViewController {
                     let specificImagePath = documentsDirectory.appendingPathComponent(firstImg ?? "").path
                     firstImg = specificImagePath
                     imgPath = specificImagePath
-                    print("Specific Path (imgArr[3]): \(specificImagePath)")
+//                    print("Specific Path (imgArr[3]): \(specificImagePath)")
                 }
             }
         }
@@ -233,9 +233,7 @@ extension ExportVC: UICollectionViewDelegate, UICollectionViewDataSource,UIColle
                 
                 
             } else {
-                print("Index out of range: \(indexPath.row)")
-                //                cell.indicator.startAnimating()
-                //                cell.indicator.isHidden = false
+//                print("Index out of range: \(indexPath.row)")
                 cell.img.isHidden = true
                 cell.setupAnimation()
                 
@@ -681,15 +679,7 @@ extension ExportVC {
                 DispatchQueue.main.async { [self] in
                     switch result {
                     case .success(let response):
-                        print("Logo Generation Results:")
-                        print("Cost:", response.cost)
-                        print("Seed:", response.seed)
-                        print("Logo URL:", response.url)
-                        
-                        
                         let imgName = UUID().uuidString
-                        
-                        
                         CoreDataManager.shared.saveImageFromURLToDocumentsDirectory(response.url, withName: imgName) { [self] savedPath in
                             if let path = savedPath {
                                 DispatchQueue.main.async {
@@ -716,7 +706,7 @@ extension ExportVC {
             }
         }
         else{
-            print("Api limit reached : \(apiCount) ")
+//            print("Api limit reached : \(apiCount) ")
             if let imgPath = imgPath{
                 imgArr.append(imgPath)
                 imgName.append(imgPath)

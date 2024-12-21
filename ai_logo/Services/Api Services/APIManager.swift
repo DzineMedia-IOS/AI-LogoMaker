@@ -59,7 +59,7 @@ class APIManager {
                
                // Debug: Log the raw response
                if let rawResponse = String(data: data, encoding: .utf8) {
-                   print("Raw Response: \(rawResponse)")
+//                   print("Raw Response: \(rawResponse)")
                }
                
                do {
