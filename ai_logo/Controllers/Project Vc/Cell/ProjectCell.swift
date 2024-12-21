@@ -39,7 +39,6 @@ class ProjectCell: UICollectionViewCell {
         lottieAnimation.loopMode = .loop
         animationView.addSubview(lottieAnimation)
         lottieAnimation.play { finished in
-            print("Animation Completed!")
         }
     }
     

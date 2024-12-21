@@ -124,14 +124,13 @@ extension OnboardViewController: UICollectionViewDelegate, UICollectionViewDataS
                 self.removeSubviews(exceptTag: 10)
                 UserDefaults.standard.set(true, forKey: onBoardKey)
 
-                let vc = Storyboard.premium.instantiate(ProVC.self)
+                let vc = Storyboard.main.instantiate(TabBarController.self)
                 vc.modalPresentationStyle = .fullScreen
-                vc.isOnbarodingVC = true
-                present(vc, animated: true)
-                //                if let window = UIApplication.shared.windows.first {
-                //                        window.rootViewController = tabbar
-                //                        window.makeKeyAndVisible()
-                //                    }
+//                present(vc, animated: true)
+                                if let window = UIApplication.shared.windows.first {
+                                        window.rootViewController = vc
+                                        window.makeKeyAndVisible()
+                                    }
             }
             else{
                 let nextPage = currentPage + 1
@@ -176,7 +175,7 @@ extension OnboardViewController {
                 name: .onboard_1
 //                loopMode: .playOnce
             ) { [self] finished in
-                finished ? print("Animation Completed!") : print("Animation Interrupted!")
+//                finished ? print("Animation Completed!") : print("Animation Interrupted!")
             }
         }
         else {
@@ -186,7 +185,7 @@ extension OnboardViewController {
                 name: .onboard_5,
                 loopMode: .playOnce
             ) { finished in
-                finished ? print("Animation Completed!") : print("Animation Interrupted!")
+//                finished ? print("Animation Completed!") : print("Animation Interrupted!")
                 self.animatieOnboarding()
                 self.removeSubviews(exceptTag: 10)
                 self.setupLottieAnimation(name: .onboard_5_1, completion:{ _ in})

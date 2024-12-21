@@ -41,6 +41,14 @@ class ProjectViewController: UIViewController {
         }
         
     }
+    override func viewDidAppear(_ animated: Bool) {
+        if isPopup {
+            isPopup = false
+            let vc = Storyboard.creation.instantiate(PopupVC.self)
+            vc.modalPresentationStyle = .overFullScreen
+            present(vc, animated: true)
+        }
+    }
     
     override func viewDidLayoutSubviews() {
         projectCollectionView.reloadData()

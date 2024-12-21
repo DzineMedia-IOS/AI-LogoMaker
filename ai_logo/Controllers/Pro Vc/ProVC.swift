@@ -35,9 +35,10 @@ class ProVC: UIViewController {
         lottieAnimation.contentMode = .scaleAspectFill
         lottieAnimation.tintColor = .white
         lottieAnimation.loopMode = .loop
+        lottieAnimation.animationSpeed = 0.5
+
         animationView.addSubview(lottieAnimation)
         lottieAnimation.play { finished in
-            print("Animation Completed!")
         }
         
         DispatchQueue.main.async { [weak self] in
@@ -70,10 +71,8 @@ class ProVC: UIViewController {
             present(tabbar, animated: false)
         }
         else{
-            self.dismiss(animated: true)
-            let vc = Storyboard.creation.instantiate(PopupVC.self)
-            vc.modalPresentationStyle = .overFullScreen
-            present(vc, animated: true)
+            isPopup = true
+            self.dismiss(animated: false)
         }
     }
     

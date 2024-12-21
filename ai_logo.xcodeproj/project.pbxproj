@@ -11,7 +11,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		79E9F1952CF469E00095027D /* ai_logo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ai_logo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		79E9F1952CF469E00095027D /* Ai logo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ai logo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C65480CFD8115602030D352 /* Pods-ai_logo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ai_logo.debug.xcconfig"; path = "Target Support Files/Pods-ai_logo/Pods-ai_logo.debug.xcconfig"; sourceTree = "<group>"; };
 		83956AAFD4D605D5E16100DC /* Pods-ai_logo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ai_logo.release.xcconfig"; path = "Target Support Files/Pods-ai_logo/Pods-ai_logo.release.xcconfig"; sourceTree = "<group>"; };
 		99F37A574EE9C955B44F1536 /* Pods_ai_logo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ai_logo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -63,7 +63,7 @@
 		79E9F1962CF469E00095027D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				79E9F1952CF469E00095027D /* ai_logo.app */,
+				79E9F1952CF469E00095027D /* Ai logo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -107,7 +107,7 @@
 			);
 			name = ai_logo;
 			productName = ai_logo;
-			productReference = 79E9F1952CF469E00095027D /* ai_logo.app */;
+			productReference = 79E9F1952CF469E00095027D /* Ai logo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -218,7 +218,6 @@
 				DEVELOPMENT_TEAM = V748PNDNZ6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ai_logo/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Ai Logo Maker";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -232,7 +231,7 @@
 				);
 				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aiLogomaker.dzm;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Ai logo";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -250,7 +249,6 @@
 				DEVELOPMENT_TEAM = V748PNDNZ6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ai_logo/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Ai Logo Maker";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -264,7 +262,7 @@
 				);
 				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aiLogomaker.dzm;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Ai logo";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -32,7 +32,8 @@ enum Storyboard: String {
     }
 }
 var isProUser : Bool = false
-
+var isAppEnter : Bool = true
+var isPopup : Bool =  false
 
 class Url{
     static let appPrivacy = "https://www.trostun.com/privacy-policy/"

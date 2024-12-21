@@ -71,7 +71,14 @@ class CreationVC: UIViewController,UITextViewDelegate {
         DispatchQueue.main.async { [weak self] in
             self?.stylingUI()
         }
-        if !isProUser{
+        if isAppEnter{
+            isAppEnter = false
+            let vc = Storyboard.premium.instantiate(ProVC.self)
+            vc.modalPresentationStyle = .fullScreen
+            present(vc, animated: true)
+        }
+        if isPopup {
+            isPopup = false
             let vc = Storyboard.creation.instantiate(PopupVC.self)
             vc.modalPresentationStyle = .overFullScreen
             present(vc, animated: true)
@@ -307,6 +314,8 @@ extension CreationVC {
             scrollHeight.constant = topHeight + creationCellHeight + height
         }
     }
+    
+    
 }
 
 
@@ -328,7 +337,6 @@ extension CreationVC {
         lottieAnimation.loopMode = .loop
         animationView.addSubview(lottieAnimation)
         lottieAnimation.play { finished in
-            print("Animation Completed!")
         }
     }
 }

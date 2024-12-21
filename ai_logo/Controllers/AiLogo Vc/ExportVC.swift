@@ -65,10 +65,14 @@ class ExportVC: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        //        collectionVIew.reloadData()
-        
         DispatchQueue.main.async { [weak self] in
             self?.styleUI()
+        }
+        if isPopup {
+            isPopup = false
+            let vc = Storyboard.creation.instantiate(PopupVC.self)
+            vc.modalPresentationStyle = .overFullScreen
+            present(vc, animated: true)
         }
         
     }
@@ -85,7 +89,7 @@ class ExportVC: UIViewController {
                 for imageName in imges {
                     let imageURL = documentsDirectory.appendingPathComponent("\(imageName).jpg")
                     let fullPath = imageURL.path
-                    imgPath = fullPath
+                    
                     imgArr.append(fullPath)
                     
                     print("Full Path for \(imageName): \(fullPath)")
@@ -95,6 +99,7 @@ class ExportVC: UIViewController {
                     firstImg = (firstImg ?? "") + ".jpg"
                     let specificImagePath = documentsDirectory.appendingPathComponent(firstImg ?? "").path
                     firstImg = specificImagePath
+                    imgPath = specificImagePath
                     print("Specific Path (imgArr[3]): \(specificImagePath)")
                 }
             }
@@ -107,8 +112,18 @@ class ExportVC: UIViewController {
     
     
     @IBAction func btnCancel(_ sender: Any) {
-        
-        self.dismiss(animated: true)
+        if isFromPreview{
+            self.dismiss(animated: true)
+        }
+        else{
+            let tabBar = Storyboard.main.instantiate(TabBarController.self)
+            tabBar.modalPresentationStyle = .fullScreen
+
+            if let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) {
+                window.rootViewController = tabBar
+                window.makeKeyAndVisible()
+            }
+        }
     }
     
     @IBAction func btnShare(_ sender: Any) {
@@ -242,25 +257,16 @@ extension ExportVC: UICollectionViewDelegate, UICollectionViewDataSource,UIColle
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         hapticFeedBackAction()
         if collectionView == formatCollectionView {
-            if isProUser {
-                selectedFormat = indexPath.item
-                formatCollectionView.reloadData()
-            }
-            else {
-                presentProVc()
-            }
+            selectedFormat = indexPath.item
+            formatCollectionView.reloadData()
+            
         }
         else if collectionView == qualityCollectionView {
-            if isProUser {
-                selectedQuality = indexPath.item
-                qualityCollectionView.reloadData()
-            }
-            else{
-                presentProVc()
-            }
+            selectedQuality = indexPath.item
+            qualityCollectionView.reloadData()
+            
         }
         else {
-            
             if isProUser {
                 previewImg.image = UIImage(contentsOfFile: imgArr[indexPath.row])
                 
@@ -277,7 +283,6 @@ extension ExportVC: UICollectionViewDelegate, UICollectionViewDataSource,UIColle
             else {
                 presentProVc()
             }
-            
         }
         
     }
@@ -446,7 +451,19 @@ extension ExportVC {
 extension ExportVC {
     @objc func downloadViewTapped() {
         animateTopView()
+        if isProUser {
+            downloadImage()
+        }
+        else{
+            if selectedQuality == 0 && selectedFormat == 0 {
+                downloadImage()
+            }
+            presentProVc()
+        }
         
+    }
+    
+    func downloadImage() {
         let selectedQualityTitle = qualityArr[selectedQuality]
         let selectedFormatTitle = formatArr[selectedFormat]
         
@@ -461,6 +478,7 @@ extension ExportVC {
                 downloadViewTapped()
             } else {
                 print("Unable to retrieve documents directory.")
+                showAlert(title: "Error!", message: "Something went wrong. Please Try again!", viewController: self)
             }
             return
         }
@@ -496,6 +514,7 @@ extension ExportVC {
         // Convert image to JPG data
         guard let jpgData = image.jpegData(compressionQuality: compressionQuality) else {
             print("Failed to convert image to JPG")
+            
             return
         }
         
