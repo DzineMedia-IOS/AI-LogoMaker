@@ -8,6 +8,8 @@
 import UIKit
 import CoreData
 import IQKeyboardManagerSwift
+import RevenueCat
+import StoreKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,7 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.resignOnTouchOutside = true
         IQKeyboardManager.shared.keyboardDistance = 40
         
-        configProgressHud()
+        Purchases.debugLogsEnabled = true
+        Purchases.configure(withAPIKey: "appl_OpDnhVeKHRgTdKuxZmosqmRzZxD")
         return true
     }
 
@@ -86,6 +89,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+
 
 }
 

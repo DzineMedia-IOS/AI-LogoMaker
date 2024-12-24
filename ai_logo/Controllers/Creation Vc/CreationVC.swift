@@ -6,9 +6,7 @@
 //
 
 import UIKit
-import ProgressHUD
 import Lottie
-
 
 class CreationVC: UIViewController,UITextViewDelegate {
     

@@ -6,8 +6,8 @@
 //
 
 import UIKit
-import ProgressHUD
 import Lottie
+
 class LogoTypeVC: UIViewController,UITextViewDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var lblBrnadName: UILabel!

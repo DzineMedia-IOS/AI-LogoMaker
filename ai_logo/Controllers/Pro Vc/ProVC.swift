@@ -7,6 +7,7 @@
 
 import UIKit
 import Lottie
+import RevenueCat
 
 class ProVC: UIViewController {
     
@@ -15,17 +16,25 @@ class ProVC: UIViewController {
     @IBOutlet weak var btnStart: UIButton!
     @IBOutlet weak var priceCollectionView: UICollectionView!
     
-    let plans = [
-        ["plan": "Weekly", "save": "Saves 10%", "price": "US $4.99", "discount": "$6.35 / week"],
-        ["plan": "Monthly", "save": "Saves 15%", "price": "US $5.99", "discount": "$6.35 / week"],
-        ["plan": "Yearly Plan", "save": "Saves 20%", "price": "$29.99", "discount": "$6.35 / week"]
-    ]
+//    let plans = [
+//        ["plan": "Weekly", "save": "Saves 10%", "price": "US $4.99", "discount": "$6.35 / week"],
+//        ["plan": "Monthly", "save": "Saves 15%", "price": "US $5.99", "discount": "$6.35 / week"],
+//        ["plan": "Yearly Plan", "save": "Saves 20%", "price": "$29.99", "discount": "$6.35 / week"]
+//    ]
     
     let imges = ["endless","creative","ai_gen","style", "down"]
     let titles = ["Endless Generation", "Creative Suggestions", "AI Gen Artwork","Creative Styles", "HD Download"]
     
-    var selectedIndex: Int = 0
     var isOnbarodingVC: Bool = false
+    
+    private var packages: [Package]? {
+        didSet {
+            priceCollectionView.reloadData()
+        }
+    }
+    
+    private var selectedPkg: Package?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
        
@@ -55,6 +64,7 @@ class ProVC: UIViewController {
         priceCollectionView.delegate = self
         priceCollectionView.dataSource = self
         
+        self.getProducts()
     }
     
     override func viewIsAppearing(_ animated: Bool) {
@@ -103,6 +113,7 @@ class ProVC: UIViewController {
 
 // MARK: UICOOLECTION VIEW CELL
 extension ProVC : UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == featureCollectionView{
             return imges.count
@@ -113,7 +124,9 @@ extension ProVC : UICollectionViewDataSource, UICollectionViewDelegate, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if collectionView == featureCollectionView{
+        
+        if collectionView == featureCollectionView {
+            
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FeatureCell", for: indexPath) as! FeatureCell
             cell.img.image = UIImage(named: imges[indexPath.item])
             cell.lblFeature.text = titles[indexPath.item]
@@ -122,33 +135,42 @@ extension ProVC : UICollectionViewDataSource, UICollectionViewDelegate, UICollec
             cell.lblFeature.font = cell.lblFeature.font.withSize(fontSize)
 
             return cell
-        }
-        else{
+        } else {
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PriceCell", for: indexPath) as! PriceCell
             
-            let plan = plans[indexPath.item]
-            cell.lblPrice.text = plan["price"]
-            cell.lblSave.text = plan["save"]
-            cell.lblPlanName.text = plan["plan"]
-            cell.lblweek.text = plan["discount"]
+            let package = packages?[indexPath.item]
+            cell.lblPrice.text = package?.localizedPriceString
             
-            if indexPath.row == selectedIndex {
+            if package?.packageType == .weekly {
+                
+//                cell.lblweek.text = "\((package?.storeProduct.price ?? 0.0)/7) per day"
+                cell.lblPlanName.text = "Weekly Plan"
+                cell.lblSave.text = "Save 50%"
+            } else if package?.packageType == .annual {
+                
+                cell.lblweek.text = "\(package?.storeProduct.localizedPricePerMonth ?? "" ) per month"
+                cell.lblPlanName.text = "Yearly Plan"
+                cell.lblSave.text = "Save 80%"
+            }
+            
+            cell.unSelectedCellConfig()
+            
+            if package ==  self.selectedPkg {
+                
                 cell.selectedCellConfig()
             }
-            else{
-                cell.unSelectedCellConfig()
-            }
-            
+
             return cell
         }
     }
     
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         hapticFeedBackAction()
-        if collectionView == priceCollectionView{
-            selectedIndex = indexPath.row
+        if collectionView == priceCollectionView {
+            
+            self.selectedPkg = self.packages?[indexPath.item]
             priceCollectionView.reloadData()
         }
     }
@@ -164,9 +186,6 @@ extension ProVC : UICollectionViewDataSource, UICollectionViewDelegate, UICollec
             return CGSize(width: collectionView.frame.width/2 - 10, height: collectionView.frame.height)
         }
     }
-    
-    
-    
 }
 
 // MARK: - UI STYLING
@@ -199,4 +218,68 @@ extension ProVC {
         
     }
     
+}
+
+// MARK: - IAP Setup
+extension ProVC {
+    
+    private func getProducts() {
+        
+        Purchases.shared.getOfferings { (offerings, error) in
+            if let error {
+                print(error.localizedDescription)
+            }
+            
+            guard let offering = offerings?.current else {
+                print("No current offering configured")
+                return
+            }
+            
+            self.packages = offering.availablePackages.map({$0})
+            for package in offering.availablePackages {
+                print("Product: \(package.storeProduct.localizedDescription), price: \(package.localizedPriceString), intro: \(package.localizedIntroductoryPriceString ?? "")")
+                if package.localizedIntroductoryPriceString != "" && package.localizedIntroductoryPriceString != nil {
+                    
+                    self.selectedPkg = package
+                }
+            }
+        }
+    }
+    
+//    private func buyProduct() {
+//        Purchases.shared.purchase(package: package) { (transaction, info, error, cancelled) in
+//            if cancelled {
+//                print("User cancelled purchase")
+//                return
+//            }
+//
+//            // Optionally handle specific purchase errors
+//            if let err = error as NSError? {
+//
+//                // log error details
+//                print("RCError: \(err.userInfo[ReadableErrorCodeKey])")
+//                print("Message: \(err.localizedDescription)")
+//                print("Underlying Error: \(err.userInfo[NSUnderlyingErrorKey])")
+//
+//                // handle specific errors from: https://docs.revenuecat.com/docs/errors
+//                switch PurchasesErrorCode(_nsError: err).code {
+//
+//                case .purchaseNotAllowedError:
+//                    print("Purchases not allowed on this device.")
+//
+//                case .purchaseInvalidError:
+//                    print("Purchase invalid, check payment source.")
+//
+//                case .networkError:
+//                    print("Network error, check your connection and try again.")
+//
+//                default:
+//                    break
+//                }
+//            } else if info?.entitlements.all[<pro>]?.isActive == true {
+//                print("Unlocked Pro Cats 🎉")
+//            }
+//
+//        }
+//    }
 }

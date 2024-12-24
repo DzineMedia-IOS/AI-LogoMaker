@@ -39,21 +39,15 @@ PODS:
     - IQKeyboardCore
   - IQTextView (1.0.5):
     - IQKeyboardToolbar/Placeholderable
-  - KVSpinnerView (1.0.1)
   - lottie-ios (4.5.0)
-  - ProgressHUD (14.1.1)
   - SDWebImage (5.20.0):
     - SDWebImage/Core (= 5.20.0)
   - SDWebImage/Core (5.20.0)
-  - SJFluidSegmentedControl (1.1.2)
 
 DEPENDENCIES:
   - IQKeyboardManagerSwift (= 8.0.0)
-  - KVSpinnerView
   - lottie-ios
-  - ProgressHUD
   - SDWebImage (~> 5.0)
-  - SJFluidSegmentedControl (~> 1.0)
 
 SPEC REPOS:
   trunk:
@@ -65,11 +59,8 @@ SPEC REPOS:
     - IQKeyboardToolbarManager
     - IQTextInputViewNotification
     - IQTextView
-    - KVSpinnerView
     - lottie-ios
-    - ProgressHUD
     - SDWebImage
-    - SJFluidSegmentedControl
 
 SPEC CHECKSUMS:
   IQKeyboardCore: 28c8bf3bcd8ba5aa1570b318cbc4da94b861711e
@@ -80,12 +71,9 @@ SPEC CHECKSUMS:
   IQKeyboardToolbarManager: 6f4072ac620c2572d4af8c09f42a801f3e4909f7
   IQTextInputViewNotification: f5e954d8881fd9808b744e49e024cc0d4bcfe572
   IQTextView: ae13b4922f22e6f027f62c557d9f4f236b19d5c7
-  KVSpinnerView: ce89cec80a5776ba4639c312770f01c8a091e80a
   lottie-ios: a881093fab623c467d3bce374367755c272bdd59
-  ProgressHUD: abb9136ae23c85204236828562cb9a8ec98efb44
   SDWebImage: 73c6079366fea25fa4bb9640d5fb58f0893facd8
-  SJFluidSegmentedControl: efd26ea5f0832c715e2750314a2dc0cc81e39ae5
 
-PODFILE CHECKSUM: 568329e51c5507fa155b25f3ceace2a428dbb7ad
+PODFILE CHECKSUM: a8a16c0a78327926840ed5fd84be9859fbcab102
 
 COCOAPODS: 1.16.2

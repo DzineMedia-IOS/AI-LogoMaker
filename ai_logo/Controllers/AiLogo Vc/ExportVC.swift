@@ -8,7 +8,6 @@
 import UIKit
 import SDWebImage
 import MobileCoreServices
-import ProgressHUD
 
 class ExportVC: UIViewController {
     
@@ -368,16 +367,15 @@ extension ExportVC {
     }
     
     private func loadPreviewImage() {
+        
         guard let imgUrl = imgUrl, let url = URL(string: imgUrl) else {
             previewImg.image = UIImage(named: "placeholder")
-            ProgressHUD.dismiss()
             return
         }
         previewImg.sd_setImage(with: url, placeholderImage: UIImage(named: "placeholder"), options: .continueInBackground, completed: nil)
-        ProgressHUD.dismiss()
     }
     
-    private func styleUI(){
+    private func styleUI() {
         
         btnPro.layer.cornerRadius = btnPro.frame.height/2
         previewImg.layer.cornerRadius = previewImg.frame.height/6
@@ -447,6 +445,7 @@ extension ExportVC {
 
 // MARK: - Donwload Image Button Control UI
 extension ExportVC {
+    
     @objc func downloadViewTapped() {
         animateTopView()
         if isProUser {

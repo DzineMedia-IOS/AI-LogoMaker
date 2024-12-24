@@ -7,7 +7,6 @@
 
 import Foundation
 import UIKit
-import ProgressHUD
 import SafariServices
 
 func applyGradientToButton(
@@ -113,17 +112,6 @@ extension UIView {
     }
 
 }
-
-
-func configProgressHud() {
-    ProgressHUD.animationType = .circleArcDotSpin
-    ProgressHUD.colorBannerTitle = UIColor.white
-    ProgressHUD.colorProgress = UIColor.white
-    ProgressHUD.colorHUD = UIColor.red
-    ProgressHUD.colorBackground = UIColor.black.withAlphaComponent(0.5)
-    
-}
-
 
 extension UIViewController {
     
